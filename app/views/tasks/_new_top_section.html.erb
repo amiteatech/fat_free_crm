@@ -1,0 +1,65 @@
+<div class="section">
+  <table>
+    <tr>
+      <td colspan="2">
+        <div class="label top req">Name:</div>
+        <%= f.text_field :name, :autofocus => true, :style => "width:500px" %>
+      </td>
+    </tr>
+    <tr class="userTask">
+      <!-- <td>
+        <div class="label req">#{t :due}:</div>
+        <%# with_time = Setting.task_calendar_with_time %>
+        <%# if @task.bucket != "specific_time" %> -->
+        <% bucket = (params[:bucket].blank? ? @task.bucket : params[:bucket]) || "due_asap" %>
+          <%= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "width:160px; display: none", :onload => "crm.flip_calendar(this.value)" } %>
+        <!--  <%#= f.text_field :calendar, :style => "width:160px; display:none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
+        <%# else %>
+          <%#= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "width:160px; display:none;", :onchange => "crm.flip_calendar(this.value)" } %>
+          <%# fmt = with_time ? '%Y-%m-%d %H:%M' : '%Y-%m-%d' %>
+          <%#= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :style => "width:160px;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
+        <%# end %>
+      </td> -->
+      <!-- <td>
+        <%#= spacer %>
+      </td> -->
+      <td>
+        <div class="label req">Assign_to:</div>
+        <%= multi_user_select(:task, all_users, current_user) %>
+      </td>
+      <td style="width: 200px;">
+        <div class="selected_users">
+          <ul id="sortable">
+            <% if @user_tasks.present? %>
+              <% @user_tasks.each do |user_task| %>
+                <%  @user = User.find(user_task.user_id) %>
+                <li class="user_list ui-state-default">
+                  <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                  <%= @user.username %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </td>
+      <!-- <td>
+        <%#= spacer %>
+      </td> -->
+      <!-- <td>
+        <div class="label req">#{t :category}:</div>
+        <%#= f.select :category, @category, { :selected => @task.category.blank? ? nil : @task.category.to_sym, :include_blank => t(:select_blank) }, { :style => "width:160px" } %>
+      </td> -->
+    </tr>
+    <% if Setting.background_info && Setting.background_info.include?(:task) %>
+      <tr>
+        <td>(colspan="2")
+          <div class="label">
+            <%= t(:extra_info).capitalize << ':' %>
+          </div>
+          <%= f.text_area :background_info, :style =>"width:500px", :rows => 3 %>
+        </td>
+      </tr>
+    <% end %>
+    <%= hook(:task_top_section_bottom, self, :f => f) %>
+  </table>
+</div>

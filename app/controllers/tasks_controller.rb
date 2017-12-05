@@ -56,6 +56,7 @@ class TasksController < ApplicationController
     @bucket = Setting.unroll(:task_bucket)[1..-1] << [t(:due_specific_date, default: 'On Specific Date...'), :specific_time]
     @category = Setting.unroll(:task_category)
     @asset = @task.asset if @task.asset_id?
+    @user_tasks = UserTask.where(task_id: @task.id)
 
     if params[:previous].to_s =~ /(\d+)\z/
       @previous = Task.tracked_by(current_user).find_by_id(Regexp.last_match[1]) || Regexp.last_match[1].to_i
@@ -68,11 +69,28 @@ class TasksController < ApplicationController
   #----------------------------------------------------------------------------
   def create
     @view = view
-    @task = Task.new(task_params) # NOTE: we don't display validation messages for tasks.
+    @users_selected = params[:task][:assigned_to].reject { |c| c.empty? }
+    # @task = Task.new(task_params) # NOTE: we don't display validation messages for tasks.
+    @task = Task.new
+    if @users_selected.present?
+      @task.assigned_to = @users_selected.first
+      @task.user_id = @users_selected.first
+      @task.bucket = params[:task][:bucket]
+      @task.name = params[:task][:name]
+    end
 
     respond_with(@task) do |_format|
       if @task.save
         update_sidebar if called_from_index_page?
+        pos = 0
+        @users_selected.each do |user_id|
+          pos = pos+1
+          @user_task = UserTask.new
+          @user_task.user_id = user_id
+          @user_task.task_id = @task.id
+          @user_task.position = pos
+          @user_task.save
+        end
       end
     end
   end

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @user_task.task_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_task.user_id %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @user_task.comments %>
+</p>
+
+<p>
+  <strong>Files:</strong>
+  <%= @user_task.files %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @user_task.position %>
+</p>
+
+<p>
+  <strong>Task status:</strong>
+  <%= @user_task.task_status %>
+</p>
+
+<p>
+  <strong>Approved time:</strong>
+  <%= @user_task.approved_time %>
+</p>
+
+<p>
+  <strong>Rejected time:</strong>
+  <%= @user_task.rejected_time %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @user_task.approved %>
+</p>
+
+<p>
+  <strong>Rejected:</strong>
+  <%= @user_task.rejected %>
+</p>
+
+<%= link_to 'Edit', edit_user_task_path(@user_task) %> |
+<%= link_to 'Back', user_tasks_path %>
