@@ -23,7 +23,7 @@
       $('##{bucket}').before('#{ j render(:partial => @view, :collection => [ @task ], :locals => { :bucket => bucket }) }');
       $('##{dom_id(@task)}').effect("highlight", { duration:1500 });
       = refresh_sidebar(:index, :filters)
-
+      $('##{dom_id(@task)} .tools a').first().trigger("click");
     crm.flick('empty', 'remove');
 
   - else # Inline [Create Task] form reqested from any of the core asset landing pages.

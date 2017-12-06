@@ -1,10 +1,11 @@
 <div class="section">
-  <table>
+  <table style="width:100%;">
     <tr>
       <td colspan="2">
-        <div class="label top req">Name:</div>
+        <div class="label top req task_name">Name:</div>
         <%= f.text_field :name, :autofocus => true, :style => "width:500px" %>
       </td>
+      <td rowspan="2"></td>
     </tr>
     <tr class="userTask">
       <!-- <td>
@@ -26,6 +27,9 @@
       <td>
         <div class="label req">Assign_to:</div>
         <%= multi_user_select(:task, all_users, current_user) %>
+      </td>
+      <td style="padding: 5px 5px 5px 20px;">
+        <%= f.file_field :name %>
       </td>
       <td style="width: 200px;">
         <div class="selected_users">

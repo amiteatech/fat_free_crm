@@ -103,11 +103,22 @@ class TasksController < ApplicationController
     @view = view
     @task = Task.tracked_by(current_user).find(params[:id])
     @task_before_update = @task.dup
+    @users_selected = params[:task][:assigned_to].reject { |c| c.empty? }
 
     if @task.due_at && (@task.due_at < Date.today.to_time)
       @task_before_update.bucket = "overdue"
     else
       @task_before_update.bucket = @task.computed_bucket
+    end
+
+    @pos = UserTask.where(task_id: @task.id).count
+    @users_selected.each do |user_id|
+      @pos = @pos+1
+      @user_task = UserTask.new
+      @user_task.user_id = user_id
+      @user_task.task_id = @task.id
+      @user_task.position = @pos
+      @user_task.save
     end
 
     respond_with(@task) do |_format|

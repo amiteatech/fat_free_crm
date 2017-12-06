@@ -222,7 +222,7 @@ $sidebar_width: 210px;
 
 .buttonbar {
   border-top: 1px gray solid;
-  margin: 8px auto;
+  margin: 15px auto;
   padding-top: 8px; }
 
 .section input, .sidebar input, .inline input,
@@ -767,7 +767,8 @@ table.asset_attributes {
 }
 /*--------create task-------*/
 tr.userTask {display: inline-block; padding-top: 10px;}
-.selected_users {margin-left: 50px;}
+.selected_users {margin-left: 15px;}
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+#sortable li { margin: 0 3px 3px 3px; width: 200px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
 #sortable li span { position: absolute; margin-left: -1.3em; }
+.task_name {float: left;}
