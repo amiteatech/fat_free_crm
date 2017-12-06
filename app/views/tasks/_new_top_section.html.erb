@@ -33,7 +33,7 @@
             <% if @user_tasks.present? %>
               <% @user_tasks.each do |user_task| %>
                 <%  @user = User.find(user_task.user_id) %>
-                <li class="user_list ui-state-default">
+                <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
                   <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
                   <%= @user.username %>
                 </li>
@@ -63,3 +63,38 @@
     <%= hook(:task_top_section_bottom, self, :f => f) %>
   </table>
 </div>
+<script type="text/javascript">
+  $(document).ready( function() {
+    setTimeout(function(){ 
+      $("ul.select2-selection__rendered li.select2-selection__choice").remove();
+      $("ul#sortable li").each(function() {
+        var text = $(this).text();
+        $("ul.select2-selection__rendered li.select2-search.select2-search--inline").prepend("<li class='select2-selection__choice' title='"+text+"><span class='select2-selection__choice__remove' role='presentation'>×</span>"+text+"</li>");
+      });
+    }, 300);
+
+    $( "#sortable" ).sortable({
+      start: function(event, ui) {
+        // ui.item.startPos = ui.item.index();
+      },
+      stop: function(event, ui) {
+        $("ul#sortable > li").each(function() {
+          var index = $(this).index();
+          var user_task_id = $(this).data("utid").split("-")[1];
+          var arr = { "user_task_id": user_task_id, "position": index+1 };
+          $.ajax({
+            url: "user_tasks/set_position/",
+            data: arr,
+            type: 'POST',
+            success: function (resp) {
+                // alert(resp);
+            },
+            error: function(e) {
+              alert('Error: '+e);
+            }  
+          });
+        });
+      }
+    });
+  });
+</script>

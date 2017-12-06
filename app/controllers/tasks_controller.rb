@@ -56,7 +56,7 @@ class TasksController < ApplicationController
     @bucket = Setting.unroll(:task_bucket)[1..-1] << [t(:due_specific_date, default: 'On Specific Date...'), :specific_time]
     @category = Setting.unroll(:task_category)
     @asset = @task.asset if @task.asset_id?
-    @user_tasks = UserTask.where(task_id: @task.id)
+    @user_tasks = UserTask.where(task_id: @task.id).order('position asc')
 
     if params[:previous].to_s =~ /(\d+)\z/
       @previous = Task.tracked_by(current_user).find_by_id(Regexp.last_match[1]) || Regexp.last_match[1].to_i
@@ -92,6 +92,8 @@ class TasksController < ApplicationController
           @user_task.save
         end
       end
+      # format.html {render edit_task_path(@task)}
+      # format.js
     end
   end
 

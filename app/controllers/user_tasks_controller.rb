@@ -45,6 +45,14 @@ class UserTasksController < ApplicationController
     redirect_to user_tasks_url, notice: 'User task was successfully destroyed.'
   end
 
+  def set_position
+    @user_task_id = params[:user_task_id]
+    @pos = params[:position]
+    @user_task = UserTask.find(@user_task_id)
+    @user_task.position = @pos
+    @user_task.save
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_task
