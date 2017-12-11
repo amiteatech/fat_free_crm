@@ -16,5 +16,5 @@
       .bucket{:id => key}= render :partial => @view, :collection => @tasks[key] || [], :locals => { :bucket => key }
   - if @tasks.values.flatten.blank?
     = render "empty"
-
+  .cl
 #export= render "shared/export"

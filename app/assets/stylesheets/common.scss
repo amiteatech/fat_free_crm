@@ -766,9 +766,34 @@ table.asset_attributes {
   }
 }
 /*--------create task-------*/
+.cl{clear: both;}
 tr.userTask {display: inline-block; padding-top: 10px;}
 .selected_users {margin-left: 15px;}
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
 #sortable li { margin: 0 3px 3px 3px; width: 200px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
 #sortable li span { position: absolute; margin-left: -1.3em; }
 .task_name {float: left;}
+.completed-task, .rejected-task {display: inline-flex;}
+.task_comment {margin-left: 10px; float: none;     margin-top: -3px; width: 50%; height: 13px;}
+#export{clear: both; margin-top:20px; background:#F5F5F5; padding: 10px;}
+.taskList{border:solid 1px #F5F5F5; padding: 10px;}
+.taskList label{font-size: 14px;}
+.taskStatus{ padding:8px 0 5px 0; }
+.taskStatus input{ float: left; margin-right: 10px; }
+.completed-task{margin-right: 10px;}
+
+.tools{padding: 10px 10px 0px 4px;}
+.taskForm{padding: 15px 0 0px 0;}
+.taskForm input[type=text]{ border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px;}
+.taskForm input[type=submit], .buttonbar input[type=submit]{background:#466bb1; padding:8px 10px; color:#fff;border:none; cursor: pointer;}
+.taskForm .halfLeft{width:68%; float:left;}
+.taskForm .halfRight{width:28%; float:right;}
+.taskForm .label {min-width:65px;margin-right: 15px; width: 10%;}
+.taskForm input[type=text], .taskForm textarea{border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px; width:80%;}
+.taskForm table td textarea{width:80%; min-height:100px;}
+.taskForm table tr{padding-top: 10px;}
+#sortable li{ background:#fff;}
+.firstTd{ min-width: 300px; }
+.firstTd .select2-container{width: 350px !important; margin-right: 15px;}
+.upload input{ width: 175px; }
+.orCont{padding:10px 0 0 5px; display: inline-block;}

@@ -5,6 +5,7 @@
 #------------------------------------------------------------------------------
 Rails.application.routes.draw do
   resources :user_tasks
+
   post 'user_tasks/set_position' => 'user_tasks#set_position'
   resources :lists
 
@@ -136,6 +137,8 @@ Rails.application.routes.draw do
     member do
       put :complete
       put :uncomplete
+      put :reject
+      put :task_comment
     end
   end
 

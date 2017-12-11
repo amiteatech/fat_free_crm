@@ -1,11 +1,17 @@
-<div class="section">
-  <table style="width:100%;">
+<div class="taskForm">
+  <div class="halfLeft">
+    <table style="width:100%;">
     <tr>
-      <td colspan="2">
+      <td colspan="3">
         <div class="label top req task_name">Name:</div>
-        <%= f.text_field :name, :autofocus => true, :style => "width:500px" %>
+        <%= f.text_field :name, :autofocus => true %>
       </td>
-      <td rowspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="label top req task_name">Description:</div>
+        <%= f.text_area :description %>
+      </td>
     </tr>
     <tr class="userTask">
       <!-- <td>
@@ -24,27 +30,12 @@
       <!-- <td>
         <%#= spacer %>
       </td> -->
-      <td>
+      <td colspan="2" class="firstTd">
         <div class="label req">Assign_to:</div>
-        <%= multi_user_select(:task, all_users, current_user) %>
+        <%= multi_user_select(:task, all_users, @task.id) %>
       </td>
-      <td style="padding: 5px 5px 5px 20px;">
-        <%= f.file_field :name %>
-      </td>
-      <td style="width: 200px;">
-        <div class="selected_users">
-          <ul id="sortable">
-            <% if @user_tasks.present? %>
-              <% @user_tasks.each do |user_task| %>
-                <%  @user = User.find(user_task.user_id) %>
-                <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
-                  <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-                  <%= @user.username %>
-                </li>
-              <% end %>
-            <% end %>
-          </ul>
-        </div>
+      <td class="upload">
+        <input type="file" name="file_upload">
       </td>
       <!-- <td>
         <%#= spacer %>
@@ -65,17 +56,34 @@
       </tr>
     <% end %>
     <%= hook(:task_top_section_bottom, self, :f => f) %>
-  </table>
+  </table>    
+  </div>
+  <div class="halfRight">
+    <div class="selected_users">
+          <ul id="sortable">
+            <% if @user_tasks.present? %>
+              <% @user_tasks.each do |user_task| %>
+                <%  @user = User.find(user_task.user_id) %>
+                <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
+                  <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                  <%= @user.username %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>    
+  </div>
+  <div class="cl"></div>
 </div>
 <script type="text/javascript">
   $(document).ready( function() {
-    setTimeout(function(){ 
-      $("ul.select2-selection__rendered li.select2-selection__choice").remove();
-      $("ul#sortable li").each(function() {
-        var text = $(this).text();
-        $("ul.select2-selection__rendered li.select2-search.select2-search--inline").prepend("<li class='select2-selection__choice' title='"+text+"><span class='select2-selection__choice__remove' role='presentation'>×</span>"+text+"</li>");
-      });
-    }, 300);
+    // setTimeout(function(){ 
+    //   $("ul.select2-selection__rendered li.select2-selection__choice").remove();
+    //   $("ul#sortable li").each(function() {
+    //     var text = $(this).text();
+    //     $("ul.select2-selection__rendered li.select2-search.select2-search--inline").prepend("<li class='select2-selection__choice' title='"+text+"><span class='select2-selection__choice__remove' role='presentation'>×</span>"+text+"</li>");
+    //   });
+    // }, 300);
 
     $( "#sortable" ).sortable({
       start: function(event, ui) {

@@ -48,11 +48,19 @@ module TasksHelper
     onclick = %{$("##{dom_id(pending, :name)}").css({textDecoration: "line-through"});}
     onclick << %{$.ajax("#{complete_task_path(pending)}", {type: "PUT", data: {bucket: "#{bucket}"}});}
   end
-
+  # onclick = %{'$("##{dom_id(pending, :name)}").css({textDecoration: "line-through"}); task_status("complete", #{pending.id}, bucket);'}
   #----------------------------------------------------------------------------
   def link_to_task_uncomplete(task, bucket)
     link_to(t(:task_uncomplete), uncomplete_task_path(task, bucket: bucket, view: @view),
             method: :put, remote: true)
+  end
+
+  #----------------------------------------------------------------------------
+    # link_to(t(:task_reject), reject_task_path(task, bucket: bucket, view: @view),
+            # method: :put, remote: true)
+  def link_to_task_reject(pending, bucket)
+    onclick = %{$("##{dom_id(pending, :name)}").css({textDecoration: "line-through"});}
+    onclick << %{$.ajax("#{reject_task_path(pending)}", {type: "PUT", data: {bucket: "#{bucket}"}});}
   end
 
   # Task summary for RSS/ATOM feed.

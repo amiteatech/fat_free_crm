@@ -35,7 +35,8 @@ class Task < ActiveRecord::Base
   belongs_to :assignee, class_name: "User", foreign_key: :assigned_to
   belongs_to :completor, class_name: "User", foreign_key: :completed_by
   belongs_to :asset, polymorphic: true
-  has_many :user_tasks
+  has_many :user_tasks, :dependent => :destroy
+  has_many :file_uploads, :dependent => :destroy
   serialize :subscribed_users, Array
 
   # Tasks created by the user for herself, or assigned to her by others. That's
