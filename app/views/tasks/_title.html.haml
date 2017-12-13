@@ -1,7 +1,7 @@
 .title_tools
-  = link_to_inline(:create_task, url_for(:action => :new, :view => @view), :text => t(:create_task))
+  = link_to_inline(:create_task, url_for(:action => :new, :view => "pending"), :text => t(:create_task))
 .title#title
-  = (@view == "assigned" ? t(:assigned_tasks) : "List of Tasks")
+  = (@view == "assigned" ? t(:assigned_tasks) : (@view == "completed" ? "Completed Tasks" : "List of Tasks"))
   = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
 
 .remote#options{ hidden }

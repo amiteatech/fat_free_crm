@@ -426,7 +426,7 @@ $sidebar_width: 210px;
     color: #3f3f3f;
     font-size: 12px;
     list-style: none;
-    padding: 3px 0px 3px 0px;
+    padding: 0px; margin-top: 10px;
     tt {
       color: dimgray;
       font-size: 11px; } }
@@ -701,7 +701,9 @@ ul.tools {
 .highlight {
   background-color: white;
   .tools {
-    visibility: hidden; } }
+    /*visibility: hidden; */
+  } 
+}
 
 .mail.highlight,
 .comment.highlight {
@@ -767,6 +769,8 @@ table.asset_attributes {
 }
 /*--------create task-------*/
 .cl{clear: both;}
+li.highlight:nth-of-type(odd) {background: #fbfafa;}
+li.highlight.task:hover{background: #f9f8f8;}
 tr.userTask {display: inline-block; padding-top: 10px;}
 .selected_users {margin-left: 15px;}
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
@@ -776,8 +780,8 @@ tr.userTask {display: inline-block; padding-top: 10px;}
 .completed-task, .rejected-task {display: inline-flex;}
 .task_comment {margin-left: 10px; float: none;     margin-top: -3px; width: 50%; height: 13px;}
 #export{clear: both; margin-top:20px; background:#F5F5F5; padding: 10px;}
-.taskList{border:solid 1px #F5F5F5; padding: 10px;}
-.taskList label{font-size: 14px;}
+.taskList{border:solid 1px #e6e6e6; padding: 10px;}
+.taskList label{font-size: 14px; font-weight: bold;}
 .taskStatus{ padding:8px 0 5px 0; }
 .taskStatus input{ float: left; margin-right: 10px; }
 .completed-task{margin-right: 10px;}

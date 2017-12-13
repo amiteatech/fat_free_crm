@@ -5,4 +5,4 @@ crm.flip_form('create_task');
   $('#create_task').html('#{ j render(:partial => "new") }');
   crm.set_title('create_task', '#{j t(:create_task) }');
 - else
-  crm.set_title('create_task', '#{ @view == "assigned" ? t(:assigned_tasks) : t(:tasks) }');
+  crm.set_title('create_task', '#{ @view == "assigned" ? t(:assigned_tasks) : "List of Tasks" }');

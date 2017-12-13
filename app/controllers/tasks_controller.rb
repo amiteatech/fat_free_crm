@@ -70,21 +70,25 @@ class TasksController < ApplicationController
   #----------------------------------------------------------------------------
   def create
     @view = view
+    only_current_user = false
     @users_selected = params[:users].reject { |c| c.empty? } if params[:users].present?
     # @task = Task.new(task_params) # NOTE: we don't display validation messages for tasks.
-    @task = Task.new
-    if @users_selected.present?
-      @task.assigned_to = @users_selected.first
-      @task.user_id = @users_selected.first
-      @task.bucket = params[:task][:bucket]
-      @task.name = params[:task][:name]
-      @task.description = params[:task][:description]
+    if (@users_selected.count == 1) && (@users_selected.first.to_i == current_user.id)
+      only_current_user = true
     end
+    @users_selected.delete(current_user.id.to_s) unless only_current_user
+    @task = Task.new
+    @task.assigned_to = @users_selected.first
+    @task.user_id = @users_selected.first
+    @task.bucket = params[:task][:bucket]
+    @task.name = params[:task][:name]
+    @task.description = params[:task][:description]
 
     respond_with(@task) do |_format|
       if @task.save
         update_sidebar if called_from_index_page?
         pos = 0
+        @users_selected.unshift(current_user.id.to_s) unless only_current_user
         @users_selected.each do |user_id|
           pos = pos+1
           @user_task = UserTask.new
@@ -225,8 +229,29 @@ class TasksController < ApplicationController
 
   def task_comment
     @task = Task.tracked_by(current_user).find(params[:id])
-    @user_task =  UserTask.find_by_user_id_and_task_id(current_user.id, @task.id)
-    @user_task.update(comments: params[:taskComment])
+    complete = "complete_task_" + params[:id]
+    reject =  "reject_task_" + params[:id]
+    @task_completed = params[complete] if params[complete].present?
+    @task_rejected = params[reject] if params[reject].present?
+    # Make sure bucket's div gets hidden if it's the last completed task in the bucket.
+    if @task
+      @user_task = UserTask.find_by_user_id_and_task_id(current_user.id, @task.id)
+      @user_task.update(comments: params[:taskComment])
+      if @task_completed.present?
+        pos = @user_task.position + 1
+        if @task.user_tasks.exists?(position: pos)
+          @new_user_task = @task.user_tasks.where(position: pos).first
+          @task.update_attributes(assigned_to: @new_user_task.user_id )
+        else  
+          @task.update_attributes(completed_at: Time.now, completed_by: current_user.id)
+        end
+        @user_task.update_attributes(approved: true, approved_time: Time.now)
+      elsif @task_rejected.present?
+        @first_user_in_order = @task.user_tasks.where(position: 1).first
+        @user_task.update_attributes(rejected: true, rejected_time: Time.now)
+        @task.update_attributes(assigned_to: @first_user_in_order.user_id)
+      end
+    end
 
     if Task.bucket_empty?(params[:bucket], current_user)
       @empty_bucket = params[:bucket]
