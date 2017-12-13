@@ -230,23 +230,23 @@ class TasksController < ApplicationController
   def task_comment
     @task = Task.tracked_by(current_user).find(params[:id])
     complete = "complete_task_" + params[:id]
-    reject =  "reject_task_" + params[:id]
-    @task_completed = params[complete] if params[complete].present?
-    @task_rejected = params[reject] if params[reject].present?
+    # reject =  "reject_task_" + params[:id]
+    # @task_completed = params[complete] if params[complete].present?
+    # @task_rejected = params[reject] if params[reject].present?
     # Make sure bucket's div gets hidden if it's the last completed task in the bucket.
     if @task
       @user_task = UserTask.find_by_user_id_and_task_id(current_user.id, @task.id)
       @user_task.update(comments: params[:taskComment])
-      if @task_completed.present?
+      if params[complete] == "1"
         pos = @user_task.position + 1
         if @task.user_tasks.exists?(position: pos)
           @new_user_task = @task.user_tasks.where(position: pos).first
           @task.update_attributes(assigned_to: @new_user_task.user_id )
         else  
-          @task.update_attributes(completed_at: Time.now, completed_by: current_user.id)
+          @task.update_attributes(completed_at: Time.now, completed_by: @task.user_tasks.where(position: 1).first.user_id)
         end
         @user_task.update_attributes(approved: true, approved_time: Time.now)
-      elsif @task_rejected.present?
+      elsif params[complete] == "0"
         @first_user_in_order = @task.user_tasks.where(position: 1).first
         @user_task.update_attributes(rejected: true, rejected_time: Time.now)
         @task.update_attributes(assigned_to: @first_user_in_order.user_id)

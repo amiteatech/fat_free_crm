@@ -769,8 +769,7 @@ table.asset_attributes {
 }
 /*--------create task-------*/
 .cl{clear: both;}
-li.highlight.odd {background: #fbfafa;}
-li.highlight.even {background: #fbfafa;}
+li.highlight.task {background: #fbfafa;}
 li.highlight.task:hover{background: #f9f8f8;}
 tr.userTask {display: inline-block; padding-top: 10px;}
 .selected_users {margin-left: 15px;}
@@ -784,10 +783,11 @@ tr.userTask {display: inline-block; padding-top: 10px;}
 .taskList{border:solid 1px #e6e6e6; padding: 10px;}
 .taskList label{font-size: 14px; font-weight: bold;}
 .taskStatus{ padding:8px 0 5px 0; }
-.taskStatus input{ float: left; margin-right: 10px; }
+.taskStatus input{ float: left; margin-right: 10px; margin-top: 0px;}
 .completed-task{margin-right: 10px;}
 
 .tools{padding: 10px 10px 0px 4px;}
+.tools.completed-tasks{padding: 0;}
 .taskForm{padding: 15px 0 0px 0;}
 .taskForm input[type=text]{ border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px;}
 .taskForm input[type=submit], .buttonbar input[type=submit]{background:#466bb1; padding:8px 10px; color:#fff;border:none; cursor: pointer;}
