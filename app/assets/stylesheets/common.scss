@@ -769,7 +769,8 @@ table.asset_attributes {
 }
 /*--------create task-------*/
 .cl{clear: both;}
-li.highlight:nth-of-type(odd) {background: #fbfafa;}
+li.highlight.odd {background: #fbfafa;}
+li.highlight.even {background: #fbfafa;}
 li.highlight.task:hover{background: #f9f8f8;}
 tr.userTask {display: inline-block; padding-top: 10px;}
 .selected_users {margin-left: 15px;}
