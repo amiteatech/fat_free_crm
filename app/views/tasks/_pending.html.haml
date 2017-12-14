@@ -57,7 +57,21 @@
         %input{:type => "text", :name => "taskComment", :id => "task-#{pending.id}", :placeholder => "Write a comment", :class => "task_comment" }
         %input{:type => "hidden", :name => "bucket", :value => pending.bucket }
         = submit_tag "Save"
+      .cl
 
+      - if pending.task_comments.count > 0
+        %div.comment-box
+          %h3.color#as
+            #{t "Comments"}
+          %div      
+            - pending.task_comments.each do |comment|
+              %div.task-comment 
+                %i.fa.fa-user-o
+                %span.commentedBy
+                  = comment.user_name 
+                  #{t ":"}
+                %span.commentedText
+                  = comment.comments 
     - unless pending.background_info.blank?
       %div
         %dt= h(pending.background_info)

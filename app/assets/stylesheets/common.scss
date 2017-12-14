@@ -408,11 +408,22 @@ $sidebar_width: 210px;
 //------------------------------------------------------------------------------
 .log {
   padding: 8px 0px 0px 0px;
+   .ui-state-active{
+        background: #466bb1;
+        color: #fff;
+      }
+      .ui-accordion .ui-accordion-header .ui-icon{
+        right: .5em;
+        left: auto;
+        font-size: 28px;
+      }
   h3 {
-    border-bottom: 1px #2f2f2f dotted;
     color: #2f2f2f;
     margin: 0px 0px 4px 0px;
-    padding: 2px 0px 2px 86px;
+    padding: 4px 0px 4px 25px;
+    font-size: 13px;
+    font-weight: bold;
+
     &.overdue {
       color: crimson;
       border-bottom: 1px crimson dotted; }
@@ -421,7 +432,9 @@ $sidebar_width: 210px;
       border-bottom: 1px darkred dotted; }
     &.due_today {
       color: darkgreen;
-      border-bottom: 1px darkgreen dotted; } }
+      border-bottom: 1px darkgreen dotted; } 
+
+    }
   li {
     color: #3f3f3f;
     font-size: 12px;
@@ -804,3 +817,14 @@ tr.userTask {display: inline-block; padding-top: 10px;}
 .orCont{padding:10px 0 0 5px; display: inline-block;}
 select#task_bucket {height: 32px;}
 .userTask td.upload {padding-top: 20px;}
+
+.comment-box {padding-top: 20px;width: 87.8%;}
+.task-comment {padding: 5px 0;border-bottom: 1px dotted #ccc;}
+.task-comment:last-child{ border-bottom: none; }
+.task-comment span.commentedBy { font-weight: bold; }
+.task-comment{
+  i{
+    padding-right: 5px;
+    font-size: 12px;
+  }
+}

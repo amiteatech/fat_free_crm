@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   has_many :lists
   has_and_belongs_to_many :groups
   has_many :user_tasks
+  has_many :task_comments
 
   has_paper_trail class_name: 'Version', ignore: [:perishable_token]
 

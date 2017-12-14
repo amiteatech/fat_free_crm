@@ -37,6 +37,7 @@ class Task < ActiveRecord::Base
   belongs_to :asset, polymorphic: true
   has_many :user_tasks, :dependent => :destroy
   has_many :file_uploads, :dependent => :destroy
+  has_many :task_comments, :dependent => :destroy
   serialize :subscribed_users, Array
 
   # Tasks created by the user for herself, or assigned to her by others. That's

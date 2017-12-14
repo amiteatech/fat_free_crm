@@ -237,6 +237,14 @@ class TasksController < ApplicationController
     if @task
       @user_task = UserTask.find_by_user_id_and_task_id(current_user.id, @task.id)
       @user_task.update(comments: params[:taskComment])
+      if params[:taskComment]
+        @task_comment = TaskComment.new
+        @task_comment.task_id = @task.id
+        @task_comment.user_id = current_user.id
+        @task_comment.user_name = [current_user.first_name, current_user.last_name].join(" ")
+        @task_comment.comments = params[:taskComment]
+        @task_comment.save
+      end
       if params[complete] == "1"
         pos = @user_task.position + 1
         if @task.user_tasks.exists?(position: pos)
