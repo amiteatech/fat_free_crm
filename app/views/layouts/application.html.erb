@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <title>Eatech CRM</title>
+    <%#= = <!-- #{controller.controller_name} : #{controller.action_name} --> %>
+    <%= stylesheet_link_tag :application %>
+    <%= stylesheet_link_tag :print, :media => 'print' %>
+    <%= hook(:stylesheet_includes, self) do %>
+      <%= yield :stylesheet_includes %>
+      <%= style= yield :styles %>
+    <% end %>
+    <%= javascript_include_tag :application %>
+    <% unless tabless_layout? || %w(en-US en-GB).include?(I18n.locale.to_s) %>
+      <%= javascript_include_tag "jquery_ui_datepicker/jquery.ui.datepicker-#{I18n.locale}" %>
+      <%= javascript_include_tag "jquery_ui_datepicker/jquery-ui-timepicker-#{I18n.locale}" %>
+    <% end %>
+    <%= csrf_meta_tag %>
+    <%= hook(:javascript_includes, self) %>
+    <script>
+      
+      crm.language = "#{I18n.locale}"
+      window.controller = "#{controller.controller_name}"
+
+
+    </script>
+    <% if current_user.present? %>
+      <script>
+        
+        <%= yield :javascript %>
+        var _ffcrm_users = [
+        <%= raw User.all.map{|u| "'#{j u.full_name} (@#{j u.username})'" }.join(",\n") %>
+        ];
+
+
+      </script>
+    <% end %>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <%= render "layouts/header" %>
+    <% if tabless_layout? %>
+      <%= render "layouts/tabless" %>
+    <% else %>
+      <%= render "layouts/tabbed" %>
+      <%= render "layouts/footer" %>
+    <% end %>
+    <script type="text/javascript">
+      <%= "crm.base_url = '#{Setting.base_url}';" unless Setting.base_url.blank? %>
+      <%= get_browser_timezone_offset %>
+      <%= content_for :javascript_epilogue %>
+      <%= hook(:javascript_epilogue, self) %>
+    </script>
+  </body>
+</html>

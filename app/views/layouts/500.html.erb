@@ -1,0 +1,25 @@
+<% content_for(:tabless) do %>
+  500 error
+<% end %>
+<!DOCTYPE html>
+<html lang="<%= :en %>" xml:lang="<%= :en %>" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <title>Eatech CRM Exception</title>
+    <%= stylesheet_link_tag :application %>
+    <%= javascript_include_tag :application %>
+  </head>
+  <body>
+    <div id="header">
+      <div id="welcome"></div>
+      <h3>
+        <%= link_to("Eatech CRM", '/') %>
+      </h3>
+    </div>
+    <center>
+      <p class="flash_exception" id="msg">
+        <%= exception %>
+      </p>
+    </center>
+  </body>
+</html>

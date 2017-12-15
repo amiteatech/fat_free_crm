@@ -1,0 +1,30 @@
+<%= styles_for :task %>
+
+<% if @view == "completed" %>
+  <% buckets = Setting.unroll(:task_completed) %>
+  <%= render "title" %>
+<% else %>
+  <% buckets = Setting.unroll(:task_bucket) %>
+  <%= render "title" %>
+<% end %>
+
+<div class="log" id="tasks">
+  <% buckets.each do |value, key| %>
+    <div <%= hidden_if(filtered_out?(@view, key)) %> id = "list_<%=key%>">
+      <!-- <h3 class="<%= key %>">
+        <%= value %>
+      </h3> -->
+      <div class="bucket" id="<%= key %>">
+        <%= render :partial => @view, :collection => @tasks[key] || [], :locals => { :bucket => key } %>
+      </div>
+  <% end %>
+  <% if @tasks.values.flatten.blank? %>
+    <%= render "empty" %>
+  <% end %>
+  <div class="cl"></div>
+</div>
+
+<!-- <div id="export">
+  <%#= render "shared/export" %>
+</div> -->
+
