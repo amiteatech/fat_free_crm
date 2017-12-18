@@ -5,6 +5,7 @@
     $('#list_<%=@empty_bucket%>').fadeOut({ duration:500 });
   <% end %>
   <%= refresh_sidebar(:index, :filters) %>
+  
 <% else # Completing from the Asset page -- replace task partial with completed one. %>
   $('#<%=dom_id(@task)%>').hide();
   $('#<%=dom_id(@task)%>').html('<%= j render(:partial => "tasks/rejected", :collection => [ @task ], :locals => { :bucket => nil }) %>');
