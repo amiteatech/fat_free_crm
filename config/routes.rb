@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   resources :lists
 
   root to: 'home#index'
-
+  get '/oauth2callback', to: 'tasks#set_google_drive_token'
+  get 'show_files', to: 'tasks#show_files'
   get 'activities' => 'home#index'
   get 'admin'      => 'admin/users#index',       :as => :admin
   get 'login'      => 'authentications#new',     :as => :login
@@ -139,6 +140,7 @@ Rails.application.routes.draw do
       put :uncomplete
       put :reject
       put :task_comment
+      # put :vito_status
     end
   end
 

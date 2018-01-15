@@ -146,4 +146,14 @@ module TasksHelper
     text << refresh_sidebar(:index, :filters)
     text
   end
+
+  # def get_vito_status(task_id, user_id)
+  #   text = Vito.find_by_user_id_and_task_id(user_id, @task.id).vito_status
+  #   text
+  # end
+
+  # def link_to_vito(task_id, user_id)
+  #   onclick = %{$.ajax("#{vito_status_task_path(task_id)}", {type: "PUT", data: {user_id: "#{user_id}"}});}
+  # end
+
 end

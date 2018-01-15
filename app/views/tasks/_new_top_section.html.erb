@@ -27,19 +27,15 @@
           <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :style => "width:160px; display: none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
         <% end %>
       </td>
-      <!-- <td>
-        <%#= spacer %>
-      </td> -->
       <td colspan="2" class="firstTd">
         <div class="label req">Assign_to:</div>
         <%= multi_user_select(:task, all_users, @task.id) %>
       </td>
-      <td class="upload">
-        <input type="file" name="file_upload">
-      </td>
-      <!-- <td>
-        <%#= spacer %>
-      </td> -->
+      <% if action_name == "new" %>
+        <td class="upload">
+          <input type="file" name="file_upload">
+        </td>
+      <% end %>
       <!-- <td>
         <div class="label req">#{t :category}:</div>
         <%#= f.select :category, @category, { :selected => @task.category.blank? ? nil : @task.category.to_sym, :include_blank => t(:select_blank) }, { :style => "width:160px" } %>
@@ -67,6 +63,11 @@
                 <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
                   <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
                   <%= @user.username %>
+                  <!-- <bdo style="float: right;">
+                    <%# vito_status = get_vito_status(user_task.task_id, user_task.user_id) %>
+                    <%# v_stat = "checked" if vito_status %>
+                    <%#= radio_button_tag "vito", user_task.task_id, vito_status, :class => "user_vito_status", :onclick => link_to_vito(user_task.task_id, user_task.user_id), :checked => v_stat %>
+                  </bdo> -->
                 </li>
               <% end %>
             <% end %>

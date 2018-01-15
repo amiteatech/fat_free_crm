@@ -3,17 +3,34 @@
 # Eatech CRM is freely distributable under the terms of MIT license.
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
+require 'google_drive/google_docs'
 class TasksController < ApplicationController
   before_action :require_user
   before_action :set_current_tab, only: [:index, :show]
   before_action :update_sidebar, only: :index
   skip_before_action :verify_authenticity_token
+  before_action :google_drive_login, :only => [:index, :create]
 
+  GOOGLE_CLIENT_ID = "318261922103-6o5ui2qui55luqss9d2gpsbsukianb39.apps.googleusercontent.com"
+  GOOGLE_CLIENT_SECRET = "WlTtICFYG64yummKqFlpz5hf"
+  GOOGLE_CLIENT_REDIRECT_URI = "http://localhost:3000/oauth2callback"
+  
   # GET /tasks
   #----------------------------------------------------------------------------
   def index
     @view = view
     @tasks = Task.find_all_grouped(current_user, @view)
+    google_session = GoogleDrive.login_with_oauth(session[:google_token]) 
+
+    # @google_docs = []
+    # @google_forms = []
+    # for file in google_session.files
+    #   if file.web_view_link.include? "docs.google.com/document/"
+    #     @google_docs  << file   
+    #   elsif file.web_view_link.include? "docs.google.com/forms/"
+    #     @google_forms  << file    
+    #   end
+    # end 
 
     respond_with @tasks do |format|
       format.xls { render layout: 'header' }
@@ -96,11 +113,35 @@ class TasksController < ApplicationController
           @user_task.task_id = @task.id
           @user_task.position = pos
           @user_task.save
+
+          # @vito = Vito.new
+          # @vito.user_id = user_id
+          # @vito.task_id = @task.id
+          # @vito.vito_status = false
+          # @vito.save
         end
         if params[:file_upload].present?
+          # google_session = GoogleDrive.login_with_oauth(session[:google_token])
+          # file_uploaded_to_drive = google_session.upload_from_file(params[:file_upload].path, params[:file_upload].original_filename, convert: false)
+
+          drive = Google::Apis::DriveV3::DriveService.new
+          drive.authorization = Signet::OAuth2::Client.new( client_id: GOOGLE_CLIENT_ID, client_secret: GOOGLE_CLIENT_SECRET, access_token: session[:google_token], :access_type => 'offline', :scope => "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file")
+          drive.authorization.expires_in = 7200
+          
+          file_metadata = {name: params[:file_upload].original_filename, mime_type: "application/vnd.google-apps.document"}
+          file_uploaded_to_drive = drive.create_file(file_metadata, fields: 'id', upload_source: params[:file_upload].path)
+
+          @users_selected.each do |user_id|
+            unless UserTask.find_by_user_id(user_id).position == 1
+              user_permission = { type: 'user', role: 'writer', with_link: true, email_address: User.find(user_id).email }
+              drive.create_permission(file_uploaded_to_drive.id, user_permission, fields: "id")
+            end
+          end
+
           @file_upload = FileUpload.new
           @file_upload.task_id = @task.id
-          @file_upload.file = params[:file_upload].original_filename
+          @file_upload.file_name = params[:file_upload].original_filename
+          @file_upload.file = "https://docs.google.com/document/d/#{file_uploaded_to_drive.id}/edit"
           @file_upload.save
         end
       end
@@ -130,17 +171,23 @@ class TasksController < ApplicationController
           @user_task.task_id = @task.id
           @user_task.position = @pos
           @user_task.save
+
+          # @vito = Vito.new
+          # @vito.user_id = user_id
+          # @vito.task_id = @task.id
+          # @vito.vito_status = false
+          # @vito.save
         end
       end
     end
 
     respond_with(@task) do |_format|
-      if params[:file_upload].present?
-        @file_upload = FileUpload.new
-        @file_upload.task_id = @task.id
-        @file_upload.file = params[:file_upload].original_filename
-        @file_upload.save
-      end
+      # if params[:file_upload].present?
+      #   @file_upload = FileUpload.new
+      #   @file_upload.task_id = @task.id
+      #   @file_upload.uploaded_file = params[:file_upload]
+      #   @file_upload.save
+      # end
       if @task.update_attributes(task_params)
         @task.bucket = @task.computed_bucket
         if called_from_index_page?
@@ -267,6 +314,45 @@ class TasksController < ApplicationController
 
     update_sidebar unless params[:bucket].blank?
     respond_with(@task)
+  end
+
+  # def vito_status
+  #   @vitos = Vito.where(task_id: params[:id])
+  #   if @vitos
+  #     @vitos.each do |vito|
+  #       if vito.user_id == params[:user_id].to_i
+  #         vito.update_attributes(vito_status: true)
+  #       else
+  #         vito.update_attributes(vito_status: false)
+  #       end
+  #     end
+  #   end
+  # end
+
+  def show_files
+    # @document = FileUpload.find(params[:id])
+    # send_data(@document.file_contents, type: @document.content_type, filename: @document.file)
+    @url = params[:url]
+  end
+
+  def set_google_drive_token
+    google_doc = GoogleDrive::GoogleDocs.new(GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,
+                GOOGLE_CLIENT_REDIRECT_URI)
+    oauth_client = google_doc.create_google_client
+    auth_token = oauth_client.auth_code.get_token(params[:code], 
+                 :redirect_uri => GOOGLE_CLIENT_REDIRECT_URI)
+    session[:google_token] = auth_token.token if auth_token
+    session[:google_token_expiry_time] = Time.now + 3600 if auth_token
+    redirect_to tasks_path
+  end
+
+  def google_drive_login
+    unless session[:google_token].present? && session[:google_token_expiry_time] && session[:google_token_expiry_time] > Time.now
+      google_drive = GoogleDrive::GoogleDocs.new(GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,
+                     GOOGLE_CLIENT_REDIRECT_URI)
+      auth_url = google_drive.set_google_authorize_url
+      redirect_to auth_url
+    end
   end
 
   # POST /tasks/auto_complete/query                                        AJAX
