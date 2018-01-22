@@ -33,9 +33,11 @@ $sidebar_width: 210px;
     vertical-align: top;
   }
 }
-
+#edit_profile .section{padding:4px 15px 8px 0px;}
+#change_password .section{padding:4px 15px 8px 0px;}
 .subtitle {
-  border-bottom: 1px silver solid;
+  /*border-bottom: 1px silver solid;*/
+  margin-top: 20px;
   color: #2f2f2f;
   font: {
     size: 14px;
@@ -796,10 +798,11 @@ tr.userTask {display: inline-block; padding-top: 10px;}
 .taskList{border:solid 1px #e6e6e6; padding: 10px;}
 .taskList label{font-size: 14px; font-weight: bold;}
 .taskStatus{ padding:8px 0 5px 0; }
-.taskStatus input{ float: left; margin-right: 10px; margin-top: 0px;}
+.taskStatus input{ float: left; margin-right:5px; margin-top: 0px;}
 .completed-task{margin-right: 10px;}
 
-.tools{padding: 10px 10px 0px 4px;}
+.tools{padding:3px 10px 0px 4px;}
+.task .tools{padding:10px 10px 0px 4px;}
 .tools.completed-tasks{padding: 0;}
 .taskForm{padding: 15px 0 0px 0;}
 .taskForm input[type=text]{ border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px;}
@@ -815,7 +818,7 @@ tr.userTask {display: inline-block; padding-top: 10px;}
 .firstTd .select2-container{width: 350px !important; margin-right: 15px;}
 .upload input{ width: 175px; }
 .orCont{padding:10px 0 0 5px; display: inline-block;}
-select#task_bucket {height: 32px;}
+select#task_bucket {height: 32px; background-image:none; border-radius: 0px; margin-top: 3px;}
 .userTask td.upload {padding-top: 20px;}
 
 .comment-box {padding-top: 20px;width: 87.8%;}
@@ -823,8 +826,16 @@ select#task_bucket {height: 32px;}
 .task-comment:last-child{ border-bottom: none; }
 .task-comment span.commentedBy { font-weight: bold; }
 .task-comment{
-  i{
-    padding-right: 5px;
-    font-size: 12px;
-  }
+  i{padding-right: 5px;font-size: 12px;}
+ #opportunities select{background-image:none;}
+
 }
+.select2-container--default .select2-selection--single{border-radius:0px; height:23px; margin-top: 3px;}
+.select2-container--default .select2-selection--single .select2-selection__rendered{line-height: 23px; }
+.select2-container--default .select2-selection--single .select2-selection__arrow{height:23px;}
+.select2-container--default .select2-selection--multiple{border-radius:0px; height:23px; margin-top: 3px;}
+.select2-container--default.select2-container--focus .select2-selection--multiple{}
+.select2-container--default .select2-selection--single{border-radius:0px; height:23px; margin-top: 3px;}
+select{background-image:none;}
+.list li tt{}
+
