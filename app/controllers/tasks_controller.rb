@@ -263,7 +263,7 @@ class TasksController < ApplicationController
     @task = Task.tracked_by(current_user).find(params[:id])
     if @task
       @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).first
-      @first_user_in_order = @task.user_tasks.where(position: 1).first
+      @first_user_in_order = @task.task_created_id
       @user_task.update_attributes(rejected: true, rejected_time: Time.now)
       @task.update_attributes(assigned_to: @first_user_in_order.user_id)
     end
@@ -300,13 +300,13 @@ class TasksController < ApplicationController
           @new_user_task = @task.user_tasks.where(position: pos).first
           @task.update_attributes(assigned_to: @new_user_task.user_id )
         else  
-          @task.update_attributes(completed_at: Time.now, completed_by: @task.user_tasks.where(position: 1).first.user_id)
+          @task.update_attributes(completed_at: Time.now, completed_by: current_user.id, assigned_to: @task.task_created_id)
         end
         @user_task.update_attributes(approved: true, approved_time: Time.now)
       elsif params[complete] == "0"
-        @first_user_in_order = @task.user_tasks.where(position: 1).first
+        # @first_user_in_order = @task.user_tasks.where(position: 1).first
         @user_task.update_attributes(rejected: true, rejected_time: Time.now)
-        @task.update_attributes(assigned_to: @first_user_in_order.user_id)
+        @task.update_attributes(assigned_to: @task.task_created_id)
       end
     end
 
