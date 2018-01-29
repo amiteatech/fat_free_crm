@@ -100,6 +100,8 @@ class TasksController < ApplicationController
     @task.bucket = params[:task][:bucket]
     @task.name = params[:task][:name]
     @task.description = params[:task][:description]
+    @task.task_created_by = current_user.username if current_user.username.present?
+    @task.task_created_id = current_user.id
 
     respond_with(@task) do |_format|
       if @task.save
