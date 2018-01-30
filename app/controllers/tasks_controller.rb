@@ -318,6 +318,30 @@ class TasksController < ApplicationController
     respond_with(@task)
   end
 
+  def task_reject
+    @task = Task.tracked_by(current_user).find(params[:id])
+    if @task
+      @user_task = UserTask.find_by_user_id_and_task_id(current_user.id, @task.id)
+      if params[:taskReject]
+        @task_comment = TaskComment.new
+        @task_comment.task_id = @task.id 
+        @task_comment.user_id = current_user.id
+        @task_comment.user_name = [current_user.first_name, current_user.last_name].join(" ")
+        @task_comment.comments = params[:taskReject]
+        @task_comment.save
+      end
+
+      @task.update_attributes(completed_at: nil, completed_by: nil, assigned_to: @task.user_tasks.where(position: 2).first.user_id)
+    end
+
+    if Task.bucket_empty?(params[:bucket], current_user)
+      @empty_bucket = params[:bucket]
+    end
+
+    update_sidebar unless params[:bucket].blank?
+    respond_with(@task)
+  end
+
   # def vito_status
   #   @vitos = Vito.where(task_id: params[:id])
   #   if @vitos

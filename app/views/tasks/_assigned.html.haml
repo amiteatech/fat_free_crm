@@ -9,7 +9,7 @@
     = link_to_discard(assigned) + " | " if shown_on_landing_page?
     = link_to_task_delete(assigned, bucket)
 
-  .indent
+  .taskList
     = link_to(assigned.assignee.full_name, user_path(assigned.assignee)) + ": "
     = auto_link h(assigned.name)
     - if assigned.asset_id?

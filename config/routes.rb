@@ -140,6 +140,7 @@ Rails.application.routes.draw do
       put :uncomplete
       put :reject
       put :task_comment
+      put :task_reject
       # put :vito_status
     end
   end
