@@ -17,13 +17,13 @@
       %td
         .label #{t :password_confirmation}:
         = f.password_field :password_confirmation
-    %tr
-      %td(colspan=3)
-        .check_box(style="margin-top:6px")
-          -# Sorry, you can't revoke Admin rights from yourself.
-          = f.check_box(:admin, { :disabled => edit && @user == current_user })
-          %label{:for => 'user_admin'}
-            = t(:user_is_admin)
+    / %tr
+    /   %td(colspan=3)
+    /     .check_box(style="margin-top:6px")
+    /       -# Sorry, you can't revoke Admin rights from yourself.
+    /       = f.check_box(:admin, { :disabled => edit && @user == current_user })
+    /       %label{:for => 'user_admin'}
+    /         = t(:user_is_admin)
 
 .subtitle #{t :personal_information}
 .section
@@ -40,15 +40,29 @@
       %td
         .label #{t :job_title}:
         = f.text_field :title
-      %td= spacer
-      %td
-        .label #{t :company}:
-        = f.text_field :company
+      / %td= spacer
+      / %td
+      /   .label #{t :company}:
+      /   = f.text_field :company
 
-.subtitle #{t :group_memberships}
+/ .subtitle #{t :group_memberships}
+.subtitle #{t :Company }
 .section
   %table
     %tr
+      / %td
+      /   .label #{t :groups}:
+      /   = f.select :group_ids, Group.all.map {|g| [g.name, g.id]}, {}, :multiple => true, :class => 'select2'
       %td
-        .label #{t :groups}:
-        = f.select :group_ids, Group.all.map {|g| [g.name, g.id]}, {}, :multiple => true, :class => 'select2'
+        .label #{t :Role}:
+        - if current_user.is_super_admin?
+          = f.select :role, [["Admin", 2], ["Manager", 3], ["User", 4]], {}, :class => 'select2', :include_blank => true
+        - else
+          = f.select :role, [["Manager", 3], ["User", 4]], {}, :class => 'select2', :include_blank => true
+      %td= spacer
+      - if current_user.is_super_admin?
+        %td
+          .label #{t :Company}:
+          = f.select :company_id, Company.all.map {|g| [g.name, g.id]}, {}, :class => 'select2' 
+      - else
+        = f.hidden_field(:company_id, { :value => current_user.company_id })

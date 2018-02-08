@@ -22,7 +22,7 @@ class Admin::ApplicationController < ApplicationController
   #----------------------------------------------------------------------------
   def require_admin_user
     require_user
-    if current_user && !current_user.admin?
+    if current_user && !(current_user.admin? || current_user.is_super_admin?)
       flash[:notice] = t(:msg_require_admin)
       redirect_to root_path
     end

@@ -170,6 +170,24 @@ class User < ActiveRecord::Base
     !sum.nil?
   end
 
+  # Authenticate user with role
+  #----------------------------------------------------------------------------
+  def is_super_admin?
+    self.role == 1
+  end
+
+  def is_admin?
+    self.role == 2
+  end
+
+  def is_manager?
+    self.role == 3
+  end
+
+  def is_client?
+    self.role == 4
+  end 
+
   private
 
   # Define class methods
