@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <title>Eatech CRM</title>
+    
+    <%= stylesheet_link_tag :application %>
+    <%= stylesheet_link_tag :print, :media => 'print' %>
+    <%= javascript_include_tag :application %>
+    <%= csrf_meta_tag %>
+    <script>
+      
+      crm.language = "#{I18n.locale}"
+      window.controller = "#{controller.controller_name}"
+
+    </script>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <%= render "layouts/super_header" %>
+    <% if tabless_layout? %>
+      <%= render "layouts/tabless" %>
+    <% else %>
+      <%#= render "layouts/tabbed" %>
+      <%#= render "layouts/footer" %>
+    <% end %>
+
+    <%= yield %>
+   
+  </body>
+</html>
