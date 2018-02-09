@@ -26,6 +26,11 @@ class AuthenticationsController < ApplicationController
       if @authentication.user.login_count > 1 && @authentication.user.last_login_at?
         flash[:notice] << " " << t(:msg_last_login, l(@authentication.user.last_login_at, format: :mmddhhss))
       end
+
+      if @authentication.user.super_admin == true
+        session[:return_to] = companies_url
+      end  
+
       redirect_back_or_default root_url
     else
       if @authentication.user && @authentication.user.awaits_approval?

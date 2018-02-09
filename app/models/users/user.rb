@@ -173,7 +173,7 @@ class User < ActiveRecord::Base
   # Authenticate user with role
   #----------------------------------------------------------------------------
   def is_super_admin?
-    self.role == 1
+    self.super_admin == true
   end
 
   def is_admin?
