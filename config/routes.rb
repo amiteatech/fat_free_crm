@@ -4,6 +4,7 @@
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 Rails.application.routes.draw do
+  resources :companies
   resources :user_tasks
 
   post 'user_tasks/set_position' => 'user_tasks#set_position'
