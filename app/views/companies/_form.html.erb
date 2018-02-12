@@ -1,46 +1,102 @@
 <%= simple_form_for(@company) do |f| %>
   <%= f.error_notification %>
-  <h5>Company Field</h5>
+  <h4>Company Field</h4>
   <div class="inputs">
-     <label>Name</label>
-    <%= f.text_field :name %>
-     <label>Address1</label>
-    <%= f.text_field :address1 %>
-     <label>Address2</label>
-    <%= f.text_field :address2 %>
-     <label>City</label>
-    <%= f.text_field :city %>
-      <label>Country</label>
-    <%= f.text_field :country %>
-      <label>Prime Contact</label>
-    <%= f.text_field :prime_contact %>
-      <label>Prime Phone Number</label>
-    <%= f.text_field :prime_phone_number %>
+    <div class="row">
+      <div class="span2">
+       <label>Name</label>
+      </div>
+      <div class="span4">
+       <%= f.text_field :name %>
+      </div>
+      <div class="span2">
+       <label class="pad_left">Address1</label>
+      </div>
+      <div class="span4">
+       <%= f.text_field :address1 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2">
+        <label>Address2</label>
+      </div>
+      <div class="span4">
+        <%= f.text_field :address2 %>
+      </div>
+      <div class="span2">
+        <label class="pad_left">City</label>
+      </div>
+      <div class="span4">
+        <%= f.text_field :city %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2">
+        <label>Country</label>
+      </div>
+      <div class="span4">
+        <%= f.text_field :country %>
+      </div>
+      <div class="span2">
+        <label class="pad_left">Prime Contact</label>
+      </div>
+      <div class="span4">
+        <%= f.text_field :prime_contact %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2">
+        <label>Prime Phone Number</label>
+      </div>
+      <div class="span4">
+        <%= f.text_field :prime_phone_number %>
+      </div>
+    </div>  
     <%#= f.text_field :status %>
   </div>
-  <h5>Admin Field</h5>
+  <h4>Admin Field</h4>
   <div class="inputs">
-    <label>First Name</label>
-    <%= text_field_tag 'user[first_name]' %>
-  </div>
-  <div class="inputs">
-    <label>Last Name</label>
-    <%= text_field_tag 'user[last_name]' %>
-  </div>
-    <div class="inputs">
-    <label>Email</label>
-    <%= text_field_tag 'user[email]' %>
-  </div>
-    <div class="inputs">
-    <label>Phone</label>
-    <%= text_field_tag 'user[phone]' %>
-  </div>
-  <div class="inputs">
-    <label>Password</label>
-    <%= password_field_tag 'user[password]' %>
+    <div class="row">
+      <div class="span2">
+        <label>First Name</label>
+      </div>
+      <div class="span4">
+        <%= text_field_tag 'user[first_name]' %>
+      </div>
+      <div class="span2">
+        <label class="pad_left">Last Name</label>
+      </div>
+      <div class="span4">
+        <%= text_field_tag 'user[last_name]' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2">
+        <label>Email</label>
+      </div>
+      <div class="span4">
+        <%= text_field_tag 'user[email]' %>
+      </div>
+      <div class="span2">
+        <label class="pad_left">Phone</label>
+      </div>
+      <div class="span4">
+        <%= text_field_tag 'user[phone]' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span2">
+        <label>Password</label>
+      </div>
+      <div class="span4">
+        <%= password_field_tag 'user[password]' %>
+      </div>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.button :submit %>
+  <div class="row">
+    <div class="actions">
+      <%= f.button :submit %>
+    </div>
   </div>
 <% end %>
