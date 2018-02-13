@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Form Second Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Topic</th>
+      <th>Textbook</th>
+      <th>Teaching activity</th>
+      <th>Teacher remark</th>
+      <th>Supervisor remark</th>
+      <th>Form second</th>
+      <th>Position</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @form_second_details.each do |form_second_detail| %>
+      <tr>
+        <td><%= form_second_detail.week %></td>
+        <td><%= form_second_detail.topic %></td>
+        <td><%= form_second_detail.textbook %></td>
+        <td><%= form_second_detail.teaching_activity %></td>
+        <td><%= form_second_detail.teacher_remark %></td>
+        <td><%= form_second_detail.supervisor_remark %></td>
+        <td><%= form_second_detail.form_second_id %></td>
+        <td><%= form_second_detail.position %></td>
+        <td><%= link_to 'Show', form_second_detail %></td>
+        <td><%= link_to 'Edit', edit_form_second_detail_path(form_second_detail) %></td>
+        <td><%= link_to 'Destroy', form_second_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Form Second Detail', new_form_second_detail_path %>

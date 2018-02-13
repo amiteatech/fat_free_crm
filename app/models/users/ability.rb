@@ -34,7 +34,9 @@ class Ability
       # we must switch on user.admin? here to avoid the nil constraints which
       # activate the issue referred to above.
       #
-      if user.admin?
+      if user.super_admin == true
+        can :manage, Company
+      elsif user.admin?
         can :manage, :all
       else
         # Group or User permissions

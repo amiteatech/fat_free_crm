@@ -1,0 +1,18 @@
+<%= simple_form_for(@form_second) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :module_title %>
+    <%= f.input :course %>
+    <%= f.input :course_date %>
+    <%= f.input :module_toucht_by_id %>
+    <%= f.input :company_id %>
+    <%= f.input :user_id %>
+    <%= f.input :task_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

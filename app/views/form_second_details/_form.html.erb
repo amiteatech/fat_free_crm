@@ -1,0 +1,18 @@
+<%= simple_form_for(@form_second_detail) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :week %>
+    <%= f.input :topic %>
+    <%= f.input :textbook %>
+    <%= f.input :teaching_activity %>
+    <%= f.input :teacher_remark %>
+    <%= f.input :supervisor_remark %>
+    <%= f.input :form_second_id %>
+    <%= f.input :position %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

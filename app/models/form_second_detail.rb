@@ -1,0 +1,2 @@
+class FormSecondDetail < ApplicationRecord
+end

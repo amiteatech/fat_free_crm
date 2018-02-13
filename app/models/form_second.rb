@@ -1,0 +1,2 @@
+class FormSecond < ApplicationRecord
+end

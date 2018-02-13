@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Form Firsts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Name of applicant</th>
+      <th>Position applied for</th>
+      <th>Part a first interview date</th>
+      <th>Interviewer comment first</th>
+      <th>Interviewer comment second</th>
+      <th>Interviewer comment others</th>
+      <th>Part b first interview date</th>
+      <th>Interviewer comments</th>
+      <th>Part c name</th>
+      <th>Part c signature</th>
+      <th>Part c date</th>
+      <th>Company</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @form_firsts.each do |form_first| %>
+      <tr>
+        <td><%= form_first.name %></td>
+        <td><%= form_first.name_of_applicant %></td>
+        <td><%= form_first.position_applied_for %></td>
+        <td><%= form_first.part_a_first_interview_date %></td>
+        <td><%= form_first.interviewer_comment_first %></td>
+        <td><%= form_first.interviewer_comment_second %></td>
+        <td><%= form_first.interviewer_comment_others %></td>
+        <td><%= form_first.part_b_first_interview_date %></td>
+        <td><%= form_first.interviewer_comments %></td>
+        <td><%= form_first.part_c_name %></td>
+        <td><%= form_first.part_c_signature %></td>
+        <td><%= form_first.part_c_date %></td>
+        <td><%= form_first.company_id %></td>
+        <td><%= form_first.user_id %></td>
+        <td><%= link_to 'Show', form_first %></td>
+        <td><%= link_to 'Edit', edit_form_first_path(form_first) %></td>
+        <td><%= link_to 'Destroy', form_first, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Form First', new_form_first_path %>

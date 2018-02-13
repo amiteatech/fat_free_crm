@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Form Seconds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Module title</th>
+      <th>Course</th>
+      <th>Course date</th>
+      <th>Module toucht by</th>
+      <th>Company</th>
+      <th>User</th>
+      <th>Task</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @form_seconds.each do |form_second| %>
+      <tr>
+        <td><%= form_second.name %></td>
+        <td><%= form_second.module_title %></td>
+        <td><%= form_second.course %></td>
+        <td><%= form_second.course_date %></td>
+        <td><%= form_second.module_toucht_by_id %></td>
+        <td><%= form_second.company_id %></td>
+        <td><%= form_second.user_id %></td>
+        <td><%= form_second.task_id %></td>
+        <td><%= link_to 'Show', form_second %></td>
+        <td><%= link_to 'Edit', edit_form_second_path(form_second) %></td>
+        <td><%= link_to 'Destroy', form_second, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Form Second', new_form_second_path %>

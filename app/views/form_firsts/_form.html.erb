@@ -1,0 +1,24 @@
+<%= simple_form_for(@form_first) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :name_of_applicant %>
+    <%= f.input :position_applied_for %>
+    <%= f.input :part_a_first_interview_date %>
+    <%= f.input :interviewer_comment_first %>
+    <%= f.input :interviewer_comment_second %>
+    <%= f.input :interviewer_comment_others %>
+    <%= f.input :part_b_first_interview_date %>
+    <%= f.input :interviewer_comments %>
+    <%= f.input :part_c_name %>
+    <%= f.input :part_c_signature %>
+    <%= f.input :part_c_date %>
+    <%= f.input :company_id %>
+    <%= f.input :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

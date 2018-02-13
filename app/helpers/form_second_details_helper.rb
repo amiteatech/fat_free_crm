@@ -1,0 +1,2 @@
+module FormSecondDetailsHelper
+end
