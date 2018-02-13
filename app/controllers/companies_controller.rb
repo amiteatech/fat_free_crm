@@ -4,6 +4,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
+  
     @companies = Company.all
   end
 

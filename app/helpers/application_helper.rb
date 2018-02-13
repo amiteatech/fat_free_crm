@@ -525,4 +525,12 @@ module ApplicationHelper
     options = { renderer: RemoteLinkPaginationHelper::LinkRenderer }.merge(options)
     will_paginate(collection, options)
   end
+
+  def empty_blank_params(hash)
+    if hash.present?
+      hash.delete_if { |k, v| v.blank? && v != false }
+    else
+      hash
+    end
+  end
 end

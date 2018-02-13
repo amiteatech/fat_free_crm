@@ -894,6 +894,12 @@ span.close:focus {
     box-sizing: border-box;
     float: left;
     margin-left:1.5%;
+    background: white;
+    padding: 8px 15px 15px 15px;
+    -moz-border-radius: 4px;
+    -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
+    -webkit-border-radius: 4px;
+    -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
     }
     .right_part {
     display: block;
@@ -912,6 +918,8 @@ span.close:focus {
     -webkit-border-radius: 4px;
     -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
     box-sizing: border-box;
+    .title {margin-bottom: 10px; 
+    h1 {font-size: 17px;}}
     .company_table {width: 100%;
                     margin-bottom: 0;
                     max-width: 100%;
@@ -931,9 +939,9 @@ span.close:focus {
 }
 .create_company {
   width: 100%;
+  height: 100%;
   max-width: 800px;
-  margin: 0 auto;
-  margin-top: 20px;
+  margin: 20px auto;
   background: white;
   padding: 25px;
   -moz-border-radius: 4px;
