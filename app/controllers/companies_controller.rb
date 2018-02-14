@@ -4,7 +4,16 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
-  
+    @search = Company.ransack(view_context.empty_blank_params params[:q])
+
+    if params[:csv].present?
+    @companies = @search.result(distinct: true)
+                        .order("id DESC")
+    else  
+    @companies = @search.result(distinct: true)
+                        .order("id DESC")
+                        
+    end  
     @companies = Company.all
   end
 

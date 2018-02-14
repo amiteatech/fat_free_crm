@@ -19,7 +19,8 @@ $sidebar_width: 210px;
   margin-top: 6px;
   img {
     position: relative;
-    top: 2px; } }
+    top: 2px; }
+    h1 {font-size: 17px;} }
 
 .title_tools {
   font-size: 12px;
@@ -918,23 +919,6 @@ span.close:focus {
     -webkit-border-radius: 4px;
     -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
     box-sizing: border-box;
-    .title {margin-bottom: 10px; 
-    h1 {font-size: 17px;}}
-    .company_table {width: 100%;
-                    margin-bottom: 0;
-                    max-width: 100%;
-                   display: block;
-    thead tr {background-color: #f7f7f7;}
-    th, td {padding: 8px;
-        line-height: 20px;
-        text-align: left;
-        border-collapse: collapse;
-        border:none;}
-    tbody tr:nth-of-type(odd) {background:#fff;}
-    tbody tr:nth-of-type(even) {background-color:seashell;}
-    tbody tr:nth-of-type(odd):hover {background:#f5f5f5;}
-    tbody tr:nth-of-type(even):hover {background:#f5f5f5;}
-    }
   }
 }
 .create_company {
@@ -970,4 +954,67 @@ span.close:focus {
                 color: #555555;
                 vertical-align: middle;}
   .pad_left {padding-left: 15px;}
+}
+.company_table {width: 100%;
+                margin-bottom: 0;
+                max-width: 100%;
+                display: block;
+                margin-top: 10px;
+    thead tr {background-color: #f7f7f7;}
+    th, td {padding: 8px;
+        line-height: 20px;
+        text-align: left;
+        border-collapse: collapse;
+        border:none;}
+    tbody tr:nth-of-type(odd) {background:#fff;}
+    tbody tr:nth-of-type(even) {background-color:seashell;}
+    tbody tr:nth-of-type(odd):hover {background:#f5f5f5;}
+    tbody tr:nth-of-type(even):hover {background:#f5f5f5;}
+    }
+
+.inputs.frm_fst { padding: 70px;
+ input {width:100%;}
+ input:focus {outline-offset: none; outline:none;}
+.name {border: 1px solid black;
+    display: block;
+    float: left;
+.f_name{ width:100%; display: block; border-bottom : 1px solid black; float:left;
+      label {width:30%; float:left; padding:10px; border-right:1px solid black;}
+      input {width:65%; float:left; border: none; height: 30px;
+    padding: 0 10px 0 10px;}
+      }
+.f_position { width:100%; display: block; float:left;
+      label {width:30%; float:left; padding:10px; border-right:1px solid black;}
+      input {width:65%; float:left; border: none; height: 30px;
+    padding: 0 10px 0 10px;}
+      }
+      }
+.part_a {display: block;float: left; width:100%; margin: 10px;
+      label { float:left; padding:10px;}
+      input {width:25%; float:left; border:none; height: 20px;
+    border-bottom: 1px solid black;}
+      }
+.interview {display: block;float: left; width:100%; border-top:1px solid black;
+ textarea {width:96%; border:1px solid black; border-top :none; display:block; float:left; padding:2%;}
+}
+p {display: block; float: left; width:100%; 
+span{font-weight:bold;}}
+.part_c {display: block; float: left; width:100%; border:1px solid black;}
+.c_part {display: block; float: left; width:100%; border:1px solid black; border-top:none; }
+  .form_first_part_c_name {width:33%; float:left; display: block; border-right: 1px solid black;
+    label {width:30%; float:left; display:block; padding: 4% 0 4% 4%;}
+    input {width:66%; float:left; display:block; border:none;
+    min-width:66%; max-width:66%; margin-top: 4%;} 
+  }
+  .form_first_part_c_signature {width:33%; float:left; display: block; border-right: 1px solid black;
+    label {width:30%; float:left; display:block; padding: 4% 0 4% 4%;}
+    input {width:66%; float:left; display:block; border:none;
+    min-width:66%; max-width:66%; margin-top: 4%;}
+  }
+  .form_first_part_c_date{width:33%; float:left; display: block;
+    label {width:30%; float:left; display:block; padding: 4% 0 4% 4%;}
+    input {width:66%; float:left; display:block; border:none;
+    min-width:66%; max-width:66%; margin-top: 4%;}
+ }
+
 }

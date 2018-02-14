@@ -1,21 +1,51 @@
 <%= simple_form_for(@form_first) do |f| %>
   <%= f.error_notification %>
 
-  <div class="inputs">
-    <%= f.input :name %>
-    <%= f.input :name_of_applicant %>
-    <%= f.input :position_applied_for %>
-    <%= f.input :part_a_first_interview_date %>
-    <%= f.input :interviewer_comment_first %>
-    <%= f.input :interviewer_comment_second %>
-    <%= f.input :interviewer_comment_others %>
-    <%= f.input :part_b_first_interview_date %>
-    <%= f.input :interviewer_comments %>
-    <%= f.input :part_c_name %>
-    <%= f.input :part_c_signature %>
-    <%= f.input :part_c_date %>
-    <%= f.input :company_id %>
-    <%= f.input :user_id %>
+  <div class="inputs frm_fst">
+    
+    <div class="name">
+      <div class="f_name">
+        <%= f.input :name_of_applicant %>
+      </div>
+      <div class="f_position">
+        <%= f.input :position_applied_for %>
+      </div>
+    </div>
+    <div class="part_a">
+      <%= f.input :part_a_first_interview_date %>
+      <%= f.input :name %>
+    </div>
+    <div class="interview">
+      <%= f.text_area :interviewer_comment_first, :rows => 8, placeholder: "Interviewer's comments on whether vis-a-vis the minimum qualification and selection criteria. "  %>
+      <%= f.text_area :interviewer_comment_second, :rows => 8, placeholder: "Interviewer's comments on suitability of the applicant for the position" %>
+      <%= f.text_area :interviewer_comment_others, :rows => 8, placeholder: "Any other comments/conditions for recruitment" %>
+    </div>
+    <div class="part_a">
+      <%= f.input :part_b_first_interview_date %>
+      <%= f.input :name %>
+    </div>
+    <div class="interview">
+      <%= f.text_area :interviewer_comments, :rows => 8, placeholder: "Interviewer's comments"  %>
+    </div>
+    
+    <p><span>Part C: Approval to Hire</span>(by Management Team for non-academic staff; and by Management Team and Academic Board for academic staff: or their respective authorized representatives)</p>
+    <div class="part_c">
+      <%= f.input :part_c_name %>
+      <%= f.input :part_c_signature %>
+      <%= f.input :part_c_date %>
+    </div>
+    <div class="c_part">
+      <%= f.input :part_c_name %>
+      <%= f.input :part_c_signature %>
+      <%= f.input :part_c_date %>
+    </div>
+    <div class="c_part">
+      <%= f.input :part_c_name %>
+      <%= f.input :part_c_signature %>
+      <%= f.input :part_c_date %>
+    </div>
+    <%#= f.input :company_id %>
+    <%#= f.input :user_id %>
   </div>
 
   <div class="actions">

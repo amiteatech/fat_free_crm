@@ -4,6 +4,8 @@
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 Rails.application.routes.draw do
+  get 'report/index'
+
   resources :form_second_details
   resources :form_seconds
   resources :form_firsts
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'authentications#destroy', :as => :logout
   get 'profile'    => 'users#show',              :as => :profile
   get 'signup'     => 'users#new',               :as => :signup
+  get 'report'     => 'report#index',             :as => :report
 
   get '/home/options',  as: :options
   get '/home/toggle',   as: :toggle
