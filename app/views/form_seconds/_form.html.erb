@@ -1,18 +1,28 @@
 <%= simple_form_for(@form_second) do |f| %>
   <%= f.error_notification %>
 
-  <div class="inputs">
-    <%= f.input :name %>
-    <%= f.input :module_title %>
-    <%= f.input :course %>
-    <%= f.input :course_date %>
-    <%= f.input :module_toucht_by_id %>
+  <div class="inputs frm_scnd">
+    <div class="frm_scnd_name">
+      <%#= f.input :name %>
+      <div class="modle_name">
+        <%= f.input :module_title %>
+      </div>
+      <div class="modle_name">
+        <%= f.input :course %>
+      </div>
+      <div class="modle_name">
+        <%= f.input :course_date %>
+      </div>
+      <div class="modle_name">
+        <%= f.input :module_toucht_by_id %>
+      </div>
+    </div>
     <%= f.input :company_id %>
     <%= f.input :user_id %>
     <%= f.input :task_id %>
   </div>
 
-  <div class="actions">
+  <div class="actions buttonbar">
     <%= f.button :submit %>
   </div>
 <% end %>
