@@ -63,7 +63,7 @@ class TasksController < ApplicationController
       end
     end
 
-    respond_with(@task)
+    #respond_with(@task)
   end
 
   # GET /tasks/1/edit                                                      AJAX
@@ -104,7 +104,7 @@ class TasksController < ApplicationController
     @task.task_created_id = current_user.id
     @task.company_id = current_user.company_id
 
-    respond_with(@task) do |_format|
+    
       if @task.save
          form_frist = FormFirst.create(:task_id => @task.id)
          form_second = FormSecond.create(:task_id => @task.id)
@@ -131,12 +131,12 @@ class TasksController < ApplicationController
           # google_session = GoogleDrive.login_with_oauth(session[:google_token])
           # file_uploaded_to_drive = google_session.upload_from_file(params[:file_upload].path, params[:file_upload].original_filename, convert: false)
 
-          drive = Google::Apis::DriveV3::DriveService.new
-          drive.authorization = Signet::OAuth2::Client.new( client_id: GOOGLE_CLIENT_ID, client_secret: GOOGLE_CLIENT_SECRET, access_token: session[:google_token], :access_type => 'offline', :scope => "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file")
-          drive.authorization.expires_in = 7200
+         # drive = Google::Apis::DriveV3::DriveService.new
+         # drive.authorization = Signet::OAuth2::Client.new( client_id: GOOGLE_CLIENT_ID, client_secret: GOOGLE_CLIENT_SECRET, access_token: session[:google_token], :access_type => 'offline', :scope => "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file")
+         # drive.authorization.expires_in = 7200
           
-          file_metadata = {name: params[:file_upload].original_filename, mime_type: "application/vnd.google-apps.document"}
-          file_uploaded_to_drive = drive.create_file(file_metadata, fields: 'id', upload_source: params[:file_upload].path)
+         # file_metadata = {name: params[:file_upload].original_filename, mime_type: "application/vnd.google-apps.document"}
+         # file_uploaded_to_drive = drive.create_file(file_metadata, fields: 'id', upload_source: params[:file_upload].path)
 
           @users_selected.each do |user_id|
             unless UserTask.find_by_user_id(user_id).position == 1
@@ -145,14 +145,15 @@ class TasksController < ApplicationController
             end
           end
 
-          @file_upload = FileUpload.new
-          @file_upload.task_id = @task.id
-          @file_upload.file_name = params[:file_upload].original_filename
-          @file_upload.file = "https://docs.google.com/document/d/#{file_uploaded_to_drive.id}/edit"
-          @file_upload.save
+         # @file_upload = FileUpload.new
+         # @file_upload.task_id = @task.id
+         # @file_upload.file_name = params[:file_upload].original_filename
+         # @file_upload.file = "https://docs.google.com/document/d/#{file_uploaded_to_drive.id}/edit"
+         # @file_upload.save
         end
-      end
+  
     end
+    redirect_to :tasks
   end
 
   # PUT /tasks/1

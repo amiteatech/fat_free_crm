@@ -1,0 +1,37 @@
+<style type="text/css">
+.buttonbar.first {border: none;}
+.buttonbar.first a {background: #466bb1;
+padding: 8px 10px;
+color: #fff;
+border: none;
+cursor: pointer; margin-left:15px; display: block;
+width: 180px;
+text-align: center;}
+.second {width: 100%;margin-top: 30px;}
+</style>
+<%= simple_form_for(@task, html: { :multipart => true }) do |f| %>
+  <%= link_to_close new_task_path + "?view=#{@view}" %>
+  <%= hidden_field_tag :view, @view %>
+  <%= hidden_field_tag "task[user_id]", current_user.id %>
+  <%= hidden_field_tag "task[asset_id]", "#{@asset.id if @asset}" %>
+  <%= hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}" %>
+  <%= render "tasks/new_top_section",    :f => f %>
+  <%= render "fields/groups", :f => f %>
+   <div class="buttonbar first">
+    <div class="second">
+    <%= radio_button("task", "form_number", "1") %>  <%= link_to 'Staff Interview and Recruitment',  new_form_first_path  %> 
+    </div>
+    <div class="second">
+     <%= radio_button("task", "form_number", "2") %>  <%= link_to 'Monitoring Module Delivery', new_form_second_path %>
+    </div>
+    <div class="second">
+     <%= radio_button("task", "form_number", "3") %>  <%= link_to 'FORM',  new_form_first_path %>
+      <%= link_to 'FORM',  new_thrid_form_path %>
+    </div>
+  </div>
+  <div class="buttonbar">
+    <%= f.submit t :create_task %>
+    or
+    <%= link_to_cancel new_task_path + "?view=#{@view}" %>
+  </div>
+<% end %>
