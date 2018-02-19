@@ -41,11 +41,11 @@ class Task < ActiveRecord::Base
 
   has_one :form_first
   has_one :form_second
-  has_one :third_form
+  has_one :thrid_form
 
   accepts_nested_attributes_for :form_first
   accepts_nested_attributes_for :form_second
-  accepts_nested_attributes_for :third_form
+  accepts_nested_attributes_for :thrid_form
   # has_many :vitos, :dependent => :destroy
   serialize :subscribed_users, Array
 
