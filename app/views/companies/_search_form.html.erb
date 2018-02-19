@@ -1,0 +1,32 @@
+<%= search_form_for @search do |company| %>
+    <div class="title">
+     <h1>Search</h1>
+    </div>
+    <div class="src_frm">
+     <%= company.text_field :name_cont_any,
+                               placeholder: 'School Name' %>
+    </div>
+    <div class="src_frm">
+      <%= company.text_field :admin_id_eq,
+                              collection: @company,
+                              include_blank: true,
+                              placeholder: 'Admin ID' %>
+    </div>
+    <div class="src_frm">
+      <%= company.text_field :address1_cont_any,
+                              placeholder: 'Address' %>
+    </div>
+    <div class="src_frm">
+      <%= company.text_field :city_cont_any,
+                              placeholder: 'City' %>
+    </div>
+    <div class="src_frm">
+      <%= company.text_field :country_cont_any,
+                              placeholder: 'Country' %>
+    </div>
+    
+
+    <div class="src_frm">
+      <%= company.submit "Search", class: 'btn' %>
+    </div>
+<% end %>

@@ -903,36 +903,14 @@ span.close:focus {
     -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
     -webkit-border-radius: 4px;
     -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
+    .title {padding: 15px 0; margin-bottom: 10px;}
     }
-    .right_part {
-    display: block;
-    width: 72.8589744%;
-    min-height: 30px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    float: left;
-    margin-left: 2.564102564102564%;
-    margin-right: 1.5%; 
-    background: white;
-    padding: 8px 15px 15px 15px;
-    -moz-border-radius: 4px;
-    -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
-    -webkit-border-radius: 4px;
-    -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
-    box-sizing: border-box;
+    .right_part {display: block; width: 72.8589744%;
+    min-height: 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; float: left; margin-left: 2.564102564102564%; margin-right: 1.5%; background: white; padding: 8px 15px 15px 15px; -moz-border-radius: 4px; -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb; -webkit-border-radius: 4px; -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb; box-sizing: border-box;
   }
 }
-.create_company {
-  width: 100%;
-  height: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  background: white;
-  padding: 25px;
-  -moz-border-radius: 4px;
-  -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
-  -webkit-border-radius: 4px;
+.create_company {width: 100%; height: 100%;  max-width: 800px; margin: 20px auto; background: white; padding: 25px;
+  -moz-border-radius: 4px; -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb; -webkit-border-radius: 4px;
   -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
   h1 {color: #342d7e; font-size: 17px;}
   h4 {color: navy; font-size: 12px; font-weight: bold; margin-top: 15px;}
@@ -973,7 +951,8 @@ span.close:focus {
     tbody tr:nth-of-type(odd):hover {background:#f5f5f5;}
     tbody tr:nth-of-type(even):hover {background:#f5f5f5;}
     }
-
+  .right_part .title {position: relative; padding: 15px 0;}
+  .button.new_school {background: #466bb1;  padding: 8px 10px; color: #fff; border: none;cursor: pointer; position:absolute; top:0; right:0;}
 /*------------first_forms CSS--------------*/
 .first_form {width:100%; max-width:700px; margin:0 auto; padding: 70px;
 ::placeholder {color: black; opacity: 1;}
@@ -1027,10 +1006,35 @@ span{font-weight:bold;}}
 }
 
 /*------------second_forms CSS--------------*/
+.bbr {border-bottom: 1px solid #000; border-right: 1px solid #000;}
+.br { border-right: 1px solid #000;}
+.bb { border-bottom: 1px solid #000;}
 .inputs.frm_scnd { display: block; float: left; width: 100%;
   margin-bottom: 20px;
   input {width:100%;}
-  input:focus {outline-offset: none; outline:none;}
- .frm_scnd_name {display: block; float: left; width: 100%;
+  input:focus {outline-offset: none; outline: none;}
+.frm_scnd_name {display: block; float: left; width:100%; border: 1px solid #000;}
+.modle_name {width:49.9%; display:block; float:left;
+    label {width:30%; float:left; padding:10px 0 10px 10px;}
+    input {width:60%; float:left; border: none; height:30px; padding: 0 10px 0 10px; dispaly:block;}
+ }
+ .task_detail {display: block; float: left; width:100%; border: 1px solid #000; margin-top:40px; overflow:hidden;
+  label {width: 100%; display: block; text-align: center; padding: 15px 0; border-bottom: 1px solid #000;
+    border-right: 1px solid #000;}
+  input {width: 100%; display: block; padding: 15px 0; border:none; border-left: 1px solid #000; text-align: center; }
+  .t_details_first {width:20%; display:block; float:left;
+     input {border:none;}
+   }
+  .t_details_second {width:20%; display:block; float:left;}
+  .t_details_third {width:20%; display:block; float:left;}
+  .t_details_fourth {width:20%; display:block; float:left;}
+  .t_details_fifth {width:20%; display:block; float:left;}
  }
  }
+
+/*------------search CSS--------------*/
+.src_frm { display: block; width: 100%; min-height: 30px;
+    float: left; margin-bottom:10px;}
+.src_frm input {width:96%; padding: 4px; text-indent: 0px; border: 1px solid #cccccc; height: 20px; font-size: 12px; line-height: 20px; color: #555555; border-radius: 4px;} 
+.src_frm input.btn {width:100%; cursor:pointer; font-size: 14px;}
+.src_frm input.btn:hover {background-color: #e6e6e6;}

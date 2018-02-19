@@ -5,8 +5,10 @@
 </div>
 <div class="right_part">
   <div class="title">
-    <h1>Schools</h1>
+    <h1>Schools Lists</h1>
+    <%= link_to 'Create New School', new_company_path, :class => "button new_school" %>
   </div>
+  
 <table class="company_table">
   <thead>
     <tr>
@@ -37,7 +39,8 @@
         <td><%= company.status %></td>
         <td><%= link_to 'Show', company %></td>
         <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Active', company, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Deactive ', company, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
       </tr>
     <% end %>
   </tbody>
@@ -45,6 +48,6 @@
 
 <br>
 
-<%= link_to 'New school', new_company_path %>
+
 </div>
 </div>

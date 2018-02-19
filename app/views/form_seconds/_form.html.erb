@@ -4,25 +4,70 @@
   <div class="inputs frm_scnd">
     <div class="frm_scnd_name">
       <%#= f.input :name %>
-      <div class="modle_name">
+      <div class="modle_name bbr">
         <%= f.input :module_title %>
       </div>
-      <div class="modle_name">
-        <%= f.input :course %>
-      </div>
-      <div class="modle_name">
+      <div class="modle_name bb">
         <%= f.input :course_date %>
+      </div>
+      <div class="modle_name br">
+        <%= f.input :course %>
       </div>
       <div class="modle_name">
         <%= f.input :module_toucht_by_id %>
       </div>
     </div>
-    <%= f.input :company_id %>
-    <%= f.input :user_id %>
-    <%= f.input :task_id %>
+    <div class ="task_detail">
+      <div class="t_details_first">
+        <%= f.input :company_id %>
+      </div>
+      <div class="t_details_second">
+        <%= f.input :user_id %>
+      </div>
+      <div class="t_details_third">
+        <%= f.input :task_id %>
+      </div>
+      <div class="t_details_fourth">
+        <%= f.input :company_id %>
+      </div>
+      <div class="t_details_fifth">
+        <%= f.input :user_id %>
+      </div>
+    </div>
   </div>
-
+  <div class="task_detail" id="order-<%=@form_second.id %>" >
+      <a herf="#" onclick="add_more_task_for('#order-<%=@form_second.id %>')"> Add More </a>
+  </div>
   <div class="actions buttonbar">
     <%= f.button :submit %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+
+function add_more_task_for(order_id)
+{
+   var index = $(order_id).data('option') 
+   index_number =  parseInt(index) + 1
+   var index = $(order_id).data('option',index_number)
+
+   str0 = "<div class='input_field_label'><a herf='#'>Option "+ index_number +"</a></div>"
+  
+   randam = Math.floor((Math.random() * 100) + 1);
+
+   str1 = "<div class ='task_detail'>"+str0+"<div class='t_details_first'><input class='numeric integer optional' type='number' step='1' name='form_second[company_id]' id='form_second_company_id'>"
+
+
+   str2 = "<div class='t_details_second'><input class='numeric integer optional' type='number' step='1' name='form_second[user_id]'' id='form_second_user_id'></div>"
+
+   str3 = "<div class='t_details_third'><input class='numeric integer optional' type='number' step='1' name='form_second[task_id]' id='form_second_task_id'></div>"
+      
+   str4 = "<div class='t_details_fourth'><input class='numeric integer optional' type='number' step='1' name='form_second[company_id]' id='form_second_company_id'></div>"
+
+   str5 = "<div class='t_details_fifth><input class='numeric integer optional' type='number' step='1' name='form_second[user_id]' id='form_second_user_id'></div>"
+  
+   str6 = "</div>" 
+    jQuery(order_id).before(str1+str2+str3+str4+str5+str6);
+}
+</script>
