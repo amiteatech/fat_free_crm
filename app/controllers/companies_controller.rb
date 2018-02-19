@@ -1,6 +1,12 @@
+
+require "spreadsheet"
+require 'stringio'
 class CompaniesController < ApplicationController
+  skip_before_filter :checksuper_admin
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   layout "super"
+
+
 
   # GET /companies
   def index
@@ -19,6 +25,13 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1
   def show
+    send_file(
+        "#{Rails.root}/app/template/Op.xltx",
+        filename: "a.xltx",
+        type: "application/excel",
+        disposition: 'inline'
+       )   
+   # send_file(data, type: 'application/vnd.ms-excel', filename: "#{uploaded_file.metadata["filename"]}", disposition: 'inline')
   end
 
   # GET /companies/new
@@ -38,7 +51,8 @@ class CompaniesController < ApplicationController
     @user = User.new(user_params)
 
     if @company.save && @user.save(:validate => false)
-      redirect_to @company, notice: 'Company was successfully created.'
+       @user.update_attributes({:company_id =>  @company.id, :admin => true, :school_admin => true, :school_user => true})
+      redirect_to companies_url, notice: 'Company was successfully created.'
     else
       render :new
     end
@@ -47,7 +61,7 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1
   def update
     if @company.update(company_params)
-      redirect_to @company, notice: 'Company was successfully updated.'
+      redirect_to companies_url, notice: 'Company was successfully updated.'
     else
       render :edit
     end

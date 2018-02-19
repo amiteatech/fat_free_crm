@@ -18,7 +18,7 @@ module UsersHelper
   end
 
   def all_users
-    User.by_name
+    User.by_name.where(:company_id => current_user.company_id)
   end
 
   def user_select(asset, users, myself)
@@ -31,7 +31,7 @@ module UsersHelper
 
   def multi_user_select(asset, users, task_id)
     assignedUsers = UserTask.where(task_id: @task.id).pluck(:id)
-    select_tag 'users[]', options_for_select( users.map {|s| [s.username, s.id]}, UserTask.where(task_id: task_id).pluck(:id)), class: 'select2_tag', :multiple => true, :size => 10
+    select_tag 'users[]', options_for_select( users.map {|s| [s.name, s.id]}, UserTask.where(task_id: task_id).pluck(:id)), class: 'select2_tag', :multiple => true, :size => 10
   end
 
   def user_options_for_select(users, myself)

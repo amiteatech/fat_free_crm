@@ -31,7 +31,7 @@
     %span.black #{link_to( user.full_name, user)} (#{user.username})
     %tt
       = "- #{user.title}" unless user.title.blank?
-      = " " + t(:at) + " " + user.company unless user.company.blank?
+      = " " + t(:at) + " " + user.company.name.to_s unless user.company.blank?
 
       %span.black= "|"
       - if user.current_login_at && user.login_count > 0

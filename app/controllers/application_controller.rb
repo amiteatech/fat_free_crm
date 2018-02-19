@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
 
   before_action :set_paper_trail_whodunnit
 
+  before_action :checksuper_admin
+
+
   before_action :set_context
   before_action :clear_setting_cache
   before_action :cors_preflight_check
@@ -31,6 +34,13 @@ class ApplicationController < ActionController::Base
 
   # Common auto_complete handler for all core controllers.
   #----------------------------------------------------------------------------
+
+  def checksuper_admin
+     if current_user && current_user.is_super_admin? == true
+        redirect_to companies_url
+     end
+  end
+
   def auto_complete
     @query = params[:auto_complete_query] || ''
     @auto_complete = hook(:auto_complete, self, query: @query, user: current_user)

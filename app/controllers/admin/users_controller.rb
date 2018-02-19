@@ -27,6 +27,7 @@ class Admin::UsersController < Admin::ApplicationController
   # GET /admin/users/new.xml                                               AJAX
   #----------------------------------------------------------------------------
   def new
+    @user.company_id = current_user.company_id
     respond_with(@user)
   end
 
@@ -125,6 +126,7 @@ class Admin::UsersController < Admin::ApplicationController
       :skype,
       :password,
       :password_confirmation,
+      :company_id,
       group_ids: []
     )
   end
@@ -136,7 +138,7 @@ class Admin::UsersController < Admin::ApplicationController
     self.current_page  = options[:page] if options[:page]
     self.current_query = params[:query] if params[:query]
 
-    @search = klass.ransack(params[:q])
+    @search = klass.where(:company_id => current_user.company_id).ransack(params[:q])
     @search.build_grouping unless @search.groupings.any?
 
     wants = request.format

@@ -54,6 +54,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
   has_many :user_tasks
   has_many :task_comments
+
+  belongs_to :company
+
   # has_many :vitos
 
   has_paper_trail class_name: 'Version', ignore: [:perishable_token]
@@ -83,6 +86,7 @@ class User < ActiveRecord::Base
     c.validates_length_of_password_field_options  = { minimum: 0, allow_blank: true, if: :require_password? }
     c.ignore_blank_passwords = true
     c.crypto_provider = Authlogic::CryptoProviders::Sha512
+    c.login_field = :email
   end
 
   # Store current user in the class so we could access it from the activity
@@ -177,7 +181,7 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    self.role == 2
+    self.admin == true
   end
 
   def is_manager?
