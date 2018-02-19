@@ -1,45 +1,49 @@
 <%= simple_form_for(@form_second) do |f| %>
   <%= f.error_notification %>
-
-  <div class="inputs frm_scnd">
-    <div class="frm_scnd_name">
-      <%#= f.input :name %>
-      <div class="modle_name bbr">
-        <%= f.input :module_title %>
+  <div class="first_form">
+    <div class="title">
+      <h1>Monitoring Module Delivery</h1>
+    </div>
+    <div class="inputs frm_scnd">
+      <div class="frm_scnd_name">
+        <%#= f.input :name %>
+        <div class="modle_name bbr">
+          <%= f.input :module_title %>
+        </div>
+        <div class="modle_name bb">
+          <%= f.input :course_date %>
+        </div>
+        <div class="modle_name br">
+          <%= f.input :course %>
+        </div>
+        <div class="modle_name">
+          <%= f.input :module_toucht_by_id %>
+        </div>
       </div>
-      <div class="modle_name bb">
-        <%= f.input :course_date %>
-      </div>
-      <div class="modle_name br">
-        <%= f.input :course %>
-      </div>
-      <div class="modle_name">
-        <%= f.input :module_toucht_by_id %>
+      <div class ="task_detail">
+        <div class="t_details_first">
+          <%= f.input :company_id %>
+        </div>
+        <div class="t_details_second">
+          <%= f.input :user_id %>
+        </div>
+        <div class="t_details_third">
+          <%= f.input :task_id %>
+        </div>
+        <div class="t_details_fourth">
+          <%= f.input :company_id %>
+        </div>
+        <div class="t_details_fifth">
+          <%= f.input :user_id %>
+        </div>
       </div>
     </div>
-    <div class ="task_detail">
-      <div class="t_details_first">
-        <%= f.input :company_id %>
-      </div>
-      <div class="t_details_second">
-        <%= f.input :user_id %>
-      </div>
-      <div class="t_details_third">
-        <%= f.input :task_id %>
-      </div>
-      <div class="t_details_fourth">
-        <%= f.input :company_id %>
-      </div>
-      <div class="t_details_fifth">
-        <%= f.input :user_id %>
-      </div>
+    <div class="task_detail" id="order-<%=@form_second.id %>" >
+        <a herf="#" onclick="add_more_task_for('#order-<%=@form_second.id %>')"> Add More </a>
     </div>
-  </div>
-  <div class="task_detail" id="order-<%=@form_second.id %>" >
-      <a herf="#" onclick="add_more_task_for('#order-<%=@form_second.id %>')"> Add More </a>
-  </div>
-  <div class="actions buttonbar">
-    <%= f.button :submit %>
+    <div class="actions buttonbar">
+      <%= f.button :submit %>
+    </div>
   </div>
 <% end %>
 

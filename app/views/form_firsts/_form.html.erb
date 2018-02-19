@@ -1,71 +1,74 @@
 <%= simple_form_for(@form_first) do |f| %>
   <%= f.error_notification %>
-
-  <div class="inputs frm_fst">
-    
-    <div class="name">
-      <div class="f_name">
-        <%= f.input :name_of_applicant %>
+   <div class="first_form">
+    <div class="title">
+     <h1>Staff Interview and Recruitment</h1>
+    </div>
+    <div class="inputs frm_fst"> 
+      <div class="name">
+        <div class="f_name">
+          <%= f.input :name_of_applicant %>
+        </div>
+        <div class="f_position">
+          <%= f.input :position_applied_for %>
+        </div>
       </div>
-      <div class="f_position">
-        <%= f.input :position_applied_for %>
+      <div class="part_a">
+        <%= f.input :part_a_first_interview_date %>
+        <%= f.input :name %>
+      </div>
+      <div class="interview">
+        <label>Interviewer's comments on whether vis-a-vis the minimum qualification and selection criteria.</label>
+        <%= f.text_area :interviewer_comment_first, :rows => 8, placeholder: ""  %>
+        <label>Interviewer's comments on suitability of the applicant for the position</label>
+        <%= f.text_area :interviewer_comment_second, :rows => 8, placeholder: "" %>
+        <label>Any other comments/conditions for recruitment
+        </label>
+        <%= f.text_area :interviewer_comment_others, :rows => 8, placeholder: "" %>
+      </div>
+      <div class="part_a">
+        <%= f.input :part_b_first_interview_date %>
+        <%= f.input :name %>
+      </div>
+      <div class="interview">
+        <label></label>
+        <%= f.text_area :interviewer_comments, :rows => 8, placeholder: ""  %>
+      </div>
+      
+      <p><span>Part C: Approval to Hire</span>(by Management Team for non-academic staff; and by Management Team and Academic Board for academic staff: or their respective authorized representatives)</p>
+      <div class="part_c">
+        <%= f.input :part_c_name %>
+        <%= f.input :part_c_signature %>
+        <%= f.input :part_c_date %>
+      </div>
+      <div class="c_part">
+        <%= f.input :part_c_name %>
+        <%= f.input :part_c_signature %>
+        <%= f.input :part_c_date %>
+      </div>
+      <div class="c_part">
+        <%= f.input :part_c_name %>
+        <%= f.input :part_c_signature %>
+        <%= f.input :part_c_date %>
+      </div>
+      <%#= f.input :company_id %>
+      <%#= f.input :user_id %>
+    </div>
+    <div class="taskForm">
+      <div class="halfLeft">
+       <table style="width:100%;">
+         <tr class="userTask">
+          <td colspan="2" class="firstTd">
+            <div class="label req">Assign_to:</div>
+            <%#= multi_user_select(:task, all_users, @task.id) %>
+          </td>
+         </tr>
+       </table>
       </div>
     </div>
-    <div class="part_a">
-      <%= f.input :part_a_first_interview_date %>
-      <%= f.input :name %>
-    </div>
-    <div class="interview">
-      <label>Interviewer's comments on whether vis-a-vis the minimum qualification and selection criteria.</label>
-      <%= f.text_area :interviewer_comment_first, :rows => 8, placeholder: ""  %>
-      <label>Interviewer's comments on suitability of the applicant for the position</label>
-      <%= f.text_area :interviewer_comment_second, :rows => 8, placeholder: "" %>
-      <label>Any other comments/conditions for recruitment
-      </label>
-      <%= f.text_area :interviewer_comment_others, :rows => 8, placeholder: "" %>
-    </div>
-    <div class="part_a">
-      <%= f.input :part_b_first_interview_date %>
-      <%= f.input :name %>
-    </div>
-    <div class="interview">
-      <label></label>
-      <%= f.text_area :interviewer_comments, :rows => 8, placeholder: ""  %>
-    </div>
-    
-    <p><span>Part C: Approval to Hire</span>(by Management Team for non-academic staff; and by Management Team and Academic Board for academic staff: or their respective authorized representatives)</p>
-    <div class="part_c">
-      <%= f.input :part_c_name %>
-      <%= f.input :part_c_signature %>
-      <%= f.input :part_c_date %>
-    </div>
-    <div class="c_part">
-      <%= f.input :part_c_name %>
-      <%= f.input :part_c_signature %>
-      <%= f.input :part_c_date %>
-    </div>
-    <div class="c_part">
-      <%= f.input :part_c_name %>
-      <%= f.input :part_c_signature %>
-      <%= f.input :part_c_date %>
-    </div>
-    <%#= f.input :company_id %>
-    <%#= f.input :user_id %>
-  </div>
-  <div class="taskForm">
-    <div class="halfLeft">
-     <table style="width:100%;">
-       <tr class="userTask">
-        <td colspan="2" class="firstTd">
-          <div class="label req">Assign_to:</div>
-          <%#= multi_user_select(:task, all_users, @task.id) %>
-        </td>
-       </tr>
-     </table>
-    </div>
-  </div>
 
-  <div class="actions buttonbar">
-    <%= f.button :submit %>
+    <div class="actions buttonbar">
+      <%= f.button :submit %>
+    </div>
   </div>
 <% end %>

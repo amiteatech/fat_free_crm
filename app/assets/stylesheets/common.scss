@@ -988,22 +988,21 @@ span.close:focus {
 }
 p {display: block; float: left; width:100%; 
 span{font-weight:bold;}}
-.part_c {display: block; float: left; width:100%; border:1px solid black;}
-.c_part {display: block; float: left; width:100%; border:1px solid black; border-top:none; }
-  .form_first_part_c_name {width:33%; float:left; display: block; border-right: 1px solid black; height: 50px;
+.part_c {display: block; float: left; width:100%; border:1px solid black;
+div.input {width:33%; float:left; display: block; border-right: 1px solid black; height: 50px;
     label {width:30%; float:left; display:block; padding: 15px 0 4% 4%;}
     input {width:65%; float:left; display:block;border:none;
-    min-width:65%; max-width:65%; margin-top: 4%;} 
-  }
-  .form_first_part_c_signature {width:33%; float:left; display: block; border-right: 1px solid black;height:50px;
-    label {width:30%; float:left; display:block; padding: 4% 0 4% 4%;}
-    input {width:65%; float:left; display:block; border:none;min-width:65%; max-width:65%; margin-top: 4%;}
-  }
-  .form_first_part_c_date{width:33%; float:left; display: block; height: 50px;
-    label {width:30%; float:left; display:block; padding: 15px 0 4% 4%;}
-    input {width:65%; float:left; display:block; border:none;
-    min-width:65%; max-width:65%; margin-top:4%;}
+    min-width:65%; max-width:65%; margin-top: 4%;}
+    }
  }
+.c_part {display: block; float: left; width:100%; border:1px solid black; border-top:none; 
+   div.input {width:33%; float:left; display: block; border-right: 1px solid black; height: 50px;
+    label {width:30%; float:left; display:block; padding: 15px 0 4% 4%;}
+    input {width:65%; float:left; display:block;border:none;
+    min-width:65%; max-width:65%; margin-top: 4%;}
+}
+   
+}
 }
 
 /*------------second_forms CSS--------------*/
@@ -1072,3 +1071,6 @@ a {background: #466bb1; padding: 8px 10px; color: #fff;
 border: none; cursor: pointer; margin-left:15px; display: block; width: 180px; text-align: center; float:left; border-radius: 4px; font-size: 12px;}
 }
 }
+
+#main .remote {background: white;}
+#main .edit_task {width:100%; max-width:700px; margin:0 auto; padding: 70px;}
