@@ -34,7 +34,7 @@ module TasksHelper
   #----------------------------------------------------------------------------
   def link_to_task_edit(task, bucket)
     link_to(t(:edit), edit_task_path(task, bucket: bucket, view: @view, previous: "crm.find_form('edit_task')"),
-            method: :get, remote: true)
+            method: :get)
   end
 
   #----------------------------------------------------------------------------

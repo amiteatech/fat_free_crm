@@ -80,7 +80,7 @@ class TasksController < ApplicationController
       @previous = Task.tracked_by(current_user).find_by_id(Regexp.last_match[1]) || Regexp.last_match[1].to_i
     end
 
-    respond_with(@task)
+  
   end
 
   # POST /tasks
@@ -109,7 +109,7 @@ class TasksController < ApplicationController
          form_frist = FormFirst.create(:task_id => @task.id)
          form_second = FormSecond.create(:task_id => @task.id)
          form_third = ThridForm.create(:task_id => @task.id)
-         @task.update_attributes({:form_first_id => form_frist.id, :form_second_id => form_second.id, :form_third_id => form_third.id})
+         @task.update_attributes({:form_first_id => form_frist.id, :form_second_id => form_second.id, :form_third_id => form_third.id, :form_number => params["task"]["form_number"].to_i})
         update_sidebar if called_from_index_page?
         pos = 0
         @users_selected.unshift(current_user.id.to_s) unless only_current_user

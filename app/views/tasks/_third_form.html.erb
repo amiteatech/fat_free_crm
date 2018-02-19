@@ -1,0 +1,38 @@
+ <%= f.simple_fields_for :third_form do |p| %>
+<div class="inputs frm_scnd third">
+   <div class="frm_scnd_name">
+    <div class="modle_name bbr">
+      <%= p.input :module_title %>
+    </div>
+    <div class="modle_name bb">
+      <%= p.input :module_syllabus_no %>
+    </div>
+    <div class="modle_name br">
+      <%= p.input :course %>
+    </div>
+    <div class="modle_name">
+      <%= p.input :module_toucht_by %>
+    </div>
+  </div>
+  <div class="inform">
+    <%= p.input :relevent_information %>
+    <%= p.input :student_performance %>
+    <%= p.input :evaluation %>
+    <%= p.input :module_development %>
+  </div>
+  <div class="develop">
+    <%= p.input :module_development_submitted_by %>
+    <%= p.input :module_development_submitted_date %>
+  </div>
+  <div class="inform">
+    <%= p.input :comments %>
+  </div>
+  <div class="lst_clm">
+    <%= p.input :comments_name %>
+    <%= p.input :comments_signature %>
+    <%= p.input :comments_designation %>
+    <%= p.input :comments_date %>
+
+  </div>
+  </div>
+  <% end %>

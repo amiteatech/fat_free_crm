@@ -38,6 +38,14 @@ class Task < ActiveRecord::Base
   has_many :user_tasks, :dependent => :destroy
   has_many :file_uploads, :dependent => :destroy
   has_many :task_comments, :dependent => :destroy
+
+  has_one :form_first
+  has_one :form_second
+  has_one :third_form
+
+  accepts_nested_attributes_for :form_first
+  accepts_nested_attributes_for :form_second
+  accepts_nested_attributes_for :third_form
   # has_many :vitos, :dependent => :destroy
   serialize :subscribed_users, Array
 

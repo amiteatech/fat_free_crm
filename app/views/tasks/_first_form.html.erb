@@ -1,0 +1,53 @@
+ <%= f.simple_fields_for :form_first do |p| %>
+  <div class="inputs frm_fst">
+    
+    <div class="name">
+      <div class="f_name">
+        <%= p.input :name_of_applicant %>
+      </div>
+      <div class="f_position">
+        <%= p.input :position_applied_for %>
+      </div>
+    </div>
+    <div class="part_a">
+      <%= p.input :part_a_first_interview_date %>
+      <%= p.input :name %>
+    </div>
+    <div class="interview">
+      <label>Interviewer's comments on whether vis-a-vis the minimum qualification and selection criteria.</label>
+      <%= p.text_area :interviewer_comment_first, :rows => 8, placeholder: ""  %>
+      <label>Interviewer's comments on suitability of the applicant for the position</label>
+      <%= p.text_area :interviewer_comment_second, :rows => 8, placeholder: "" %>
+      <label>Any other comments/conditions for recruitment
+      </label>
+      <%= p.text_area :interviewer_comment_others, :rows => 8, placeholder: "" %>
+    </div>
+    <div class="part_a">
+      <%= p.input :part_b_first_interview_date %>
+      <%= p.input :name %>
+    </div>
+    <div class="interview">
+      <label></label>
+      <%= p.text_area :interviewer_comments, :rows => 8, placeholder: ""  %>
+    </div>
+    
+    <p><span>Part C: Approval to Hire</span>(by Management Team for non-academic staff; and by Management Team and Academic Board for academic staff: or their respective authorized representatives)</p>
+    <div class="part_c">
+      <%= p.input :part_c_name %>
+      <%= p.input :part_c_signature %>
+      <%= p.input :part_c_date %>
+    </div>
+    <div class="c_part">
+      <%= p.input :part_c_name %>
+      <%= p.input :part_c_signature %>
+      <%= p.input :part_c_date %>
+    </div>
+    <div class="c_part">
+      <%= p.input :part_c_name %>
+      <%= p.input :part_c_signature %>
+      <%= p.input :part_c_date %>
+    </div>
+   </div>
+   <% end %>
+  
+

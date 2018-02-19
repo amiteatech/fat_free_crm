@@ -1,0 +1,36 @@
+ <%= f.simple_fields_for :form_second do |p| %>
+<div class="inputs frm_scnd">
+    <div class="frm_scnd_name">
+      <%#= f.input :name %>
+      <div class="modle_name bbr">
+        <%= p.input :module_title %>
+      </div>
+      <div class="modle_name bb">
+        <%= p.input :course_date %>
+      </div>
+      <div class="modle_name br">
+        <%= p.input :course %>
+      </div>
+      <div class="modle_name">
+        <%= p.input :module_toucht_by_id %>
+      </div>
+    </div>
+    <div class ="task_detail">
+      <div class="t_details_first">
+        <%= p.input :company_id %>
+      </div>
+      <div class="t_details_second">
+        <%= p.input :user_id %>
+      </div>
+      <div class="t_details_third">
+        <%= p.input :task_id %>
+      </div>
+      <div class="t_details_fourth">
+        <%= p.input :company_id %>
+      </div>
+      <div class="t_details_fifth">
+        <%= p.input :user_id %>
+      </div>
+    </div>
+  </div>
+ <% end %> 
