@@ -1,3 +1,4 @@
+<% @task = Task.find @thrid_form.id %>
 <%= simple_form_for(@thrid_form) do |f| %>
   <%= f.error_notification %>
 
@@ -37,7 +38,18 @@
     <%#= f.input :task_id %>
   </div>
   </div>
-
+  <div class="taskForm">
+    <div class="halfLeft">
+     <table style="width:100%;">
+       <tr class="userTask">
+        <td colspan="2" class="firstTd">
+          <div class="label req">Assign_to:</div>
+          <%= multi_user_select(:task, all_users, @task.id) %>
+        </td>
+       </tr>
+     </table>
+    </div>
+  </div>
   <div class="actions buttonbar">
     <%= f.button :submit %>
   </div>

@@ -33,11 +33,11 @@
         <div class="label req">Assign_to:</div>
         <%= multi_user_select(:task, all_users, @task.id) %>
       </td>
-      <% if action_name == "new" %>
-        <td class="upload">
+      <%# if action_name == "new" %>
+        <!-- <td class="upload">
           <input type="file" name="file_upload">
-        </td>
-      <% end %>
+        </td> -->
+      <%# end %>
       <!-- <td>
         <div class="label req">#{t :category}:</div>
         <%#= f.select :category, @category, { :selected => @task.category.blank? ? nil : @task.category.to_sym, :include_blank => t(:select_blank) }, { :style => "width:160px" } %>
