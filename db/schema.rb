@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219090439) do
+ActiveRecord::Schema.define(version: 20180219174102) do
 
   create_table "account_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "account_id"
@@ -292,6 +292,36 @@ ActiveRecord::Schema.define(version: 20180219090439) do
     t.integer  "task_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "week_1"
+    t.string   "topic_1"
+    t.string   "textbook_1"
+    t.string   "teaching_activity_1"
+    t.string   "teacher_remark_1"
+    t.string   "supervisor_remark_1"
+    t.string   "week_2"
+    t.string   "topic_2"
+    t.string   "textbook_2"
+    t.string   "teaching_activity_2"
+    t.string   "teacher_remark_2"
+    t.string   "supervisor_remark_2"
+    t.string   "week_3"
+    t.string   "topic_3"
+    t.string   "textbook_3"
+    t.string   "teaching_activity_3"
+    t.string   "teacher_remark_3"
+    t.string   "supervisor_remark_3"
+    t.string   "week_4"
+    t.string   "topic_4"
+    t.string   "textbook_4"
+    t.string   "teaching_activity_4"
+    t.string   "teacher_remark_4"
+    t.string   "supervisor_remark_4"
+    t.string   "week_5"
+    t.string   "topic_5"
+    t.string   "textbook_5"
+    t.string   "teaching_activity_5"
+    t.string   "teacher_remark_5"
+    t.string   "supervisor_remark_5"
   end
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

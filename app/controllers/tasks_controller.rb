@@ -6,8 +6,8 @@
 require 'google_drive/google_docs'
 class TasksController < ApplicationController
   before_action :require_user
-  before_action :set_current_tab, only: [:index, :show, :new]
-  before_action :update_sidebar, only: [:index, :new ]
+  before_action :set_current_tab, only: [:index, :show, :new, :edit]
+  before_action :update_sidebar, only: [:index, :new, :edit ]
   skip_before_action :verify_authenticity_token
  # before_action :google_drive_login, :only => [:index, :create]
 
