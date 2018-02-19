@@ -1,13 +1,5 @@
 <style type="text/css">
-.buttonbar.first {border: none;}
-.buttonbar.first a {background: #466bb1;
-padding: 8px 10px;
-color: #fff;
-border: none;
-cursor: pointer; margin-left:15px; display: block;
-width: 180px;
-text-align: center;}
-.second {width: 100%;margin-top: 30px;}
+
 </style>
 <%= simple_form_for(@task, html: { :multipart => true }) do |f| %>
   <%= link_to_close new_task_path + "?view=#{@view}" %>
@@ -17,7 +9,7 @@ text-align: center;}
   <%= hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}" %>
   <%= render "tasks/new_top_section",    :f => f %>
   <%= render "fields/groups", :f => f %>
-  <% if action_name == "edit" %>
+  <% if action_name == "new" %>
     <div class="buttonbar first">
       <div class="second">
       <%= radio_button("task", "form_number", "1") %>  <%= link_to 'Staff Interview and Recruitment',  new_form_first_path  %> 
