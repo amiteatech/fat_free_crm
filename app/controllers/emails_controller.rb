@@ -4,7 +4,6 @@
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 class EmailsController < ApplicationController
-  skip_before_filter 'checksuper_admin'
   before_action :require_user
 
   # DELETE /emails/1

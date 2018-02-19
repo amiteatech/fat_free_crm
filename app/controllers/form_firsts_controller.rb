@@ -53,6 +53,6 @@ class FormFirstsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def form_first_params
-      params.require(:form_first).permit(:name, :name_of_applicant, :position_applied_for, :part_a_first_interview_date, :interviewer_comment_first, :interviewer_comment_second, :interviewer_comment_others, :part_b_first_interview_date, :interviewer_comments, :part_c_name, :part_c_signature, :part_c_date, :company_id, :user_id)
+      params.require(:form_first).permit(:name, :name_of_applicant, :position_applied_for, :part_a_first_interview_date, :interviewer_comment_first, :interviewer_comment_second, :interviewer_comment_others, :part_b_first_interview_date, :interviewer_comments, :part_c_name, :part_c_signature, :part_c_date, :company_id, :user_id, :task_id)
     end
 end

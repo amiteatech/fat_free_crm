@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Thrid Forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Module title</th>
+      <th>Module syllabus no</th>
+      <th>Course</th>
+      <th>Module toucht by</th>
+      <th>Relevent information</th>
+      <th>Student performance</th>
+      <th>Evaluation</th>
+      <th>Module development</th>
+      <th>Module development submitted by</th>
+      <th>Module development submitted date</th>
+      <th>Comments</th>
+      <th>Comments name</th>
+      <th>Comments signature</th>
+      <th>Comments designation</th>
+      <th>Comments date</th>
+      <th>Task</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @thrid_forms.each do |thrid_form| %>
+      <tr>
+        <td><%= thrid_form.module_title %></td>
+        <td><%= thrid_form.module_syllabus_no %></td>
+        <td><%= thrid_form.course %></td>
+        <td><%= thrid_form.module_toucht_by %></td>
+        <td><%= thrid_form.relevent_information %></td>
+        <td><%= thrid_form.student_performance %></td>
+        <td><%= thrid_form.evaluation %></td>
+        <td><%= thrid_form.module_development %></td>
+        <td><%= thrid_form.module_development_submitted_by %></td>
+        <td><%= thrid_form.module_development_submitted_date %></td>
+        <td><%= thrid_form.comments %></td>
+        <td><%= thrid_form.comments_name %></td>
+        <td><%= thrid_form.comments_signature %></td>
+        <td><%= thrid_form.comments_designation %></td>
+        <td><%= thrid_form.comments_date %></td>
+        <td><%= thrid_form.task_id %></td>
+        <td><%= link_to 'Show', thrid_form %></td>
+        <td><%= link_to 'Edit', edit_thrid_form_path(thrid_form) %></td>
+        <td><%= link_to 'Destroy', thrid_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Thrid Form', new_thrid_form_path %>

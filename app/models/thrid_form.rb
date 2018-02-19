@@ -1,0 +1,2 @@
+class ThridForm < ApplicationRecord
+end

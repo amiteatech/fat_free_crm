@@ -1,7 +1,6 @@
 
 
 class CompaniesController < ApplicationController
-  skip_before_filter :checksuper_admin
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   layout "super"
 
