@@ -1,9 +1,13 @@
 <style type="text/css">
-  .buttonbar a {background: #466bb1;
+.buttonbar.first {border: none;}
+.buttonbar.first a {background: #466bb1;
 padding: 8px 10px;
 color: #fff;
 border: none;
-cursor: pointer; margin-left:15px;}
+cursor: pointer; margin-left:15px; display: block;
+width: 90px;
+text-align: center;}
+.second {width: 100%;margin-top: 30px;}
 </style>
 <%= simple_form_for(@task, html: { :multipart => true }, :remote => true) do |f| %>
   <%= link_to_close new_task_path + "?view=#{@view}" %>
@@ -13,12 +17,20 @@ cursor: pointer; margin-left:15px;}
   <%= hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}" %>
   <%= render "tasks/new_top_section",    :f => f %>
   <%= render "fields/groups", :f => f %>
+   <div class="buttonbar first">
+    <div class="second">
+      <%= link_to 'First Form',  new_form_first_path  %>
+    </div>
+    <div class="second">
+      <%= link_to 'Second Form', new_form_second_path %>
+    </div>
+    <div class="second">
+      <%= link_to 'Third Form',  new_form_first_path %>
+    </div>
+  </div>
   <div class="buttonbar">
     <%= f.submit t :create_task %>
     or
     <%= link_to_cancel new_task_path + "?view=#{@view}" %>
-    <%= link_to 'First Form ' %>
-    <%= link_to 'Second Form ' %>
-    <%= link_to 'Third Form ' %>
   </div>
 <% end %>
