@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511053730) do
+ActiveRecord::Schema.define(version: 20180219090439) do
 
   create_table "account_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "account_id"
@@ -129,6 +129,20 @@ ActiveRecord::Schema.define(version: 20160511053730) do
     t.string   "state",            limit: 16,    default: "Expanded", null: false
   end
 
+  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "admin_id"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "country"
+    t.string   "prime_contact"
+    t.string   "prime_phone_number"
+    t.boolean  "status"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "contact_opportunities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "contact_id"
     t.integer  "opportunity_id"
@@ -222,6 +236,62 @@ ActiveRecord::Schema.define(version: 20160511053730) do
     t.text     "settings",       limit: 65535
     t.index ["field_group_id"], name: "index_fields_on_field_group_id", using: :btree
     t.index ["name"], name: "index_fields_on_name", using: :btree
+  end
+
+  create_table "file_uploads", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "task_id"
+    t.string   "file"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "file_name"
+    t.string   "content_type"
+    t.binary   "file_contents", limit: 65535
+  end
+
+  create_table "form_firsts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "name_of_applicant"
+    t.string   "position_applied_for"
+    t.date     "part_a_first_interview_date"
+    t.string   "interviewer_comment_first"
+    t.string   "interviewer_comment_second"
+    t.string   "interviewer_comment_others"
+    t.date     "part_b_first_interview_date"
+    t.string   "interviewer_comments"
+    t.string   "part_c_name"
+    t.string   "part_c_signature"
+    t.date     "part_c_date"
+    t.integer  "company_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "task_id"
+  end
+
+  create_table "form_second_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "week"
+    t.string   "topic"
+    t.string   "textbook"
+    t.string   "teaching_activity"
+    t.string   "teacher_remark"
+    t.string   "supervisor_remark"
+    t.integer  "form_second_id"
+    t.integer  "position"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "form_seconds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "module_title"
+    t.string   "course"
+    t.date     "course_date"
+    t.integer  "module_toucht_by_id"
+    t.integer  "company_id"
+    t.integer  "user_id"
+    t.integer  "task_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -356,6 +426,15 @@ ActiveRecord::Schema.define(version: 20160511053730) do
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
+  create_table "task_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.string   "user_name"
+    t.string   "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "assigned_to"
@@ -373,8 +452,55 @@ ActiveRecord::Schema.define(version: 20160511053730) do
     t.datetime "updated_at"
     t.string   "background_info"
     t.text     "subscribed_users", limit: 65535
+    t.string   "description"
+    t.string   "task_created_by"
+    t.integer  "task_created_id"
+    t.integer  "company_id"
+    t.boolean  "form_first"
+    t.boolean  "form_second"
+    t.boolean  "form_third"
+    t.integer  "form_first_id"
+    t.integer  "form_second_id"
+    t.integer  "form_third_id"
+    t.integer  "form_number"
     t.index ["assigned_to"], name: "index_tasks_on_assigned_to", using: :btree
     t.index ["user_id", "name", "deleted_at"], name: "index_tasks_on_user_id_and_name_and_deleted_at", unique: true, using: :btree
+  end
+
+  create_table "thrid_forms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "module_title"
+    t.string   "module_syllabus_no"
+    t.string   "course"
+    t.string   "module_toucht_by"
+    t.text     "relevent_information",              limit: 65535
+    t.text     "student_performance",               limit: 65535
+    t.text     "evaluation",                        limit: 65535
+    t.text     "module_development",                limit: 65535
+    t.string   "module_development_submitted_by"
+    t.date     "module_development_submitted_date"
+    t.text     "comments",                          limit: 65535
+    t.string   "comments_name"
+    t.string   "comments_signature"
+    t.string   "comments_designation"
+    t.string   "comments_date"
+    t.integer  "task_id"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
+
+  create_table "user_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "task_id"
+    t.integer  "user_id"
+    t.string   "comments"
+    t.string   "files"
+    t.integer  "position"
+    t.string   "task_status"
+    t.datetime "approved_time"
+    t.datetime "rejected_time"
+    t.boolean  "approved"
+    t.boolean  "rejected"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -406,6 +532,11 @@ ActiveRecord::Schema.define(version: 20160511053730) do
     t.boolean  "admin",                           default: false, null: false
     t.datetime "suspended_at"
     t.string   "single_access_token"
+    t.integer  "role"
+    t.integer  "company_id"
+    t.boolean  "super_admin",                     default: false
+    t.boolean  "school_admin",                    default: false
+    t.boolean  "school_user",                     default: false
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["perishable_token"], name: "index_users_on_perishable_token", using: :btree
     t.index ["persistence_token"], name: "index_users_on_persistence_token", using: :btree

@@ -11,6 +11,8 @@ unless Rails.env.test?
 
   smtp_settings = Setting.smtp || {}
 
+  Setting.smtp
+
   if smtp_settings["address"].present?
     Rails.application.config.action_mailer.smtp_settings = smtp_settings.symbolize_keys
   end

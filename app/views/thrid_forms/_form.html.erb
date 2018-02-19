@@ -1,26 +1,44 @@
 <%= simple_form_for(@thrid_form) do |f| %>
   <%= f.error_notification %>
 
-  <div class="inputs">
-    <%= f.input :module_title %>
-    <%= f.input :module_syllabus_no %>
-    <%= f.input :course %>
-    <%= f.input :module_toucht_by %>
+  <div class="inputs frm_scnd third">
+   <div class="frm_scnd_name">
+    <div class="modle_name bbr">
+      <%= f.input :module_title %>
+    </div>
+    <div class="modle_name bb">
+      <%= f.input :module_syllabus_no %>
+    </div>
+    <div class="modle_name br">
+      <%= f.input :course %>
+    </div>
+    <div class="modle_name">
+      <%= f.input :module_toucht_by %>
+    </div>
+  </div>
+  <div class="inform">
     <%= f.input :relevent_information %>
     <%= f.input :student_performance %>
     <%= f.input :evaluation %>
     <%= f.input :module_development %>
+  </div>
+  <div class="develop">
     <%= f.input :module_development_submitted_by %>
     <%= f.input :module_development_submitted_date %>
+  </div>
+  <div class="inform">
     <%= f.input :comments %>
+  </div>
+  <div class="lst_clm">
     <%= f.input :comments_name %>
     <%= f.input :comments_signature %>
     <%= f.input :comments_designation %>
     <%= f.input :comments_date %>
-    <%= f.input :task_id %>
+    <%#= f.input :task_id %>
+  </div>
   </div>
 
-  <div class="actions">
+  <div class="actions buttonbar">
     <%= f.button :submit %>
   </div>
 <% end %>

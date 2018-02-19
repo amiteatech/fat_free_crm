@@ -6,5 +6,9 @@ class AddCheckboxInTask < ActiveRecord::Migration[5.0]
   	add_column :tasks, :form_first_id, :integer
   	add_column :tasks, :form_second_id, :integer
   	add_column :tasks, :form_third_id, :integer
+
+  	add_column :tasks, :form_number, :integer
   end
 end
+
+

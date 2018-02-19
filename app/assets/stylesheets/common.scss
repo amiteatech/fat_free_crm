@@ -1032,6 +1032,31 @@ span{font-weight:bold;}}
   .t_details_fifth {width:20%; display:block; float:left;}
  }
  }
+/*------------second_forms CSS--------------*/
+.inputs.frm_scnd.third .modle_name label {
+    width: 31%;
+}
+.inputs.third { display: block; float: left; width: 100%;
+.inform {width:100%; float:left; display:block;
+ label {margin: 10px 0;display: block; float:left;}
+ textarea {width:95.7%; border:1px solid black; display:block; float:left; padding:2%; max-width:95.7%;}
+}
+.develop {display: block; float: left; width: 100%;
+ margin: 10px 0;
+  label { float:left; padding:10px 0; font-weight:bold;}
+  input {width:25%; float:left; border:none; height: 20px;
+    border-bottom: 1px solid black;}
+}
+ .thrid_form_module_development_submitted_by {display: block; float: left; width: 50%;}
+ .thrid_form_module_development_submitted_date{display: block; float: left; width: 50%;}
+.lst_clm {display: block; float: left; width: 100%;
+ margin: 10px 0;
+  .thrid_form_comments_name, .thrid_form_comments_signature, .thrid_form_comments_designation, .thrid_form_comments_date {width:25%; display:block; float:left;}
+  label { float:left; padding:10px 0; font-weight:bold;}
+  input {width:25%; float:left; border:none; height: 20px;
+    border-bottom: 1px solid black;}
+ }
+}
 
 /*------------search CSS--------------*/
 .src_frm { display: block; width: 100%; min-height: 30px;

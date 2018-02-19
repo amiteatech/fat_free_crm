@@ -58,7 +58,6 @@ group :development, :test do
   gem 'rspec-activemodel-mocks'
   gem 'headless'
   gem 'byebug'
-  gem 'pry-rails' unless ENV["CI"]
   gem 'factory_girl_rails', '~> 4.7.0' # 4.8.0+ stubbed models are not allowed to access the database - User#destroyed?()
   gem 'rubocop'
   gem 'rainbow'
@@ -92,3 +91,4 @@ gem 'remotipart'
 gem 'google_drive'
 gem 'oauth2'
 gem 'google-api-client', '~> 0.11'
+gem 'spreadsheet'
