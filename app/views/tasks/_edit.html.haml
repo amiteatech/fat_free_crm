@@ -18,3 +18,4 @@
           = link_to(t(due_day.to_sym), "#", :onclick => %Q/crm.reschedule_task(#{@task.id}, "#{due_day}")/)
           = " | " if due_day != "due_later"
       .cl
+      

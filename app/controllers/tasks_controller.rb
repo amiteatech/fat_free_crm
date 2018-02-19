@@ -9,7 +9,7 @@ class TasksController < ApplicationController
   before_action :set_current_tab, only: [:index, :show]
   before_action :update_sidebar, only: :index
   skip_before_action :verify_authenticity_token
-  before_action :google_drive_login, :only => [:index, :create]
+ # before_action :google_drive_login, :only => [:index, :create]
 
   GOOGLE_CLIENT_ID = "318261922103-6o5ui2qui55luqss9d2gpsbsukianb39.apps.googleusercontent.com"
   GOOGLE_CLIENT_SECRET = "WlTtICFYG64yummKqFlpz5hf"
@@ -106,6 +106,10 @@ class TasksController < ApplicationController
 
     respond_with(@task) do |_format|
       if @task.save
+         form_frist = FormFirst.create(:task_id => @task.id)
+         form_second = FormSecond.create(:task_id => @task.id)
+         form_third = ThridForm.create(:task_id => @task.id)
+         @task.update_attributes({:form_first_id => form_frist.id, :form_second_id => form_second.id, :form_third_id => form_third.id})
         update_sidebar if called_from_index_page?
         pos = 0
         @users_selected.unshift(current_user.id.to_s) unless only_current_user
