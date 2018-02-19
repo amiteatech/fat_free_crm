@@ -52,6 +52,18 @@
     <%#= f.input :company_id %>
     <%#= f.input :user_id %>
   </div>
+  <div class="taskForm">
+    <div class="halfLeft">
+     <table style="width:100%;">
+       <tr class="userTask">
+        <td colspan="2" class="firstTd">
+          <div class="label req">Assign_to:</div>
+          <%#= multi_user_select(:task, all_users, @task.id) %>
+        </td>
+       </tr>
+     </table>
+    </div>
+  </div>
 
   <div class="actions buttonbar">
     <%= f.button :submit %>

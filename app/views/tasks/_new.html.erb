@@ -1,5 +1,4 @@
 <style type="text/css">
-
 .buttonbar.first {border: none;}
 .buttonbar.first a {background: #466bb1;
 padding: 8px 10px;
@@ -7,8 +6,8 @@ color: #fff;
 border: none;
 cursor: pointer; margin-left:15px; display: block;
 width: 180px;
-text-align: center; float: left;}
-.second {width: 100%;margin-top: 30px; display:block; float:left;}
+text-align: center;}
+.second {width: 100%;margin-top: 30px;}
 </style>
 <%= simple_form_for(@task, html: { :multipart => true }, :remote => true) do |f| %>
   <%= link_to_close new_task_path + "?view=#{@view}" %>
@@ -18,17 +17,19 @@ text-align: center; float: left;}
   <%= hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}" %>
   <%= render "tasks/new_top_section",    :f => f %>
   <%= render "fields/groups", :f => f %>
-   <div class="buttonbar first">
-    <div class="second">
-    <%= radio_button("task", "form_number", "1") %>  <%= link_to 'Staff Interview and Recruitment',  new_form_first_path  %> 
+  <% if action_name == "edit" %>
+    <div class="buttonbar first">
+      <div class="second">
+      <%= radio_button("task", "form_number", "1") %>  <%= link_to 'Staff Interview and Recruitment',  new_form_first_path  %> 
+      </div>
+      <div class="second">
+       <%= radio_button("task", "form_number", "2") %>  <%= link_to 'Monitoring Module Delivery', new_form_second_path %>
+      </div>
+      <div class="second">
+       <%= radio_button("task", "form_number", "3") %>  <%= link_to 'FORM',  new_thrid_form_path %>
+      </div>
     </div>
-    <div class="second">
-     <%= radio_button("task", "form_number", "2") %>  <%= link_to 'Monitoring Module Delivery', new_form_second_path %>
-    </div>
-    <div class="second">
-     <%= radio_button("task", "form_number", "3") %>  <%= link_to 'FORM',  new_form_first_path %>
-    </div>
-  </div>
+  <% end %>
   <div class="buttonbar">
     <%= f.submit t :create_task %>
     or
