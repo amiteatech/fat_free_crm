@@ -982,8 +982,9 @@ span.close:focus {
       input {width:25%; float:left; border:none; height: 20px;
     border-bottom: 1px solid black;}
       }
-.interview {display: block;float: left; width:100%; border-top:1px solid black;
- textarea {width:95.7%; border:1px solid black; border-top :none; display:block; float:left; padding:2%; max-width:95.7%;}
+.interview {display: block;float: left; width:100%; margin-top: -15px;
+ label {margin: 10px 0;display: block; float:left;}
+ textarea {width:95.7%; border:1px solid black; display:block; float:left; padding:2%; max-width:95.7%;}
 }
 p {display: block; float: left; width:100%; 
 span{font-weight:bold;}}
@@ -991,17 +992,17 @@ span{font-weight:bold;}}
 .c_part {display: block; float: left; width:100%; border:1px solid black; border-top:none; }
   .form_first_part_c_name {width:33%; float:left; display: block; border-right: 1px solid black; height: 50px;
     label {width:30%; float:left; display:block; padding: 15px 0 4% 4%;}
-    input {width:66%; float:left; display:block;border:none;
-    min-width:66%; max-width:66%; margin-top: 4%;} 
+    input {width:65%; float:left; display:block;border:none;
+    min-width:65%; max-width:65%; margin-top: 4%;} 
   }
   .form_first_part_c_signature {width:33%; float:left; display: block; border-right: 1px solid black;height:50px;
     label {width:30%; float:left; display:block; padding: 4% 0 4% 4%;}
-    input {width:66%; float:left; display:block; border:none;min-width:66%; max-width:66%; margin-top: 4%;}
+    input {width:65%; float:left; display:block; border:none;min-width:65%; max-width:65%; margin-top: 4%;}
   }
   .form_first_part_c_date{width:33%; float:left; display: block; height: 50px;
     label {width:30%; float:left; display:block; padding: 15px 0 4% 4%;}
-    input {width:66%; float:left; display:block; border:none;
-    min-width:66%; max-width:66%; margin-top:4%;}
+    input {width:65%; float:left; display:block; border:none;
+    min-width:65%; max-width:65%; margin-top:4%;}
  }
 }
 
