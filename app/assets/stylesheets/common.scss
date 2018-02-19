@@ -1032,7 +1032,7 @@ span{font-weight:bold;}}
   .t_details_fifth {width:20%; display:block; float:left;}
  }
  }
-/*------------second_forms CSS--------------*/
+/*------------third_forms CSS--------------*/
 .inputs.frm_scnd.third .modle_name label {
     width: 31%;
 }
@@ -1055,6 +1055,13 @@ span{font-weight:bold;}}
   label { float:left; padding:10px 0; font-weight:bold;}
   input {width:25%; float:left; border:none; height: 20px;
     border-bottom: 1px solid black;}
+ }
+.buttonbar.first {border: none;
+.second {display: block; float: left; width: 100%;
+  input {float:left;}
+  a {background: #466bb1;padding: 8px 10px;
+color: #fff;border: none;cursor: pointer; margin-left:15px; display: block;width: 180px;text-align: center; float:left;}
+ }
  }
 }
 
