@@ -1,0 +1,43 @@
+<div class="remote">
+  <%= simple_form_for(@task, html: { :multipart => true }, :remote => true) do |f| %>
+    <%= link_to_close edit_task_path(@task) %>
+    <%= hidden_field_tag :view, @view %>
+    <%= hidden_field_tag "task[asset_id]", "#{@asset.id if @asset}" %>
+    <%= hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}" %>
+    <%= render "tasks/new_top_section",    :f => f, :edit => true %>
+    <%= render "fields/groups", :f => f, :edit => true %>
+
+
+   <div class="buttonbar first">
+    <div class="second">
+    <%= radio_button("task", "form_number", "1") %>  <%= link_to 'Staff Interview and Recruitment',  new_form_first_path  %> 
+    </div>
+    <div class="second">
+     <%= radio_button("task", "form_number", "2") %>  <%= link_to 'Monitoring Module Delivery', new_form_second_path %>
+    </div>
+    <div class="second">
+     <%= radio_button("task", "form_number", "3") %>  <%= link_to 'FORM',  new_form_first_path %>
+    </div>
+  </div>
+
+    <div class="buttonbar">
+
+
+
+
+      <%= f.submit t :save_task %>
+      
+      <div class="cl"></div>
+    </div>
+  <% end %>
+</div>
+
+<% if @task.form_number == 1 %>
+  <%= link_to 'Staff Interview and Recruitment',  edit_form_first_path(@task.form_first_id)  %> 
+<% elsif @task.form_number == 2 %>
+  <%= link_to 'Monitoring Module Delivery', edit_form_second_path(@task.form_second_id) %>
+<% elsif @task.form_number == 3 %>
+  <%= link_to 'Monitoring Module Delivery', edit_thrid_form_path(@task.form_third_id) %>
+<% end %>
+
+
