@@ -16,16 +16,21 @@
       <%= f.input :name %>
     </div>
     <div class="interview">
-      <%= f.text_area :interviewer_comment_first, :rows => 8, placeholder: "Interviewer's comments on whether vis-a-vis the minimum qualification and selection criteria. "  %>
-      <%= f.text_area :interviewer_comment_second, :rows => 8, placeholder: "Interviewer's comments on suitability of the applicant for the position" %>
-      <%= f.text_area :interviewer_comment_others, :rows => 8, placeholder: "Any other comments/conditions for recruitment" %>
+      <label>Interviewer's comments on whether vis-a-vis the minimum qualification and selection criteria.</label>
+      <%= f.text_area :interviewer_comment_first, :rows => 8, placeholder: ""  %>
+      <label>Interviewer's comments on suitability of the applicant for the position</label>
+      <%= f.text_area :interviewer_comment_second, :rows => 8, placeholder: "" %>
+      <label>Any other comments/conditions for recruitment
+      </label>
+      <%= f.text_area :interviewer_comment_others, :rows => 8, placeholder: "" %>
     </div>
     <div class="part_a">
       <%= f.input :part_b_first_interview_date %>
       <%= f.input :name %>
     </div>
     <div class="interview">
-      <%= f.text_area :interviewer_comments, :rows => 8, placeholder: "Interviewer's comments"  %>
+      <label>Interviewer's comments</label>
+      <%= f.text_area :interviewer_comments, :rows => 8, placeholder: ""  %>
     </div>
     
     <p><span>Part C: Approval to Hire</span>(by Management Team for non-academic staff; and by Management Team and Academic Board for academic staff: or their respective authorized representatives)</p>
