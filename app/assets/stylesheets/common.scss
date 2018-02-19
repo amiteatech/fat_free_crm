@@ -994,15 +994,16 @@ div.input {width:33%; float:left; display: block; border-right: 1px solid black;
     input {width:65%; float:left; display:block;border:none;
     min-width:65%; max-width:65%; margin-top: 4%;}
     }
+  div.input:last-child {border-right:none;}
  }
 .c_part {display: block; float: left; width:100%; border:1px solid black; border-top:none; 
    div.input {width:33%; float:left; display: block; border-right: 1px solid black; height: 50px;
     label {width:30%; float:left; display:block; padding: 15px 0 4% 4%;}
     input {width:65%; float:left; display:block;border:none;
     min-width:65%; max-width:65%; margin-top: 4%;}
-}
-   
-}
+   }
+   div.input:last-child {border-right:none;}
+  }
 }
 
 /*------------second_forms CSS--------------*/
@@ -1020,16 +1021,20 @@ div.input {width:33%; float:left; display: block; border-right: 1px solid black;
  }
  .task_detail {display: block; float: left; width:100%; border: 1px solid #000; margin-top:40px; overflow:hidden;
   label {width: 100%; display: block; text-align: center; padding: 15px 0; border-bottom: 1px solid #000;
-    border-right: 1px solid #000;}
+    border-right: 1px solid #000; height: 50px;}
   input {width: 100%; display: block; padding: 15px 0; border:none; border-left: 1px solid #000; text-align: center; }
-  .t_details_first {width:20%; display:block; float:left;
+  .t_details_first {width:16.666%; display:block; float:left;
      input {border:none;}
    }
-  .t_details_second {width:20%; display:block; float:left;}
-  .t_details_third {width:20%; display:block; float:left;}
-  .t_details_fourth {width:20%; display:block; float:left;}
-  .t_details_fifth {width:20%; display:block; float:left;}
+  .t_details_second {width:16.666%; display:block; float:left; }
+  .t_details_third {width:16.666%; display:block; float:left;}
+  .t_details_fourth {width:16.666%; display:block; float:left;}
+  .t_details_fifth {width:16.666%; display:block; float:left;}
+  .t_details_last {width:16.666%; display:block; float:left;
+  label {border-right: none;}
+  }
  }
+ .task_detail.blank{margin-top:0; border-top: none;}
  }
 /*------------third_forms CSS--------------*/
 .inputs.frm_scnd.third .modle_name label {
@@ -1042,18 +1047,21 @@ div.input {width:33%; float:left; display: block; border-right: 1px solid black;
 }
 .develop {display: block; float: left; width: 100%;
  margin: 10px 0;
-  label { float:left; padding:10px 0; font-weight:bold;}
-  input {width:25%; float:left; border:none; height: 20px;
+ div.input {display: block; float: left; width: 50%;
+  label { float:left; padding:10px 0; font-weight:bold;
+  width:40%;}
+  input {width:50%; float:left; border:none; height: 35px;
     border-bottom: 1px solid black;}
+ }
 }
  .thrid_form_module_development_submitted_by {display: block; float: left; width: 50%;}
  .thrid_form_module_development_submitted_date {display: block; float: left; width: 50%;}
 .lst_clm {display: block; float: left; width: 100%;
  margin: 10px 0;
-  .thrid_form_comments_name, .thrid_form_comments_signature, .thrid_form_comments_designation, .thrid_form_comments_date {width:25%; display:block; float:left;}
-  label { float:left; padding:10px 0; font-weight:bold;}
+  div.input {width:25%; display:block; float:left;}
+  label { float:left; padding:10px 0; font-weight:bold; width:100%;}
   input {width:25%; float:left; border:none; height: 20px;
-    border-bottom: 1px solid black;}
+    border-bottom: 1px solid black; width:85%; }
  }
 }
 
@@ -1073,4 +1081,8 @@ border: none; cursor: pointer; margin-left:15px; display: block; width: 180px; t
 }
 
 #main .remote {background: white;}
-#main .edit_task {width:100%; max-width:700px; margin:0 auto; padding: 70px;}
+#main .edit_task {width:100%; max-width:700px; margin:0 auto; padding: 70px;
+.taskForm input[type="text"], .taskForm textarea { width: 75%;}
+.firstTd .select2-container {width: 325px !important;}
+#sortable li {width: 145px;}
+}
