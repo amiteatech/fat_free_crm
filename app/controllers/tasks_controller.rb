@@ -6,8 +6,8 @@
 require 'google_drive/google_docs'
 class TasksController < ApplicationController
   before_action :require_user
-  before_action :set_current_tab, only: [:index, :show]
-  before_action :update_sidebar, only: :index
+  before_action :set_current_tab, only: [:index, :show, :new]
+  before_action :update_sidebar, only: [:index, :new ]
   skip_before_action :verify_authenticity_token
  # before_action :google_drive_login, :only => [:index, :create]
 
@@ -20,7 +20,7 @@ class TasksController < ApplicationController
   def index
     @view = view
     @tasks = Task.where(company_id: current_user.company_id).find_all_grouped(current_user, @view)
-    google_session = GoogleDrive.login_with_oauth(session[:google_token]) 
+    #google_session = GoogleDrive.login_with_oauth(session[:google_token]) 
 
     # @google_docs = []
     # @google_forms = []
