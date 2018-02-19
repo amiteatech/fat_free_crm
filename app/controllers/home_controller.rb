@@ -92,12 +92,16 @@ class HomeController < ApplicationController
 
   #----------------------------------------------------------------------------
   def get_activities(options = {})
+    user = activity_user
+    if current_user.super_admin != true
+      user = current_user
+    end  
     options[:asset]    ||= activity_asset
     options[:event]    ||= activity_event
-    options[:user]     ||= activity_user
+    options[:user]     ||= user
     options[:duration] ||= activity_duration
     options[:max]      ||= 500
-
+    
     Version.includes(user: [:avatar]).latest(options).visible_to(current_user)
   end
 

@@ -54,6 +54,7 @@
     </div>  
     <%#= f.text_field :status %>
   </div>
+  <% if controller.action_name == "new" || controller.action_name == "create" %>
   <h4>Admin Field</h4>
   <div class="inputs">
     <div class="row">
@@ -93,6 +94,7 @@
       </div>
     </div>
   </div>
+  <% end %>
 
   <div class="row">
     <div class="actions buttonbar">

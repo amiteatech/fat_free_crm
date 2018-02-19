@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   #----------------------------------------------------------------------------
   def index
     @view = view
-    @tasks = Task.find_all_grouped(current_user, @view)
+    @tasks = Task.where(company_id: current_user.company_id).find_all_grouped(current_user, @view)
     google_session = GoogleDrive.login_with_oauth(session[:google_token]) 
 
     # @google_docs = []
@@ -102,6 +102,7 @@ class TasksController < ApplicationController
     @task.description = params[:task][:description]
     @task.task_created_by = current_user.username if current_user.username.present?
     @task.task_created_id = current_user.id
+    @task.company_id = current_user.company_id
 
     respond_with(@task) do |_format|
       if @task.save

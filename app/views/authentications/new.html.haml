@@ -6,8 +6,8 @@
       .title_tools #{t :no_account} #{link_to t(:sign_up_now), signup_path}
     .title= t(:login)
     .section
-      .label= t(:username) + ':'
-      = f.text_field :username
+      .label= t(:email) + ':'
+      = f.text_field :email
       .label= t(:password) + ':'
       = f.password_field :password
 
