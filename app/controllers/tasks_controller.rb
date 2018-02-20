@@ -90,7 +90,7 @@ class TasksController < ApplicationController
     if (@users_selected.count == 1) && (@users_selected.first.to_i == current_user.id)
       only_current_user = true
     end
-    @users_selected.delete(current_user.id.to_s) unless only_current_user
+    #@users_selected.delete(current_user.id.to_s) unless only_current_user
     @task = Task.new
     @task.assigned_to = @users_selected.first
     @task.user_id = @users_selected.first
@@ -109,7 +109,7 @@ class TasksController < ApplicationController
          @task.update_attributes({:form_first_id => form_frist.id, :form_second_id => form_second.id, :form_third_id => form_third.id, :form_number => params["task"]["form_number"].to_i})
         update_sidebar if called_from_index_page?
         pos = 0
-        @users_selected.unshift(current_user.id.to_s) unless only_current_user
+      #  @users_selected.unshift(current_user.id.to_s) unless only_current_user
         @users_selected.each do |user_id|
           pos = pos+1
           @user_task = UserTask.new
