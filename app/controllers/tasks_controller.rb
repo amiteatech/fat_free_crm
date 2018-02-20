@@ -19,19 +19,14 @@ class TasksController < ApplicationController
   #----------------------------------------------------------------------------
   def index
     @view = view
-    @tasks = Task.where(company_id: current_user.company_id).find_all_grouped(current_user, @view)
-    #google_session = GoogleDrive.login_with_oauth(session[:google_token]) 
-
-    # @google_docs = []
-    # @google_forms = []
-    # for file in google_session.files
-    #   if file.web_view_link.include? "docs.google.com/document/"
-    #     @google_docs  << file   
-    #   elsif file.web_view_link.include? "docs.google.com/forms/"
-    #     @google_forms  << file    
-    #   end
-    # end 
-
+    data = UserTask.where(:user_id => current_user.id)
+    if data.present?
+      #@tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
+      @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id}).find_all_grouped(current_user, @view)
+    else  
+      @tasks = Task.where(company_id: current_user.company_id).find_all_grouped(current_user, @view)
+    end   
+    
     respond_with @tasks do |format|
       format.xls { render layout: 'header' }
       format.csv { render csv: @tasks.map(&:second).flatten }
@@ -127,30 +122,7 @@ class TasksController < ApplicationController
           # @vito.vito_status = false
           # @vito.save
         end
-        if params[:file_upload].present?
-          # google_session = GoogleDrive.login_with_oauth(session[:google_token])
-          # file_uploaded_to_drive = google_session.upload_from_file(params[:file_upload].path, params[:file_upload].original_filename, convert: false)
-
-         # drive = Google::Apis::DriveV3::DriveService.new
-         # drive.authorization = Signet::OAuth2::Client.new( client_id: GOOGLE_CLIENT_ID, client_secret: GOOGLE_CLIENT_SECRET, access_token: session[:google_token], :access_type => 'offline', :scope => "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file")
-         # drive.authorization.expires_in = 7200
-          
-         # file_metadata = {name: params[:file_upload].original_filename, mime_type: "application/vnd.google-apps.document"}
-         # file_uploaded_to_drive = drive.create_file(file_metadata, fields: 'id', upload_source: params[:file_upload].path)
-
-          @users_selected.each do |user_id|
-            unless UserTask.find_by_user_id(user_id).position == 1
-              user_permission = { type: 'user', role: 'writer', with_link: true, email_address: User.find(user_id).email }
-              drive.create_permission(file_uploaded_to_drive.id, user_permission, fields: "id")
-            end
-          end
-
-         # @file_upload = FileUpload.new
-         # @file_upload.task_id = @task.id
-         # @file_upload.file_name = params[:file_upload].original_filename
-         # @file_upload.file = "https://docs.google.com/document/d/#{file_uploaded_to_drive.id}/edit"
-         # @file_upload.save
-        end
+        
   
     end
     redirect_to :tasks
@@ -161,6 +133,7 @@ class TasksController < ApplicationController
   def update
     @view = view
     @task = Task.tracked_by(current_user).find(params[:id])
+
     @task_before_update = @task.dup
 
     if @task.due_at && (@task.due_at < Date.today.to_time)
@@ -169,23 +142,18 @@ class TasksController < ApplicationController
       @task_before_update.bucket = @task.computed_bucket
     end
     @users_selected = params[:users].reject { |c| c.empty? } if params[:users].present?
+    @task.assigned_to = @users_selected.first
+    @task.user_id = @users_selected.first
+    @task.save
     if @users_selected.present?
       @pos = UserTask.where(task_id: @task.id).count
       @users_selected.each do |user_id|
-        unless UserTask.where(task_id: @task.id).exists?(user_id: user_id)
           @pos = @pos+1
           @user_task = UserTask.new
           @user_task.user_id = user_id
           @user_task.task_id = @task.id
           @user_task.position = @pos
           @user_task.save
-
-          # @vito = Vito.new
-          # @vito.user_id = user_id
-          # @vito.task_id = @task.id
-          # @vito.vito_status = false
-          # @vito.save
-        end
       end
     end
 
