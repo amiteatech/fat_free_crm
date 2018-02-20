@@ -1081,11 +1081,13 @@ border: none; cursor: pointer; margin-left:15px; display: block; width: 180px; t
 }
 }
 
-#main .remote {background: white;}
-#main .edit_task {width:100%; max-width:700px; margin:0 auto; padding: 70px;
+#main .remote {background: white; border:none;}
+#main .edit_task {width:100%; max-width:700px; margin:0 auto; padding:30px 70px;
 .taskForm input[type="text"], .taskForm textarea { width: 75%;}
 .firstTd .select2-container {width: 325px !important;}
 #sortable li {width: 145px;}
 }
-#main .first_form_task .title {margin:0 0 15px 0; text-align:center; border-bottom: none; }
+#main .first_form_task .title {margin:0 0 15px 0; text-align:center; border-bottom: none; 
+h1 {font-size: 20px;}
+}
 
