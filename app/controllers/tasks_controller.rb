@@ -26,6 +26,8 @@ class TasksController < ApplicationController
     else  
       @tasks = Task.where(company_id: current_user.company_id).find_all_grouped(current_user, @view)
     end   
+
+    @my_tasks = Task.visible_on_dashboard(current_user).includes(:user, :asset).by_due_at
     
     respond_with @tasks do |format|
       format.xls { render layout: 'header' }
@@ -141,29 +143,70 @@ class TasksController < ApplicationController
     else
       @task_before_update.bucket = @task.computed_bucket
     end
-    @users_selected = params[:users].reject { |c| c.empty? } if params[:users].present?
-    @task.assigned_to = @users_selected.first
-    @task.user_id = @users_selected.first
-    @task.save
+    if params[:users].present?
+       @users_selected = params[:users].reject { |c| c.empty? } 
+    end   
+    
     if @users_selected.present?
-      @pos = UserTask.where(task_id: @task.id).count
-      @users_selected.each do |user_id|
-          @pos = @pos+1
-          @user_task = UserTask.new
-          @user_task.user_id = user_id
-          @user_task.task_id = @task.id
-          @user_task.position = @pos
-          @user_task.save
-      end
-    end
+        @pos = 0
+        @users_selected.each do |user_id|
+            unless UserTask.where(task_id: @task.id).exists?(user_id: user_id)
+              @pos = @pos+1
+              @user_task = UserTask.new
+              @user_task.user_id = user_id
+              @user_task.task_id = @task.id
+              @user_task.position = @pos
+              @user_task.save
 
+              # @vito = Vito.new
+              # @vito.user_id = user_id
+              # @vito.task_id = @task.id
+              # @vito.vito_status = false
+              # @vito.save
+            end
+          end
+    else
+      
+   #   @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).first
 
-      # if params[:file_upload].present?
-      #   @file_upload = FileUpload.new
-      #   @file_upload.task_id = @task.id
-      #   @file_upload.uploaded_file = params[:file_upload]
-      #   @file_upload.save
-      # end
+   #   pos = @user_task.position + 1
+   #   if @task.user_tasks.exists?(position: pos)
+   #     @new_user_task = @task.user_tasks.where(position: pos).first
+   #     @task.update_attributes(assigned_to: @new_user_task.user_id, :user_id => @new_user_task.user_id)
+   #   else
+   #     @task.update_attributes(assigned_to: @task.task_created_id, :user_id => @task.task_created_id)
+   #   end 
+
+    end 
+    if params[:task] && params[:task][:completed]
+
+      if params[:task][:completed] == "1"
+
+        @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).first
+        pos = @user_task.position + 1
+        #raise pos.inspect
+        #raise @task.user_tasks.map{|s|s.user_id}.inspect
+
+        if @task.user_tasks.exists?(position: pos)
+          @new_user_task = @task.user_tasks.where(position: pos).last
+          @task.update_attributes(assigned_to: @new_user_task.user_id )
+        else  
+          @task.update_attributes(completed_at: Time.now, completed_by: current_user.id)
+          #@task.update_attributes(assigned_to: @task.task_created_id, user_id: @task.task_created_id)
+         # raise
+        end
+        @user_task.update_attributes(approved: true, approved_time: Time.now)
+
+      elsif params[:task][:completed] == "2"
+        @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).last
+        @first_user_in_order = @task.task_created_id
+        @user_task.update_attributes(rejected: true, rejected_time: Time.now)
+        @task.update_attributes(assigned_to: @task.task_created_id)
+      end 
+
+    end 
+    
+
       if @task.update_attributes(task_params)
         @task.bucket = @task.computed_bucket
         if called_from_index_page?

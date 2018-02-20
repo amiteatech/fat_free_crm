@@ -15,7 +15,21 @@
    <%= render "third_form", :f => f %>
 <% end %>
 
+<% if current_user.admin == true %>
   <%= render "tasks/new_top_section",    :f => f, :edit => true %>
+<% end %> 
+
+<% if action_name != "new" %>
+    <div class="buttonbar first">
+      <div class="second">
+      <%= radio_button("task", "completed", "1") %> Completed
+      </div>
+      <div class="second">
+       <%= radio_button("task", "completed", "2") %> Rejected
+      </div>
+     
+    </div>
+  <% end %> 
 
     <div class="buttonbar">
 

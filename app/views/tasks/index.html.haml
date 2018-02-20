@@ -1,5 +1,4 @@
 = styles_for :task
-
 - if @view == "completed"
   - buckets = Setting.unroll(:task_completed)
   = render "title"
@@ -16,3 +15,10 @@
     = render "empty"
   .cl
 / #export= render "shared/export"
+- if false
+  - unless @my_tasks.empty?
+    = render :partial => "home/task", :collection => @my_tasks.limit(10)
+    = show_hidden_entities_message(@my_tasks.count, 'task', 10)
+  - else
+    #{t :no_task_records}
+

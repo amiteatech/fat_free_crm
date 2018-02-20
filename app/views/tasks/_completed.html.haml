@@ -24,9 +24,3 @@
       - unless completed.background_info.blank?
         %div
           %dt= completed.background_info
-    %div.taskForm
-      = form_tag task_reject_task_path(completed), :method => :put, :remote => true do
-        %input{:type => "text", :name => "taskReject", :id => "task-#{completed.id}", :placeholder => "Write a comment", :class => "task_comment", :style => "margin-left: 0;" }
-        %input{:type => "hidden", :name => "bucket", :value => completed.bucket }
-        = submit_tag "Reject"
-      .cl
