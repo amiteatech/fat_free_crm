@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post 'user_tasks/set_position' => 'user_tasks#set_position'
   resources :lists
 
-  root to: 'home#index'
+  root to: 'tasks#index'
   get '/oauth2callback', to: 'tasks#set_google_drive_token'
   get 'show_files', to: 'tasks#show_files'
   get 'activities' => 'home#index'
