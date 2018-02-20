@@ -1017,8 +1017,8 @@ div.input {width:33%; float:left; display: block; border-right: 1px solid black;
   input:focus {outline-offset: none; outline: none;}
 .frm_scnd_name {display: block; float: left; width:100%; border: 1px solid #000;}
 .modle_name {width:49.9%; display:block; float:left;
-    label {width:30%; float:left; padding:10px 0 10px 10px;}
-    input {width:60%; float:left; border: none; height:30px; padding: 0 10px 0 10px; dispaly:block;}
+    label {width:33%; float:left; padding:10px 0 10px 10px;}
+    input {width:57%; float:left; border: none; height:30px; padding: 0 10px 0 10px; dispaly:block;}
  }
  .task_detail {display: block; float: left; width:100%; border: 1px solid #000; margin-top:40px; overflow:hidden;
   label {width: 100%; display: block; text-align: center; padding: 15px 0; border-bottom: 1px solid #000;
@@ -1039,7 +1039,7 @@ div.input {width:33%; float:left; display: block; border-right: 1px solid black;
  }
 /*------------third_forms CSS--------------*/
 .inputs.frm_scnd.third .modle_name label {
-    width: 31%;
+    width: 33%;
 }
 .inputs.third { display: block; float: left; width: 100%;
 .inform {width:100%; float:left; display:block;
