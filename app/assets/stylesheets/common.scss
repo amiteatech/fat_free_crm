@@ -888,6 +888,7 @@ span.close:focus {
 /*------------companies CSS--------------*/
 .companies {
   width:100%;
+    td > a:hover {background: none; color:#111d42;}
     .left_part {
     width: 21.5769231%;
     display: block;
@@ -952,7 +953,7 @@ span.close:focus {
     tbody tr:nth-of-type(even):hover {background:#f5f5f5;}
     }
   .right_part .title {position: relative; padding: 15px 0;}
-  .button.new_school {background: #466bb1;  padding: 8px 10px; color: #fff; border: none;cursor: pointer; position:absolute; top:0; right:0;}
+  .button.new_school {background: #1e4262;  padding: 8px 10px; color: #fff; border: none;cursor: pointer; position:absolute; top:0; right:0;}
 /*------------first_forms CSS--------------*/
 .first_form {width:100%; max-width:700px; margin:0 auto; padding: 70px;
 ::placeholder {color: black; opacity: 1;}
@@ -1016,8 +1017,8 @@ div.input {width:33%; float:left; display: block; border-right: 1px solid black;
   input:focus {outline-offset: none; outline: none;}
 .frm_scnd_name {display: block; float: left; width:100%; border: 1px solid #000;}
 .modle_name {width:49.9%; display:block; float:left;
-    label {width:30%; float:left; padding:10px 0 10px 10px;}
-    input {width:60%; float:left; border: none; height:30px; padding: 0 10px 0 10px; dispaly:block;}
+    label {width:33%; float:left; padding:10px 0 10px 10px;}
+    input {width:57%; float:left; border: none; height:30px; padding: 0 10px 0 10px; dispaly:block;}
  }
  .task_detail {display: block; float: left; width:100%; border: 1px solid #000; margin-top:40px; overflow:hidden;
   label {width: 100%; display: block; text-align: center; padding: 15px 0; border-bottom: 1px solid #000;
@@ -1038,7 +1039,7 @@ div.input {width:33%; float:left; display: block; border-right: 1px solid black;
  }
 /*------------third_forms CSS--------------*/
 .inputs.frm_scnd.third .modle_name label {
-    width: 31%;
+    width: 33%;
 }
 .inputs.third { display: block; float: left; width: 100%;
 .inform {width:100%; float:left; display:block;
@@ -1087,3 +1088,4 @@ border: none; cursor: pointer; margin-left:15px; display: block; width: 180px; t
 #sortable li {width: 145px;}
 }
 #main .first_form_task .title {margin:0 0 15px 0; text-align:center; border-bottom: none; }
+
