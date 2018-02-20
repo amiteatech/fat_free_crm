@@ -189,7 +189,7 @@ class TasksController < ApplicationController
       end
     end
 
-    respond_with(@task) do |_format|
+
       # if params[:file_upload].present?
       #   @file_upload = FileUpload.new
       #   @file_upload.task_id = @task.id
@@ -205,7 +205,9 @@ class TasksController < ApplicationController
           update_sidebar
         end
       end
-    end
+
+       redirect_to :tasks
+
   end
 
   # DELETE /tasks/1
