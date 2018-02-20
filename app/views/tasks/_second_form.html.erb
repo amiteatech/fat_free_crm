@@ -1,121 +1,126 @@
  <%= f.simple_fields_for :form_second do |p| %>
-<div class="inputs frm_scnd">
-    <div class="frm_scnd_name">
-      <%#= f.input :name %>
-      <div class="modle_name bbr">
-        <%= p.input :module_title %>
-      </div>
-      <div class="modle_name bb">
-        <%= p.input :course_date %>
-      </div>
-      <div class="modle_name br">
-        <%= p.input :course %>
-      </div>
-      <div class="modle_name">
-        <%= p.input :module_toucht_by_id %>
-      </div>
+  <div class="first_form_task">
+    <div class="title">
+     <h1>Monitoring Module Delivery</h1>
     </div>
-    
+    <div class="inputs frm_scnd">
+      <div class="frm_scnd_name">
+        <%#= f.input :name %>
+        <div class="modle_name bbr">
+          <%= p.input :module_title, input_html: { minlength: 1 } %>
+        </div>
+        <div class="modle_name bb">
+          <%= p.input :course_date, input_html: { minlength: 1 } %>
+        </div>
+        <div class="modle_name br">
+          <%= p.input :course, input_html: { minlength: 1 } %>
+        </div>
+        <div class="modle_name">
+          <%= p.input :module_toucht_by_id, input_html: { minlength: 1 } %>
+        </div>
+      </div>
+      
 
-    <div class ="task_detail">
-      <div class="t_details_first">
-        <%= p.input :week_1, :label => 'Week' %>
+      <div class ="task_detail">
+        <div class="t_details_first">
+          <%= p.input :week_1, :label => 'Week', input_html: { minlength: 1 } %>
+        </div>
+        <div class="t_details_second">
+          <%= p.input :topic_1, :label => 'Topic in syllabus', input_html: { minlength: 1 } %>
+        </div>
+        <div class="t_details_third">
+          <%= p.input :textbook_1, :label => 'Textbook / chapters / pages', input_html: { minlength: 1 } %>
+        </div>
+        <div class="t_details_fourth">
+          <%= p.input :teaching_activity_1, :label => 'Teaching and Learning Activities / Assessment (Planned)', input_html: { minlength: 1 } %>
+        </div>
+        <div class="t_details_fifth">
+          <%= p.input :teacher_remark_1, :label => 'Teacher’s Remarks (e.g. variations from plan, reasons, etc)
+  ', input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_last">
+          <%= p.input :supervisor_remark_1, :label => 'Supervisor’s Remarks and Date', input_html: { minlength: 1 }  %>
+        </div>
       </div>
-      <div class="t_details_second">
-        <%= p.input :topic_1, :label => 'Topic in syllabus' %>
+      <div class ="task_detail blank">
+        <div class="t_details_first">
+          <%= p.input :week_2, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_second">
+          <%= p.input :topic_2, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_third">
+          <%= p.input :textbook_2, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_fourth">
+          <%= p.input :teaching_activity_2, label: false, input_html: { minlength: 1 }   %>
+        </div>
+        <div class="t_details_fifth">
+          <%= p.input :teacher_remark_2, label: false , input_html: { minlength: 1 }   %>
+        </div>
+        <div class="t_details_last">
+          <%= p.input :supervisor_remark_2, label: false , input_html: { minlength: 1 }   %>
+        </div>
       </div>
-      <div class="t_details_third">
-        <%= p.input :textbook_1, :label => 'Textbook / chapters / pages' %>
+      <div class ="task_detail blank">
+        <div class="t_details_first">
+          <%= p.input :week_3, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_second">
+          <%= p.input :topic_3 , label: false, input_html: { minlength: 1 } %>
+        </div>
+        <div class="t_details_third">
+          <%= p.input :textbook_3, label: false, input_html: { minlength: 1 }   %>
+        </div>
+        <div class="t_details_fourth">
+          <%= p.input :teaching_activity_3, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_fifth">
+          <%= p.input :teacher_remark_3, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_last">
+          <%= p.input :supervisor_remark_3, label: false , input_html: { minlength: 1 }  %>
+        </div>
       </div>
-      <div class="t_details_fourth">
-        <%= p.input :teaching_activity_1, :label => 'Teaching and Learning Activities / Assessment (Planned)' %>
+      <div class ="task_detail blank">
+        <div class="t_details_first">
+          <%= p.input :week_4 , label: false , input_html: { minlength: 1 } %>
+        </div>
+        <div class="t_details_second">
+          <%= p.input :topic_4, label: false , input_html: { minlength: 1 } %>
+        </div>
+        <div class="t_details_third">
+          <%= p.input :textbook_4, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_fourth">
+          <%= p.input :teaching_activity_4, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_fifth">
+          <%= p.input :teacher_remark_4, label: false , input_html: { minlength: 1 }   %>
+        </div>
+        <div class="t_details_last">
+          <%= p.input :supervisor_remark_4, label: false , input_html: { minlength: 1 }  %>
+        </div>
       </div>
-      <div class="t_details_fifth">
-        <%= p.input :teacher_remark_1, :label => 'Teacher’s Remarks (e.g. variations from plan, reasons, etc)
-' %>
-      </div>
-      <div class="t_details_last">
-        <%= p.input :supervisor_remark_1, :label => 'Supervisor’s Remarks and Date' %>
-      </div>
-    </div>
-    <div class ="task_detail blank">
-      <div class="t_details_first">
-        <%= p.input :week_2, label: false  %>
-      </div>
-      <div class="t_details_second">
-        <%= p.input :topic_2, label: false %>
-      </div>
-      <div class="t_details_third">
-        <%= p.input :textbook_2, label: false  %>
-      </div>
-      <div class="t_details_fourth">
-        <%= p.input :teaching_activity_2, label: false  %>
-      </div>
-      <div class="t_details_fifth">
-        <%= p.input :teacher_remark_2, label: false  %>
-      </div>
-      <div class="t_details_last">
-        <%= p.input :supervisor_remark_2, label: false  %>
-      </div>
-    </div>
-    <div class ="task_detail blank">
-      <div class="t_details_first">
-        <%= p.input :week_3, label: false  %>
-      </div>
-      <div class="t_details_second">
-        <%= p.input :topic_3 , label: false%>
-      </div>
-      <div class="t_details_third">
-        <%= p.input :textbook_3, label: false  %>
-      </div>
-      <div class="t_details_fourth">
-        <%= p.input :teaching_activity_3, label: false  %>
-      </div>
-      <div class="t_details_fifth">
-        <%= p.input :teacher_remark_3, label: false  %>
-      </div>
-      <div class="t_details_last">
-        <%= p.input :supervisor_remark_3, label: false  %>
-      </div>
-    </div>
-    <div class ="task_detail blank">
-      <div class="t_details_first">
-        <%= p.input :week_4 , label: false %>
-      </div>
-      <div class="t_details_second">
-        <%= p.input :topic_4, label: false %>
-      </div>
-      <div class="t_details_third">
-        <%= p.input :textbook_4, label: false  %>
-      </div>
-      <div class="t_details_fourth">
-        <%= p.input :teaching_activity_4, label: false  %>
-      </div>
-      <div class="t_details_fifth">
-        <%= p.input :teacher_remark_4, label: false  %>
-      </div>
-      <div class="t_details_last">
-        <%= p.input :supervisor_remark_4, label: false  %>
-      </div>
-    </div>
-    <div class ="task_detail blank">
-      <div class="t_details_first">
-        <%= p.input :week_5, label: false  %>
-      </div>
-      <div class="t_details_second">
-        <%= p.input :topic_5, label: false %>
-      </div>
-      <div class="t_details_third">
-        <%= p.input :textbook_5, label: false  %>
-      </div>
-      <div class="t_details_fourth">
-        <%= p.input :teaching_activity_5, label: false  %>
-      </div>
-      <div class="t_details_fifth">
-        <%= p.input :teacher_remark_5, label: false  %>
-      </div>
-      <div class="t_details_last">
-        <%= p.input :supervisor_remark_5, label: false  %>
+      <div class ="task_detail blank">
+        <div class="t_details_first">
+          <%= p.input :week_5, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_second">
+          <%= p.input :topic_5, label: false , input_html: { minlength: 1 } %>
+        </div>
+        <div class="t_details_third">
+          <%= p.input :textbook_5, label: false, input_html: { minlength: 1 }   %>
+        </div>
+        <div class="t_details_fourth">
+          <%= p.input :teaching_activity_5, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_fifth">
+          <%= p.input :teacher_remark_5, label: false , input_html: { minlength: 1 }  %>
+        </div>
+        <div class="t_details_last">
+          <%= p.input :supervisor_remark_5, label: false , input_html: { minlength: 1 }  %>
+        </div>
       </div>
     </div>
   </div>

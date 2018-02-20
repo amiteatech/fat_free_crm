@@ -1,12 +1,17 @@
  <%= f.simple_fields_for :form_first do |p| %>
+  <div class="first_form_task">
+  <div class="title">
+     <h1>Staff Interview and Recruitment</h1>
+  </div>
   <div class="inputs frm_fst">
-    
     <div class="name">
       <div class="f_name">
-        <%= p.input :name_of_applicant, input_html: { minlength: 1 }%>
+        <%= f.label :name, 'Name of applicant :' %>
+        <%= p.input :name_of_applicant, label: false , input_html: { minlength: 1 }%>
       </div>
       <div class="f_position">
-        <%= p.input :position_applied_for, input_html: { minlength: 1 } %>
+        <%= f.label :name, 'Position applied for :' %>
+        <%= p.input :position_applied_for, label: false , input_html: { minlength: 1 } %>
       </div>
     </div>
     <div class="part_a">
@@ -48,6 +53,7 @@
       <%= p.input :part_c_date %>
     </div>
    </div>
-   <% end %>
+  </div>
+<% end %>
   
 
