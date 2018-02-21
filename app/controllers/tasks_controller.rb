@@ -157,12 +157,6 @@ class TasksController < ApplicationController
               @user_task.task_id = @task.id
               @user_task.position = @pos
               @user_task.save
-
-              # @vito = Vito.new
-              # @vito.user_id = user_id
-              # @vito.task_id = @task.id
-              # @vito.vito_status = false
-              # @vito.save
             end
           end
     else

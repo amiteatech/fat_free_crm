@@ -30,8 +30,9 @@ module UsersHelper
   end
 
   def multi_user_select(asset, users, task_id)
-    assignedUsers = UserTask.where(task_id: @task.id).pluck(:id)
-    select_tag 'users[]', options_for_select( users.map {|s| [s.name, s.id]}, UserTask.where(task_id: task_id).pluck(:id)), class: 'select2_tag', :multiple => true, :size => 10
+   # raise users.inspect
+    assignedUsers = UserTask.where(task_id: @task.id).pluck(:user_id)
+    select_tag 'users[]', options_for_select( users.map {|s| [s.name, s.id]}, assignedUsers), class: 'select2_tag', :multiple => true, :size => 10
   end
 
   def user_options_for_select(users, myself)

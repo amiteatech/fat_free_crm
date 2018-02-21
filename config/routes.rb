@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   resources :companies
   resources :user_tasks
 
-  post 'user_tasks/set_position' => 'user_tasks#set_position'
+  post '/tasks/:task_id/user_tasks/set_position' => 'user_tasks#set_position'
+
   resources :lists
 
   root to: 'tasks#index'
