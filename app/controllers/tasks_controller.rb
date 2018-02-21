@@ -145,8 +145,9 @@ class TasksController < ApplicationController
     end
     if params[:users].present?
        @users_selected = params[:users].reject { |c| c.empty? } 
-    end   
-    
+    end 
+
+   
     if @users_selected.present?
         @pos = 0
         @users_selected.each do |user_id|

@@ -27,3 +27,39 @@
     <%= link_to_cancel new_task_path + "?view=#{@view}" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready( function() {
+ 
+$("#users_").on("select2:select", function (evt) {
+  var element = evt.params.data.element;
+  var $element = $(element);
+  
+  window.setTimeout(function () {  
+  if ($("#users_").find(":selected").length > 1) {
+    var $second = $("#users_").find(":selected").eq(-2);
+    
+    $element.detach();
+    $second.after($element);
+  } else {
+    $element.detach();
+    $("#users_").prepend($element);
+  }
+  
+  $("#users_").trigger("change");
+  }, 1);
+});
+
+$("#users_").on("select2:unselect", function (evt) {
+  if ($("#users_").find(":selected").length) {
+    var element = evt.params.data.element;
+    var $element = $(element);
+   $
+   ("#users_").find(":selected").after($element); 
+  }
+});
+
+});
+
+</script>
+
