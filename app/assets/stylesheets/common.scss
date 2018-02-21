@@ -224,7 +224,7 @@ $sidebar_width: 210px;
       color: white; } } }
 
 .buttonbar {
-  border-top: 1px gray solid;
+  border-top: 1px gray dotted;
   margin: 15px auto;
   padding-top: 8px; }
 
@@ -788,7 +788,7 @@ table.asset_attributes {
 li.highlight.task {background: #fbfafa;}
 li.highlight.task:hover{background: #f9f8f8;}
 tr.userTask {display: inline-block; padding-top: 10px;}
-.selected_users {margin-left: 15px;}
+.selected_users {margin-left: 120px;}
 #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
 #sortable li { margin: 0 3px 3px 3px; width: 200px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
 #sortable li span { position: absolute; margin-left: -1.3em; }
@@ -809,8 +809,9 @@ tr.userTask {display: inline-block; padding-top: 10px;}
 .taskForm input[type=text]{ border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px;}
 .taskForm input[type=submit], .buttonbar input[type=submit]{background:#466bb1; padding:8px 10px; color:#fff;border:none; cursor: pointer;}
 .taskForm .halfLeft{width:68%; float:left;}
-.taskForm .halfRight{width:28%; float:right;}
+.taskForm .halfRight{width:100%; float:left; margin-top:15px;}
 .taskForm .label {min-width:65px;margin-right: 15px; width: 10%;}
+.taskForm .label.task_assign {min-width:100px;margin-right: 15px; width: 15%;}
 .taskForm input[type=text], .taskForm textarea{border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px; width:80%;}
 .taskForm table td textarea{width:80%; min-height:100px;}
 .taskForm table tr{padding-top: 10px;}
@@ -978,13 +979,13 @@ span.close:focus {
     padding: 0 10px 0 10px;}
       }
       }
-.part_a {display: block;float: left; width:100%; margin: 10px;
-      label { float:left; padding:10px; font-weight:bold;}
+.part_a {display: block;float: left; width:100%; margin:10px 10px 10px 0;
+      label { float:left; padding:10px; font-weight:bold; padding:10px 10px 10px 0;}
       input {width:25%; float:left; border:none; height: 20px;
     border-bottom: 1px solid black;}
       }
-.interview {display: block;float: left; width:100%; margin-top: -15px;
- label {margin: 10px 0;display: block; float:left;}
+.interview {display: block;float: left; width:100%; margin:20px 0 10px 0; margin-top: -15px;
+ label {margin:20px 0 10px 0; display: block; float:left;}
  textarea {width:95.7%; border:1px solid black; display:block; float:left; padding:2%; max-width:95.7%;}
 }
 p {display: block; float: left; width:100%; 
@@ -1074,10 +1075,11 @@ div.input {width:33%; float:left; display: block; border-right: 1px solid black;
 .src_frm input.btn:hover {background-color: #e6e6e6;}
 
 .buttonbar.first {border: none; width:100%; display:block; float:left;
-.second {width: 100%; margin-top: 10px; float:left; display:block; 
+.second {width: auto; margin-top: 10px; float:left; display:block; margin-right:20px; 
 input {float: left;}
 a {background: #466bb1; padding: 8px 10px; color: #fff;
 border: none; cursor: pointer; margin-left:15px; display: block; width: 180px; text-align: center; float:left; border-radius: 4px; font-size: 12px;}
+span{float:left; display:inline-block; line-height:23px;}
 }
 }
 
@@ -1085,9 +1087,10 @@ border: none; cursor: pointer; margin-left:15px; display: block; width: 180px; t
 #main .edit_task {width:100%; max-width:700px; margin:0 auto; padding:30px 70px;
 .taskForm input[type="text"], .taskForm textarea { width: 75%;}
 .firstTd .select2-container {width: 325px !important;}
-#sortable li {width: 145px;}
+#sortable li {width: 337px;}
 }
 #main .first_form_task .title {margin:0 0 15px 0; text-align:center; border-bottom: none; 
 h1 {font-size: 20px;}
 }
+#main .edit_task .taskForm input[type="text"], .ui-state-default{border:solid 1px #aaa;}
 
