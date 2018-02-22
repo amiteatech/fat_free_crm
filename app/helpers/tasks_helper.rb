@@ -43,6 +43,11 @@ module TasksHelper
             method: :delete, remote: true)
   end
 
+  def link_to_task_delete_task(task, bucket)
+    link_to("<i class='fa fa-trash'></i>".html_safe, task_path(task, bucket: bucket, view: @view),
+            method: :delete, remote: true, :class => 'deletIcon')
+  end
+
   #----------------------------------------------------------------------------
   def link_to_task_complete(pending, bucket)
     onclick = %{$("##{dom_id(pending, :name)}").css({textDecoration: "line-through"});}
