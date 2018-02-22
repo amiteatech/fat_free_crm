@@ -7,16 +7,18 @@
   <%= hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}" %>
   <%= render "tasks/new_top_section",    :f => f %>
   <%= render "fields/groups", :f => f %>
+    
+
   <% if action_name == "new" %>
     <div class="buttonbar first">
       <div class="second">
-      <%= radio_button("task", "form_number", "1") %> <label for="task_form_number_1"> <%= link_to 'Staff Interview and Recruitment', ''  %>  </label>
+      <%= radio_button("task", "form_number", "1") %> <label for="task_form_number_1"> <%= link_to 'Workflow', ''  %>  </label>
       </div>
       <div class="second">
-       <%= radio_button("task", "form_number", "2") %> <label for="task_form_number_2"> <%= link_to 'Monitoring Module Delivery', '' %> </label>
+       <%= radio_button("task", "form_number", "2") %> <label for="task_form_number_2"> <%= link_to 'Monitoring', '' %> </label>
       </div>
       <div class="second">
-       <%= radio_button("task", "form_number", "3") %>  <label for="task_form_number_3"><%= link_to 'FORM',  '' %> </label>
+       <%= radio_button("task", "form_number", "3") %>  <label for="task_form_number_3"><%= link_to 'Approval',  '' %> </label>
        
       </div>
     </div>

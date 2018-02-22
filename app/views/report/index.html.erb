@@ -25,11 +25,13 @@
 		<%= task.id %>
 	    </td>
 	    <td >
-		 <%= task.name %>
+	
+
+		<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
 	    </td>
 
 	    <td >
-			Form Status
+	     <%=  task.task_status %>
 	    </td>
     </tr>
 

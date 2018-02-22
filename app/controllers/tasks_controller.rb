@@ -164,16 +164,7 @@ class TasksController < ApplicationController
           end
     else
       
-   #   @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).first
-
-   #   pos = @user_task.position + 1
-   #   if @task.user_tasks.exists?(position: pos)
-   #     @new_user_task = @task.user_tasks.where(position: pos).first
-   #     @task.update_attributes(assigned_to: @new_user_task.user_id, :user_id => @new_user_task.user_id)
-   #   else
-   #     @task.update_attributes(assigned_to: @task.task_created_id, :user_id => @task.task_created_id)
-   #   end 
-
+   
     end 
     if params[:task] && params[:task][:completed]
 
@@ -181,16 +172,12 @@ class TasksController < ApplicationController
 
         @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).first
         pos = @user_task.position + 1
-        #raise pos.inspect
-        #raise @task.user_tasks.map{|s|s.user_id}.inspect
-
+     
         if @task.user_tasks.exists?(position: pos)
           @new_user_task = @task.user_tasks.where(position: pos).last
-          @task.update_attributes(assigned_to: @new_user_task.user_id )
+          @task.update_attributes(assigned_to: @new_user_task.user_id, :task_status => "Pending" )
         else  
-          @task.update_attributes(completed_at: Time.now, completed_by: current_user.id, :task_status => "close")
-          #@task.update_attributes(assigned_to: @task.task_created_id, user_id: @task.task_created_id)
-         # raise
+          @task.update_attributes(completed_at: Time.now, completed_by: current_user.id, :task_status => "Completed")
         end
         @user_task.update_attributes(approved: true, approved_time: Time.now)
 
@@ -198,8 +185,15 @@ class TasksController < ApplicationController
         @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).last
         @first_user_in_order = @task.task_created_id
         @user_task.update_attributes(rejected: true, rejected_time: Time.now)
-        @task.update_attributes(assigned_to: @task.task_created_id)
+        @task.update_attributes(assigned_to: @task.task_created_id, task_status: "Return")
       end 
+
+      if params[:task][:is_cancelled].present? && params[:task][:is_cancelled] == true
+        @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).last
+        @first_user_in_order = @task.task_created_id
+        @user_task.update_attributes(rejected: true, rejected_time: Time.now)
+        @task.update_attributes(assigned_to: @task.task_created_id, task_status: "Cancelled")
+      end  
 
     end 
     

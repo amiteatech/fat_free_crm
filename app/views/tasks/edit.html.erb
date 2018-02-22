@@ -4,6 +4,7 @@
     <%= hidden_field_tag :view, @view %>
     <%= hidden_field_tag "task[asset_id]", "#{@asset.id if @asset}" %>
     <%= hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}" %>
+    
   
     <%= render "fields/groups", :f => f, :edit => true %>
 
@@ -17,6 +18,8 @@
 
 <% if current_user.admin == true %>
   <%= render "tasks/new_top_section",    :f => f, :edit => true %>
+    <%= f.label :is_cancelled, "Cancelled" %>
+       <%=  f.input_field :is_cancelled %>  
 <% end %> 
 
 <% if action_name != "new" %>
@@ -27,6 +30,8 @@
       <div class="second">
        <%= radio_button("task", "completed", "2") %> <span class="text"> Rejected </span>
       </div>
+      
+
      
     </div>
   <% end %> 

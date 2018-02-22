@@ -533,4 +533,16 @@ module ApplicationHelper
       hash
     end
   end
+
+  def form_name(name, cou)
+    val = ""
+    if cou == 1
+     val = name + "Workflow"
+    elsif cou == 2
+     val = name +  "Monitoring"
+    elsif cou == 3
+     val =name +  "Approval"
+    end  
+    return val
+  end  
 end
