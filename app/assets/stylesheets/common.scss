@@ -10,7 +10,6 @@ $sidebar_width: 210px;
 // Common page elements.
 //------------------------------------------------------------------------------
 .title {
-  border-bottom: 1px gray solid;
   color: $color_title;
   font: {
     size: 17px;
@@ -224,7 +223,6 @@ $sidebar_width: 210px;
       color: white; } } }
 
 .buttonbar {
-  border-top: 1px gray dotted;
   margin: 15px auto;
   padding-top: 8px; }
 
@@ -290,8 +288,8 @@ $sidebar_width: 210px;
 //   - indentslim: for use with avatar and no strip (Contacts).
 //   - indentwide: for use with strip + checkbox (Tasks).
 //   - indentfull: for use with strip + avatar (Admin/Users).
-.indent {
-  margin-left: 88px; }
+//.indent {
+ // margin-left: 88px; }
 
 .indentslim {
   margin-left: 38px; }
@@ -802,12 +800,13 @@ tr.userTask {display: inline-block; padding-top: 10px;}
     border: none;
     font-size: 13px;background-color: #1e4262; color:#fff; padding:0px 15px; line-height:30px; display:inline-block;}
 #tasks, li.task{clear:both;}
-.taskList::before { font-size:31px;content: "\f2be"; float: left; margin-right: 15px; color:#d4d4d4;
+.highlight.task::before { font-size:31px;content: "\f2be"; float: left; margin-right: 15px; color:#d4d4d4;
 }
-.taskList{padding: 10px; font:normal normal normal 14px/1 FontAwesome;}
-.taskList label{font-size: 14px; font-weight:600; display:block; color:#1f91f3;}
-.taskList label a{color:#1e4262;}
-.taskList label a:hover{background:none;}
+.highlight.task{font:normal normal normal 14px/1 FontAwesome; padding: 10px; border-bottom: 0px;}
+
+.taskList label, .taskList .indent strike, .highlight.task label{font-size: 14px; font-weight:600; display:block; color:#1e4262;}
+.taskList label a, .taskList .indent strike a, .highlight.task a{color:#1e4262;}
+.taskList label a:hover, .taskList .indent strike a:hover, .highlight.task a:hover{background:none;}
 li.task tt{display:block;padding:5px 0 0 0;}
 .taskStatus{ padding:8px 0 5px 0; }
 .taskStatus input{ float: left; margin-right:5px; margin-top: 0px;}
@@ -815,16 +814,27 @@ li.task tt{display:block;padding:5px 0 0 0;}
 
 .tools{padding:3px 10px 0px 4px;}
 a.deletIcon{font-size: 16px; color:grey; padding:5px 15px; display: inline-block; border-radius:4px; border:solid 1px #c6c3bd; background: linear-gradient(to bottom, #ffffff 0%,#eeeeee 100%);}
-.task .tools{padding:10px 10px 0px 4px;}
+.task .tools{padding:3px 10px 0px 4px;}
 .tools.completed-tasks{padding: 0;}
 .taskForm{padding: 15px 0 0px 0;}
 .taskForm input[type=text]{ border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px;}
-.taskForm input[type=submit], .buttonbar input[type=submit]{background:#466bb1; padding:8px 10px; color:#fff;border:none; cursor: pointer;}
+.taskForm input[type=submit], .buttonbar input[type=submit]{box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+-ms-border-radius: 2px;
+border-radius: 2px;
+border: none;
+font-size: 13px;
+background-color: #1e4262;
+color: #fff;
+padding: 0px 15px;
+line-height: 30px;
+display: inline-block; cursor: pointer;}
 .taskForm .halfLeft{width:68%; float:left;}
 .taskForm .halfRight{width:100%; float:left; margin-top:15px;}
 .taskForm .label {min-width:65px;margin-right: 15px; width: 10%;}
 .taskForm .label.task_assign {min-width:100px;margin-right: 15px; width: 15%;}
-.taskForm input[type=text], .taskForm textarea{border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px; width:80%;}
+.taskForm input[type=text], .taskForm textarea{border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px; width:70%;}
 .taskForm table td textarea{width:80%; min-height:100px;}
 .taskForm table tr{padding-top: 10px;}
 #sortable li{ background:#fff;}
@@ -917,7 +927,7 @@ span.close:focus {
     -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
     -webkit-border-radius: 4px;
     -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
-    .title {padding: 15px 0; margin-bottom: 10px;}
+    .title {padding: 15px 0 10px 0; margin-bottom: 10px; border:none;}
     }
     .right_part {display: block; width: 72.8589744%;
     min-height: 30px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; float: left; margin-left: 2.564102564102564%; margin-right: 1.5%; background: white; padding: 8px 15px 15px 15px; -moz-border-radius: 4px; -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb; -webkit-border-radius: 4px; -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb; box-sizing: border-box;
@@ -935,9 +945,7 @@ span.close:focus {
   .span4 {width: 32.33%;
           padding: 0 0.5%;
           float: left; }
-  .span2 {width: 15.6%;
-          padding: 0 0.5%;
-          float: left; }
+  .span2 {width: 100%;}
   .span4 input {width: 95%;
                 padding: 4px 6px;
                 display: inline-block;
@@ -949,24 +957,47 @@ span.close:focus {
                 vertical-align: middle;}
   .pad_left {padding-left: 15px;}
 }
-.company_table {width: 100%;
-                margin-bottom: 0;
-                max-width: 100%;
-                display: block;
-                margin-top: 10px;
-    thead tr {background-color: #f7f7f7;}
-    th, td {padding: 8px;
+
+.company_table {width: 100%; margin:10px 0 0 0; padding: 0; max-width: 100%; outline: none; border-right:1px solid #f4f4f4; border-bottom:1px solid #f4f4f4;
+    
+    thead tr {background-color:#fff;  border-bottom:3px solid #000 !important;}
+    th{line-height:16px; color:#fff; background:#1e4262; padding: 8px;line-height: 20px; text-align: left;border-left:1px solid #3e5569;border-top:none;margin:0px !important;}
+    td {padding: 8px;
         line-height: 20px;
-        text-align: left;
-        border-collapse: collapse;
-        border:none;}
+        text-align: left;border-left:1px solid #f4f4f4;border-top:1px solid #f4f4f4;margin:0px !important;}
+   
     tbody tr:nth-of-type(odd) {background:#fff;}
-    tbody tr:nth-of-type(even) {background-color:seashell;}
-    tbody tr:nth-of-type(odd):hover {background:#f5f5f5;}
-    tbody tr:nth-of-type(even):hover {background:#f5f5f5;}
+    tbody tr:nth-of-type(even) {background-color:#f9f9f9;}
+    tbody tr:nth-of-type(odd):hover {background:#fff;}
+    tbody tr:nth-of-type(even):hover {background:#fff;}
+    td.edit{ min-width:50px; color:grey;
+      a{color:grey;}
     }
-  .right_part .title {position: relative; padding: 15px 0;}
-  .button.new_school {background: #1e4262;  padding: 8px 10px; color: #fff; border: none;cursor: pointer; position:absolute; top:0; right:0;}
+    td.edit i{margin-right: 5px;color:grey;}
+    a.activeIco, a.activeIco:hover{
+    background-image: url(activeIcon.png);
+    background-size: 15px;
+    display: block;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-position: left center;
+    color: green;}
+   
+    a.deActiveIco, a.deActiveIco:hover{
+    background-image: url(deActiveIcon.png);
+    background-size: 15px;
+    display: block;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    background-position: left center;
+    color: grey;}
+   
+    }
+  .right_part .title {position: relative; padding:10px 0  10px 0;border-bottom: none;}
+  .button.new_school {box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+    -webkit-border-radius: 2px; -moz-border-radius: 2px;-ms-border-radius: 2px; border-radius: 2px;
+    border: none;
+    font-size: 13px;background-color: #1e4262; color:#fff; padding:0px 15px; line-height:30px; display:inline-block; cursor: pointer; position:absolute; top:6px; right:0;}
 /*------------first_forms CSS--------------*/
 .first_form {width:100%; max-width:700px; margin:0 auto; padding: 70px;
 ::placeholder {color: black; opacity: 1;}
@@ -1082,9 +1113,9 @@ div.input {width:33%; float:left; display: block; border-right: 1px solid black;
 /*------------search CSS--------------*/
 .src_frm { display: block; width: 100%; min-height: 30px;
     float: left; margin-bottom:10px;}
-.src_frm input {width:96%; padding: 4px; text-indent: 0px; border: 1px solid #cccccc; height: 20px; font-size: 12px; line-height: 20px; color: #555555; border-radius: 4px;} 
-.src_frm input.btn {width:100%; cursor:pointer; font-size: 14px;}
-.src_frm input.btn:hover {background-color: #e6e6e6;}
+.src_frm input {width:92%; padding:6px 4%; text-indent: 0px; border: 1px solid #d2d6de; height: 20px; font-size: 12px; line-height: 20px; color: #555555;} 
+.src_frm input.btn {color:#fff; width:100%; cursor:pointer; font-size: 14px;background-color: #3c8dbc; border-color: #367fa9;}
+.src_frm input.btn:hover {background-color: #367fa9;}
 
 .buttonbar.first {border: none; width:100%; display:block; float:left;
 .second {width: auto; margin-top: 10px; float:left; display:block; margin-right:20px; 
@@ -1105,4 +1136,25 @@ span{float:left; display:inline-block; line-height:23px;}
 h1 {font-size: 20px;}
 }
 #main .edit_task .taskForm input[type="text"], .ui-state-default{border:solid 1px #aaa;}
-
+#notice{padding:5px 16px;}
+.title.report{border:none;}
+.blockForm{width:49%; float:left; padding:15px 2% 0px 0%;}
+.blockForm.last{padding:15px 0 0px 0%;}
+.blockForm label{ padding-bottom:5px; display:block;}
+.blockForm input{border-radius: 0; border:solid 1px #d2d6de; box-shadow: none; margin-bottom:0px; padding:6px 2%; width: 96%;}
+.create_company fieldset{border:1px solid #d2d6de; padding:15px; margin-top: 20px;}
+.create_company legend  h4{ margin-top: 0; }
+.create_company .buttonbar{ margin: 0px; padding: 0px; }
+.backText{margin-top: -21px;float: right; }
+.backText::before {
+    font-size:20px;
+    content: "\f04a";
+    float: left;
+    margin-right:7px;
+    color: #0033cc; font: normal normal normal 14px/1 FontAwesome;
+    }
+.backText a{background: none; color: #0033cc;}
+.blockForm2{width:80%; padding:0px 0 15px 0%;}
+.blockForm2 label{padding-bottom: 5px;display: inline-block; font-size: 12px; color: #000;}
+.blockForm2 .span2 input{border-radius: 0; border:solid 1px #d2d6de; box-shadow: none; margin-bottom:0px; padding:6px 2%; width: 96%;}
+.blockForm2 .req{ background-position: top right; }

@@ -17,7 +17,7 @@
       - if pending.asset_id?
         =t :related
         = link_to(h(pending.asset.name), polymorphic_url(pending.asset))
-      &ndash;
+      
     %tt
       - if pending.bucket == "due_asap"
         %span.urgent= t(:task_due_now)
@@ -91,4 +91,3 @@
         }
     }
   });
-  

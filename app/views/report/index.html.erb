@@ -1,30 +1,34 @@
-<h1>Reports</h1>
+<div class="title report">
+	<h1>Reports</h1>
+</div>
 <p>
 
-<table>	
-	<tr>
-		<th>
-			Number
-	    </th>
-	    <th>
-			Form Name
-	    </th>
+<table class="company_table report" border="0" cellspacing="0" cellpadding="0" width="100%">	
+	<thead>
+	    <tr>
+			<th >
+				Number
+		    </th>
+		    <th >
+				Form Name
+		    </th>
 
-	    <th>
-			Form Status
-	    </th>
-    </tr>		
+		    <th >
+				Form Status
+		    </th>
+		</tr>
+    </thead>		
 
   <% @tasks.each do |task| %>
      <tr>
-		<td>
-		
+		<td >
+		<%= task.id %>
 	    </td>
-	    <td>
-		
+	    <td >
+		 <%= task.name %>
 	    </td>
 
-	    <td>
+	    <td >
 			Form Status
 	    </td>
     </tr>

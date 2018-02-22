@@ -9,7 +9,7 @@
     <%= link_to 'Create New School', new_company_path, :class => "button new_school" %>
   </div>
   
-<table class="company_table">
+<table class="company_table"  border="0" cellspacing="0" cellpadding="0">
   <thead>
     <tr>
       <th>Name</th>
@@ -21,7 +21,7 @@
       <th>Prime contact</th>
       <th>Prime phone number</th>
       <th>Status</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -36,11 +36,10 @@
         <td><%= company.country %></td>
         <td><%= company.prime_contact %></td>
         <td><%= company.prime_phone_number %></td>
-        <td><%= company.status %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Active', company, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <%= link_to 'Deactive ', company, method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+        <td><%= company.status %></td>        
+        <td class="edit"><i class="fa fa-edit" aria-hidden="true"></i><%= link_to 'Edit', edit_company_path(company) %></td>
+        <td><%= link_to 'Active', company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "activeIco" %>
+        <%= link_to 'Deactive ', company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "deActiveIco" %> </td>
       </tr>
     <% end %>
   </tbody>

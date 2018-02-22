@@ -2,7 +2,10 @@
 	<div class="title">
 	  <h1>Editing School</h1>
 	</div>
-<%= render 'form', company: @company %>
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>
+	
+	<%= render 'form', company: @company %>
+	<div class="backText">
+		<%#= link_to 'Show', @company %> 
+		<%= link_to 'Back', companies_path %>
+	</div>
 </div>

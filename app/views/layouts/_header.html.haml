@@ -19,7 +19,7 @@
       = link_to(t(:sign_up), signup_path) if can_signup?
       / =# link_to(t(:about), "#", :title => t(:about_ffc), :onclick => "$('#about').dialog({ title: this.title, modal: true }); return false;")
   %h3
-    - if current_user && current_user.company_id.present?
+    - if current_user && current_user.company.present? 
       = link_to(current_user.company.name, root_path)
     - else
       = link_to("Eatech CRM", root_path)
