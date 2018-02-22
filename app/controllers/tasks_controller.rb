@@ -89,11 +89,9 @@ class TasksController < ApplicationController
     unless @users_selected.include?(current_user.id)
       @users_selected.unshift(current_user.id)
     end  
-    # @task = Task.new(task_params) # NOTE: we don't display validation messages for tasks.
     if (@users_selected.count == 1) && (@users_selected.first.to_i == current_user.id)
       only_current_user = true
     end
-    #@users_selected.delete(current_user.id.to_s) unless only_current_user
     @task = Task.new
     @task.assigned_to = current_user.id
     @task.user_id = current_user.id
@@ -103,6 +101,7 @@ class TasksController < ApplicationController
     @task.task_created_by = current_user.username if current_user.username.present?
     @task.task_created_id = current_user.id
     @task.company_id = current_user.company_id
+    @task.task_status = "pending"
 
     
       if @task.save
@@ -189,7 +188,7 @@ class TasksController < ApplicationController
           @new_user_task = @task.user_tasks.where(position: pos).last
           @task.update_attributes(assigned_to: @new_user_task.user_id )
         else  
-          @task.update_attributes(completed_at: Time.now, completed_by: current_user.id)
+          @task.update_attributes(completed_at: Time.now, completed_by: current_user.id, :task_status => "close")
           #@task.update_attributes(assigned_to: @task.task_created_id, user_id: @task.task_created_id)
          # raise
         end
@@ -311,7 +310,7 @@ class TasksController < ApplicationController
         @task_comment.comments = params[:taskComment]
         @task_comment.save
       end
-      if params[complete] == "1"
+      if params["complete"] == "1"
         pos = @user_task.position + 1
         if @task.user_tasks.exists?(position: pos)
           @new_user_task = @task.user_tasks.where(position: pos).first
