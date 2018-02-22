@@ -785,7 +785,7 @@ table.asset_attributes {
 }
 /*--------create task-------*/
 .cl{clear: both;}
-li.highlight.task {background: #fbfafa;}
+li.highlight.task {background: #fff; border-left:solid 5px #e6e6e6; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);margin-bottom: 15px; }
 li.highlight.task:hover{background: #f9f8f8;}
 tr.userTask {display: inline-block; padding-top: 10px;}
 .selected_users {margin-left: 120px;}
@@ -796,13 +796,25 @@ tr.userTask {display: inline-block; padding-top: 10px;}
 .completed-task, .rejected-task {display: inline-flex;}
 .task_comment {margin-left: 10px; float: none;     margin-top: -3px; width: 50%; height: 13px;}
 #export{clear: both; margin-top:20px; background:#F5F5F5; padding: 10px;}
-.taskList{border:solid 1px #e6e6e6; padding: 10px;}
-.taskList label{font-size: 14px; font-weight: bold;}
+.title_tools{clear:both; margin-top:20px;}
+.title_tools a{box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+    -webkit-border-radius: 2px; -moz-border-radius: 2px;-ms-border-radius: 2px; border-radius: 2px;
+    border: none;
+    font-size: 13px;background-color: #1e4262; color:#fff; padding:0px 15px; line-height:30px; display:inline-block;}
+#tasks, li.task{clear:both;}
+.taskList::before { font-size:31px;content: "\f2be"; float: left; margin-right: 15px; color:#d4d4d4;
+}
+.taskList{padding: 10px; font:normal normal normal 14px/1 FontAwesome;}
+.taskList label{font-size: 14px; font-weight:600; display:block; color:#1f91f3;}
+.taskList label a{color:#1e4262;}
+.taskList label a:hover{background:none;}
+li.task tt{display:block;padding:5px 0 0 0;}
 .taskStatus{ padding:8px 0 5px 0; }
 .taskStatus input{ float: left; margin-right:5px; margin-top: 0px;}
 .completed-task{margin-right: 10px;}
 
 .tools{padding:3px 10px 0px 4px;}
+a.deletIcon{font-size: 16px; color:grey; padding:5px 15px; display: inline-block; border-radius:4px; border:solid 1px #c6c3bd; background: linear-gradient(to bottom, #ffffff 0%,#eeeeee 100%);}
 .task .tools{padding:10px 10px 0px 4px;}
 .tools.completed-tasks{padding: 0;}
 .taskForm{padding: 15px 0 0px 0;}
