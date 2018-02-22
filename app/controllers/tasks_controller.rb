@@ -86,8 +86,8 @@ class TasksController < ApplicationController
     @view = view
     only_current_user = false
     @users_selected = params[:users].reject { |c| c.empty? } if params[:users].present?
-    unless @users_sekected.include?(current_user.id)
-      @users_sekected.unshift(current_user.id)
+    unless @users_selected.include?(current_user.id)
+      @users_selected.unshift(current_user.id)
     end  
     # @task = Task.new(task_params) # NOTE: we don't display validation messages for tasks.
     if (@users_selected.count == 1) && (@users_selected.first.to_i == current_user.id)

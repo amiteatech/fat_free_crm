@@ -51,6 +51,7 @@ class UserTasksController < ApplicationController
     @user_task = UserTask.find(@user_task_id)
     if @pos.to_i == 1
       @user_task.task.assigned_to = @user_task.user_id
+      @user_task.task.user_to = @user_task.user_id
       @user_task.task.save
     end
     @user_task.position = @pos
