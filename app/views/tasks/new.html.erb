@@ -10,7 +10,7 @@
     
 
   <% if action_name == "new" %>
-    <div class="buttonbar first">
+    <div class="createPage">
       <div class="second">
       <%= radio_button("task", "form_number", "1") %> <label for="task_form_number_1"> <%= link_to 'Workflow', ''  %>  </label>
       </div>
@@ -21,11 +21,12 @@
        <%= radio_button("task", "form_number", "3") %>  <label for="task_form_number_3"><%= link_to 'Approval',  '' %> </label>
        
       </div>
+      <div class="cl"></div>
     </div>
   <% end %>
-  <div class="buttonbar">
+  <div class="createPageButtonbar">
     <%= f.submit t :create_task %>
-    or
+    <span>or</span>
     <%= link_to_cancel new_task_path + "?view=#{@view}" %>
   </div>
 <% end %>

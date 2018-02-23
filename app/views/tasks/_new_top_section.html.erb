@@ -1,66 +1,54 @@
 <div class="taskForm">
   <div class="halfLeft">
-    <table style="width:100%;">
-    <tr>
-      <td colspan="3">
-        <div class="label top req task_name">Task Title:</div>
-        <%= f.text_field :name, :autofocus => true %>
-      </td>
-    </tr>
-    <tr>
-      <td style="width:100px;maring:left:10px;">
-        <div class="label top  task_name">Year:</div>
-          <%=  f.input :years, label: false , input_html: { minlength: 1, :style => "margin-left:10px;width:100px;" }  %>
-        </div>  
-       </td>
-       <td>
-        &nbsp;
-       </td>
-       <td>
-        &nbsp;
-       </td> 
-    </tr>
+    <div class="blockForm2">
+      <label class="top req task_name">Task Title:</label>      
+      <div class="span2">
+       <%= f.text_field :name, :autofocus => true %>
+      </div>
+    </div>
+    <div class="blockForm2">
+      <label class="top task_name">Year:</label>      
+      <div class="span2">
+       <%=  f.input :years, label: false , input_html: { minlength: 1, :style => "" }  %>
+      </div>
+    </div>      
     <!--
-    <tr>
-      <td colspan="3">
+   
         <div class="label top req task_name">Description:</div>
-        <%#= f.text_area :description %>
-      </td>
-    </tr>
+        <%#= f.text_area :description %>      
   -->
-    <tr class="userTask">
-      <td>
-        <div class="label req">Due:</div>
-        <% with_time = Setting.task_calendar_with_time %>
+   <div class="blockForm2 bottom">
+      <label class="req">Due:</label>      
+      <div class="span2">
+       <% with_time = Setting.task_calendar_with_time %>
         <% if @task.bucket != "specific_time" %> 
         <% bucket = (params[:bucket].blank? ? @task.bucket : params[:bucket]) || "due_asap" %>
-          <%= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "width:160px;", :onload => "crm.flip_calendar(this.value)" } %>
-        <%= f.text_field :calendar, :style => "width:160px; display: none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
+          <%= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "", :onload => "crm.flip_calendar(this.value)" } %>
+        <%= f.text_field :calendar, :style => "display: none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
         <% else %>
-          <%= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "width:160px;", :onchange => "crm.flip_calendar(this.value)" } %>
+          <%= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "", :onchange => "crm.flip_calendar(this.value)" } %>
           <% fmt = with_time ? '%Y-%m-%d %H:%M' : '%Y-%m-%d' %>
-          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :style => "width:160px; display: none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
+          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :style => " display: none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
         <% end %>
-      </td>
-      <td colspan="2" class="firstTd">
-        <div class="label req">Assign to:</div>
+      </div>
+    </div>
+
+    <div class="blockForm2 bottom">
+      <label class="req">Assign to:</label>      
+      <div class="span2">
         <%= multi_user_select(:task, all_users, @task.id) %>
-       
-      </td>
-      
-    </tr>
+      </div>
+    </div>
     <% if Setting.background_info && Setting.background_info.include?(:task) %>
-      <tr>
-        <td>(colspan="2")
-          <div class="label">
-            <%= t(:extra_info).capitalize << ':' %>
-          </div>
-          <%= f.text_area :background_info, :style =>"width:500px", :rows => 3 %>
-        </td>
-      </tr>
+
+    <div class="blockForm2">
+      <label class=""><%= t(:extra_info).capitalize << ':' %></label>      
+      <div class="span2">
+        <%= f.text_area :background_info, :style =>"width:500px", :rows => 3 %>
+      </div>
+    </div>
     <% end %>
-    <%= hook(:task_top_section_bottom, self, :f => f) %>
-  </table>    
+    <%= hook(:task_top_section_bottom, self, :f => f) %>   
   </div>
    <% if @user_tasks.present? %>
   <div class="halfRight">
