@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<div class="companies">
+<div class="left_part">
+  <%#= render partial: 'search_form', object: @search %>
+</div>
+<div class="right_part">
+  <div class="title">
+    <h1>Editing Tag</h1>
+  </div>
+  
+<%= simple_form_for(@task_form_tag) do |f| %>
+  <%= f.error_notification %>
+    <div class="src_frm">
+        <%= f.input :name, input_html: { minlength: 1 }  %>
+    </div>
+    <div class="src_frm">
+        <%= f.input :status %>
+    </div>
+    
+    
+
+    <div class="src_frm">
+      <%= f.button :submit %>
+    </div>
+<% end %>
+
+<br>
+
+
+</div>
+</div>
+
+
+
+

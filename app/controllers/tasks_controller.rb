@@ -22,12 +22,16 @@ class TasksController < ApplicationController
     data = UserTask.where(:user_id => current_user.id)
     if data.present?
       #@tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
-      @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id}).find_all_grouped(current_user, @view)
+      @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
     else  
-      @tasks = Task.where(company_id: current_user.company_id).find_all_grouped(current_user, @view)
-    end   
+      @tasks = Task.where(company_id: current_user.company_id)
+    end 
 
-    @my_tasks = Task.visible_on_dashboard(current_user).includes(:user, :asset).by_due_at
+    #raise   @tasks.inspect
+
+
+
+   # @my_tasks = Task.visible_on_dashboard(current_user).includes(:user, :asset).by_due_at
     
     respond_with @tasks do |format|
       format.xls { render layout: 'header' }
@@ -102,6 +106,12 @@ class TasksController < ApplicationController
     @task.task_created_id = current_user.id
     @task.company_id = current_user.company_id
     @task.task_status = "pending"
+    @task.bucket = "overdue"
+    if params[:task][:calander]
+      @task.due_at = Time.parse(params[:task][:calander])
+    end #Date.parse(params[:calander])
+
+    #raise  @task.inspect
 
     
       if @task.save

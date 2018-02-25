@@ -6,10 +6,13 @@
       %span#welcome_username= current_user.name
       %span> !&nbsp;&nbsp;
 
-      =# link_to(t(:quick_find), "#", :id => "jumper") << " |"
+      - if current_user.super_admin == true
+        = link_to("Schools", companies_url) << " |"
       = link_to(t(:profile), profile_path) << " |"
       - if current_user.is_admin?
         = link_to(t(:admin), admin_path) << " |"
+        = link_to("Years", task_years_path) << " |"
+        = link_to("Items No", school_item_numbers_path) << " |"
         = link_to(t(:report), report_path) << " |"
       = link_to(t(:logout), logout_path, :method => :delete)
       = render "/layouts/jumpbox" 
@@ -19,7 +22,9 @@
       = link_to(t(:sign_up), signup_path) if can_signup?
       / =# link_to(t(:about), "#", :title => t(:about_ffc), :onclick => "$('#about').dialog({ title: this.title, modal: true }); return false;")
   %h3
+    - if current_user && current_user.super_admin == true
+      = link_to("Eatech CRM", companies_path)
     - if current_user && current_user.company.present? 
       = link_to(current_user.company.name, root_path)
     - else
-      = link_to("Eatech CRM", root_path)
+      = link_to("Eatech CRM", root_path) 

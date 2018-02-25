@@ -38,8 +38,15 @@
         <td><%= company.prime_phone_number %></td>
         <td><%= company.status %></td>        
         <td class="edit"><i class="fa fa-edit" aria-hidden="true"></i><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Active', company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "activeIco" %>
-        <%= link_to 'Deactive ', company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "deActiveIco" %> </td>
+        <td>
+          <% if company.status == true %>
+             <%= link_to 'Deactive ', company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "deActiveIco" %> 
+
+          <% else %>
+          <%= link_to 'Active', company, method: :delete, data: { confirm: 'Are you sure?' }, :class => "activeIco" %>
+          <% end %>
+     
+       </td>
       </tr>
     <% end %>
   </tbody>

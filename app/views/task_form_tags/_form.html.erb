@@ -1,0 +1,18 @@
+<%= simple_form_for(@task_form_tag) do |f| %>
+  <%= f.error_notification %>
+    <div class="title">
+     <h1>Create New Tags</h1>
+    </div>
+    <div class="src_frm">
+        <%= f.input :name, input_html: { minlength: 1 }  %>
+    </div>
+    <div class="src_frm">
+        <%= f.input :status %>
+    </div>
+    
+    
+
+    <div class="src_frm">
+      <%= f.button :submit %>
+    </div>
+<% end %>

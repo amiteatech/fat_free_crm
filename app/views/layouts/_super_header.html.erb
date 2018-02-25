@@ -4,8 +4,10 @@
       <span id="welcome_username">
        Welcome <%= current_user.name %>
       </span>
-      <span>> !&nbsp;&nbsp;</span>
-      <%= link_to(t(:profile), profile_path) << " |" %>
+      <span> | </span>
+      <%= link_to("Schools", companies_url) %> |
+      <%= link_to("Tags", task_form_tags_path) %> |
+      <%= link_to(t(:profile), profile_path) %> | 
       <%= link_to(t(:logout), logout_path, :method => :delete) %>
       <%= render "/layouts/jumpbox" %>
     <% else %>

@@ -12,7 +12,7 @@
         %div= t(:works_at, :job_title => h(@user.title), :company => h(@user.company))
       - else
         = h(@user.title) unless @user.title.blank?
-        = h(@user.company) unless @user.company.blank?
+        = "School: " << h(@user.company.name) unless @user.company.blank?
       %br
       %div
         - unless @user.email.blank?

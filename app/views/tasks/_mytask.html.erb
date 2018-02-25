@@ -1,0 +1,11 @@
+<li class="highlight">
+  <div class="tools">
+    <%#= link_to_task_delete_task(mytask, bucket) %>
+  </div>
+  <div class="taskList">
+    <label>
+      <%= link_to h(mytask.name), edit_task_path(mytask.id) %>
+    </label>
+    <div class="cl"></div>
+  </div>
+</li>

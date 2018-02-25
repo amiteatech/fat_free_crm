@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<div class="companies">
+<div class="left_part">
+  <%= render partial: 'search_form', object: @search %>
+</div>
+<div class="right_part">
+  <div class="title">
+    <h1>Tags Lists</h1>
+  </div>
+  
+<table class="company_table"  border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   <% @task_form_tags.each do |task_form_tag| %>
+      <tr>
+        <td><%= task_form_tag.name %></td>
+        <td><%= task_form_tag.status %></td>
+        <td><%= link_to 'Edit', edit_task_form_tag_path(task_form_tag) %></td>
+        <td><%= link_to 'Delete', task_form_tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+</div>
+</div>

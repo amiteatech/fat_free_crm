@@ -8,9 +8,9 @@
       </td>
     </tr>
     <tr>
-      <td style="width:100px;maring:left:10px;">
+      <td style="width:100px;maring:left:30px;">
         <div class="label top  task_name">Year:</div>
-          <%=  f.input :years, label: false , input_html: { minlength: 1, :style => "margin-left:10px;width:100px;" }  %>
+          <%=  f.input :years, :collection => TaskYear.where(:company_id => current_user.company_id).map{|s|s.name} , label: false , input_html: { class: 'select2_tag', :style => 'margin-left:30px;width:200px;height:20px;' }  %>
         </div>  
        </td>
        <td>
@@ -31,16 +31,12 @@
     <tr class="userTask">
       <td>
         <div class="label req">Due:</div>
-        <% with_time = Setting.task_calendar_with_time %>
-        <% if @task.bucket != "specific_time" %> 
-        <% bucket = (params[:bucket].blank? ? @task.bucket : params[:bucket]) || "due_asap" %>
-          <%= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "width:160px;", :onload => "crm.flip_calendar(this.value)" } %>
-        <%= f.text_field :calendar, :style => "width:160px; display: none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
-        <% else %>
-          <%= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "width:160px;", :onchange => "crm.flip_calendar(this.value)" } %>
-          <% fmt = with_time ? '%Y-%m-%d %H:%M' : '%Y-%m-%d' %>
-          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :style => "width:160px; display: none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
-        <% end %>
+        
+          <%#= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "width:160px;", :onchange => "crm.flip_calendar(this.value)" } %>
+          <%= f.hidden_field :bucket, :value =>  :specific_time %>
+         
+          <%= f.text_field :calendar, :value => f.object.due_at, :style => "width:160px;", :autocomplete => :off, :class => 'date' %>
+    
       </td>
       <td colspan="2" class="firstTd">
         <div class="label req">Assign to:</div>
@@ -49,6 +45,22 @@
       </td>
       
     </tr>
+      <tr>
+        <td>
+          <div class="label">
+              Item No
+          </div>
+           <%=  f.input :school_item_no, :collection => SchoolItemNumber.where(:company_id => current_user.company_id).map{|s|s.name} , label: false , input_html: { class: 'select2_tag', :style => 'margin-left:30px;width:200px;height:20px;' }  %>
+      
+          <div class="label">
+              Tag
+          </div>
+           <%=  f.input :task_form_category, :collection => TaskFormTag.where(:status => true).map{|s|s.name} , label: false , input_html: { class: 'select2_tag', :style => 'margin-left:30px;width:200px;height:20px;' }  %>
+        </td>
+        
+        
+      </tr>
+ 
     <% if Setting.background_info && Setting.background_info.include?(:task) %>
       <tr>
         <td>(colspan="2")

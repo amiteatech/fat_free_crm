@@ -1,0 +1,29 @@
+<div class="title report">
+  <h1>Years</h1>
+</div>
+<p>
+
+<table class="company_table report" border="0" cellspacing="0" cellpadding="0" width="100%">  
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_years.each do |task_year| %>
+      <tr>
+        <td><%= task_year.name %></td>
+        <td><%= task_year.status %></td>
+        <td><%= link_to 'Edit', edit_task_year_path(task_year) %></td>
+        <td><%= link_to 'Destroy', task_year, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task Year', new_task_year_path %>

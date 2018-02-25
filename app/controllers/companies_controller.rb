@@ -1,6 +1,8 @@
 
 
 class CompaniesController < ApplicationController
+  before_action :require_user
+  before_action :super_admin_required
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   layout "super"
 
@@ -67,7 +69,11 @@ class CompaniesController < ApplicationController
 
   # DELETE /companies/1
   def destroy
-    @company.destroy
+    if @company.status == true
+       @company.update_attribute("status", false)
+    else
+      @company.update_attribute("status", true)
+    end    
     redirect_to companies_url, notice: 'Company was successfully destroyed.'
   end
 
@@ -84,4 +90,11 @@ class CompaniesController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :phone, :password)
     end
+    def super_admin_required
+      if current_user.super_admin == true
+
+      else
+        redirect_to root_url
+      end  
+    end  
 end

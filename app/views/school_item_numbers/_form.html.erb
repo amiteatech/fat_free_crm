@@ -1,0 +1,17 @@
+<div style="width:200px;">
+<%= simple_form_for(@school_item_number) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :name , input_html: { minlength: 1, manlength: 30, :style => 'width:200px;' }%>
+    <%= f.input :status %>
+    <%#= f.input :company_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+</div>
+

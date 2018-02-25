@@ -29,15 +29,21 @@ class Task < ActiveRecord::Base
   include ActiveModel::Serializers::Xml
 
   attr_accessor :calendar, :completed, :rejected
-  ALLOWED_VIEWS = %w(pending assigned completed)
+  ALLOWED_VIEWS = %w(pending assigned completed mytask)
 
   belongs_to :user
   belongs_to :assignee, class_name: "User", foreign_key: :assigned_to
   belongs_to :completor, class_name: "User", foreign_key: :completed_by
+
+  belongs_to :task_year
+  belongs_to :task_form_tag
+
   belongs_to :asset, polymorphic: true
   has_many :user_tasks, :dependent => :destroy
   has_many :file_uploads, :dependent => :destroy
   has_many :task_comments, :dependent => :destroy
+
+
 
   has_one :form_first
   has_one :form_second
@@ -66,7 +72,7 @@ class Task < ActiveRecord::Base
   # Tasks assigned by the user to others. That's what we see on Tasks/Assigned.
   scope :assigned_by, ->(user) {
     includes(:assignee)
-      .where('user_id = ? AND assigned_to IS NOT NULL AND assigned_to != ?', user.id, user.id)
+      .where('task_status = ?',"pending")
   }
 
   # Tasks created by the user or assigned to the user, i.e. the union of the two
@@ -185,6 +191,7 @@ class Task < ActiveRecord::Base
   def self.find_all_grouped(user, view)
     return {} unless ALLOWED_VIEWS.include?(view)
     settings = (view == "completed" ? Setting.task_completed : Setting.task_bucket)
+    #raise settings.inspect
     Hash[
       settings.map do |key, _value|
         [key, view == "assigned" ? assigned_by(user).send(key).pending : my(user).send(key).send(view)]
@@ -219,6 +226,7 @@ class Task < ActiveRecord::Base
 
   #----------------------------------------------------------------------------
   def set_due_date
+    return "overdue"
     self.due_at = case bucket
     when "overdue"
       due_at || Time.zone.now.midnight.yesterday
@@ -281,15 +289,15 @@ class Task < ActiveRecord::Base
 
   #----------------------------------------------------------------------------
   def specific_time
-    parse_calendar_date if bucket == "specific_time"
-  rescue ArgumentError
-    errors.add(:calendar, :invalid_date)
+   # parse_calendar_date if bucket == "specific_time"
+  #rescue ArgumentError
+  #  errors.add(:calendar, :invalid_date)
   end
 
   #----------------------------------------------------------------------------
   def parse_calendar_date
     # always in 2012-10-28 06:28 format regardless of language
-    Time.parse(calendar)
+  #  Time.parse(due_at)
   end
 
   ActiveSupport.run_load_hooks(:fat_free_crm_task, self)

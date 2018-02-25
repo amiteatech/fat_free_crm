@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task_year.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @task_year.status %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @task_year.company_id %>
+</p>
+
+<%= link_to 'Edit', edit_task_year_path(@task_year) %> |
+<%= link_to 'Back', task_years_path %>

@@ -1,0 +1,30 @@
+<div class="title report">
+  <h1>Item Numbers</h1>
+</div>
+<p>
+
+<table class="company_table report" border="0" cellspacing="0" cellpadding="0" width="100%">  
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+ <tbody>
+    <% @school_item_numbers.each do |school_item_number| %>
+      <tr>
+        <td><%= school_item_number.name %></td>
+        <td><%= school_item_number.status %></td>
+        <td><%= link_to 'Edit', edit_school_item_number_path(school_item_number) %></td>
+        <td><%= link_to 'Destroy', school_item_number, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item Number', new_school_item_number_path %>
+

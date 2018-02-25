@@ -160,7 +160,6 @@
 
     #----------------------------------------------------------------------------
     flip_calendar: (value) ->
-      if value is "specific_time"
         $("#task_bucket").toggle() # Hide dropdown.
         $("#task_calendar").toggle() # Show editable date field.
         $("#task_calendar").datepicker({
