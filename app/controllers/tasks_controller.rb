@@ -106,7 +106,7 @@ class TasksController < ApplicationController
     @task.task_created_id = current_user.id
     @task.company_id = current_user.company_id
     @task.task_status = "pending"
-    @task.bucket = "overdue"
+   # @task.bucket = "overdue"
     if params[:task][:calander]
       @task.due_at = Time.parse(params[:task][:calander])
     end #Date.parse(params[:calander])

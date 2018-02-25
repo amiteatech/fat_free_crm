@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219174102) do
+ActiveRecord::Schema.define(version: 20180225121931) do
 
   create_table "account_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "account_id"
@@ -266,6 +266,12 @@ ActiveRecord::Schema.define(version: 20180219174102) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "task_id"
+    t.string   "part_c_name_1"
+    t.string   "part_c_signatur_1"
+    t.date     "part_c_date_1"
+    t.string   "part_c_name_2"
+    t.string   "part_c_signatur_2"
+    t.date     "part_c_date_2"
   end
 
   create_table "form_second_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -421,6 +427,14 @@ ActiveRecord::Schema.define(version: 20180219174102) do
     t.index ["user_id", "name"], name: "index_preferences_on_user_id_and_name", using: :btree
   end
 
+  create_table "school_item_numbers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "company_id"
+    t.boolean  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "session_id",               null: false
     t.text     "data",       limit: 65535
@@ -465,23 +479,39 @@ ActiveRecord::Schema.define(version: 20180219174102) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "task_form_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.integer  "company_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "task_years", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.boolean  "status",     default: true
+    t.integer  "company_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "assigned_to"
     t.integer  "completed_by"
-    t.string   "name",                           default: "", null: false
+    t.string   "name",                             default: "",    null: false
     t.string   "asset_type"
     t.integer  "asset_id"
-    t.string   "priority",         limit: 32
-    t.string   "category",         limit: 32
-    t.string   "bucket",           limit: 32
+    t.string   "priority",           limit: 32
+    t.string   "category",           limit: 32
+    t.string   "bucket",             limit: 32
     t.datetime "due_at"
     t.datetime "completed_at"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "background_info"
-    t.text     "subscribed_users", limit: 65535
+    t.text     "subscribed_users",   limit: 65535
     t.string   "description"
     t.string   "task_created_by"
     t.integer  "task_created_id"
@@ -493,6 +523,14 @@ ActiveRecord::Schema.define(version: 20180219174102) do
     t.integer  "form_second_id"
     t.integer  "form_third_id"
     t.integer  "form_number"
+    t.string   "task_status"
+    t.string   "years"
+    t.boolean  "is_cancelled",                     default: false
+    t.integer  "task_year_id"
+    t.integer  "task_form_tag_id"
+    t.integer  "school_item_no_id"
+    t.string   "school_item_no"
+    t.string   "task_form_category"
     t.index ["assigned_to"], name: "index_tasks_on_assigned_to", using: :btree
     t.index ["user_id", "name", "deleted_at"], name: "index_tasks_on_user_id_and_name_and_deleted_at", unique: true, using: :btree
   end
