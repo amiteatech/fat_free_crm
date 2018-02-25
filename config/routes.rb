@@ -4,6 +4,9 @@
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 Rails.application.routes.draw do
+  resources :school_item_numbers
+  resources :task_years
+  resources :task_form_tags
   resources :thrid_forms
   get 'report/index'
 
