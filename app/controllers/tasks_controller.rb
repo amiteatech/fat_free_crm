@@ -91,7 +91,7 @@ class TasksController < ApplicationController
     only_current_user = false
     @users_selected = params[:users].reject { |c| c.empty? } if params[:users].present?
     unless @users_selected.include?(current_user.id)
-      @users_selected.unshift(current_user.id)
+      @users_selected.unshift(current_user.id.to_s)
     end  
     if (@users_selected.count == 1) && (@users_selected.first.to_i == current_user.id)
       only_current_user = true
@@ -102,19 +102,22 @@ class TasksController < ApplicationController
     @task.bucket = params[:task][:bucket]
     @task.name = params[:task][:name]
     @task.description = params[:task][:description]
-    @task.task_created_by = current_user.username if current_user.username.present?
+    @task.years = params[:task][:years]
+    @task.task_form_category = params[:task][:task_form_category]
+    @task.school_item_no = params[:task][:school_item_no]
+    @task.task_created_by = current_user.name if current_user.username.present?
     @task.task_created_id = current_user.id
     @task.company_id = current_user.company_id
     @task.task_status = "pending"
    # @task.bucket = "overdue"
-    if params[:task][:calander]
-      @task.due_at = Time.parse(params[:task][:calander])
+    if params[:task][:calendar]
+      @task.due_at = Time.parse(params[:task][:calendar])
     end #Date.parse(params[:calander])
 
     #raise  @task.inspect
 
     
-      if @task.save
+      if @task.save(:validate => false)
          form_frist = FormFirst.create(:task_id => @task.id)
          form_second = FormSecond.create(:task_id => @task.id)
          form_third = ThridForm.create(:task_id => @task.id)
@@ -122,7 +125,7 @@ class TasksController < ApplicationController
         update_sidebar if called_from_index_page?
         pos = 0
       #  @users_selected.unshift(current_user.id.to_s) unless only_current_user
-        @users_selected.each do |user_id|
+        @users_selected.uniq.each do |user_id|
           pos = pos+1
           @user_task = UserTask.new
           @user_task.user_id = user_id

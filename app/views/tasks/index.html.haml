@@ -7,10 +7,7 @@
   = render "title"
 
 .log#tasks
-  - buckets.each do |value, key|
-    %div{ hidden_if(filtered_out?(@view, key)), :id => "list_#{key}" }
-      / %h3{:class => key}= t(value)
-      .bucket{:id => key}= render :partial => 'pending', :collection => @tasks || [], :locals => { :bucket => key }
+  = render :partial => 'pending', :collection => @tasks || [], :locals => { :bucket => 'pending' }
   - if @tasks.values.flatten.blank?
     = render "empty"
   .cl

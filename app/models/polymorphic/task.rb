@@ -226,7 +226,7 @@ class Task < ActiveRecord::Base
 
   #----------------------------------------------------------------------------
   def set_due_date
-    return "overdue"
+    return "specific_time"
     self.due_at = case bucket
     when "overdue"
       due_at || Time.zone.now.midnight.yesterday

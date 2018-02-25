@@ -35,11 +35,11 @@
         <% bucket = (params[:bucket].blank? ? @task.bucket : params[:bucket]) || "due_asap" %>
 
           <%#= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "", :onload => "crm.flip_calendar(this.value)" } %>
-        <%= f.text_field :calendar, :autocomplete => :off, :class => 'date' %>
+        <%= f.text_field :calendar, :autocomplete => :off, :class => 'datetime' %>
         <% else %>
           <%#= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "", :onchange => "crm.flip_calendar(this.value)" } %>
           <% fmt = with_time ? '%Y-%m-%d %H:%M' : '%Y-%m-%d' %>
-          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :autocomplete => :off, :class => 'date' %>
+          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :autocomplete => :off, :class => 'datetime' %>
         <% end %>
       </div>
     </div>
