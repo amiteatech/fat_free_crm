@@ -11,8 +11,8 @@
       = link_to(t(:profile), profile_path) << " |"
       - if current_user.is_admin?
         = link_to(t(:admin), admin_path) << " |"
-        = link_to("Years", task_years_path) << " |"
-        = link_to("Items No", school_item_numbers_path) << " |"
+        = link_to("Optoin", task_form_tag_values_path) << " |"
+        =# link_to("Items No", school_item_numbers_path) << " |"
         = link_to(t(:report), report_path) << " |"
       = link_to("Tasks", tasks_path) << " |"  
       = link_to(t(:logout), logout_path, :method => :delete)

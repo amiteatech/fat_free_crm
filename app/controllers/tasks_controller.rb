@@ -87,6 +87,7 @@ class TasksController < ApplicationController
   # POST /tasks
   #----------------------------------------------------------------------------
   def create
+   # raise params.inspect
     @view = view
     only_current_user = false
     @users_selected = params[:users].reject { |c| c.empty? } if params[:users].present?
@@ -139,6 +140,10 @@ class TasksController < ApplicationController
           # @vito.vito_status = false
           # @vito.save
         end
+
+        params['option_value'].each do |key,value|
+          OptionValue.create(:task_form_tag_id => key, :task_form_tag_value_id => value, :task_id => @task.id)
+        end  
         
   
     end
@@ -219,6 +224,14 @@ class TasksController < ApplicationController
           end
           update_sidebar
         end
+
+        if params['option_value']
+          @task.option_values.delete_all
+            params['option_value'].each do |key,value|
+              OptionValue.create(:task_form_tag_id => key, :task_form_tag_value_id => value, :task_id => @task.id)
+            end  
+        end
+
       end
 
        redirect_to :tasks

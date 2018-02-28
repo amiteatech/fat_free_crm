@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180225121931) do
+ActiveRecord::Schema.define(version: 20180228104149) do
 
   create_table "account_contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "account_id"
@@ -406,6 +406,24 @@ ActiveRecord::Schema.define(version: 20180225121931) do
     t.index ["user_id", "name", "deleted_at"], name: "id_name_deleted", unique: true, using: :btree
   end
 
+  create_table "option_values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "task_form_tag_value_id"
+    t.string   "value"
+    t.integer  "task_form_tag_id"
+    t.integer  "task_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "optoin_values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "task_form_tag_value_id"
+    t.integer  "task_form_tag_id"
+    t.integer  "task_id"
+    t.string   "value"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "permissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.string   "asset_type"
@@ -477,6 +495,15 @@ ActiveRecord::Schema.define(version: 20180225121931) do
     t.string   "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "task_form_tag_values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "task_form_tag_id"
+    t.integer  "company_id"
+    t.boolean  "status"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "task_form_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

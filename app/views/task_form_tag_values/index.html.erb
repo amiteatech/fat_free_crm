@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<div class="title report">
+  <h1>Tag Values</h1>
+</div>
+<% @task_form_tags.each do |t| %>
+<div class="tagRow">
+  <fieldset> 
+    <legend>Tag <%= t.name %></legend>
+  <div class="title report">
+    
+    <%= simple_form_for(TaskFormTagValue.new) do |f| %>
+    
+    <div class="inputs">
+      <%= f.input :name, input_html: { minlength: 1, manlength: 30, :style => 'width:200px;' } %>
+      <%= f.hidden_field :task_form_tag_id, :value => t.id %>
+      <%= f.hidden_field :company_id, :value => current_user.company_id %>
+    </div>
+
+    <div class="actions">
+      <%= f.button :submit, "Save for Tag #{t.name}",:class => 'btn' %>
+    </div>
+  <% end %>
+
+  </div>
+  <div class="cl"></div>
+  <table class="company_table report" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Task form tag</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @task_form_tag_values.where(:company_id => current_user.company_id).where(:task_form_tag_id => t.id).each do |task_form_tag_value| %>
+        <tr>
+          <td><%= task_form_tag_value.name %></td>
+          <td><%= task_form_tag_value.task_form_tag.name %></td>
+          <td><%= link_to 'Edit', edit_task_form_tag_value_path(task_form_tag_value) %></td>
+          <td><%= link_to 'Destroy', task_form_tag_value, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</fieldset>
+</div>
+<% end %>
+
+
+<%#= link_to 'New Task Form Tag Value', new_task_form_tag_value_path %>
+
+
+<br>
+
+

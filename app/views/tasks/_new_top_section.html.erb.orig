@@ -1,59 +1,92 @@
 <div class="taskForm">
   <div class="halfLeft">
+<<<<<<< HEAD
+    <table style="width:100%;">
+    <tr>
+      <td colspan="3">
+        <div class="label top req task_name">Task Title:</div>
+        <%= f.text_field :name, :autofocus => true %>
+      </td>
+    </tr>
+    <tr>
+      <td style="width:100px;maring:left:30px;">
+        <div class="label top  task_name">Year:</div>
+          <%=  f.input :years, :collection => TaskYear.where(:company_id => current_user.company_id).map{|s|s.name} , label: false , input_html: { class: 'select2_tag', :style => 'margin-left:30px;width:200px;height:20px;' }  %>
+        </div>  
+       </td>
+       <td>
+        &nbsp;
+       </td>
+       <td>
+        &nbsp;
+       </td> 
+    </tr>
+=======
     <div class="blockForm2">
       <label class="top req task_name">Task Title:</label>      
       <div class="span2">
        <%= f.text_field :name, :autofocus => true %>
       </div>
     </div>
-    <% indx = 0 %>
-    <% TaskFormTag.where(:status => true).each do |tag| %>
-    <%
-
-     tag_values = TaskFormTagValue.all.where(:company_id => current_user.company_id).where(:task_form_tag_id => tag.id)
-    %>
-    <% if tag_values.size > 0 %>
     <div class="blockForm2">
-      <label class="top task_name"><%= tag.name%>:</label>      
+      <label class="top task_name">Year:</label>      
       <div class="span2">
-        <%#= select_tag %>
-       <% 
-         selected_value = ""
-         last = @task.option_values.where(:task_form_tag_id => tag.id).last
-         if last
-            selected_value = last.task_form_tag_value_id
-         end   
-        
-
-       %>
-       <%= select_tag "option_value[#{tag.id}]", options_from_collection_for_select(tag_values, "id", "name", selected_value ), :class => 'select2_tag' %>
-       <%#= task_form_tag_value_id %>
-       <%#=  f.input "option_value[#{indx}]", :collection => tag_values.map{|s|[s.name, s.id]}, label: false , input_html: { class: 'select2_tag' }  %>
+       <%=  f.input :years, label: false , input_html: { minlength: 1, :style => "" }  %>
       </div>
-    </div>  
-    <% if indx%2 == 0 %>
-     <div class="cl"></div>
-    <% end %>
-    <% indx = indx + 1 %>
-    <% end %>
-    <% end %>
-
+    </div>      
+>>>>>>> 60b24431a904ff2f34172df63dcccc0ab752e7d7
+    <!--
+   
+        <div class="label top req task_name">Description:</div>
+        <%#= f.text_area :description %>      
+  -->
+<<<<<<< HEAD
+    <tr class="userTask">
+      <td>
+        <div class="label req">Due:</div>
+        
+          <%#= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "width:160px;", :onchange => "crm.flip_calendar(this.value)" } %>
+          <%= f.hidden_field :bucket, :value =>  :specific_time %>
          
+          <%= f.text_field :calendar, :value => f.object.due_at, :style => "width:160px;", :autocomplete => :off, :class => 'date' %>
+    
+      </td>
+      <td colspan="2" class="firstTd">
+        <div class="label req">Assign to:</div>
+        <%= multi_user_select(:task, all_users, @task.id) %>
+       
+      </td>
+      
+    </tr>
+      <tr>
+        <td>
+          <div class="label">
+              Item No
+          </div>
+           <%=  f.input :school_item_no, :collection => SchoolItemNumber.where(:company_id => current_user.company_id).map{|s|s.name} , label: false , input_html: { class: 'select2_tag', :style => 'margin-left:30px;width:200px;height:20px;' }  %>
+      
+          <div class="label">
+              Tag
+          </div>
+           <%=  f.input :task_form_category, :collection => TaskFormTag.where(:status => true).map{|s|s.name} , label: false , input_html: { class: 'select2_tag', :style => 'margin-left:30px;width:200px;height:20px;' }  %>
+        </td>
+        
+        
+      </tr>
  
+=======
    <div class="blockForm2 bottom">
       <label class="req">Due:</label>      
       <div class="span2">
-        <%= f.hidden_field :bucket, :value => 'specific_time' %>
        <% with_time = Setting.task_calendar_with_time %>
         <% if @task.bucket != "specific_time" %> 
         <% bucket = (params[:bucket].blank? ? @task.bucket : params[:bucket]) || "due_asap" %>
-
-          <%#= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "", :onload => "crm.flip_calendar(this.value)" } %>
-        <%= f.text_field :calendar, :autocomplete => :off, :class => 'datetime' %>
+          <%= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "", :onload => "crm.flip_calendar(this.value)" } %>
+        <%= f.text_field :calendar, :style => "display: none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
         <% else %>
-          <%#= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "", :onchange => "crm.flip_calendar(this.value)" } %>
+          <%= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "", :onchange => "crm.flip_calendar(this.value)" } %>
           <% fmt = with_time ? '%Y-%m-%d %H:%M' : '%Y-%m-%d' %>
-          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :autocomplete => :off, :class => 'datetime' %>
+          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :style => " display: none;", :autocomplete => :off, :class => (with_time ? 'datetime' : 'date') %>
         <% end %>
       </div>
     </div>
@@ -64,6 +97,7 @@
         <%= multi_user_select(:task, all_users, @task.id) %>
       </div>
     </div>
+>>>>>>> 60b24431a904ff2f34172df63dcccc0ab752e7d7
     <% if Setting.background_info && Setting.background_info.include?(:task) %>
 
     <div class="blockForm2">
@@ -105,8 +139,12 @@
     //     $("ul.select2-selection__rendered li.select2-search.select2-search--inline").prepend("<li class='select2-selection__choice' title='"+text+"><span class='select2-selection__choice__remove' role='presentation'>×</span>"+text+"</li>");
     //   });
     // }, 300);
+
   
  
+
+
+
     $( "#sortable" ).sortable({
       start: function(event, ui) {
         // ui.item.startPos = ui.item.index();

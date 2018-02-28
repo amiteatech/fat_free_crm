@@ -1,0 +1,13 @@
+<%= simple_form_for(@task_form_tag_value) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :name %>
+    <%= f.input :task_form_tag_id %>
+    <%= f.input :company_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

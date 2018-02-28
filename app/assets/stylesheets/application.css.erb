@@ -35,3 +35,43 @@ Gem.loaded_specs.keys.grep(/^ffcrm_/).each do |plugin|
   require_asset(plugin) rescue Sprockets::FileNotFound
 end
 %>
+.cl{clear: both;}
+.tagRow{padding:25px 0 0 0;}
+.tagRow label{ padding: 0 15px 0 0; display: inline-block; color: #000;}
+.tagRow input{width: 92%;
+    padding: 6px 4%;
+    text-indent: 0px;
+    border: 1px solid #d2d6de;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #555555;}
+.tagRow .actions input{box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    border: none;
+    font-size: 13px;
+    background-color: #28a5f1;
+    color: #fff;
+    padding: 0px 15px;
+    line-height: 30px;
+    display: inline-block;
+    cursor: pointer; height: 32px;width: 200px;
+    }
+.tagRow .inputs, .title .actions{float: left;}
+.tagRow .actions{margin-top: 20px; }
+.tagRow table{clear: both;}
+.tagRow fieldset{ border: 1px solid #e8e8e8; padding: 15px;}
+.tagRow fieldset legend{font-size:16px;}
+.tagRow .company_table{margin:20px 0 0 0;}
+.src_frm input[type="checkbox"] {width: auto;
+    padding: 0;
+    margin: 3px 10px 0 0;
+    float: left;
+    height: 14px;}
+.edit_task_form_tag{width: 400px;}
+.src_frm label{ padding-bottom: 5px; display: inline-block;}
+.tagRow .company_table th{background:rgba(0, 0, 0, 0.26); border-left: 1px solid rgb(173, 173, 173);}
+

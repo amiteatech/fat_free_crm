@@ -28,7 +28,7 @@
 class Task < ActiveRecord::Base
   include ActiveModel::Serializers::Xml
 
-  attr_accessor :calendar, :completed, :rejected
+  attr_accessor :calendar, :completed, :rejected, :option_value
   ALLOWED_VIEWS = %w(pending assigned completed mytask)
 
   belongs_to :user
@@ -48,6 +48,8 @@ class Task < ActiveRecord::Base
   has_one :form_first
   has_one :form_second
   has_one :thrid_form
+
+  has_many :option_values
 
   accepts_nested_attributes_for :form_first
   accepts_nested_attributes_for :form_second
