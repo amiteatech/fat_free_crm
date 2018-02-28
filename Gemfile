@@ -2,13 +2,7 @@ source 'https://rubygems.org'
 
 # Uncomment the database that you have configured in config/database.yml
 # ----------------------------------------------------------------------
-db_drivers = {
-  "mysql" => "mysql2",
-  "sqlite" => "sqlite3",
-  "postgres" => "pg"
-}
 
-gem db_drivers[ENV['CI'] && ENV['DB']] || 'pg'
 
 # Removes a gem dependency
 def remove(name)
@@ -92,3 +86,4 @@ gem 'google_drive'
 gem 'oauth2'
 gem 'google-api-client', '~> 0.11'
 gem 'spreadsheet'
+gem 'passenger', '~> 5.0', '>= 5.0.30'
