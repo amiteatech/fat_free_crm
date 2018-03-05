@@ -131,8 +131,8 @@ class Task < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :name, message: :missing_task_name
-  validates_presence_of :calendar, if: "self.bucket == 'specific_time' && !self.completed_at"
-  validate :specific_time, unless: :completed?
+ # validates_presence_of :calendar, if: "self.bucket == 'specific_time' && !self.completed_at"
+ # validate :specific_time, unless: :completed?
 
   before_create :set_due_date
   before_update :set_due_date, unless: :completed?
