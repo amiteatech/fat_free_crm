@@ -16,7 +16,7 @@
    <%= render "third_form", :f => f %>
 <% end %>
 
-<% if current_user.admin == true %>
+<% if current_user.admin == true || @task.task_created_id == current_user.id%>
   <%= render "tasks/new_top_section",    :f => f, :edit => true %>
     <%= f.label :is_cancelled, "Cancelled" %>
        <%=  f.input_field :is_cancelled %>  

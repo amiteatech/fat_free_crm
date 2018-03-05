@@ -71,8 +71,7 @@ class TasksController < ApplicationController
   #----------------------------------------------------------------------------
   def edit
     @view = view
-
-    @task = Task.find(params[:id])
+    @task = Task.tracked_by(current_user).find(params[:id])
     @bucket = Setting.unroll(:task_bucket)[1..-1] << [t(:due_specific_date, default: 'On Specific Date...'), :specific_time]
     @category = Setting.unroll(:task_category)
     @asset = @task.asset if @task.asset_id?
@@ -200,10 +199,17 @@ class TasksController < ApplicationController
      
         if @task.user_tasks.exists?(position: pos)
           @new_user_task = @task.user_tasks.where(position: pos).last
-          @task.update_attributes(assigned_to: @new_user_task.user_id, :task_status => "Pending" )
+
+          @task.update_attribute("assigned_to", @new_user_task.user_id)
+          @task.update_attribute("task_status", "Pending" )
         else  
-          @task.update_attributes(completed_at: Time.now, completed_by: current_user.id, :task_status => "Completed")
-        end
+          @task.update_attribute("completed_at", Time.now)
+          @task.update_attribute("completed_by", current_user.id )
+          @task.update_attribute("task_status", "Completed")
+          @task.update_attribute("assigned_to",  @task.task_created_id)
+
+       end
+
         @user_task.update_attributes(approved: true, approved_time: Time.now)
 
       elsif params[:task][:completed] == "2"

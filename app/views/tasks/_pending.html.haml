@@ -1,30 +1,31 @@
-%li.highlight[pending]
-  / - unless pending.category.blank?
-  /   .strip{:class => pending.category}= t(pending.category)
-  / - else
-  /   .strip.white #{t :other}
+- if pending.user_id == current_user.id || pending.assigned_to == current_user.id 
+  %li.highlight[pending]
+    / - unless pending.category.blank?
+    /   .strip{:class => pending.category}= t(pending.category)
+    / - else
+    /   .strip.white #{t :other}
 
-  .tools
-    =# link_to_task_edit(pending, bucket) + " | "
-    =# link_to_discard(pending) + " | " if shown_on_landing_page?
-    = link_to_task_delete_task(pending, bucket)
-  
-  .taskList  
-    %label{ :id => dom_id(pending, :name) }
-      - if pending.user.id != current_user.id
-        = t(:task_from, link_to(h(pending.user.full_name), user_path(pending.user))).html_safe << ':'
-      = link_to h(pending.name), edit_task_path(pending.id)
-     
-      
+    .tools
+      =# link_to_task_edit(pending, bucket) + " | "
+      =# link_to_discard(pending) + " | " if shown_on_landing_page?
+      = link_to_task_delete_task(pending, bucket)
+    
+    .taskList  
+      %label{ :id => dom_id(pending, :name) }
+        - if pending.user.id != current_user.id
+          = t(:task_from, link_to(h(pending.user.full_name), user_path(pending.user))).html_safe << ':'
+        = link_to h(pending.name), edit_task_path(pending.id)
+       
+        
 
-    %div.cl      
-/ .wrapper
-/   .popup
-/     %iframe{:src => "", :class => "popuptext"}
-/       %p Your browser does not support iframes.
-/     %a.close{:href => "#"} X
+      %div.cl      
+  / .wrapper
+  /   .popup
+  /     %iframe{:src => "", :class => "popuptext"}
+  /       %p Your browser does not support iframes.
+  /     %a.close{:href => "#"} X
 
-/ The Modal
+  / The Modal
 #myModal.modal
   / Modal content
   .modal-content
