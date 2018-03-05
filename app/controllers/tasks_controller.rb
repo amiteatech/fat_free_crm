@@ -71,7 +71,8 @@ class TasksController < ApplicationController
   #----------------------------------------------------------------------------
   def edit
     @view = view
-    @task = Task.tracked_by(current_user).find(params[:id])
+
+    @task = Task.find(params[:id])
     @bucket = Setting.unroll(:task_bucket)[1..-1] << [t(:due_specific_date, default: 'On Specific Date...'), :specific_time]
     @category = Setting.unroll(:task_category)
     @asset = @task.asset if @task.asset_id?
@@ -120,11 +121,8 @@ class TasksController < ApplicationController
     rescue
       @task.due_at = Time.now
     end
-    end #Date.parse(params[:calander])
+    end 
 
-    #raise  @task.inspect
-
-    
       if @task.save(:validate => false)
          form_frist = FormFirst.create(:task_id => @task.id)
          form_second = FormSecond.create(:task_id => @task.id)
@@ -194,6 +192,8 @@ class TasksController < ApplicationController
     if params[:task] && params[:task][:completed]
 
       if params[:task][:completed] == "1"
+
+
 
         @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).first
         pos = @user_task.position + 1
