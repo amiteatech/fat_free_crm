@@ -1206,4 +1206,48 @@ margin-bottom: 0px;
 padding: 6px 2%;
 width: 96%;}
 
-.uploadFileBox {display: none;}
+.parent_files {display: none; width: 100%; float: left;}
+#new_task .blockForm2.bottom {padding-bottom: 10px; margin-top: 5px;}
+
+/*---select a file css---*/
+.filesbox input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.filesbox input::before {
+  content: 'Select some files';
+  display: inline-block;
+  background: #1e4262;
+  border: 1px solid #1e4262;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: -55px;
+  color: #fff;
+}
+.filesbox input:hover::before {
+  border-color: black;
+}
+.filesbox input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+.filesbox input:focus {
+    outline: none;
+}
+.filesbox input[type=file] {
+    height: auto;
+    padding-left: 55px;
+    margin:  10px 0 0;
+}
+#add_more_files, #add_more_supplementary{
+    margin-top: 9px;
+    display: inline-block;
+}
+#add_more_files, #add_more_supplementary:hover {background: none; color:#0033cc; }
+/*---select a file css---*/
+
+.edit_task .inputs.frm_fst .interview label { display: block; float: none;}
+.edit_task .inputs.third .inform label { margin: 20px 0 10px 0; float: none;}
+.edit_task_file {display: block; width: 100%; float: left;}
+.edit_task_file a:hover {background: none; color:#0033cc; }

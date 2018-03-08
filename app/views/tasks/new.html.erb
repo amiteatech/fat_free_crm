@@ -10,7 +10,7 @@
     
 
   <% if action_name == "new" %>
-    <div class="createPage">
+    <div class="createPage ">
       <div class="second">
       <%= radio_button("task", "form_number", "1") %> <label for="task_form_number_1"> <%= link_to 'Workflow', ''  %>  </label>
       </div>
@@ -21,18 +21,19 @@
        <%= radio_button("task", "form_number", "3") %>  <label for="task_form_number_3"><%= link_to 'Approval',  '' %> </label>
       </div>
       <div class="second">
-       <%= radio_button("task", "form_number", "4") %>  <label for="task_form_number_3"><%= link_to 'Files',  '' %> </label>
+       <%= radio_button("task", "form_number", "4") %>  <label for="task_form_number_3" ><%= link_to 'Files',  '' %> </label>
       </div>
     
       <div class="cl"></div>
-      <div class="uploadFileBox">
-        <div class="filesbox">
+
+      <div class="parent_files">
+        <div class="filesbox blockForm2">
             <input type="file" name="files[0]">  <br />
 
             <a href="#" id="add_more_files" onclick="add_more_files()" data-count="1">Add More Files</a>
         </div>  
 
-        <div class="filesbox">
+        <div class="filesbox blockForm2">
             <input type="file" name="supplementary_files[0]">  <br />
 
             <a href="#" id="add_more_supplementary" onclick="add_more_supplementary_files()" data-count="1">Add More Supplementary Files</a>
@@ -40,7 +41,6 @@
       </div>
     </div>
 
-     
   <% end %>
   <div class="createPageButtonbar">
     <%= f.submit t :create_task %>
@@ -83,9 +83,9 @@ $("#users_").on("select2:unselect", function (evt) {
   $(".createPage .second input").on("click", function() {
     var val = $(this).val();
     if (val == "4") {
-      $(".uploadFileBox").show();
+      $(".parent_files").show();
     } else {
-      $(".uploadFileBox").hide();
+      $(".parent_files").hide();
     }
   });
 
