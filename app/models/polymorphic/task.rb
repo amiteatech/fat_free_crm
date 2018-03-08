@@ -49,6 +49,9 @@ class Task < ActiveRecord::Base
   has_one :form_second
   has_one :thrid_form
 
+  has_many :supplementary_task_files
+  has_many :task_files
+
   has_many :option_values
 
   accepts_nested_attributes_for :form_first

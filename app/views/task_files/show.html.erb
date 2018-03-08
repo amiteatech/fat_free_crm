@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task_file.name %>
+</p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @task_file.task_id %>
+</p>
+
+<%= link_to 'Edit', edit_task_file_path(@task_file) %> |
+<%= link_to 'Back', task_files_path %>

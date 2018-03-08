@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @supplementary_task_file.name %>
+</p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @supplementary_task_file.task_id %>
+</p>
+
+<%= link_to 'Edit', edit_supplementary_task_file_path(@supplementary_task_file) %> |
+<%= link_to 'Back', supplementary_task_files_path %>

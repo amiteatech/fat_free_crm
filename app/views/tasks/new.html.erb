@@ -20,8 +20,16 @@
       <div class="second">
        <%= radio_button("task", "form_number", "3") %>  <label for="task_form_number_3"><%= link_to 'Approval',  '' %> </label>
       </div>
-      <input type="file" name="file_upload">
+      <div class="second">
+       <%= radio_button("task", "form_number", "4") %>  <label for="task_form_number_3"><%= link_to 'Files',  '' %> </label>
+      </div>
+    
       <div class="cl"></div>
+      <div class="filesbox">
+          <input type="file" name="files[0]">  <br />
+
+          <a href="#" id="add_more_files" onclick="add_more_files()" data-count="1">Add More Files</a>
+      </div>  
     </div>
   <% end %>
   <div class="createPageButtonbar">
@@ -63,6 +71,20 @@ $("#users_").on("select2:unselect", function (evt) {
 });
 
 });
+
+function add_more_files()
+{
+
+   val = $("#add_more_files").data('count');
+   alert(val)
+  
+   randam = Math.floor((Math.random() * 100) + 1);
+   str1 = "<input type='file' name=files["+randam+"]> <br />" 
+   $("#add_more_files").before(str1)
+   val = val + 1
+   $("#add_more_files").data('count', val);
+    
+  }
 
 </script>
 

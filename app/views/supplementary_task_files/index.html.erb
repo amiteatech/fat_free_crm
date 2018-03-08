@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Supplementary Task Files</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Task</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @supplementary_task_files.each do |supplementary_task_file| %>
+      <tr>
+        <td><%= supplementary_task_file.name %></td>
+        <td><%= supplementary_task_file.task_id %></td>
+        <td><%= link_to 'Show', supplementary_task_file %></td>
+        <td><%= link_to 'Edit', edit_supplementary_task_file_path(supplementary_task_file) %></td>
+        <td><%= link_to 'Destroy', supplementary_task_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Supplementary Task File', new_supplementary_task_file_path %>

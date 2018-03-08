@@ -9,7 +9,7 @@ class TasksController < ApplicationController
   before_action :set_current_tab, only: [:index, :show, :new, :edit]
   before_action :update_sidebar, only: [:index, :new, :edit ]
   skip_before_action :verify_authenticity_token
-  before_action :google_drive_login, :only => [:index, :create]
+  #before_action :google_drive_login, :only => [:index, :create]
 
   GOOGLE_CLIENT_ID = "318261922103-6o5ui2qui55luqss9d2gpsbsukianb39.apps.googleusercontent.com"
   GOOGLE_CLIENT_SECRET = "WlTtICFYG64yummKqFlpz5hf"
@@ -155,12 +155,12 @@ class TasksController < ApplicationController
           # google_session = GoogleDrive.login_with_oauth(session[:google_token])
           # file_uploaded_to_drive = google_session.upload_from_file(params[:file_upload].path, params[:file_upload].original_filename, convert: false)
 
-          drive = Google::Apis::DriveV3::DriveService.new
-          drive.authorization = Signet::OAuth2::Client.new( client_id: GOOGLE_CLIENT_ID, client_secret: GOOGLE_CLIENT_SECRET, access_token: session[:google_token], :access_type => 'offline', :scope => "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file")
-          drive.authorization.expires_in = 7200
+         # drive = Google::Apis::DriveV3::DriveService.new
+         # drive.authorization = Signet::OAuth2::Client.new( client_id: GOOGLE_CLIENT_ID, client_secret: GOOGLE_CLIENT_SECRET, access_token: session[:google_token], :access_type => 'offline', :scope => "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file")
+         # drive.authorization.expires_in = 7200
           
-          file_metadata = {name: params[:file_upload].original_filename, mime_type: "application/vnd.google-apps.document"}
-          file_uploaded_to_drive = drive.create_file(file_metadata, fields: 'id', upload_source: params[:file_upload].path)
+         # file_metadata = {name: params[:file_upload].original_filename, mime_type: "application/vnd.google-apps.document"}
+         # file_uploaded_to_drive = drive.create_file(file_metadata, fields: 'id', upload_source: params[:file_upload].path)
 
           @users_selected.each do |user_id|
             unless UserTask.find_by_user_id(user_id).position == 1
