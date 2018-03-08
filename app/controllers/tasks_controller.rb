@@ -114,7 +114,7 @@ class TasksController < ApplicationController
     if params["task"]["form_number"]
       @task.form_number = params["task"]["form_number"].to_i
     end
-   # @task.bucket = "overdue"
+  
     if params[:task][:calendar]
       begin
       @task.due_at = Time.parse(params[:task][:calendar])
@@ -150,6 +150,29 @@ class TasksController < ApplicationController
             OptionValue.create(:task_form_tag_id => key, :task_form_tag_value_id => value, :task_id => @task.id)
           end  
         end
+
+        if params['form_number'] == "4"
+
+           params["files"].each do |key, value|
+               task_file = TaskFile.new
+               task_file.file = value
+               task_file.task_id = @task.id
+               task_file.save
+           end  
+
+        end 
+
+        if params["supplementary_files"].present?
+
+          params["supplementary_files"].each do |key, value|
+                 task_file = TaskFile.new
+                 task_file.file = value
+                 task_file.task_id = @task.id
+                 task_file.save
+          end  
+
+        end
+
       
         if params[:file_upload].present?
           # google_session = GoogleDrive.login_with_oauth(session[:google_token])

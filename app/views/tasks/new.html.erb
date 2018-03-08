@@ -31,6 +31,12 @@
           <a href="#" id="add_more_files" onclick="add_more_files()" data-count="1">Add More Files</a>
       </div>  
     </div>
+
+    <div class="filesbox">
+          <input type="file" name="supplementary_files[0]">  <br />
+
+          <a href="#" id="add_more_supplementary" onclick="add_more_supplementary_files()" data-count="1">Add More Supplementary Files</a>
+      </div>  
   <% end %>
   <div class="createPageButtonbar">
     <%= f.submit t :create_task %>
@@ -72,11 +78,28 @@ $("#users_").on("select2:unselect", function (evt) {
 
 });
 
+  supplementary
+
+function add_more_supplementary_files()
+{
+
+   val = $("#add_more_supplementary").data('count');
+  
+  
+   randam = Math.floor((Math.random() * 100) + 1);
+   str1 = "<input type='file' name=supplementary_files["+randam+"]> <br />" 
+   $("#add_more_supplementary").before(str1)
+   val = val + 1
+   $("#add_more_supplementary").data('count', val);
+    
+  }
+
+
 function add_more_files()
 {
 
    val = $("#add_more_files").data('count');
-   alert(val)
+  
   
    randam = Math.floor((Math.random() * 100) + 1);
    str1 = "<input type='file' name=files["+randam+"]> <br />" 
