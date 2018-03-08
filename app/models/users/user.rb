@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email, message: :missing_email
 
+  validates_presence_of :first_name, message: "First name is missing"
+
+  validates_presence_of :last_name, message: "Last name is missing"
+
   #----------------------------------------------------------------------------
   def name
     first_name.blank? ? username : first_name

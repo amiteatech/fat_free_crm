@@ -86,4 +86,9 @@ gem 'google_drive'
 gem 'oauth2'
 gem 'google-api-client', '~> 0.11'
 gem 'spreadsheet'
-gem 'passenger', '~> 5.0', '>= 5.0.30'
+#gem 'docx', '~> 0.2.07', :require => ["docx"]
+#gem 'passenger', '~> 5.0', '>= 5.0.30'
+
+gem "paperclip", "~> 5.2.1"
+
+gem 'tinymce-rails'

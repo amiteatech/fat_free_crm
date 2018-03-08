@@ -1,3 +1,4 @@
+<%= tinymce_assets %>
 <div class="remote">
   <%= simple_form_for(@task) do |f| %>
  
@@ -103,5 +104,25 @@
             modal.style.display = "none";
         }
     }
+  });
+</script>
+
+
+<script type="text/javascript">
+  tinyMCE.init({
+    selector: 'textarea',
+     width: "100%",
+     height: 250,
+     mode: "textareas",
+     plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak code",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+     ],
+     toolbar: "bold italic underline | bullist numlist | link unlink | backcolor | table | fontsizeselect",
+     menubar: false,
+     statusbar:  false,
+     browser_spellcheck: true
   });
 </script>

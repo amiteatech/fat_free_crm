@@ -28,11 +28,11 @@
     %tr
       %td
         .label #{t :first_name}:
-        = f.text_field :first_name
+        = f.text_field :first_name, class: 'required'
       %td= spacer
       %td
         .label #{t :last_name}:
-        = f.text_field :last_name
+        = f.text_field :last_name, class: 'required'
     %tr
       %td
         .label #{t :job_title}:
@@ -53,9 +53,9 @@
       %td
         .label #{t :Role}:
         - if current_user.is_super_admin?
-          = f.select :role, [["Admin", 2], ["Manager", 3], ["User", 4]], {}, :class => 'select2', :include_blank => true
+          = f.select :role, [["Admin", 2], ["Supervisor", 3], ["Staff", 4]], {}, :class => 'select2', :include_blank => false
         - else
-          = f.select :role, [["Manager", 3], ["User", 4]], {}, :class => 'select2', :include_blank => true
+          = f.select :role, [["Staff", 4], ["Supervisor", 3]], {}, :class => 'select2', :include_blank => false
       %td= spacer
       - if current_user.is_super_admin?
         %td
