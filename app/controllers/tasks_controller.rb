@@ -295,6 +295,29 @@ class TasksController < ApplicationController
             end  
         end
 
+        if @task.form_number == 4
+
+           params["files"].each do |key, value|
+               task_file = TaskFile.find(key)
+               task_file.file = value
+               task_file.task_id = @task.id
+               task_file.save
+           end  
+
+        end 
+
+        if params["supplementary_files"].present?
+
+          params["supplementary_files"].each do |key, value|
+                 task_file = TaskFile.new
+                 task_file.file = value
+                 task_file.task_id = @task.id
+                 task_file.save
+          end  
+
+        end
+
+
       end
 
        redirect_to :tasks

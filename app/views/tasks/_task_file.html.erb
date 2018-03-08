@@ -1,0 +1,7 @@
+<% @task.task_files.each do |task_file| %>
+
+<%= task_file.file.path %>
+
+<input type="file" name="supplementary_files[<%=task_file.id%>]"> 
+
+<% end %>
