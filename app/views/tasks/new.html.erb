@@ -25,18 +25,22 @@
       </div>
     
       <div class="cl"></div>
-      <div class="filesbox">
-          <input type="file" name="files[0]">  <br />
+      <div class="uploadFileBox">
+        <div class="filesbox">
+            <input type="file" name="files[0]">  <br />
 
-          <a href="#" id="add_more_files" onclick="add_more_files()" data-count="1">Add More Files</a>
-      </div>  
+            <a href="#" id="add_more_files" onclick="add_more_files()" data-count="1">Add More Files</a>
+        </div>  
+
+        <div class="filesbox">
+            <input type="file" name="supplementary_files[0]">  <br />
+
+            <a href="#" id="add_more_supplementary" onclick="add_more_supplementary_files()" data-count="1">Add More Supplementary Files</a>
+        </div> 
+      </div>
     </div>
 
-    <div class="filesbox">
-          <input type="file" name="supplementary_files[0]">  <br />
-
-          <a href="#" id="add_more_supplementary" onclick="add_more_supplementary_files()" data-count="1">Add More Supplementary Files</a>
-      </div>  
+     
   <% end %>
   <div class="createPageButtonbar">
     <%= f.submit t :create_task %>
@@ -76,9 +80,16 @@ $("#users_").on("select2:unselect", function (evt) {
   }
 });
 
-});
+  $(".createPage .second input").on("click", function() {
+    var val = $(this).val();
+    if (val == "4") {
+      $(".uploadFileBox").show();
+    } else {
+      $(".uploadFileBox").hide();
+    }
+  });
 
-  supplementary
+});
 
 function add_more_supplementary_files()
 {
@@ -92,7 +103,10 @@ function add_more_supplementary_files()
    val = val + 1
    $("#add_more_supplementary").data('count', val);
     
+  if (val == "10") {
+    $("#add_more_supplementary").hide();
   }
+}
 
 
 function add_more_files()
@@ -106,8 +120,11 @@ function add_more_files()
    $("#add_more_files").before(str1)
    val = val + 1
    $("#add_more_files").data('count', val);
-    
+  
+  if (val == "10") {
+    $("#add_more_files").hide();
   }
+}
 
 </script>
 

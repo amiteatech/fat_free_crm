@@ -1,7 +1,13 @@
 <% @task.task_files.each do |task_file| %>
 
-<%= task_file.file.path %>
+	<%= link_to task_file.file_file_name, task_file.file.url(:original, false) %>
+	<input type="file" name="files[<%=task_file.id%>]"> 
 
-<input type="file" name="supplementary_files[<%=task_file.id%>]"> 
+<% end %>
 
+<% if @task.supplementary_task_files.present? %>
+	<% @task.supplementary_task_files.each do |supplementary_task_file| %>
+		<%= link_to supplementary_task_file.file_file_name, supplementary_task_file.file.url(:original, false) %>
+		<input type="file" name="supplementary_files[<%=supplementary_task_file.id%>]"> 
+	<% end %>
 <% end %>

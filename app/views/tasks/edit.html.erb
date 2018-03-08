@@ -1,6 +1,6 @@
 <%= tinymce_assets %>
 <div class="remote">
-  <%= simple_form_for(@task) do |f| %>
+  <%= simple_form_for(@task, html: { :multipart => true }) do |f| %>
  
     <%= hidden_field_tag :view, @view %>
     <%= hidden_field_tag "task[asset_id]", "#{@asset.id if @asset}" %>
@@ -32,23 +32,20 @@
       </div>
       <div class="second">
        <%= radio_button("task", "completed", "2") %> <span class="text"> Rejected </span>
-      </div>
-      
-
-     
+      </div>  
     </div>
-    <div>
+    <!-- <div>
       <ul>
-        <% @task.file_uploads.each do |file| %>
+        <%# @task.file_uploads.each do |file| %>
           <li>
             <%#= link_to(file.file_name, show_files_path(:url => file.file), :target => "_blank") %>
-            <span data-url="<%=file.file%>" class="openpop">
-              <%= file.file_name %>
+            <span data-url="<%#=file.file%>" class="openpop">
+              <%#= file.file_name %>
             </span>
           </li>
-        <% end %>
+        <%# end %>
       </ul>
-    </div>
+    </div> -->
   <% end %> 
 
     <div class="buttonbar">
@@ -75,7 +72,7 @@
 </div>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready( function() {
      // Get the modal
     var modal = document.getElementById('myModal');
@@ -105,7 +102,7 @@
         }
     }
   });
-</script>
+</script> -->
 
 
 <script type="text/javascript">
