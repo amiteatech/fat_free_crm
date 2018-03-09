@@ -1,17 +1,26 @@
 <div class="edit_task_file">
-<% @task.task_files.each do |task_file| %>
-  <div class="filesbox blockForm2">
-	<%= link_to task_file.file_file_name, task_file.file.url(:original, false) %>
-	<input type="file" name="files[<%=task_file.id%>]"> 
-  </div>
-<% end %>
-
-<% if @task.supplementary_task_files.present? %>
-	<% @task.supplementary_task_files.each do |supplementary_task_file| %>
-	  <div class="filesbox blockForm2">
-		<%= link_to supplementary_task_file.file_file_name, supplementary_task_file.file.url(:original, false) %>
-		<input type="file" name="supplementary_files[<%=supplementary_task_file.id%>]"> 
+  <div class="l_side">
+    <div class="title">
+      <h1>Task File</h1>
+    </div>
+	<% @task.task_files.each do |task_file| %>
+	  <div class="filesbox fr_edt blockForm2">
+		<%= link_to task_file.file_file_name, task_file.file.url(:original, false) %>
+		<input type="file" name="files[<%=task_file.id%>]"> 
 	  </div>
 	<% end %>
-<% end %>
+  </div>
+  <div class="r_side">
+    <div class="title">
+      <h1>Supplementary Task File</h1>
+    </div>
+	<% if @task.supplementary_task_files.present? %>
+		<% @task.supplementary_task_files.each do |supplementary_task_file| %>
+		  <div class="filesbox fr_edt blockForm2">
+			<%= link_to supplementary_task_file.file_file_name, supplementary_task_file.file.url(:original, false) %>
+			<input type="file" name="supplementary_files[<%=supplementary_task_file.id%>]"> 
+		  </div>
+		<% end %>
+	<% end %>
+   </div>
 </div>
