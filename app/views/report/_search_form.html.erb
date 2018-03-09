@@ -1,0 +1,42 @@
+<%= search_form_for @search, url: report_index_path,
+                        html: { method: :get } do |task| %>
+    <div class="title">
+     <h1>Search</h1>
+    </div>
+    <div class="src_frm">
+     <%= task.text_field :name_cont_any,
+                               placeholder: 'Task Title' %>
+    </div>  
+
+    <div class="src_frm">
+      <%= task.select :task_form_tag_id_eq, options_from_collection_for_select(@task_form_tag_values, "task_form_tag_id", "name", @search.task_form_tag_id_eq), {include_blank: "Please select a tag"}, {:class => "select2", :style => "width:100%"} %>
+    </div>  
+
+    <div class="src_frm">
+     <%= task.text_field :task_status_cont_any,
+                               placeholder: 'Task Status' %>
+    </div> 
+
+    <div class="src_frm">
+     <%= task.text_field :created_at_gteq,
+                               placeholder: 'Start Date', :id => "startDate", :value => params[:q].present? ? (params[:q][:created_at_gteq].present? ? params[:q][:created_at_gteq] : "") : "" %>
+    </div> 
+
+    <div class="src_frm">
+     <%= task.text_field :created_at_lteq,
+                               placeholder: 'End Date', :id => "endDate", :value => params[:q].present? ? (params[:q][:created_at_lteq].present? ? params[:q][:created_at_lteq] : "") : "" %>
+    </div> 
+
+    <div class="src_frm">
+      <%= task.submit "Search", class: 'btn' %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#startDate, #endDate").datepicker({
+          showOn: 'focus',
+          changeMonth: true,
+          dateFormat: 'yy-mm-dd'});
+	});
+</script>

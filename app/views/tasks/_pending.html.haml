@@ -6,6 +6,10 @@
     /   .strip.white #{t :other}
 
     .tools
+      - if pending.task_status.present? && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "returned")
+        %span.task-status.activeIco Active
+      - else
+        %span.task-status.deActiveIco Deactive
       =# link_to_task_edit(pending, bucket) + " | "
       =# link_to_discard(pending) + " | " if shown_on_landing_page?
       = link_to_task_delete_task(pending, bucket)

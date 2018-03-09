@@ -1271,3 +1271,22 @@ width: 96%;}
 .r_side {float: left; display: block; width: 50%;}
 .edit_task_file .fr_edt.blockForm2 {width: 98%;}
 .edit_task_file .title {margin: 0 0 15px 0;}
+
+#task_search .select2-selection {height: 33px; padding: 3px 2px;}
+#task_search .select2-selection .select2-selection__rendered {height: 33px; color: gray;}
+.task-status {padding: 3px 30px 3px 0px;
+  font-size: 12px;
+  font-weight: 600;
+  background-size: 15px;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+  background-position: left center;
+}
+.task-status.activeIco {
+  color: green;
+  background-image: url(activeIcon.png);
+}
+.task-status.deActiveIco {
+  background-image: url(deActiveIcon.png);
+  color: grey;
+}
