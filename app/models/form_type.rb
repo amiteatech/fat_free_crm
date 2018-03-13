@@ -1,0 +1,2 @@
+class FormType < ApplicationRecord
+end

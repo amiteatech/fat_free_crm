@@ -1,0 +1,56 @@
+
+
+
+<p id="notice"><%= notice %></p>
+
+<div class="title report">
+  <h1>Form Types</h1>
+</div>
+
+<div class="tagRow">
+  <fieldset> 
+    <legend>Form</legend>
+  <div class="title report">
+    
+    <%= simple_form_for(FormType.new) do |f| %>
+    
+    <div class="inputs">
+      <%= f.input :name, input_html: { minlength: 1, manlength: 30, :style => 'width:200px;' } %>
+      <%#= f.hidden_field :task_form_tag_id, :value => t.id %>
+      <%= f.hidden_field :company_id, :value => current_user.company_id %>
+    </div>
+
+    <div class="actions">
+      <%= f.button :submit, "Save",:class => 'btn' %>
+    </div>
+  <% end %>
+
+  </div>
+  <div class="cl"></div>
+  <table class="company_table report" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @form_types.where(:company_id => current_user.company_id).each do |task_form| %>
+        <tr>
+          <td><%= task_form.name %></td>
+          <td><%= link_to 'Destroy', task_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</fieldset>
+</div>
+
+
+
+<%#= link_to 'New Task Form Tag Value', new_task_form_tag_value_path %>
+
+
+<br>
+
