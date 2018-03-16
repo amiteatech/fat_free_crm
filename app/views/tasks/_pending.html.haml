@@ -1,4 +1,4 @@
-- if ((pending.user_id == current_user.id || pending.assigned_to == current_user.id) && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "returned"))
+- if ((pending.user_id == current_user.id || pending.assigned_to == current_user.id) && (pending.task_status && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "return")))
   %li.highlight[pending]
     / - unless pending.category.blank?
     /   .strip{:class => pending.category}= t(pending.category)
@@ -6,11 +6,11 @@
     /   .strip.white #{t :other}
 
     .tools
-      - if pending.task_status.present? && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "returned")
+      - if pending.task_status.present? && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "return")
         - if pending.task_status.downcase == "pending"
           %span.task-status.activeIco Pending
         - else
-          %span.task-status.activeIco Return   
+          %span.task-status.activeIco Returned   
       - else
         %span.task-status.deActiveIco Deactive
       =# link_to_task_edit(pending, bucket) + " | "

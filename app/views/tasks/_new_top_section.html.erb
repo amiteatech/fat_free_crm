@@ -26,7 +26,7 @@
         
 
        %>
-       <%= select_tag "option_value[#{tag.id}]", options_from_collection_for_select(tag_values, "id", "name", selected_value ), :class => 'select2_tag' %>
+       <%= select_tag "option_value[#{tag.id}]", options_from_collection_for_select(tag_values, "id", "name", selected_value ), include_blank: "Please select an option", :class => 'select2_tag selectWorkflow' %>
        <%#= task_form_tag_value_id %>
        <%#=  f.input "option_value[#{indx}]", :collection => tag_values.map{|s|[s.name, s.id]}, label: false , input_html: { class: 'select2_tag' }  %>
       </div>
@@ -49,11 +49,11 @@
         <% bucket = (params[:bucket].blank? ? @task.bucket : params[:bucket]) || "due_asap" %>
 
           <%#= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "", :onload => "crm.flip_calendar(this.value)" } %>
-        <%= f.text_field :calendar, :autocomplete => :off, :class => 'datetime' %>
+        <%= f.text_field :calendar, :autocomplete => :off, :class => 'datetime dueAT' %>
         <% else %>
           <%#= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "", :onchange => "crm.flip_calendar(this.value)" } %>
           <% fmt = with_time ? '%Y-%m-%d %H:%M' : '%Y-%m-%d' %>
-          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :autocomplete => :off, :class => 'datetime' %>
+          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :autocomplete => :off, :class => 'datetime dueAT' %>
         <% end %>
       </div>
     </div>
@@ -96,6 +96,15 @@
   <% end %>
   <div class="cl"></div>
 </div>
+
+<% unless action_name == "new" || @task.task_created_id == current_user.id %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#task_name, .selectWorkflow, .dueAT, .taskForm .assignedUserSelect").attr("disabled",true);
+    });
+  </script>
+<% end %>
+
 <script type="text/javascript">
   $(document).ready( function() {
     // setTimeout(function(){ 

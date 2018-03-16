@@ -9,7 +9,15 @@
     </div>  
 
     <div class="src_frm">
-      <%= task.select :task_form_tag_id_eq, options_from_collection_for_select(@task_form_tag_values, "task_form_tag_id", "name", @search.task_form_tag_id_eq), {include_blank: "Please select a tag"}, {:class => "select2", :style => "width:100%"} %>
+     <%= task.select :task_form_tag_id_eq, options_from_collection_for_select(TaskFormTag.where(company_id: current_user.company_id), "id", "name", @search.task_form_tag_id_eq), {include_blank: "Please select a tag type"}, {:class => "select2", :style => "width:100%"} %>
+    </div>  
+
+    <!-- <div class="src_frm">
+      <%#= task.select :task_form_tag_id_eq, options_from_collection_for_select(@task_form_tag_values, "task_form_tag_id", "name", @search.task_form_tag_id_eq), {include_blank: "Please select a tag"}, {:class => "select2", :style => "width:100%"} %>
+    </div>   -->
+
+    <div class="src_frm">
+     <%= task.select :user_tasks_user_id_eq, options_from_collection_for_select(User.where(company_id: current_user.company_id), "id", "name", @search.user_tasks_user_id_eq), {include_blank: "Please select a staff"}, {:class => "select2", :style => "width:100%"} %>
     </div>  
 
     <div class="src_frm">

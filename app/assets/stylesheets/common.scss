@@ -1290,3 +1290,8 @@ width: 96%;}
   background-image: url(deActiveIcon.png);
   color: grey;
 }
+.edit-task-radio {margin-top: 20px;}
+.edit-task-radio input[type="radio"] {
+  margin-top: -1px;
+  vertical-align: middle;
+}

@@ -1,6 +1,7 @@
 
 <%= simple_form_for(@task, html: { :multipart => true }) do |f| %>
-  <%= link_to_close new_task_path + "?view=#{@view}" %>
+  <%#= link_to_close new_task_path + "?view=#{@view}" %>
+  <%= link_to "X", tasks_path, :class => "close" %>
   <%= hidden_field_tag :view, @view %>
   <%= hidden_field_tag "task[user_id]", current_user.id %>
   <%= hidden_field_tag "task[asset_id]", "#{@asset.id if @asset}" %>
@@ -46,7 +47,8 @@
   <div class="createPageButtonbar">
     <%= f.submit t :create_task %>
     <span>or</span>
-    <%= link_to_cancel new_task_path + "?view=#{@view}" %>
+    <%#= link_to_cancel new_task_path + "?view=#{@view}" %>
+    <%= link_to "Cancel", tasks_path %>
   </div>
 <% end %>
 

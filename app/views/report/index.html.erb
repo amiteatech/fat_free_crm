@@ -10,37 +10,53 @@
 
 		<table class="company_table report" border="0" cellspacing="0" cellpadding="0" width="100%">	
 			<thead>
-			    <tr>
-					<th >
-						Number
-				    </th>
-				    <th >
-						Form Name
-				    </th>
-				    <th>Tag Category</th>
-				    <th >
-						Form Status
-				    </th>
+			  <tr>
+					<th>Number</th>
+			    <th>Task</th>
+			    <th>Type</th>
+			    <th>Form</th>
+			    <th>Year</th>
+			    <th>Edutrust Item Number</th>
+			    <th>Due date</th>
+			    <th>Staff</th>
+			    <!-- <th>Tag Category</th> -->
+			    <th>Status</th>
 				</tr>
-		    </thead>		
+		  </thead>		
 
 		  <% @tasks.each do |task| %>
-		     <tr>
-				<td >
-				<%= task.id %>
+		    <tr>
+					<td><%= task.id %></td>
+			    <td>
+			    	<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
 			    </td>
-			    <td >
-			
-
-				<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+			    <td>
+			    	<% if task.task_form_tag_id.present? %>
+			    		<% if TaskFormTag.where(id: task.task_form_tag_id).first.present? %>
+			    			<%= TaskFormTag.where(id: task.task_form_tag_id).first.name %>
+			    		<% end %>
+			    	<% end %>
 			    </td>
-
 			    <td>
 
-			    	
-
 			    </td>
-			    
+			    <td>
+			    					
+			    </td>
+			    <td>
+			    					
+			    </td>
+			    <td>
+			    	<% if task.due_at.present? %>
+			    		<%= task.due_at.strftime('%Y-%m-%d %H:%M') %>
+			    	<% end %>
+			    </td>
+			    <td>
+			    	<% task.user_tasks.where.not(id: task.task_created_id).each do |user_task| %>
+              <%  @user = User.find(user_task.user_id) %>
+              <%= @user.name %><%= (task.user_tasks.where.not(id: task.task_created_id).last == user_task) ? "" : "," %>
+            <% end %>
+			    </td>
 			    <td >
 			     <%=  task.task_status %>
 			    </td>

@@ -19,10 +19,12 @@
    <%= render "task_file" %>
 <% end %>
 
-<% if current_user.admin == true || @task.task_created_id == current_user.id%>
   <%= render "tasks/new_top_section",    :f => f, :edit => true %>
-    <%= f.label :is_cancelled, "Cancelled" %>
-       <%=  f.input_field :is_cancelled %>  
+<% if current_user.admin == true || @task.task_created_id == current_user.id%>
+  <div class="edit-task-radio">
+    <%= f.label :is_cancelled, "Cancelled:" %>
+    <%=  f.input_field :is_cancelled, as: :radio_buttons %>  
+  </div>
 <% end %> 
 
 <% if action_name != "new" %>
@@ -30,9 +32,11 @@
       <div class="second">
        <%= radio_button("task", "completed", "1") %> <span class="text"> Completed </span>
       </div>
-      <div class="second">
-       <%= radio_button("task", "completed", "2") %> <span class="text"> Rejected </span>
-      </div>  
+      <% unless current_user.is_admin? %>
+        <div class="second">
+         <%= radio_button("task", "completed", "2") %> <span class="text"> Rejected </span>
+        </div>  
+      <% end %>
     </div>
     <!-- <div>
       <ul>
