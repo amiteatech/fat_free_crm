@@ -7,7 +7,31 @@
   = render "title"
 
 .log#tasks
-  = render :partial => 'pending', :collection => @tasks || [], :locals => { :bucket => 'pending' }
+  %table.company_table{ :cellpadding => "0", :cellspacing => "0" }
+    %thead
+      %tr
+        %th
+          Number
+        %th
+          Task Title
+        %th
+          Type
+        %th
+          Form
+        %th
+          Year
+        %th
+          Edutrust Item Number
+        %th
+          Due date
+        %th
+          Staff
+        %th
+          Status
+        %th
+          Action
+    %tbody
+      = render :partial => 'pending', :collection => @tasks || [], :locals => { :bucket => 'pending' }
   - if @tasks.values.flatten.blank?
     = render "empty"
   .cl
@@ -19,3 +43,50 @@
   - else
     #{t :no_task_records}
 
+  / .wrapper
+  /   .popup
+  /     %iframe{:src => "", :class => "popuptext"}
+  /       %p Your browser does not support iframes.
+  /     %a.close{:href => "#"} X
+
+  / The Modal
+/ #myModal.modal
+/   / Modal content
+/   .modal-content
+/     %span.close ×
+/     .wrapper
+/       .popup
+/         %iframe{:src => "", :class => "popuptext"}
+/           %p Your browser does not support iframes.
+
+
+/ :javascript
+/   $(document).ready( function() {
+/      // Get the modal
+/     var modal = document.getElementById('myModal');
+
+/     // Get the button that opens the modal
+/     var btn = document.getElementsByClassName("openpop");
+
+/     // Get the <span> element that closes the modal
+/     var span = document.getElementsByClassName("close")[0];
+
+/     // When the user clicks on the button, open the modal 
+/     $(".openpop").on("click", function(e) {
+/       //e.preventDefault();
+/       $("iframe").attr("src", $(this).data('url')).attr("width", "100%").attr("height", "500px").addClass("show");
+/       modal.style.display = "block";
+/     });
+
+/     // When the user clicks on <span> (x), close the modal
+/     span.onclick = function() {
+/         modal.style.display = "none";
+/     }
+
+/     // When the user clicks anywhere outside of the modal, close it
+/     window.onclick = function(event) {
+/         if (event.target == modal) {
+/             modal.style.display = "none";
+/         }
+/     }
+/   });

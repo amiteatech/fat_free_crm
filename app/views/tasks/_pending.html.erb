@@ -1,0 +1,63 @@
+ <% if ((pending.user_id == current_user.id || pending.assigned_to == current_user.id) && (pending.task_status && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "return"))) %>
+  <tr id="task_<%=pending.id%>">
+    <!-- unless pending.category.blank?
+      .strip{:class => pending.category}= t(pending.category)
+    else
+      .strip.white #{t :other}
+    -->
+    <td><%= pending.id %></td>
+    <td>
+      <label id="<%= dom_id(pending, :name) %>">
+        <% if pending.user.id != current_user.id %>
+          <%= t(:task_from, link_to(h(pending.user.full_name), user_path(pending.user))).html_safe << ':' %>
+        <% end %>
+        <%= link_to h(pending.name), edit_task_path(pending.id) %>
+      </label>
+    </td>
+    <td>
+      <% if pending.task_form_tag_id.present? %>
+        <% if TaskFormTag.where(id: pending.task_form_tag_id).first.present? %>
+          <%= TaskFormTag.where(id: pending.task_form_tag_id).first.name %>
+        <% end %>
+      <% end %>
+    </td>
+    <td>
+
+    </td>
+    <td>
+              
+    </td>
+    <td>
+              
+    </td>
+    <td>
+      <% if pending.due_at.present? %>
+        <%= pending.due_at.strftime('%Y-%m-%d %H:%M') %>
+      <% end %>
+    </td>
+    <td>
+      <% pending.user_tasks.where.not(id: pending.task_created_id).each do |user_task| %>
+        <%  @user = User.find(user_task.user_id) %>
+        <%= @user.name %><%= (pending.user_tasks.where.not(id: pending.task_created_id).last == user_task) ? "" : "," %>
+      <% end %>
+    </td>
+    <td>
+      <!--<%# if pending.task_status.present? && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "return") %>
+        <%# if pending.task_status.downcase == "pending" %>
+          <span class="task-status activeIco">Pending</span>
+        <%# else %>
+          <span class="task-status activeIco">Returned   </span>
+        <%# end %>
+      <%# else %>
+        <span class="task-status deActiveIco">Deactive</span>
+      <%# end %> -->
+      <%= pending.task_status %>
+      <%#= link_to_task_edit(pending, bucket) + " | " %>
+      <%#= link_to_discard(pending) + " | " if shown_on_landing_page? %>
+    </td>
+    <td>
+      <%= link_to_task_delete_task(pending, bucket) %>
+      <!-- %div.cl -->
+    </td>
+  </tr>
+<% end %>
