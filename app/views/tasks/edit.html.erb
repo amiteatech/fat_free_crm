@@ -20,21 +20,25 @@
 <% end %>
 
   <%= render "tasks/new_top_section",    :f => f, :edit => true %>
-<% if current_user.admin == true || @task.task_created_id == current_user.id%>
-  <div class="edit-task-radio">
-    <%= f.label :is_cancelled, "Cancelled:" %>
-    <%=  f.input_field :is_cancelled, as: :radio_buttons %>  
-  </div>
-<% end %> 
+<%# if current_user.admin == true || @task.task_created_id == current_user.id %>
+  <!-- <div class="edit-task-radio">
+    <%#= f.label :is_cancelled, "Cancelled:" %>
+    <%#=  f.input_field :is_cancelled, as: :radio_buttons %>  
+  </div> -->
+<%# end %> 
 
 <% if action_name != "new" %>
     <div class="buttonbar first">
       <div class="second">
-       <%= radio_button("task", "completed", "1") %> <span class="text"> Completed </span>
+       <%= radio_button("task", "completed", "1", {:checked => ((@task.task_status && @task.task_status.downcase == "completed") ? "checked" : "")}) %> <span class="text"> Completed </span>
       </div>
-      <% unless current_user.is_admin? %>
+      <% if @task.task_created_id == current_user.id %>
         <div class="second">
-         <%= radio_button("task", "completed", "2") %> <span class="text"> Rejected </span>
+          <%= radio_button("task", "completed", "3", {:checked => ((@task.task_status && @task.task_status.downcase == "cancelled") ? "checked" : "")}) %> <span class="text"> Cancelled </span>
+        </div>
+      <% else %>
+        <div class="second">
+         <%= radio_button("task", "completed", "2", {:checked => ((@task.task_status && @task.task_status.downcase == "return") ? "checked" : "")}) %> <span class="text"> Rejected </span>
         </div>  
       <% end %>
     </div>
@@ -54,8 +58,8 @@
 
     <div class="buttonbar">
 
-      <%= f.submit t :save_task %>
-      
+      <%= f.submit t :save_task %> or 
+      <%= link_to "Cancel", tasks_path, class: "button" %>
       <div class="cl"></div>
     </div>
   <% end %>

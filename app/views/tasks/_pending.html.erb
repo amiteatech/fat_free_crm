@@ -1,4 +1,4 @@
- <% if ((pending.user_id == current_user.id || pending.assigned_to == current_user.id) && (pending.task_status && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "return"))) %>
+ <% if ((pending.user_id == current_user.id || pending.assigned_to == current_user.id) && (pending.task_status && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "return" || pending.task_status.downcase == "cancelled"))) %>
   <tr id="task_<%=pending.id%>">
     <!-- unless pending.category.blank?
       .strip{:class => pending.category}= t(pending.category)

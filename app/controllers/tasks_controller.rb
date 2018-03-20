@@ -268,16 +268,14 @@ class TasksController < ApplicationController
         @user_task.update_attributes(rejected: true, rejected_time: Time.now)
         @task.update_attribute("assigned_to", @task.task_created_id)
         @task.update_attribute("task_status", "Return")
-      end 
-
-      if params[:task][:is_cancelled].present? && params[:task][:is_cancelled] == true
+      elsif params[:task][:completed] == "3"
         @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).last
         @first_user_in_order = @task.task_created_id
         @user_task.update_attributes(rejected: true, rejected_time: Time.now)
         @task.update_attribute("assigned_to", @task.task_created_id)
-        @task.update_attribute("task_status", "Return")
+        @task.update_attribute("is_cancelled", true)
+        @task.update_attribute("task_status", "cancelled")
       end  
-
     end 
     
 
