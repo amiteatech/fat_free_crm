@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div class="blockForm2 bottom">
+    <div class="blockForm2 ">
       <label class="req">Assign to:</label>      
       <div class="span2">
         <%= multi_user_select(:task, all_users, @task.id) %>
@@ -77,21 +77,22 @@
   </div>
    <% if @user_tasks.present? %>
   <div class="halfRight">
-    <div class="label top req task_name task_assign">Task assigned to:</div>
-    <div class="selected_users">
+    <div class="blockForm2 assigned">
+      <label class="req">Task assigned to:</label>
+      <div class="selected_users">
           <ul id="sortable">
             <% if @user_tasks.present? %>
               <% @user_tasks.each do |user_task| %>
-                <%  @user = User.find(user_task.user_id) %>
-                <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
-                  <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-                  <%= @user.name %>
-                
-                </li>
+                  <%  @user = User.find(user_task.user_id) %>
+                  <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
+                    <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                    <%= @user.name %>
+                  </li>
               <% end %>
             <% end %>
           </ul>
-        </div>    
+      </div> 
+    </div>   
   </div>
   <% end %>
   <div class="cl"></div>
