@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div class="blockForm2 ">
+    <div class="blockForm2">
       <label class="req">Assign to:</label>      
       <div class="span2">
         <%= multi_user_select(:task, all_users, @task.id) %>
@@ -78,7 +78,7 @@
    <% if @user_tasks.present? %>
   <div class="halfRight">
     <div class="blockForm2 assigned">
-      <label class="req">Task assigned to:</label>
+      <label class="label top req task_assign">Task assigned to:</label>
       <div class="selected_users">
           <ul id="sortable">
             <% if @user_tasks.present? %>
