@@ -1324,3 +1324,18 @@ width: 96%;}
 .edit_task .blockForm2.assigned {padding: 0px 2% 0px 0%;}
 #tasks label a:hover {background: none; color: #111d42;}
 .assigned #sortable li {font-size:13px;}
+
+.title.report { float: left; margin-bottom: 20px; }
+.download_excel {
+  float: right;
+  margin-top: 20px;
+  a {
+    padding: 7px 20px;
+    background-color: #3c8dbc;
+    color: #FFF;
+    font-size: 13px;
+  }
+  a:hover {
+    background-color: #367fa9;
+  }
+}

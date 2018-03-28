@@ -5,5 +5,10 @@ class ReportController < ApplicationController
     
     @task_form_tag_values = TaskFormTagValue.where(:company_id => current_user.company_id)
   	# @tasks = Task.where(:company_id => current_user.company_id).order("id desc")
+  	respond_to do |format|
+		  format.html
+		  # format.csv { send_data @tasks.to_csv }
+		  format.xls 
+		end
   end
 end

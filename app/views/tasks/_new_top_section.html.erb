@@ -75,25 +75,25 @@
     <% end %>
     <%= hook(:task_top_section_bottom, self, :f => f) %>   
   </div>
-   <% if @user_tasks.present? %>
-  <div class="halfRight">
-    <div class="blockForm2 assigned">
-      <label class="label top req task_assign">Task assigned to:</label>
-      <div class="selected_users">
-          <ul id="sortable">
-            <% if @user_tasks.present? %>
-              <% @user_tasks.each do |user_task| %>
-                  <%  @user = User.find(user_task.user_id) %>
-                  <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
-                    <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-                    <%= @user.name %>
-                  </li>
+   <% if @user_tasks.present? && @task.task_created_id === current_user.id %>
+    <div class="halfRight">
+      <div class="blockForm2 assigned">
+        <label class="label top req task_assign">Task assigned to:</label>
+        <div class="selected_users">
+            <ul id="sortable">
+              <% if @user_tasks.present? %>
+                <% @user_tasks.each do |user_task| %>
+                    <%  @user = User.find(user_task.user_id) %>
+                    <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
+                      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                      <%= @user.name %>
+                    </li>
+                <% end %>
               <% end %>
-            <% end %>
-          </ul>
-      </div> 
-    </div>   
-  </div>
+            </ul>
+        </div> 
+      </div>   
+    </div>
   <% end %>
   <div class="cl"></div>
 </div>
@@ -134,7 +134,7 @@
                 // alert(resp);
             },
             error: function(e) {
-              alert('Error: '+e);
+              alert('User ordering unsuccessful for some reason.');
             }  
           });
         });
