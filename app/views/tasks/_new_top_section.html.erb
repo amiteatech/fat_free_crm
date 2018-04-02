@@ -96,6 +96,28 @@
     </div>
   <% end %>
   <div class="cl"></div>
+  <% if action_name == "new" || @task.task_created_id == current_user.id %>
+    <div class="task_password_protected">
+      <div class="span2">
+       <%= f.check_box :password_protected %>
+      </div>
+      <label class="top">Set password for task:</label>      
+    </div>
+    <div class="cl"></div>
+    <div class="blockForm2 password_box" style="display: <%= @task.password_protected ? 'block' : 'none'; %>">
+      <label class="top task_password">Password:</label>      
+      <div class="span2">
+       <%= password_field_tag :password %>
+      </div>
+    </div>
+    <div class="blockForm2 password_box" style="display: <%= @task.password_protected ? 'block' : 'none'; %>">
+      <label class="top task_password">Password Confirmation:</label>      
+      <div class="span2">
+       <%= password_field_tag :password_confirmation %>
+      </div>
+    </div>
+    <div class="cl"></div>
+  <% end %>
 </div>
 
 <% unless action_name == "new" || @task.task_created_id == current_user.id %>
@@ -115,7 +137,14 @@
     //     $("ul.select2-selection__rendered li.select2-search.select2-search--inline").prepend("<li class='select2-selection__choice' title='"+text+"><span class='select2-selection__choice__remove' role='presentation'>×</span>"+text+"</li>");
     //   });
     // }, 300);
-  
+    
+    $(".task_password_protected input").on("click", function() {
+      if ($(this).is(":checked")) {        
+        $(".password_box").show();
+      } else {
+        $(".password_box").hide();
+      }
+    });
  
     $( "#sortable" ).sortable({
       start: function(event, ui) {

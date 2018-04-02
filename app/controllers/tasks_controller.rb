@@ -114,7 +114,20 @@ class TasksController < ApplicationController
     if params["task"]["form_number"]
       @task.form_number = params["task"]["form_number"].to_i
     end
-  
+    
+    if params[:task][:password_protected] == "1"
+      if params[:password] && params[:password_confirmation]
+        if params[:password] == params[:password_confirmation]
+          @task.password = params[:password]
+          @task.password_protected = true
+        else
+          flash[:notice] = "Password did not match."
+          redirect_to new_task_path and return
+        end
+        @task.password_protected = false
+      end
+    end
+
     if params[:task][:calendar]
       begin
       @task.due_at = Time.parse(params[:task][:calendar])
@@ -138,12 +151,6 @@ class TasksController < ApplicationController
           @user_task.task_id = @task.id
           @user_task.position = pos
           @user_task.save
-
-          # @vito = Vito.new
-          # @vito.user_id = user_id
-          # @vito.task_id = @task.id
-          # @vito.vito_status = false
-          # @vito.save
         end
         if params['option_value'].present?
           params['option_value'].each do |key,value|
@@ -222,6 +229,16 @@ class TasksController < ApplicationController
        @users_selected = params[:users].reject { |c| c.empty? } 
     end 
 
+    if params[:task][:password_protected] == "1"
+      if params[:password] && params[:password_confirmation]
+        if params[:password] == params[:password_confirmation]
+          @task.update_attributes(password: params[:password]) 
+        else
+          flash[:notice] = "Password did not match."
+          redirect_to edit_task_path(@task) and return
+        end
+      end
+    end
    
     if @users_selected.present?
         @pos = 0
@@ -236,8 +253,6 @@ class TasksController < ApplicationController
             end
           end
     else
-      
-   
     end 
     if params[:task] && params[:task][:completed]
 
@@ -463,19 +478,6 @@ class TasksController < ApplicationController
     respond_with(@task)
   end
 
-  # def vito_status
-  #   @vitos = Vito.where(task_id: params[:id])
-  #   if @vitos
-  #     @vitos.each do |vito|
-  #       if vito.user_id == params[:user_id].to_i
-  #         vito.update_attributes(vito_status: true)
-  #       else
-  #         vito.update_attributes(vito_status: false)
-  #       end
-  #     end
-  #   end
-  # end
-
   def show_files
     # @document = FileUpload.find(params[:id])
     # send_data(@document.file_contents, type: @document.content_type, filename: @document.file)
@@ -499,6 +501,21 @@ class TasksController < ApplicationController
                      GOOGLE_CLIENT_REDIRECT_URI)
       auth_url = google_drive.set_google_authorize_url
       redirect_to auth_url
+    end
+  end
+
+  def task_protected
+    if params[:task_password].present?
+      @task = Task.find(params[:task_id])
+      respond_to do |format|
+        if params[:task_password] == @task.password
+          @authenticated = true
+        else
+          @authenticated = false
+        end
+        format.html 
+        format.js { }
+      end
     end
   end
 

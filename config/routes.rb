@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :task_form_tags
   resources :thrid_forms
   get 'report/index'
+  post 'tasks/task_protected' => 'tasks#task_protected'
 
   resources :form_second_details
   resources :form_seconds
@@ -157,7 +158,6 @@ Rails.application.routes.draw do
       put :reject
       put :task_comment
       put :task_reject
-      # put :vito_status
     end
   end
 

@@ -1345,3 +1345,8 @@ width: 96%;}
   height: auto;
 }
 #create_group { padding: 10px 0; }
+
+.task_password_protected {margin-top: 20px;}
+.task_password_protected .span2 {display: inline-block;} 
+.task_password_protected label {display: inline; vertical-align: super;} 
+.password_box {display: none;}

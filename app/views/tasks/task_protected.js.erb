@@ -1,0 +1,7 @@
+var authenticated = "<%=@authenticated%>"
+if (authenticated == "true") {
+	window.location.href = "tasks/<%=@task.id%>/edit"
+} else {
+	alert("Incorrect password. Plase try again.")
+}
+
