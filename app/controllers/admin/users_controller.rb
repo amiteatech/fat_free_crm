@@ -116,6 +116,7 @@ class Admin::UsersController < Admin::ApplicationController
       :first_name,
       :last_name,
       :title,
+      :role,
       :company,
       :alt_email,
       :phone,

@@ -787,9 +787,9 @@ li.highlight.task {background: #fff; border-left:solid 5px #e6e6e6; box-shadow: 
 li.highlight.task:hover{background: #f9f8f8;}
 tr.userTask {display: inline-block; padding-top: 10px;}
 .selected_users {margin-left: 120px;}
-#sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
-#sortable li { margin: 0 3px 3px 3px; width: 200px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-#sortable li span { position: absolute; margin-left: -1.3em; }
+.selected_users ul.sort-list { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+.selected_users ul.sort-list li { margin: 0 3px 3px 3px; width: 200px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+.selected_users ul.sort-list li span { position: absolute; margin-left: -1.3em; }
 .task_name {float: left;}
 .completed-task, .rejected-task {display: inline-flex;}
 .task_comment {margin-left: 10px; float: none;     margin-top: -3px; width: 50%; height: 13px;}
@@ -836,7 +836,7 @@ display: inline-block; cursor: pointer;}
 .taskForm input[type=text], .taskForm textarea{border: 1px solid #ccc; box-shadow: inset 0 1px 1px #ddd; padding:8px 10px; width:70%;}
 .taskForm table td textarea{width:80%; min-height:100px;}
 .taskForm table tr{padding-top: 10px;}
-#sortable li{ background:#fff;}
+.selected_users ul.sort-list li{ background:#fff;}
 .firstTd{ min-width: 300px; }
 .firstTd .select2-container{width: 350px !important; margin-right: 15px;}
 .upload input{ width: 175px; }
@@ -1128,7 +1128,7 @@ span{float:left; display:inline-block; line-height:23px;}
 #main .edit_task {width:100%; max-width:700px; margin:0 auto; padding:30px 70px;
 .taskForm input[type="text"], .taskForm textarea { width: 75%;}
 .firstTd .select2-container {width: 325px !important;}
-#sortable li {width: 337px;}
+.selected_users ul.sort-list li {width: 337px;}
 }
 #main .first_form_task .title {margin:0 0 15px 0; text-align:center; border-bottom: none; 
 h1 {font-size: 20px;}
@@ -1315,7 +1315,7 @@ width: 96%;}
 .filters#filters {width: 85%; float: left; padding: 8px 15px 15px 15px;}
 .filters#filters input:focus {outline: none;}
 .assigned .selected_users {margin-left: 0;}
-#main .edit_task .assigned #sortable li {width: 90%; border: 1px solid #c5c5c5;}
+#main .edit_task .assigned .selected_users ul.sort-list li {width: 90%; border: 1px solid #c5c5c5;}
 @media (max-width: 1200px) {
   #main .edit_task {width:100%; max-width:650px; margin:0 auto; padding:30px 70px;}
 }
@@ -1323,7 +1323,7 @@ width: 96%;}
 .edit_task .taskForm .halfRight {margin-top: 0;}
 .edit_task .blockForm2.assigned {padding: 0px 2% 0px 0%;}
 #tasks label a:hover {background: none; color: #111d42;}
-.assigned #sortable li {font-size:13px;}
+.assigned .selected_users ul.sort-list li {font-size:13px;}
 
 .title.report { float: left; margin-bottom: 20px; }
 .download_excel {

@@ -75,26 +75,28 @@
     <% end %>
     <%= hook(:task_top_section_bottom, self, :f => f) %>   
   </div>
-   <% if @user_tasks.present? && @task.task_created_id === current_user.id %>
-    <div class="halfRight">
-      <div class="blockForm2 assigned">
-        <label class="label top req task_assign">Task assigned to:</label>
-        <div class="selected_users">
-            <ul id="sortable">
-              <% if @user_tasks.present? %>
-                <% @user_tasks.each do |user_task| %>
-                    <%  @user = User.find(user_task.user_id) %>
-                    <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
-                      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-                      <%= @user.name %>
-                    </li>
-                <% end %>
+  <div class="halfRight">
+    <div class="blockForm2 assigned">
+      <label class="label top req task_assign">Task assigned to:</label>
+      <div class="selected_users">
+        <% if @user_tasks.present? && @task.task_created_id === current_user.id %>
+          <ul id="sortable" class="sort-list">
+        <% else %>
+          <ul class="sort-list">
+        <% end %>
+            <% if @user_tasks.present? %>
+              <% @user_tasks.each do |user_task| %>
+                  <%  @user = User.find(user_task.user_id) %>
+                  <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
+                    <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                    <%= @user.name %>
+                  </li>
               <% end %>
-            </ul>
-        </div> 
-      </div>   
-    </div>
-  <% end %>
+            <% end %>
+          </ul>
+      </div> 
+    </div>   
+  </div>
   <div class="cl"></div>
   <% if action_name == "new" || @task.task_created_id == current_user.id %>
     <div class="task_password_protected">
@@ -120,7 +122,7 @@
   <% end %>
 </div>
 
-<% unless action_name == "new" || @task.task_created_id == current_user.id %>
+<% unless action_name == "new" || @task.task_created_id == current_user.id || current_user.is_admin? || current_user.is_manager? %>
   <script type="text/javascript">
     $(document).ready(function() {
       $("#task_name, .selectWorkflow, .dueAT, .taskForm .assignedUserSelect").attr("disabled",true);

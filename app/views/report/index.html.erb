@@ -27,43 +27,81 @@
 		  </thead>		
 
 		  <% @tasks.each do |task| %>
-		    <tr>
-					<td><%= task.id %></td>
-			    <td>
-			    	<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
-			    </td>
-			    <td>
-			    	<% if task.task_form_tag_id.present? %>
-			    		<% if TaskFormTag.where(id: task.task_form_tag_id).first.present? %>
-			    			<%= TaskFormTag.where(id: task.task_form_tag_id).first.name %>
-			    		<% end %>
-			    	<% end %>
-			    </td>
-			    <td>
+		  	<% if current_user.is_admin? || current_user.is_manager? %>
+			    <tr>
+						<td><%= task.id %></td>
+				    <td>
+				    	<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+				    </td>
+				    <td>
+				    	<% if task.task_form_tag_id.present? %>
+				    		<% if TaskFormTag.where(id: task.task_form_tag_id).first.present? %>
+				    			<%= TaskFormTag.where(id: task.task_form_tag_id).first.name %>
+				    		<% end %>
+				    	<% end %>
+				    </td>
+				    <td>
 
-			    </td>
-			    <td>
-			    					
-			    </td>
-			    <td>
-			    					
-			    </td>
-			    <td>
-			    	<% if task.due_at.present? %>
-			    		<%= task.due_at.strftime('%Y-%m-%d %H:%M') %>
-			    	<% end %>
-			    </td>
-			    <td>
-			    	<% task.user_tasks.where.not(id: task.task_created_id).each do |user_task| %>
-              <%  @user = User.find(user_task.user_id) %>
-              <%= @user.name %><%= (task.user_tasks.where.not(id: task.task_created_id).last == user_task) ? "" : "," %>
-            <% end %>
-			    </td>
-			    <td >
-			     <%=  task.task_status %>
-			    </td>
-		    </tr>
+				    </td>
+				    <td>
+				    					
+				    </td>
+				    <td>
+				    					
+				    </td>
+				    <td>
+				    	<% if task.due_at.present? %>
+				    		<%= task.due_at.strftime('%Y-%m-%d %H:%M') %>
+				    	<% end %>
+				    </td>
+				    <td>
+				    	<% task.user_tasks.where.not(id: task.task_created_id).each do |user_task| %>
+	              <%  @user = User.find(user_task.user_id) %>
+	              <%= @user.name %><%= (task.user_tasks.where.not(id: task.task_created_id).last == user_task) ? "" : "," %>
+	            <% end %>
+				    </td>
+				    <td >
+				     <%=  task.task_status %>
+				    </td>
+			    </tr>
+			  <% elsif !((task.task_status == "cancelled" || task.task_status == "Cancelled" || task.task_status == "return" || task.task_status == "Return") && (task.task_created_id != current_user.id)) %>
+			  	<tr>
+						<td><%= task.id %></td>
+				    <td>
+				    	<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+				    </td>
+				    <td>
+				    	<% if task.task_form_tag_id.present? %>
+				    		<% if TaskFormTag.where(id: task.task_form_tag_id).first.present? %>
+				    			<%= TaskFormTag.where(id: task.task_form_tag_id).first.name %>
+				    		<% end %>
+				    	<% end %>
+				    </td>
+				    <td>
 
+				    </td>
+				    <td>
+				    					
+				    </td>
+				    <td>
+				    					
+				    </td>
+				    <td>
+				    	<% if task.due_at.present? %>
+				    		<%= task.due_at.strftime('%Y-%m-%d %H:%M') %>
+				    	<% end %>
+				    </td>
+				    <td>
+				    	<% task.user_tasks.where.not(id: task.task_created_id).each do |user_task| %>
+	              <%  @user = User.find(user_task.user_id) %>
+	              <%= @user.name %><%= (task.user_tasks.where.not(id: task.task_created_id).last == user_task) ? "" : "," %>
+	            <% end %>
+				    </td>
+				    <td >
+				     <%=  task.task_status %>
+				    </td>
+			    </tr>
+			  <% end %>
 		  <% end %>
 		  
 		</table>
