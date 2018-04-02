@@ -11,7 +11,8 @@ class Admin::GroupsController < Admin::ApplicationController
   # GET /groups
   #----------------------------------------------------------------------------
   def index
-    @groups = @groups.unscoped.paginate(page: params[:page])
+    # @groups = @groups.unscoped.paginate(page: params[:page])
+    @groups = @groups.unscoped.where(company_id: current_user.company_id).paginate(page: params[:page])
   end
 
   # GET /groups/1
@@ -35,18 +36,39 @@ class Admin::GroupsController < Admin::ApplicationController
   # POST /groups
   #----------------------------------------------------------------------------
   def create
-    @group.attributes = group_params
-    @group.save
+    # @group.attributes = group_params
+    # @group.save
+    @group = Group.new
+    @group.name = params[:group][:name]
+    @group.company_id = current_user.company_id
 
-    respond_with(@group)
+    if @group.save
+      @users_selected = params[:group][:user_ids].reject { |c| c.empty? } if params[:group][:user_ids].present?
+      @users_selected.uniq.each do |user_id|
+        @group.user_groups.create(user: User.where(id: user_id).first)
+      end
+      respond_with(@group)
+    end
   end
 
   # PUT /groups/1
   #----------------------------------------------------------------------------
   def update
-    @group.update_attributes(group_params)
-
-    respond_with(@group)
+    # @group.update_attributes(group_params)
+    if @group.update_attributes(name: params[:group][:name])
+      @users_selected = params[:group][:user_ids].reject { |c| c.empty? } if params[:group][:user_ids].present?
+      @group.user_groups.each do |user_group|
+        unless @users_selected.include?(user_group.user_id.to_s)
+          user_group.destroy
+        end
+      end
+      @users_selected.uniq.each do |user_id|
+        unless @group.user_groups.exists?(user_id: user_id)
+          @group.user_groups.create(user: User.where(id: user_id).first)
+        end
+      end
+      respond_with(@group)
+    end
   end
 
   # DELETE /groups/1

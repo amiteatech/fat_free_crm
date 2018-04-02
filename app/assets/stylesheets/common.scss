@@ -1339,3 +1339,9 @@ width: 96%;}
     background-color: #367fa9;
   }
 }
+
+#groups .remote { padding: 0; }
+#groups .select2-container--default .select2-selection--multiple, #create_group .select2-container--default .select2-selection--multiple {
+  height: auto;
+}
+#create_group { padding: 10px 0; }
