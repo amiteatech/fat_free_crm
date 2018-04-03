@@ -9,12 +9,12 @@ class TasksController < ApplicationController
   before_action :set_current_tab, only: [:index, :show, :new, :edit]
   before_action :update_sidebar, only: [:index, :new, :edit ]
   skip_before_action :verify_authenticity_token
-  #before_action :google_drive_login, :only => [:index, :create]
+  #before_action :google_drive_login, :only => [:index, :create] 
 
   # GOOGLE_CLIENT_ID = "318261922103-6o5ui2qui55luqss9d2gpsbsukianb39.apps.googleusercontent.com"
   # GOOGLE_CLIENT_SECRET = "WlTtICFYG64yummKqFlpz5hf"
   # GOOGLE_CLIENT_REDIRECT_URI = "http://localhost:3000/oauth2callback"
-  
+  respond_to :docx
   # GET /tasks
   #----------------------------------------------------------------------------
   def index
@@ -516,6 +516,26 @@ class TasksController < ApplicationController
         format.html 
         format.js { }
       end
+    end
+  end
+
+  def download_docx
+    @view = view
+    @task = Task.tracked_by(current_user).find(params[:id])
+    @bucket = Setting.unroll(:task_bucket)[1..-1] << [t(:due_specific_date, default: 'On Specific Date...'), :specific_time]
+    @category = Setting.unroll(:task_category)
+    @asset = @task.asset if @task.asset_id?
+    @user_tasks = UserTask.where(task_id: @task.id).order('position asc')
+
+    if params[:previous].to_s =~ /(\d+)\z/
+      @previous = Task.tracked_by(current_user).find_by_id(Regexp.last_match[1]) || Regexp.last_match[1].to_i
+    end
+
+    respond_to do |format|
+      format.docx do
+        render docx: 'download_docx', filename: 'form1.docx'
+      end
+      # format.docx { headers["Content-Disposition"] = "attachment; filename=\"caracal.docx\"" }
     end
   end
 

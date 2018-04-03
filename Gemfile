@@ -90,5 +90,6 @@ gem 'spreadsheet'
 #gem 'passenger', '~> 5.0', '>= 5.0.30'
 
 gem "paperclip", "~> 5.2.1"
-
+gem 'htmltoword', "~> 0.7.0"
 gem 'tinymce-rails'
+# gem 'caracal-rails'

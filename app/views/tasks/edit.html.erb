@@ -6,6 +6,7 @@
     <%= hidden_field_tag "task[asset_id]", "#{@asset.id if @asset}" %>
     <%= hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}" %>
     
+    <%= link_to "Download to Docx", download_docx_task_path(@task) %>
   
     <%= render "fields/groups", :f => f, :edit => true %>
 

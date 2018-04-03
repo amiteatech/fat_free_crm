@@ -158,6 +158,7 @@ Rails.application.routes.draw do
       put :reject
       put :task_comment
       put :task_reject
+      get :download_docx, format: 'docx'
     end
   end
 
