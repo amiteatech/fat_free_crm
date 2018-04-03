@@ -76,26 +76,28 @@
     <%= hook(:task_top_section_bottom, self, :f => f) %>   
   </div>
   <div class="halfRight">
-    <div class="blockForm2 assigned">
-      <label class="label top req task_assign">Task assigned to:</label>
-      <div class="selected_users">
-        <% if @user_tasks.present? && @task.task_created_id === current_user.id %>
-          <ul id="sortable" class="sort-list">
-        <% else %>
-          <ul class="sort-list">
-        <% end %>
-            <% if @user_tasks.present? %>
-              <% @user_tasks.each do |user_task| %>
-                  <%  @user = User.find(user_task.user_id) %>
-                  <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
-                    <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-                    <%= @user.name %>
-                  </li>
+    <% if @user_tasks.present? %>
+      <div class="blockForm2 assigned">
+        <label class="label top req task_assign">Task assigned to:</label>
+        <div class="selected_users">
+          <% if @task.task_created_id === current_user.id %>
+            <ul id="sortable" class="sort-list">
+          <% else %>
+            <ul class="sort-list">
+          <% end %>
+              <% if @user_tasks.present? %>
+                <% @user_tasks.each do |user_task| %>
+                    <%  @user = User.find(user_task.user_id) %>
+                    <li class="user_list ui-state-default" data-utid="UserTask-<%=user_task.id%>">
+                      <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+                      <%= @user.name %>
+                    </li>
+                <% end %>
               <% end %>
-            <% end %>
-          </ul>
-      </div> 
-    </div>   
+            </ul>
+        </div> 
+      </div>   
+    <% end %>
   </div>
   <div class="cl"></div>
   <% if action_name == "new" || @task.task_created_id == current_user.id %>
