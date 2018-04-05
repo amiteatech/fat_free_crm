@@ -1,4 +1,4 @@
-# Eatech CRM [![TravisCI][travis-img-url]][travis-ci-url]  [![Code Climate][codeclimate-img-url]][codeclimate-url]
+# Educert Process Control System [![TravisCI][travis-img-url]][travis-ci-url]  [![Code Climate][codeclimate-img-url]][codeclimate-url]
 
 [travis-img-url]: https://secure.travis-ci.org/fatfreecrm/fat_free_crm.svg?branch=master
 [travis-ci-url]: https://travis-ci.org/fatfreecrm/fat_free_crm
@@ -66,23 +66,23 @@ Please view one of the following installation guides:
 
 ### [Setup Linux or Mac OS](http://guides.fatfreecrm.com/Setup-Linux-or-Mac-OS.html)
 
-Installing Eatech CRM on Linux or Mac OS X
+Installing Educert Process Control System on Linux or Mac OS X
 
 ### [Setup Heroku](http://guides.fatfreecrm.com/Setup-Heroku.html)
 
-Setting up a Heroku instance for Eatech CRM
+Setting up a Heroku instance for Educert Process Control System
 
 ### [Setup Microsoft Windows](http://guides.fatfreecrm.com/Setup-Microsoft-Windows.html)
 
-Installing Eatech CRM on Microsoft Windows
+Installing Educert Process Control System on Microsoft Windows
 
-### [Running Eatech CRM as a Rails Engine](http://guides.fatfreecrm.com/Running-as-a-Rails-Engine.html)
+### [Running Educert Process Control System as a Rails Engine](http://guides.fatfreecrm.com/Running-as-a-Rails-Engine.html)
 
-Run the Eatech CRM gem within a separate Rails application.
-This is the best way to deploy Eatech CRM if you need to add plugins or make any customizations. Note that it is not yet simple to 'bolt' Eatech CRM into your existing rails project, but we're heading in that direction.
+Run the Educert Process Control System gem within a separate Rails application.
+This is the best way to deploy Educert Process Control System if you need to add plugins or make any customizations. Note that it is not yet simple to 'bolt' Educert Process Control System into your existing rails project, but we're heading in that direction.
 
 
-## Upgrading from previous versions of Eatech CRM
+## Upgrading from previous versions of Educert Process Control System
 
 Please read the [Release Notes](https://github.com/fatfreecrm/fat_free_crm/blob/master/CHANGELOG) document for more detailed information on upgrading from previous versions.
 
@@ -106,7 +106,7 @@ Please read the [Release Notes](https://github.com/fatfreecrm/fat_free_crm/blob/
 
 ## For Developers
 
-Eatech CRM is released under the MIT license and is freely available for you to use for your own purposes. We do encourage contributions to make Eatech CRM even better. Send us a pull-request and we'll do our best to accommodate your needs.
+Educert Process Control System is released under the MIT license and is freely available for you to use for your own purposes. We do encourage contributions to make Educert Process Control System even better. Send us a pull-request and we'll do our best to accommodate your needs.
 
 Specific features that are not 'Eatech' in nature, can be added by creating Rails Engines. See the [wiki](http://github.com/fatfreecrm/fat_free_crm/wiki) for information on how to do this.
 
@@ -123,7 +123,7 @@ See the [contributors graph](https://github.com/fatfreecrm/fat_free_crm/graphs/c
 
 ## License
 
-Eatech CRM
+Educert Process Control System
 Copyright (c) 2008-2014 Michael Dvorkin and contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining

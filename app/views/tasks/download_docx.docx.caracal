@@ -1,0 +1,538 @@
+#-----------------------------------------------------
+# page settings
+#-----------------------------------------------------
+
+docx.page_numbers true do
+  align :center
+  label 'Page'
+end
+
+docx.font name: 'Courier New'
+
+docx.style id: 'AltFont', name: 'altFont', font: 'Palatino'
+
+
+
+if @task.form_number == 1
+
+
+  #-----------------------------------------------------
+  # Table 1
+  #-----------------------------------------------------
+
+
+  docx.h1 do
+    text 'Staff Interview and Recruitment', color:   '342d7e', size: 36, bold: true
+    align   :center
+  end
+
+  row1 = ['Name of applicant :', @task.form_first.name_of_applicant]
+  row2 = ['Position applied for :', @task.form_first.position_applied_for]
+
+  docx.table [row1.dup, row2.dup], border_size: 4 do
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    cell_style cols[0], width: 3000
+  end
+  docx.p
+
+  text1 = @task.form_first.part_a_first_interview_date.to_s
+  text2 = @task.form_first.name.to_s
+  docx.p do
+    text 'Part a first interview date  ', bold: true
+    text text1.present? ? text1 : '                       ' , underline: true
+    text '  Name  ', bold: true
+    text text2.present? ? text2 : '                       ', underline: true
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Interviewer's comments on whether vis-a-vis the minimum qualification and selection criteria.
+  #-----------------------------------------------------
+
+  docx.p 'Interviewer\'s comments on whether vis-a-vis the minimum qualification and selection criteria.'
+
+  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comment_first)]
+
+  docx.table [row1.dup], border_size: 4, height: 6000 do
+  cell_style cols[0],    height: 4000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Interviewer's comments on suitability of the applicant for the position
+  #-----------------------------------------------------
+
+  docx.p 'Interviewer\'s comments on suitability of the applicant for the position'
+  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comment_second)]
+
+  docx.table [row1.dup], border_size: 4 do
+  cell_style cols[0],    height: 4000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Any other comments/conditions for recruitment
+  #-----------------------------------------------------
+
+  docx.p 'Any other comments/conditions for recruitment'
+  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comment_others)]
+
+  docx.table [row1.dup], border_size: 4 do
+  cell_style cols[0],    height: 4000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+  docx.p
+
+
+  text1 = @task.form_first.part_b_first_interview_date.to_s
+  text2 = @task.form_first.name.to_s
+  docx.p do
+    text 'Part b first interview date   ', bold: true
+    text text1.present? ? text1 : '                       ' , underline: true
+    text '  Name  ', bold: true
+    text text2.present? ? text2 : '                       ', underline: true
+  end
+  docx.p
+  
+  #-----------------------------------------------------
+  # Interviewer’s comments
+  #-----------------------------------------------------
+
+  docx.p 'Module development'
+  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comments)]
+
+  docx.table [row1.dup], border_size: 4 do
+  cell_style cols[0],    height: 4000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Part C
+  #-----------------------------------------------------
+
+  docx.p do
+    text   'Part C: Approval to Hire', bold: true
+    text   '(by Management Team for non-academic staff; and by Management Team and Academic Board for academic staff: or their respective authorized representatives)'
+  end
+  
+  row1 = ['Part c name   '.concat(@task.form_first.part_c_name.to_s), 'Part c signature   '.concat(@task.form_first.part_c_signature.to_s), 'Part c date   '.concat(@task.form_first.part_c_date.to_s)]
+
+  row2 = ['Part c name 1   '.concat(@task.form_first.part_c_name_1.to_s), 'Part c date 1   '.concat(@task.form_first.part_c_date_1.to_s)]
+  row3 = ['Part c name 2   '.concat(@task.form_first.part_c_name_2.to_s), 'Part c date 2   '.concat(@task.form_first.part_c_date_2.to_s)]
+
+  docx.table [row1.dup,row2.dup,row3.dup], border_size: 4 do
+  cell_style cols[0],    height: 4000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+  end
+  docx.p
+
+
+elsif @task.form_number == 2
+
+
+  #-----------------------------------------------------
+  # page settings
+  #-----------------------------------------------------
+
+  docx.page_numbers true do
+    align :center
+    label 'Page'
+  end
+
+  docx.font name: 'Courier New'
+
+  docx.style id: 'AltFont', name: 'altFont', font: 'Palatino'
+
+
+  #-----------------------------------------------------
+  # Table 1
+  #-----------------------------------------------------
+
+
+  docx.h1 do
+    text 'Monitoring Module Delivery', color:   '342d7e', size: 36, bold: true, margins: { top: 0, bottom: 100, left: 0, right: 0 }
+    align   :center
+  end
+
+  row1 = ['Module title:    '.concat(@task.form_second.module_title.to_s), 'Course date:    '.concat(@task.form_second.course_date.to_s)]
+  row2 = ['Course:     '.concat(@task.form_second.course.to_s), 'Module toucht by:     '.concat(@task.form_second.module_toucht_by_id.to_s)]
+
+  docx.table [row1.dup, row2.dup], border_size: 4 do
+    cell_style cols[0],    width: 6000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Table 2
+  #-----------------------------------------------------
+
+  row1 = ['Week', 'Topic in syllabus', 'Textbook / chapters / pages', 'Teaching and Learning Activities / Assessment (Planned)', 'Teacher’s Remarks (e.g. variations from plan, reasons, etc)', 'Supervisor’s Remarks and Date']
+
+  row2 = [@task.form_second.week_1, @task.form_second.topic_1, @task.form_second.textbook_1, @task.form_second.teaching_activity_1, @task.form_second.teacher_remark_1, @task.form_second.supervisor_remark_1]
+
+  row3 = [@task.form_second.week_2, @task.form_second.topic_2, @task.form_second.textbook_2, @task.form_second.teaching_activity_2, @task.form_second.teacher_remark_2, @task.form_second.supervisor_remark_2]
+
+  row4 = [@task.form_second.week_3, @task.form_second.topic_3, @task.form_second.textbook_3, @task.form_second.teaching_activity_3, @task.form_second.teacher_remark_3, @task.form_second.supervisor_remark_3]
+
+  row5 = [@task.form_second.week_4, @task.form_second.topic_4, @task.form_second.textbook_4, @task.form_second.teaching_activity_4, @task.form_second.teacher_remark_4, @task.form_second.supervisor_remark_4]
+
+  row6 = [@task.form_second.week_5, @task.form_second.topic_5, @task.form_second.textbook_5, @task.form_second.teaching_activity_5, @task.form_second.teacher_remark_5, @task.form_second.supervisor_remark_5]
+
+  docx.table [row1.dup, row2.dup, row3.dup, row4.dup, row5.dup, row6.dup], border_size: 4 do
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+  end
+  docx.p
+
+
+elsif @task.form_number == 3
+
+
+  #-----------------------------------------------------
+  # Table 1
+  #-----------------------------------------------------
+
+
+  docx.h1 do
+    text 'Form', color:   '342d7e', size: 36, bold: true, margins: { top: 0, bottom: 100, left: 0, right: 0 }
+    align   :center
+  end
+
+  row1 = ['Module title:    '.concat(@task.thrid_form.module_title.to_s), 'Module syllabus no:    '.concat(@task.thrid_form.module_syllabus_no.to_s)]
+  row2 = ['Course:     '.concat(@task.thrid_form.course.to_s), 'Module toucht by:     '.concat(@task.thrid_form.module_toucht_by.to_s)]
+
+  docx.table [row1.dup, row2.dup], border_size: 4 do
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Relevant Information
+  #-----------------------------------------------------
+
+  docx.p 'Relevent information'
+  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.relevent_information)]
+
+  docx.table [row1.dup], border_size: 4 do
+  cell_style cols[0],    height: 4000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Student performance
+  #-----------------------------------------------------
+
+  docx.p 'Student performance'
+  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.student_performance)]
+
+  docx.table [row1.dup], border_size: 4 do
+  cell_style cols[0],    height: 4000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Evaluation
+  #-----------------------------------------------------
+
+  docx.p 'Evaluation'
+  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.evaluation)]
+
+  docx.table [row1.dup], border_size: 4 do
+  cell_style cols[0],    height: 4000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Module development
+  #-----------------------------------------------------
+
+  docx.p 'Module development'
+  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.module_development)]
+
+  docx.table [row1.dup], border_size: 4 do
+  cell_style cols[0],    height: 4000
+    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Module development submitted by
+  #-----------------------------------------------------
+
+  text1 = @task.thrid_form.module_development_submitted_by.to_s
+  text2 = @task.thrid_form.module_development_submitted_date.to_s
+  docx.p do
+    text 'Module development submitted by  ', bold: true
+    text text1.present? ? text1 : '                       ' , underline: true
+    text '  Module development submitted date  ', bold: true
+    text text2.present? ? text2 : '                       ', underline: true
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Comments
+  #-----------------------------------------------------
+
+  docx.p 'Comments'
+  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.comments)]
+
+  docx.table [row1.dup], border_size: 4 do
+    cell_style cells,      size: 18, height: 4000,  margins: { top: 100, bottom: 100, left: 500, right: 100 }
+    border_color 'd2d6de'
+  end
+  docx.p
+
+  #-----------------------------------------------------
+  # Comments Detail
+  #-----------------------------------------------------
+
+  row1 = ['Comments name']
+  c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+    table [row1.dup] do
+      cell_style rows[0],  bold: true
+      cell_style cells,    size: 18, margins: { top: 100, bottom: 0, left: 0, right: 100 }
+    end
+  end
+
+  row2 = ['Comments signature']
+  c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+    table [row2.dup] do
+      cell_style rows[0],  bold: true
+      cell_style cells,    size: 18, margins: { top: 100, bottom: 0, left: 0, right: 100 }
+    end
+  end
+
+  row3 = ['Comments designation']
+  c3 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+    table [row3.dup] do
+      cell_style rows[0],  bold: true
+      cell_style cells,    size: 18, margins: { top: 100, bottom: 0, left: 0, right: 100 }
+    end
+  end
+
+  row4 = ['Comments date']
+  c4 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+    table [row4.dup] do
+      cell_style rows[0],  bold: true
+      cell_style cells,    size: 18, margins: { top: 100, bottom: 0, left: 0, right: 100 }
+    end
+  end
+
+  docx.table [[c1,c2,c3,c4]] do
+    cell_style cells,  size: 18, height: 4000, margins: { top: 100, bottom: 0, left: 0, right: 100 }
+  end
+
+  #--------  Values  -------------  
+
+  row1 = [@task.thrid_form.comments_name]
+  c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+    table [row1.dup], border_size: 4 do
+      border_top do
+        color   'ffffff'
+      end
+      border_vertical do
+        color   'ffffff'
+      end
+      border_left do
+        color   'ffffff'
+      end
+    end
+  end
+
+  row2 = [@task.thrid_form.comments_signature]
+  c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+    table [row2.dup], border_size: 4 do
+      border_top do
+        color   'ffffff'
+      end
+      border_vertical do
+        color   'ffffff'
+      end
+      border_left do
+        color   'ffffff'
+      end
+    end
+  end
+
+  row3 = [@task.thrid_form.comments_designation]
+  c3 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+    table [row3.dup], border_size: 4 do
+      border_top do
+        color   'ffffff'
+      end
+      border_vertical do
+        color   'ffffff'
+      end
+      border_left do
+        color   'ffffff'
+      end
+    end
+  end
+
+  row4 = [@task.thrid_form.comments_date]
+  c4 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+    table [row4.dup], border_size: 4 do
+      border_top do
+        color   'ffffff'
+      end
+      border_vertical do
+        color   'ffffff'
+      end
+      border_left do
+        color   'ffffff'
+      end
+    end
+  end
+
+  docx.table [[c1,c2,c3,c4]] do
+
+  end
+  docx.p
+
+end
+
+
+
+#-----------------------------------------------------
+# Row 1
+#-----------------------------------------------------
+
+tag_name = []
+tag_value = []
+count = 0
+TaskFormTag.where(:status => true).each do |tag|
+  tag_values = TaskFormTagValue.all.where(:company_id => current_user.company_id).where(:task_form_tag_id => tag.id)
+  if tag_values.size > 0
+    tag_name << tag.name
+    count += 1
+    last = @task.option_values.where(:task_form_tag_id => tag.id).last
+    if last
+      if last.task_form_tag_value.present?
+        tag_value << last.task_form_tag_value.name
+      end
+    end
+  end
+end
+
+
+row1 = ['Task Title: *']
+c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+  table [row1.dup] do
+    cell_style cells,    size: 18, margins: { top: 0, bottom: 0, left: 0, right: 100 }
+  end
+end
+
+row2 = [tag_name[0].to_s.concat(':')]
+c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+  table [row2.dup] do
+    cell_style cells,    size: 18, margins: { top: 0, bottom: 0, left: 0, right: 100 }
+  end
+end
+
+docx.table [[c1,c2]] do
+  cell_style cols[0], width: 4850
+end
+
+row1 = [@task.name]
+c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+  table [row1.dup], border_size: 4 do
+    cell_style cells,    size: 18, margins: { top: 60, bottom: 60, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+end
+row2 = [tag_value[0]]
+c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+  table [row2.dup], border_size: 4 do
+    cell_style cells,    size: 18, margins: { top: 60, bottom: 60, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+end
+
+docx.table [[c1,c2]] do
+  cell_style cols[0], width: 4750
+end
+
+#-----------------------------------------------------
+# Row 2
+#-----------------------------------------------------
+
+row1 = [tag_name[1]]
+c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+  table [row1.dup] do
+    cell_style cells,    size: 18, margins: { top: 0, bottom: 0, left: 0, right: 100 }
+  end
+end
+
+row2 = ['Due: *']
+c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+  table [row2.dup] do
+    cell_style cells,    size: 18, margins: { top: 0, bottom: 0, left: 0, right: 100 }
+  end
+end
+
+docx.table [[c1,c2]] do
+  cell_style cols[0], width: 4850
+end
+
+row1 = [tag_value[1]]
+c1 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+  table [row1.dup], border_size: 4 do
+    cell_style cells,    size: 18, margins: { top: 60, bottom: 60, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+end
+
+with_time = Setting.task_calendar_with_time
+if @task.bucket != "specific_time" 
+  row2 = ['']
+else
+  fmt = with_time ? '%Y-%m-%d %H:%M' : '%Y-%m-%d'
+  row2 = [@task.due_at.strftime(fmt)]
+end
+
+c2 = Caracal::Core::Models::TableCellModel.new margins: { top: 0, bottom: 0, left: 0, right: 200 } do
+  table [row2.dup], border_size: 4 do
+    cell_style cells,    size: 18, margins: { top: 60, bottom: 60, left: 100, right: 100 }
+    border_color    'd2d6de'
+  end
+end
+
+docx.table [[c1,c2]] do
+  cell_style cols[0], width: 4750
+end
+docx.p
+
+#-----------------------------------------------------
+# Row 3
+#-----------------------------------------------------
+
+docx.p 'Task assigned to: *'
+users = []
+if @user_tasks.present?
+  @user_tasks.each do |user_task|
+      @user = User.find(user_task.user_id)
+        users << @user.name
+    end
+end
+docx.ol do
+  if users.size > 0
+    users.each do |user_name|
+      li user_name
+    end
+  end
+end

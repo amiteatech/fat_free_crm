@@ -532,10 +532,16 @@ class TasksController < ApplicationController
     end
 
     respond_to do |format|
-      format.docx do
-        render docx: 'download_docx', filename: 'form1.docx'
+      # format.docx do
+      #   render docx: 'download_docx', filename: 'form1.docx'
+      # end
+      if @task.form_number == 1
+        format.docx { headers["Content-Disposition"] = "attachment; filename=\"Staff Interview and Recruitment.docx\"" }
+      elsif @task.form_number == 2
+        format.docx { headers["Content-Disposition"] = "attachment; filename=\"Monitoring Module Delivery.docx\"" }
+      elsif @task.form_number == 3
+        format.docx { headers["Content-Disposition"] = "attachment; filename=\"Form.docx\"" }
       end
-      # format.docx { headers["Content-Disposition"] = "attachment; filename=\"caracal.docx\"" }
     end
   end
 

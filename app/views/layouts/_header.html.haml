@@ -25,8 +25,8 @@
       / =# link_to(t(:about), "#", :title => t(:about_ffc), :onclick => "$('#about').dialog({ title: this.title, modal: true }); return false;")
   %h3
     - if current_user && current_user.super_admin == true
-      = link_to("Eatech CRM", companies_path)
+      = link_to("Educert Process Control System", companies_path)
     - if current_user && current_user.company.present? 
       = link_to(current_user.company.name, root_path)
     - else
-      = link_to("Eatech CRM", root_path) 
+      = link_to("Educert Process Control System", root_path) 

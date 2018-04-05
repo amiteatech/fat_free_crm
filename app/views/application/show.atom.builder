@@ -9,7 +9,7 @@ end
 atom_feed do |feed|
   feed.title      title || t(@items.to_sym)
   feed.updated    @assets.any? ? @assets.max { |a, b| a.updated_at <=> b.updated_at }.updated_at : Time.now
-  feed.generator  "Eatech CRM v#{FatFreeCRM::VERSION::STRING}"
+  feed.generator  "Educert Process Control System v#{FatFreeCRM::VERSION::STRING}"
   feed.author do |author|
     author.name  @current_user.full_name
     author.email @current_user.email

@@ -5,8 +5,6 @@
     <%= hidden_field_tag :view, @view %>
     <%= hidden_field_tag "task[asset_id]", "#{@asset.id if @asset}" %>
     <%= hidden_field_tag "task[asset_type]", "#{@asset.class if @asset}" %>
-    
-    <%= link_to "Download to Docx", download_docx_task_path(@task) %>
   
     <%= render "fields/groups", :f => f, :edit => true %>
 
@@ -58,7 +56,7 @@
   <% end %> 
 
     <div class="buttonbar">
-
+      <%= link_to "Download to docx", download_docx_task_path(@task), :target => "_blank", :class => "download_docx" %>
       <%= f.submit t :save_task %> or 
       <%= link_to "Cancel", tasks_path, class: "button" %>
       <div class="cl"></div>

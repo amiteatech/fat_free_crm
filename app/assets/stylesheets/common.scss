@@ -1350,3 +1350,18 @@ width: 96%;}
 .task_password_protected .span2 {display: inline-block;} 
 .task_password_protected label {display: inline; vertical-align: super;} 
 .password_box {display: none;}
+.download_docx {margin-right: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  border: none;
+  font-size: 13px;
+  background-color: #1e4262;
+  color: #fff !important;
+  padding: 0px 15px;
+  line-height: 30px;
+  display: inline-block;
+  cursor: pointer;
+}
+.download_docx:hover {
+  background-color: #1e4262;
+}
