@@ -1,0 +1,28 @@
+<div class="companies school-folder">
+	<!-- <div class="left_part">
+	</div> -->
+	<div class="report-tab">
+		<div class="title report">
+			<h1>School Documents</h1>
+		</div>
+		<div class="download_excel">
+			<% if current_user.is_admin? %>
+				<%= link_to "Create new folder", new_document_path %>
+			<% end %>
+		</div>
+		<div class="cl"></div>
+			<ul>
+				<% @folders.each do |folder| %>
+					<li class="doc_details">
+						<div class="folder_icon">
+							<%= link_to("<i class='fa fa-folder'></i>".html_safe,   document_path(folder) , :class => 'folderIcon') %>
+						</div>
+						<div class="about_folder">
+	            <%= link_to folder.name, document_path(folder), class: "folder_name" %>
+							<%= link_to("<i class='fa fa-trash'></i>".html_safe, document_path(folder), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
+						</div>
+					</li>
+				<% end %>
+			</ul>
+	</div>
+</div>

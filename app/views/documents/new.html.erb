@@ -1,0 +1,8 @@
+
+<div class="title report">
+  <h1>Create Folder</h1>
+</div>
+
+<%= simple_form_for @school_folder, :url => documents_path, html: {multipart: true}, :method => :post do |f| %>
+  <%= render "documents/form", :f => f %>
+<% end %>

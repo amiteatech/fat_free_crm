@@ -1365,3 +1365,33 @@ width: 96%;}
 .download_docx:hover {
   background-color: #1e4262;
 }
+#new_school_folder .blockForm2.bottom {
+    padding-bottom: 20px;
+    margin-top: 1px;}
+.doc_details { width: 21%;
+    float: left;
+    display: block;
+    margin-right: 2%;
+    border: 1px solid #ececec;
+    margin-bottom: 20px; 
+    padding: 5px; min-height: 165px;}
+.folder_icon {width: 100%; text-align: center; margin: 0 auto;}
+a.folderIcon {font-size: 100px;
+    color: #cecece;
+    padding: 5px 15px;
+    display: inline-block;
+    border-radius: 4px;}
+
+a.folderIcon:hover {
+    background: white; border: none; }
+a.folderIcon i {
+  margin: 0;
+}
+.about_folder {margin-top: -10px; text-align: center; word-break: break-all;}
+.about_folder a.folder_name:hover {
+    background: white; border: none; color: #0033cc; }
+.about_folder .deletIcon{float: right;}
+
+#new_access_on_form .blockForm2 .span2 select {height:auto;}
+#new_access_on_form .blockForm2 .span2 select:focus {outline:none;}
+#new_access_on_form .select2-container--default .select2-selection--multiple {margin-top: 0;}

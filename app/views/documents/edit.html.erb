@@ -1,0 +1,7 @@
+<h1>Editing Folder</h1>
+  
+<%= simple_form_for @school_folder, :url => "documents/update_files", html: {multipart: true}, :method => :post do |f| %>
+  <%= render "documents/form", :f => f %>
+<% end %>
+
+

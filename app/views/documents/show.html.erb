@@ -1,0 +1,37 @@
+<div class="companies">
+	<!-- <div class="left_part">
+	</div> -->
+	<div class="report-tab">
+		<div class="title report">
+			<h1><%= @school_folder.name.present? ? @school_folder.name : "Files" %></h1>
+		</div>
+		<div class="download_excel">
+			<% if current_user.is_admin? %>
+				<%= link_to "Add new file", edit_document_path(@school_folder) %>
+			<% end %>
+		</div>
+		<div class="cl"></div>
+			<ul>
+				<% @school_files.each do |school_file| %>
+					<!-- <li><%#= school_file.avatar_file_name %></li> -->
+					<li class="doc_details">
+						<div class="folder_icon">
+							<%# if school_file.avatar_content_type.present? && school_file.avatar_content_type.include?("image") %>
+								<%#= link_to school_file.avatar.url(:original, true), :class => 'folderIcon' do %>
+    							<%#= image_tag school_file.avatar.url(:small), width: 140, height: 100, alt: 'a face that is unnervingly happy'%>
+								<%# end %>
+							<%# else %>
+								<%= link_to("<i class='fa fa-file'></i>".html_safe, school_file.avatar.url(:original, false), :class => 'folderIcon') %>
+							<%# end %>
+						</div>
+						<div class="about_folder">
+	            <%= link_to school_file.avatar_file_name, school_file.avatar.url(:original, false), class: "folder_name" %>
+	            <%# if current_user.is_admin? %>
+								<%#= link_to("<i class='fa fa-trash'></i>".html_safe, document_path(school_file), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
+							<%# end %>
+						</div>
+					</li>
+				<% end %>
+			</ul>
+	</div>
+</div>

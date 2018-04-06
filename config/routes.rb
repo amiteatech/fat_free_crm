@@ -4,6 +4,9 @@
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 Rails.application.routes.draw do
+
+  post '/documents/:id/documents/update_files' => 'documents#update_files'
+  resources :documents
   resources :access_on_forms
   resources :school_forms
   resources :form_types
