@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>School form:</strong>
+  <%= @access_on_form.school_form_id %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @access_on_form.company_id %>
+</p>
+
+<p>
+  <strong>Users:</strong>
+  <%= @access_on_form.users_id %>
+</p>
+
+<%= link_to 'Edit', edit_access_on_form_path(@access_on_form) %> |
+<%= link_to 'Back', access_on_forms_path %>

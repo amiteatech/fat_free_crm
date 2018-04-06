@@ -1,0 +1,2 @@
+module SchoolFormsHelper
+end

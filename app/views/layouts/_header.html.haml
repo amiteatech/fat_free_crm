@@ -12,7 +12,7 @@
       - if current_user.is_admin?
         = link_to(t(:admin), admin_path) << " |"
         = link_to("Option", task_form_tag_values_path) << " |"
-        = link_to("Form", form_types_path) << " |"
+        = link_to("Html Form", access_on_forms_path) << " |"
         =# link_to("Items No", school_item_numbers_path) << " |"
       = link_to(t(:Report), report_path) << " |"
       = link_to("Tasks", tasks_path) << " |"  

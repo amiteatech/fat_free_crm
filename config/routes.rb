@@ -4,6 +4,8 @@
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 Rails.application.routes.draw do
+  resources :access_on_forms
+  resources :school_forms
   resources :form_types
   resources :supplementary_task_files
   resources :task_files

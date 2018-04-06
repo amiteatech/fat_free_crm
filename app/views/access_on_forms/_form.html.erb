@@ -1,0 +1,17 @@
+<%= simple_form_for(@access_on_form) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%#= f.input :school_form_id %>
+    <%= select_tag "school_form_id", options_from_collection_for_select(SchoolForm.all, "id", "name") %>
+    <%#= select_tag "school_form_id", options_from_collection_for_select(SchoolForm.all, "id", "name") %>
+    <%#= f.input :company_id,  %>
+    <%#= f.input :users_id %>
+
+   <%= select_tag "users[]", options_for_select( Group.all.map {|s| [s.name, s.id]}, []), class: 'select2_tag', :multiple => true, :size => 100 %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
