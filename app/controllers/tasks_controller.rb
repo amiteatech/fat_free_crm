@@ -56,6 +56,14 @@ class TasksController < ApplicationController
     @bucket = Setting.unroll(:task_bucket)[1..-1] << [t(:due_specific_date, default: 'On Specific Date...'), :specific_time]
     @category = Setting.unroll(:task_category)
 
+    school_form_ids = []
+    AccessOnForm.where(company_id: current_user.company_id).each do |access_on_form|
+      if access_on_form.users_id.include?(current_user.id)
+        school_form_ids << access_on_form.school_form_id
+      end
+    end
+    @school_forms = SchoolForm.where(id: school_form_ids)
+
     if params[:related]
       model, id = params[:related].split(/_(\d+)/)
       if related = model.classify.constantize.my.find_by_id(id)

@@ -3,15 +3,23 @@
 
   <div class="inputs">
     <%#= f.input :school_form_id %>
-    <%= select_tag "school_form_id", options_from_collection_for_select(SchoolForm.all, "id", "name") %>
+    <div class="blockForm2">
+      <div class="span2">
+        <%= select_tag "school_form_id", options_from_collection_for_select(SchoolForm.all, "id", "name") %>
+      </div>
+    </div>
     <%#= select_tag "school_form_id", options_from_collection_for_select(SchoolForm.all, "id", "name") %>
     <%#= f.input :company_id,  %>
     <%#= f.input :users_id %>
-
-   <%= select_tag "users[]", options_for_select( Group.all.map {|s| [s.name, s.id]}, []), class: 'select2_tag', :multiple => true, :size => 100 %>
+   <div class="blockForm2">
+      <div class="span2">
+         <%= select_tag "users[]", options_for_select( Group.all.map {|s| [s.name, s.id]}, []), class: 'select2_tag', :multiple => true, :size => 100 %>
+      </div>
+   </div>
   </div>
-
-  <div class="actions">
+  <div class="cl"></div>
+  <div class="createPageButtonbar">
     <%= f.button :submit %>
+    <%= link_to 'Back', access_on_forms_path %>
   </div>
 <% end %>

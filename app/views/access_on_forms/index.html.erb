@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Access On Forms</h1>
-
-<table>
+<!-- <p id="notice"><%= notice %></p> -->
+<div class="title report">
+  <h1>Access On Forms</h1>
+</div>
+<table class="company_table" border="0" cellspacing="0" cellpadding="0" width="100%">
   <thead>
     <tr>
       <th>School form</th>
       <th>Company</th>
       <th>Users</th>
-      <th colspan="3"></th>
+      
     </tr>
   </thead>
 
@@ -18,14 +18,15 @@
         <td><%= access_on_form.school_form_id %></td>
         <td><%= access_on_form.company_id %></td>
         <td><%= access_on_form.users_id %></td>
-        <td><%= link_to 'Show', access_on_form %></td>
-        <td><%= link_to 'Edit', edit_access_on_form_path(access_on_form) %></td>
-        <td><%= link_to 'Destroy', access_on_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%#= link_to 'Show', access_on_form %></td>
+        <td><%#= link_to 'Edit', edit_access_on_form_path(access_on_form) %></td>
+        <td><%#= link_to 'Destroy', access_on_form, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Access On Form', new_access_on_form_path %>
+<div class="createPageButtonbar">
+<%= link_to 'New Access On Form', new_access_on_form_path, class: "submit" %>
+</div>

@@ -12,15 +12,21 @@
 
   <% if action_name == "new" %>
     <div class="createPage ">
-      <div class="second">
-      <%= radio_button("task", "form_number", "1") %> <label for="task_form_number_1"> <%= link_to 'Workflow', ''  %>  </label>
-      </div>
-      <div class="second">
-       <%= radio_button("task", "form_number", "2") %> <label for="task_form_number_2"> <%= link_to 'Monitoring', '' %> </label>
-      </div>
-      <div class="second">
-       <%= radio_button("task", "form_number", "3") %>  <label for="task_form_number_3"><%= link_to 'Approval',  '' %> </label>
-      </div>
+      <% @school_forms.each do |school_form| %>
+        <% if school_form.id == 1 %>
+          <div class="second">
+          <%= radio_button("task", "form_number", "1") %> <label for="task_form_number_1"> <%= link_to 'Workflow', ''  %>  </label>
+          </div>
+        <% elsif school_form.id == 2 %>
+          <div class="second">
+           <%= radio_button("task", "form_number", "2") %> <label for="task_form_number_2"> <%= link_to 'Monitoring', '' %> </label>
+          </div>
+        <% elsif school_form.id == 3 %>
+          <div class="second">
+           <%= radio_button("task", "form_number", "3") %>  <label for="task_form_number_3"><%= link_to 'Approval',  '' %> </label>
+          </div>
+        <% end %>
+      <% end %>
       <div class="second">
        <%= radio_button("task", "form_number", "4") %>  <label for="task_form_number_3" ><%= link_to 'Files',  '' %> </label>
       </div>
