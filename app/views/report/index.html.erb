@@ -15,10 +15,7 @@
 			  <tr>
 			    <th>Number</th>
 			    <th>Task</th>
-			    <th>Type</th>
-			    <th>Form</th>
-			    <th>Year</th>
-			    <th>Edutrust Item Number</th>
+			    <th>Tags</th>
 			    <th>Due date</th>
 			    <th>Staff</th>
 			    <!-- <th>Tag Category</th> -->
@@ -29,26 +26,50 @@
 		  <% @tasks.each do |task| %>
 		  	<% if current_user.is_admin? || current_user.is_manager? %>
 			    <tr>
-						<td><%= task.id %></td>
+				    <td><%= task.id %></td>
 				    <td>
 				    	<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
 				    </td>
-				    <td>
-				    	<% if task.task_form_tag_id.present? %>
-				    		<% if TaskFormTag.where(id: task.task_form_tag_id).first.present? %>
-				    			<%= TaskFormTag.where(id: task.task_form_tag_id).first.name %>
-				    		<% end %>
-				    	<% end %>
-				    </td>
+				    
 				    <td>
 
-				    </td>
-				    <td>
+
+				    	<% indx = 0 %>
+    <% TaskFormTag.where(:status => true).each do |tag| %>
+    <%
+
+     tag_values = TaskFormTagValue.all.where(:company_id => current_user.company_id).where(:task_form_tag_id => tag.id)
+    %>
+    <% if tag_values.size > 0 %>
+    <div class="blockForm2">
+      <label class="top task_name">Tag Name: <%= tag.name%>:</label>      
+      <div class="span2">
+        <%#= select_tag %>
+       <% 
+         selected_value = ""
+         last = task.option_values.where(:task_form_tag_id => tag.id).last
+         if last
+            selected_value = last.task_form_tag_value_id
+         end   
+        
+
+       %>
+       <% if selected_value.present? %>
+         Value: <%=  TaskFormTagValue.where(:id => selected_value ).first.name %>
+       <% end %>
+       
+      </div>
+    </div>  
+    <% if indx%2 == 0 %>
+     <div class="cl"></div>
+    <% end %>
+    <% indx = indx + 1 %>
+    <% end %>
+    <% end %>
+
 				    					
 				    </td>
-				    <td>
-				    					
-				    </td>
+				    
 				    <td>
 				    	<% if task.due_at.present? %>
 				    		<%= task.due_at.strftime('%Y-%m-%d %H:%M') %>

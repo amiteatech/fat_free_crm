@@ -6,8 +6,7 @@
   <thead>
     <tr>
       <th>School form</th>
-      <th>Company</th>
-      <th>Users</th>
+      <th>User's Who has access</th>
       
     </tr>
   </thead>
@@ -15,12 +14,16 @@
   <tbody>
     <% @access_on_forms.each do |access_on_form| %>
       <tr>
-        <td><%= access_on_form.school_form_id %></td>
-        <td><%= access_on_form.company_id %></td>
-        <td><%= access_on_form.users_id %></td>
-        <!-- <td><%#= link_to 'Show', access_on_form %></td>
-        <td><%#= link_to 'Edit', edit_access_on_form_path(access_on_form) %></td>
-        <td><%#= link_to 'Destroy', access_on_form, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+        <td><%= SchoolForm.find(access_on_form.school_form_id).name %></td>
+    
+        <td>
+          <% if access_on_form.users_id.present? %>
+          <% access_on_form.users_id.each do |user_id| %>
+            <%= User.find(user_id).name %>,
+          <% end %>
+          <% end %>
+        </td>
+        
       </tr>
     <% end %>
   </tbody>
