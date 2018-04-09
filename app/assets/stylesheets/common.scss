@@ -424,6 +424,7 @@ $sidebar_width: 210px;
     padding: 4px 0px 4px 25px;
     font-size: 13px;
     font-weight: bold;
+    min-height: 12px;
 
     &.overdue {
       color: crimson;
