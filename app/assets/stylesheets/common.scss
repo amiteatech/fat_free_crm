@@ -1382,7 +1382,9 @@ a.folderIcon {font-size: 100px;
     display: inline-block;
     border-radius: 4px;}
 
-a.folderIcon:hover {
+a.folderIcon:hover, a.folderIcon:visited, a.folderIcon:focus {
+    background: white; border: none; }
+a.folderIcon i:hover, a.folderIcon i:visited, a.folderIcon i:focus {
     background: white; border: none; }
 a.folderIcon i {
   margin: 0;
@@ -1395,4 +1397,3 @@ a.folderIcon i {
 #new_access_on_form .blockForm2 .span2 select {height:auto;}
 #new_access_on_form .blockForm2 .span2 select:focus {outline:none;}
 #new_access_on_form .select2-container--default .select2-selection--multiple {margin-top: 0;}
-.print-page {margin-right: 5px;}

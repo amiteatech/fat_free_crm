@@ -3,8 +3,22 @@ class DocumentsController < ApplicationController
   def index
   	if current_user.is_super_admin?
   		@folders = SchoolFolder.all
-  	else
+  	elsif current_user.is_admin?
   		@folders = SchoolFolder.all.where(company_id: current_user.company_id)
+  	else
+  		school_folders = []
+  		SchoolFolder.all.where(company_id: current_user.company_id).each do |school_folder|
+		  	school_folder.school_files.each do |school_file|
+		  		if current_user.groups.present?
+		  			current_user.groups.each do |group|
+		  				if school_file.groups.include?(group.id.to_s)
+		  					school_folders << school_folder
+		  				end
+		  			end
+		  		end
+		  	end
+		  	@folders = SchoolFolder.where(id: school_folders)
+		  end
   	end
   end
 
