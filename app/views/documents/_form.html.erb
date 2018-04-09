@@ -7,14 +7,14 @@
 <div class="blockForm2">
   <div class="span2">
     <label style="padding-bottom: 1px;">Select Groups</label>
-    <%= select_tag "groups[]", options_for_select( Group.all.map {|s| [s.name, s.id]}, []), class: 'select2_tag', :multiple => true, :size => 100 %>
+    <%= select_tag "groups[]", options_for_select( Group.all.map {|s| [s.name, s.id]}, []), class: 'select2_tag select-group', :multiple => true, required: true, :size => 100 %>
   </div>
 </div>
 <div class="filesbox for_new blockForm2">
-  <input type="file" name="school_file" id="school_file" >
+  <input type="file" name="school_file" id="school_file" required>
 </div>
 
 <div class="createPageButtonbar">
   <%= f.button :submit %>
   <%= link_to 'Back', documents_path,  class: "" %>
-</div>
+</div> 

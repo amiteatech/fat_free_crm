@@ -17,6 +17,10 @@
       = link_to(t(:Documents), documents_path) << " |"
       = link_to(t(:Report), report_path) << " |"
       = link_to("Tasks", tasks_path) << " |"  
+      = link_to("Tasks", tasks_path) << " |"  
+      = link_to "javascript:window.print();" do
+        %i.fa.fa-print.print-page
+        |
       = link_to(t(:logout), logout_path, :method => :delete)
       = render "/layouts/jumpbox" 
 
