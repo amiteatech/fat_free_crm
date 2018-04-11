@@ -5,7 +5,11 @@
     <%#= f.input :school_form_id %>
     <div class="blockForm2">
       <div class="span2">
-        <%= select_tag "school_form_id", options_from_collection_for_select(SchoolForm.all, "id", "name") %>
+        <% if action_name == "edit" %>
+          <%= select_tag "school_form_id", options_from_collection_for_select(SchoolForm.all, "id", "name", @access_on_form.school_form_id), :disabled => true, :style => "height:auto; margin-top: 4px;" %>
+        <% else %>
+          <%= select_tag "school_form_id", options_from_collection_for_select(SchoolForm.all, "id", "name") %>
+        <% end %>
       </div>
     </div>
     <%#= select_tag "school_form_id", options_from_collection_for_select(SchoolForm.all, "id", "name") %>
@@ -13,7 +17,7 @@
     <%#= f.input :users_id %>
    <div class="blockForm2">
       <div class="span2">
-         <%= select_tag "users[]", options_for_select( Group.all.map {|s| [s.name, s.id]}, []), class: 'select2_tag', :multiple => true, :size => 100 %>
+         <%= select_tag "users[]", options_for_select( Group.all.where(company_id: current_user.company_id).map {|s| [s.name, s.id]}, (action_name == "edit") ? AccessOnForm.get_user_groups(current_user.company_id, @access_on_form) : []), class: 'select2_tag', :multiple => true, :size => 100 %>
       </div>
    </div>
   </div>

@@ -7,6 +7,7 @@
     <tr>
       <th>School form</th>
       <th>User's Who has access</th>
+      <th></th>
       
     </tr>
   </thead>
@@ -18,12 +19,14 @@
     
         <td>
           <% if access_on_form.users_id.present? %>
-          <% access_on_form.users_id.each do |user_id| %>
+          <% access_on_form.users_id.uniq.each do |user_id| %>
             <%= User.find(user_id).name %>,
           <% end %>
           <% end %>
         </td>
-        
+        <td>
+          <%= link_to "Edit", edit_access_on_form_path(access_on_form) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

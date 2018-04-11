@@ -22,19 +22,23 @@ class AccessOnFormsController < ApplicationController
   # POST /access_on_forms
   def create
     @access_on_form = AccessOnForm.new
-    @access_on_form.school_form_id = params["school_form_id"]
-    @access_on_form.company_id = current_user.company_id
-    users = User.joins(:groups).where("groups.id" => params["users"])
-
-    if users.present?
-      users_id = users.map{|d|d.id}
-      @access_on_form.users_id = users_id
-    end  
-   
-    if @access_on_form.save
-      redirect_to @access_on_form, notice: 'Access on form was successfully created.'
+    users = User.joins(:groups).where("groups.id" => params["users"]).uniq  
+    
+    if AccessOnForm.all.where(company_id: current_user.company_id).where(school_form_id: params["school_form_id"]).present?
+      redirect_to @access_on_form, notice: 'Access on this form was already created.'
     else
-      render :new
+      @access_on_form.school_form_id = params["school_form_id"]
+      @access_on_form.company_id = current_user.company_id
+      if users.present?
+        users_id = users.map{|d|d.id}
+        @access_on_form.users_id = users_id
+      end
+
+      if @access_on_form.save
+        redirect_to @access_on_form, notice: 'Access on form was successfully created.'
+      else
+        render :new
+      end
     end
 
   end
@@ -42,8 +46,8 @@ class AccessOnFormsController < ApplicationController
   # PATCH/PUT /access_on_forms/1
   def update
     if @access_on_form
-      @access_on_form.school_form_id = params["school_form_id"]
-      users = User.joins(:groups).where("groups.id" => params["users"])
+      # @access_on_form.school_form_id = params["school_form_id"]
+      users = User.joins(:groups).where("groups.id" => params["users"]).uniq
       if users.present?
         users_id = users.map{|d|d.id}
         @access_on_form.users_id = users_id
