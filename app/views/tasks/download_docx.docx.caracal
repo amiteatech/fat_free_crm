@@ -49,14 +49,13 @@ if @task.form_number == 1
   # Interviewer's comments on whether vis-a-vis the minimum qualification and selection criteria.
   #-----------------------------------------------------
 
-  docx.p 'Interviewer\'s comments on whether vis-a-vis the minimum qualification and selection criteria.'
+  docx.p do
+    text 'Interviewer\'s comments on whether vis-a-vis the minimum qualification and selection criteria', size: 20, bold: true, margins: { top: 0, bottom: 500, left: 0, right: 0 }, underline: true
+  end
 
-  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comment_first)]
-
-  docx.table [row1.dup], border_size: 4, height: 6000 do
-  cell_style cols[0],    height: 4000
-    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
-    border_color    'd2d6de'
+  min_qualification = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comment_first)].first
+  docx.p do
+    text min_qualification, margins: { top: 0, bottom: 500, left: 0, right: 0 }
   end
   docx.p
 
@@ -64,13 +63,13 @@ if @task.form_number == 1
   # Interviewer's comments on suitability of the applicant for the position
   #-----------------------------------------------------
 
-  docx.p 'Interviewer\'s comments on suitability of the applicant for the position'
-  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comment_second)]
+  docx.p do
+    text 'Interviewer\'s comments on suitability of the applicant for the position', size: 20, bold: true, margins: { top: 0, bottom: 500, left: 0, right: 0 }, underline: true
+  end
 
-  docx.table [row1.dup], border_size: 4 do
-  cell_style cols[0],    height: 4000
-    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
-    border_color    'd2d6de'
+  suitable_applicant_comment = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comment_second)].first
+  docx.p do
+    text suitable_applicant_comment, margins: { top: 0, bottom: 500, left: 0, right: 0 }
   end
   docx.p
 
@@ -78,13 +77,13 @@ if @task.form_number == 1
   # Any other comments/conditions for recruitment
   #-----------------------------------------------------
 
-  docx.p 'Any other comments/conditions for recruitment'
-  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comment_others)]
+  docx.p do
+    text 'Any other comments/conditions for recruitment', size: 20, bold: true, margins: { top: 0, bottom: 500, left: 0, right: 0 }, underline: true
+  end
 
-  docx.table [row1.dup], border_size: 4 do
-  cell_style cols[0],    height: 4000
-    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
-    border_color    'd2d6de'
+  other_comments = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comment_others)].first
+  docx.p do
+    text other_comments, margins: { top: 0, bottom: 500, left: 0, right: 0 }
   end
   docx.p
 
@@ -103,13 +102,13 @@ if @task.form_number == 1
   # Interviewer’s comments
   #-----------------------------------------------------
 
-  docx.p 'Module development'
-  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comments)]
+  docx.p do
+    text 'Interviewer\’s comments', size: 20, bold: true, margins: { top: 0, bottom: 500, left: 0, right: 0 }, underline: true
+  end
 
-  docx.table [row1.dup], border_size: 4 do
-  cell_style cols[0],    height: 4000
-    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
-    border_color    'd2d6de'
+  interviewer_comment = [ActionView::Base.full_sanitizer.sanitize(@task.form_first.interviewer_comments)].first
+  docx.p do
+    text interviewer_comment, margins: { top: 0, bottom: 500, left: 0, right: 0 }
   end
   docx.p
 
@@ -218,13 +217,13 @@ elsif @task.form_number == 3
   # Relevant Information
   #-----------------------------------------------------
 
-  docx.p 'Relevent information'
-  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.relevent_information)]
+  docx.p do
+    text 'Relevant Information', size: 20, bold: true, margins: { top: 0, bottom: 500, left: 0, right: 0 }, underline: true
+  end
 
-  docx.table [row1.dup], border_size: 4 do
-  cell_style cols[0],    height: 4000
-    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
-    border_color    'd2d6de'
+  relevent_info = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.relevent_information)].first
+  docx.p do
+    text relevent_info, margins: { top: 0, bottom: 500, left: 0, right: 0 }
   end
   docx.p
 
@@ -232,13 +231,13 @@ elsif @task.form_number == 3
   # Student performance
   #-----------------------------------------------------
 
-  docx.p 'Student performance'
-  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.student_performance)]
-
-  docx.table [row1.dup], border_size: 4 do
-  cell_style cols[0],    height: 4000
-    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
-    border_color    'd2d6de'
+  docx.p do
+    text 'Student performance', size: 20, bold: true, margins: { top: 0, bottom: 500, left: 0, right: 0 }, underline: true
+  end
+  
+  student_performance = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.student_performance)].first
+  docx.p do
+    text student_performance, margins: { top: 0, bottom: 500, left: 0, right: 0 }
   end
   docx.p
 
@@ -246,13 +245,13 @@ elsif @task.form_number == 3
   # Evaluation
   #-----------------------------------------------------
 
-  docx.p 'Evaluation'
-  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.evaluation)]
-
-  docx.table [row1.dup], border_size: 4 do
-  cell_style cols[0],    height: 4000
-    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
-    border_color    'd2d6de'
+  docx.p do
+    text 'Evaluation', size: 20, bold: true, margins: { top: 0, bottom: 500, left: 0, right: 0 }, underline: true
+  end
+  
+  evaluation = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.evaluation)].first
+  docx.p do
+    text evaluation, margins: { top: 0, bottom: 500, left: 0, right: 0 }
   end
   docx.p
 
@@ -260,13 +259,13 @@ elsif @task.form_number == 3
   # Module development
   #-----------------------------------------------------
 
-  docx.p 'Module development'
-  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.module_development)]
+  docx.p do
+    text 'Module development', size: 20, bold: true, margins: { top: 0, bottom: 500, left: 0, right: 0 }, underline: true
+  end
 
-  docx.table [row1.dup], border_size: 4 do
-  cell_style cols[0],    height: 4000
-    cell_style cells,      size: 18, margins: { top: 100, bottom: 100, left: 100, right: 100 }
-    border_color    'd2d6de'
+  module_development = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.module_development)].first
+  docx.p do
+    text module_development, margins: { top: 0, bottom: 500, left: 0, right: 0 }
   end
   docx.p
 
@@ -288,12 +287,12 @@ elsif @task.form_number == 3
   # Comments
   #-----------------------------------------------------
 
-  docx.p 'Comments'
-  row1 = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.comments)]
-
-  docx.table [row1.dup], border_size: 4 do
-    cell_style cells,      size: 18, height: 4000,  margins: { top: 100, bottom: 100, left: 500, right: 100 }
-    border_color 'd2d6de'
+  docx.p do
+    text 'Comments', size: 20, bold: true, margins: { top: 0, bottom: 500, left: 0, right: 0 }, underline: true
+  end
+  comment = [ActionView::Base.full_sanitizer.sanitize(@task.thrid_form.comments)].first
+  docx.p do
+    text comment, margins: { top: 0, bottom: 500, left: 0, right: 0 }
   end
   docx.p
 
