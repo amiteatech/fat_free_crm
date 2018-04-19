@@ -28,7 +28,7 @@
   %h3
     - if current_user && current_user.super_admin == true
       = link_to("Educert Process Control System", companies_path)
-    - if current_user && current_user.company.present? 
+    - elsif current_user && current_user.company.present? 
       = link_to(current_user.company.name, root_path)
     - else
       = link_to("Educert Process Control System", root_path) 

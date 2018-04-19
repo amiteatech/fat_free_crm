@@ -1,3 +1,5 @@
 <div class="title_tools">
-  <%= link_to "Create Task", new_task_url %>
+	<% unless (current_user && current_user.super_admin == true)%>
+  	<%= link_to "Create Task", new_task_url %>
+  <% end %>
 </div>
