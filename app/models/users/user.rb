@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   belongs_to :company
 
   # has_many :vitos
-
+  validates :email, uniqueness: true 
   has_paper_trail class_name: 'Version', ignore: [:perishable_token]
 
   scope :by_id, -> { order('id DESC') }

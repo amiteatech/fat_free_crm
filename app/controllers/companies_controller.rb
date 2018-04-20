@@ -47,13 +47,19 @@ class CompaniesController < ApplicationController
   def create
 
     @company = Company.new(company_params)
+    @find_user=User.where(email: user_params[:email])
+    unless @find_user.present?
+      @user = User.new(user_params)
 
-    @user = User.new(user_params)
-
-    if @company.save && @user.save(:validate => false)
-       @user.update_attributes({:company_id =>  @company.id, :admin => true, :school_admin => true, :school_user => true})
-      redirect_to companies_url, notice: 'Company was successfully created.'
+      if @company.save && @user.save(:validate => false)
+        @user.update_attributes({:company_id =>  @company.id, :admin => true, :school_admin => true, :school_user => true})
+        SchoolMailer.school_created_notification(@user, current_user, user_params[:password], @company).deliver_now
+        redirect_to companies_url, notice: 'Company was successfully created.'
+      else
+        render :new
+      end
     else
+      flash[:notice] = 'User account already exist!'
       render :new
     end
   end

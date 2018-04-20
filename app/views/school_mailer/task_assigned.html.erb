@@ -1,0 +1,9 @@
+<h1>Educert Process Control System</h1>
+
+<p>Task "<%= @task_title %>" has been assigned to you by <%= @assigner_name %>.</p>
+<p>If this task is not showing in your tasks list. Please wait until staff before you completes their work.</p>
+<p>You will be notified by mail when task is available for you.</p>
+
+<% if @password.present? %>
+	<p>This task is password protected. Use password: <strong><%= @password %></strong> to access task.</p>
+<% end %>

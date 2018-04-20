@@ -68,6 +68,20 @@ module FatFreeCRM
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_hash, :password_salt, :password_confirmation]
+
+    config.action_mailer.default_url_options = { :host => 'www.educertpro.com/' }
+    config.action_mailer.raise_delivery_errors = false
+    config.action_mailer.delivery_method = :smtp
+
+    config.action_mailer.smtp_settings = {
+      :address => "smtp.zoho.com",
+      :port => 587,
+      :user_name => "crm1@kinnetik.co",
+      :password => "abcd1234",
+      :domain => "zoho.com",
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
   end
 end
 

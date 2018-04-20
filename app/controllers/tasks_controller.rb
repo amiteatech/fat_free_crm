@@ -124,7 +124,7 @@ class TasksController < ApplicationController
     end
     
     if params[:task][:password_protected] == "1"
-      if params[:password] && params[:password_confirmation]
+      if params[:password].present? && params[:password] && params[:password_confirmation]
         if params[:password] == params[:password_confirmation]
           @task.password = params[:password]
           @task.password_protected = true
@@ -132,7 +132,6 @@ class TasksController < ApplicationController
           flash[:notice] = "Password did not match."
           redirect_to new_task_path and return
         end
-        @task.password_protected = false
       end
     end
 
@@ -159,6 +158,7 @@ class TasksController < ApplicationController
           @user_task.task_id = @task.id
           @user_task.position = pos
           @user_task.save
+          SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
         end
         if params['option_value'].present?
           params['option_value'].each do |key,value|
@@ -238,9 +238,14 @@ class TasksController < ApplicationController
     end 
 
     if params[:task][:password_protected] == "1"
-      if params[:password] && params[:password_confirmation]
+      if params[:password].present? && params[:password_confirmation].present?
         if params[:password] == params[:password_confirmation]
           @task.update_attributes(password: params[:password]) 
+          @users_selected.each do |user_id|
+            if UserTask.where(task_id: @task.id).exists?(user_id: user_id)
+              SchoolMailer.task_password_changed(User.find(user_id), current_user, @task.name, @task.password).deliver_now
+            end
+          end
         else
           flash[:notice] = "Password did not match."
           redirect_to edit_task_path(@task) and return
@@ -249,7 +254,7 @@ class TasksController < ApplicationController
     end
    
     if @users_selected.present?
-        @pos = 0
+        @pos = @task.user_tasks.count
         @users_selected.each do |user_id|
             unless UserTask.where(task_id: @task.id).exists?(user_id: user_id)
               @pos = @pos+1
@@ -258,6 +263,7 @@ class TasksController < ApplicationController
               @user_task.task_id = @task.id
               @user_task.position = @pos
               @user_task.save
+              SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
             end
           end
     else
@@ -276,11 +282,13 @@ class TasksController < ApplicationController
 
           @task.update_attribute("assigned_to", @new_user_task.user_id)
           @task.update_attribute("task_status", "Pending" )
+          SchoolMailer.task_available(User.find(@new_user_task.user_id), current_user, @task.name).deliver_now
         else  
           @task.update_attribute("completed_at", Time.now)
           @task.update_attribute("completed_by", current_user.id )
           @task.update_attribute("task_status", "Completed")
           @task.update_attribute("assigned_to",  @task.task_created_id)
+          SchoolMailer.task_completed(User.find(@task.task_created_id), current_user, @task.name).deliver_now
        end
 
         @user_task.update_attributes(approved: true, approved_time: Time.now)
@@ -291,6 +299,7 @@ class TasksController < ApplicationController
         @user_task.update_attributes(rejected: true, rejected_time: Time.now)
         @task.update_attribute("assigned_to", @task.task_created_id)
         @task.update_attribute("task_status", "Return")
+        SchoolMailer.task_rejected(User.find(@task.task_created_id), current_user, @task.name).deliver_now
       elsif params[:task][:completed] == "3"
         @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).last
         @first_user_in_order = @task.task_created_id
