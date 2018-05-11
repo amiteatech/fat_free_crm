@@ -1,6 +1,8 @@
 class ReportController < ApplicationController
   def index
-    if current_user.is_admin?
+    if current_user.is_super_admin?
+      @search = Task.all.ransack(view_context.empty_blank_params params[:q])
+    elsif current_user.is_admin?
   	  @search = Task.where(:company_id => current_user.company_id).ransack(view_context.empty_blank_params params[:q])
     elsif current_user.is_manager? 
       arr = []
@@ -15,7 +17,7 @@ class ReportController < ApplicationController
       @search = Task.where(:company_id => current_user.company_id).where(task_created_id: current_user.id).ransack(view_context.empty_blank_params params[:q])
     end
 
-    @tasks = @search.result(distinct: true).includes(:user_tasks).order("id DESC")
+    @tasks = @search.result(distinct: true).includes(:user_tasks).includes(:option_values).order("id DESC")
     
     @task_form_tag_values = TaskFormTagValue.where(:company_id => current_user.company_id)
   	# @tasks = Task.where(:company_id => current_user.company_id).order("id desc")

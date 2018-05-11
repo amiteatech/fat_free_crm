@@ -2,12 +2,12 @@
 
 <p>
   <strong>School form:</strong>
-  <%= @access_on_form.school_form_id %>
+  <%= SchoolForm.find(@access_on_form.school_form_id).name %>
 </p>
 
 <p>
   <strong>Company:</strong>
-  <%= @access_on_form.company_id %>
+  <%= Company.find(@access_on_form.company_id).name %>
 </p>
 
 <p>

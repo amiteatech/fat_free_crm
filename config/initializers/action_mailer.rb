@@ -22,3 +22,12 @@ unless Rails.env.test?
   end
 
 end
+
+# if Rails.env.development? or Rails.env.test?
+#   class OverrideMailRecipient
+#     def self.delivering_email(mail)
+#       mail.to = ''
+#     end
+#   end
+#   ActionMailer::Base.register_interceptor(OverrideMailRecipient)
+# end

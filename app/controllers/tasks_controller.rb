@@ -20,7 +20,9 @@ class TasksController < ApplicationController
   def index
     @view = view
     data = UserTask.where(:user_id => current_user.id)
-    google_session = GoogleDrive.login_with_oauth(session[:google_token])
+    # google_session = GoogleDrive.login_with_oauth(session[:google_token])
+    # if current_user.is_super_admin?
+    #   @tasks = Task.all
     if data.present?
       #@tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
       @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})

@@ -7,7 +7,7 @@
     <tr>
       <th>School form</th>
       <th>User's Who has access</th>
-      <th></th>
+      <th width="12%"></th>
       
     </tr>
   </thead>
@@ -25,7 +25,9 @@
           <% end %>
         </td>
         <td>
-          <%= link_to "Edit", edit_access_on_form_path(access_on_form) %>
+          <%= link_to("<i class='fa fa-pencil'></i>".html_safe, edit_access_on_form_path(access_on_form), :class => 'deletIcon', :style => "padding: 5px 10px;") %>
+          <%= link_to("<i class='fa fa-trash'></i>".html_safe, access_on_form,
+            method: :delete, data: {confirm: "Are you sure?"}, :class => 'deletIcon', :style => "padding: 5px 10px;") %>
         </td>
       </tr>
     <% end %>

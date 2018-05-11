@@ -9,7 +9,16 @@
     </div>  
 
     <div class="src_frm">
-     <%= task.select :task_form_tag_id_eq, options_from_collection_for_select(TaskFormTag.where(company_id: current_user.company_id), "id", "name", @search.task_form_tag_id_eq), {include_blank: "Please select a tag type"}, {:class => "select2", :style => "width:100%"} %>
+      <% tag_values = [] %>
+      <% TaskFormTag.where(:status => true).each do |tag| %>
+        <%
+         t_values = TaskFormTagValue.all.where(:company_id => current_user.company_id).where(:task_form_tag_id => tag.id)
+         t_values.each do |t_val|
+          tag_values << t_val
+         end
+        %>
+      <% end %> 
+      <%= task.select :option_values_task_form_tag_value_id_eq, options_from_collection_for_select(tag_values, "id", "name", @search.option_values_task_form_tag_value_id_eq), {include_blank: "Please select a tag value"}, {:class => "select2", :style => "width:100%"} %>
     </div>  
 
     <!-- <div class="src_frm">

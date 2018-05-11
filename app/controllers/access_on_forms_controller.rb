@@ -3,7 +3,11 @@ class AccessOnFormsController < ApplicationController
 
   # GET /access_on_forms
   def index
-    @access_on_forms = AccessOnForm.all
+    if current_user.is_super_admin?
+      @access_on_forms = AccessOnForm.all
+    else
+      @access_on_forms = AccessOnForm.where(company_id: current_user.company_id)
+    end
   end
 
   # GET /access_on_forms/1
@@ -24,7 +28,7 @@ class AccessOnFormsController < ApplicationController
     @access_on_form = AccessOnForm.new
     users = User.joins(:groups).where("groups.id" => params["users"]).uniq  
     
-    if AccessOnForm.all.where(company_id: current_user.company_id).where(school_form_id: params["school_form_id"]).present?
+    if AccessOnForm.where(company_id: current_user.company_id).where(school_form_id: params["school_form_id"]).present?
       redirect_to @access_on_form, notice: 'Access on this form was already created.'
     else
       @access_on_form.school_form_id = params["school_form_id"]

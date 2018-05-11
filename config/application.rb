@@ -69,7 +69,7 @@ module FatFreeCRM
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_hash, :password_salt, :password_confirmation]
 
-    config.action_mailer.default_url_options = { :host => 'www.educertpro.com/' }
+    config.action_mailer.default_url_options = { :host => 'www.educertpro.com' }
     config.action_mailer.raise_delivery_errors = false
     config.action_mailer.delivery_method = :smtp
 

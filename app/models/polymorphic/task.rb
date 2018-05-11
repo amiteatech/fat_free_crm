@@ -221,7 +221,7 @@ class Task < ActiveRecord::Base
     return {} unless ALLOWED_VIEWS.include?(view)
     settings = (view == "completed" ? Setting.task_completed : Setting.task_bucket)
     settings.each_with_object(HashWithIndifferentAccess[all: 0]) do |key, hash|
-      hash[key] = (view == "assigned" ? assigned_by(user).send(key).pending.count : my(user).send(key).send(view).count)
+      hash[key] = (view == "assigned" ? assigned_by(user).send(key).pending.where(company_id: user.company_id).count : my(user).send(key).send(view).where(company_id: user.company_id).count)
       hash[:all] += hash[key]
       hash
     end

@@ -49,11 +49,11 @@
         <% bucket = (params[:bucket].blank? ? @task.bucket : params[:bucket]) || "due_asap" %>
 
           <%#= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "", :onload => "crm.flip_calendar(this.value)" } %>
-        <%= f.text_field :calendar, :autocomplete => :off, :class => 'datetime dueAT' %>
+        <%= f.text_field :calendar, :autocomplete => :off, :class => 'datetime_due dueAT' %>
         <% else %>
           <%#= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "", :onchange => "crm.flip_calendar(this.value)" } %>
           <% fmt = with_time ? '%Y-%m-%d %H:%M' : '%Y-%m-%d' %>
-          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :autocomplete => :off, :class => 'datetime dueAT' %>
+          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :autocomplete => :off, :class => 'datetime_due dueAT' %>
         <% end %>
       </div>
     </div>
@@ -141,6 +141,15 @@
     //     $("ul.select2-selection__rendered li.select2-search.select2-search--inline").prepend("<li class='select2-selection__choice' title='"+text+"><span class='select2-selection__choice__remove' role='presentation'>×</span>"+text+"</li>");
     //   });
     // }, 300);
+
+    $(document).on('click focus', 'input.datetime_due', function() {
+      var dateToday = new Date();
+      $(this).datetimepicker({
+        showOn: 'focus',
+        minDate: dateToday,
+        changeMonth: true,
+        dateFormat: 'yy-mm-dd'})
+    });
     
     $(".task_password_protected input").on("click", function() {
       if ($(this).is(":checked")) {        
