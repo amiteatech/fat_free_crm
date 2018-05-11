@@ -1,4 +1,4 @@
- <% if ((pending.user_id == current_user.id || pending.assigned_to == current_user.id) && (pending.task_status && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "return"))) %>
+ <% if (current_user.is_super_admin? || (pending.user_id == current_user.id || pending.assigned_to == current_user.id) && (pending.task_status && (pending.task_status.downcase == "pending" || pending.task_status.downcase == "return"))) %>
   <tr id="task_<%=pending.id%>">
     <!-- unless pending.category.blank?
       .strip{:class => pending.category}= t(pending.category)
@@ -8,7 +8,7 @@
     <td><%= pending.id %></td>
     <td>
       <label id="<%= dom_id(pending, :name) %>">
-        <% if pending.user && (pending.user.id != current_user.id) %>
+        <% if pending.user && !current_user.is_super_admin? && (pending.user.id != current_user.id) %>
           <%= t(:task_from, link_to(h(pending.user.full_name), user_path(pending.user))).html_safe << ':' %>
         <% end %>
         <%= link_to h(pending.name), edit_task_path(pending.id), :class => "openpop", data: {id: pending.id, task_protected: pending.password_protected} %>
@@ -56,7 +56,7 @@
       <%#= link_to_discard(pending) + " | " if shown_on_landing_page? %>
     </td>
     <td>
-      <% if (pending.task_created_id == current_user.id) %>
+      <% if current_user.is_super_admin? || (pending.task_created_id == current_user.id) %>
         <%= link_to_task_delete_task(pending, bucket) %>
       <% end %>
     </td>
