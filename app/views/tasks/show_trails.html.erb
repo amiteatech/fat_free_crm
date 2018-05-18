@@ -1,0 +1,32 @@
+<table class="company_table report" border="0" cellspacing="0" cellpadding="0" width="100%">	
+	<thead>
+	    <th>Item Id</th>
+	    <th>Item Type</th>
+	    <th>Event</th>
+	    <th>Created At</th>
+	    <th>Object</th>
+	    <th>Object Changes</th>
+	    <th>Related Id</th>
+	    <th>Related Type</th>
+	    <th>Transaction Id</th>
+    </thead>
+    <tbody>
+    <% @tasks.each do |task| %>
+		<% if current_user.is_super_admin? || current_user.is_admin? || current_user.is_manager? %>
+			<% task.versions.order(created_at: :desc).each do |version| %>
+		    	<tr>
+					<td><%=  version.item_id %></td>
+					<td><%=  version.item_type %></td>
+					<td><%=  version.event %></td>
+					<td><%=  version.created_at %></td>
+					<td><%#=  version.object %></td>
+					<td><%=  version.object_changes %></td>
+					<td><%=  version.related_id %></td>
+					<td><%=  version.related_type %></td>
+					<td><%=  version.transaction_id %></td>
+				</tr>
+			<% end %>
+        <% end %>
+    <% end %>
+    </tbody>
+</table>

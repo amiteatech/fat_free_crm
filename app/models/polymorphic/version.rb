@@ -12,7 +12,7 @@ class Version < PaperTrail::Version
 
   belongs_to :related, polymorphic: true
   belongs_to :user, foreign_key: :whodunnit
-
+  belongs_to :task, foreign_key: :whodunnit
   scope :default_order,  -> { order('created_at DESC') }
   scope :include_events, ->(*events) { where(event: events) }
   scope :exclude_events, ->(*events) { where('event NOT IN (?)', events) }

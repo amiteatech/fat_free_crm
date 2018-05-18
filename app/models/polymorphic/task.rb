@@ -53,7 +53,7 @@ class Task < ActiveRecord::Base
   has_many :task_files
 
   has_many :option_values
-
+  has_paper_trail
   accepts_nested_attributes_for :form_first
   accepts_nested_attributes_for :form_second
   accepts_nested_attributes_for :thrid_form

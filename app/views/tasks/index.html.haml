@@ -30,6 +30,8 @@
           Status
         %th
           Action
+        %th
+          
     %tbody
       = render :partial => 'pending', :collection => @tasks || [], :locals => { :bucket => 'pending' }
   - if @tasks.values.flatten.blank?

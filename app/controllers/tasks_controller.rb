@@ -9,7 +9,8 @@ class TasksController < ApplicationController
   before_action :set_current_tab, only: [:index, :show, :new, :edit]
   before_action :update_sidebar, only: [:index, :new, :edit ]
   skip_before_action :verify_authenticity_token
-  #before_action :google_drive_login, :only => [:index, :create] 
+  #before_action :google_drive_login, :only => [:index, :create]
+  before_action :set_paper_trail_whodunnit
 
   # GOOGLE_CLIENT_ID = "318261922103-6o5ui2qui55luqss9d2gpsbsukianb39.apps.googleusercontent.com"
   # GOOGLE_CLIENT_SECRET = "WlTtICFYG64yummKqFlpz5hf"
@@ -22,7 +23,6 @@ class TasksController < ApplicationController
     data = UserTask.where(:user_id => current_user.id)
     # google_session = GoogleDrive.login_with_oauth(session[:google_token])
     # if current_user.is_super_admin?
-    #   @tasks = Task.all
     if data.present?
       #@tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
       @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
@@ -74,7 +74,7 @@ class TasksController < ApplicationController
         respond_to_related_not_found(model) && return
       end
     end
-
+    
     #respond_with(@task)
   end
 
@@ -580,6 +580,10 @@ class TasksController < ApplicationController
         filters.delete(params[:filter])
       end
     end
+  end
+
+  def show_trails
+    @tasks = Task.all
   end
 
   protected

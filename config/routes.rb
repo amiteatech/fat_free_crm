@@ -33,14 +33,17 @@ Rails.application.routes.draw do
   root to: 'tasks#index'
   get '/oauth2callback', to: 'tasks#set_google_drive_token'
   get 'show_files', to: 'tasks#show_files'
+  get 'show_trails', to: 'tasks#show_trails'
+
   get 'activities' => 'home#index'
   get 'admin'      => 'admin/users#index',       :as => :admin
   get 'login'      => 'authentications#new',     :as => :login
   delete 'logout'  => 'authentications#destroy', :as => :logout
   get 'profile'    => 'users#show',              :as => :profile
   get 'signup'     => 'users#new',               :as => :signup
-  get 'report'     => 'report#index',             :as => :report
+  get 'report'     => 'report#index',            :as => :report
 
+  
   get '/home/options',  as: :options
   get '/home/toggle',   as: :toggle
   match '/home/timeline', as: :timeline, via: [:get, :put, :post]
