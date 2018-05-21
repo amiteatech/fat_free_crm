@@ -1,0 +1,2 @@
+class FormSecondHistory < ApplicationRecord
+end

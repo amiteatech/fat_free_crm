@@ -582,8 +582,86 @@ class TasksController < ApplicationController
     end
   end
 
+
+
+  #----------------------------------------------------------------------------
+  def get_activities(options = {})
+    user = activity_user
+    if current_user.super_admin != true
+      user = current_user
+    end  
+    options[:asset]    ||= activity_asset
+    options[:event]    ||= activity_event
+    options[:user]     ||= user
+    options[:duration] ||= activity_duration
+    options[:max]      ||= 500
+    Version.includes(user: [:avatar]).latest(options).visible_to(current_user)
+  end
+
+  #----------------------------------------------------------------------------
+  def activity_asset
+    asset = current_user.pref[:activity_asset]
+    if asset.nil? || asset == "all"
+      nil
+    else
+      asset.singularize.capitalize
+    end
+  end
+
+  #----------------------------------------------------------------------------
+  def activity_event
+    event = current_user.pref[:activity_event]
+    if event == "all_events"
+      %w(create update destroy)
+    else
+      event
+    end
+  end
+
+  #----------------------------------------------------------------------------
+  # TODO: this is ugly, ugly code. It's being security patched now but urgently
+  # needs refactoring to use user id instead. Permuations based on name or email
+  # yield incorrect results.
+  def activity_user
+    return nil if current_user.pref[:activity_user] == "all_users"
+    return nil unless current_user.pref[:activity_user]
+
+    is_email = current_user.pref[:activity_user].include?("@")
+
+    user = if is_email
+             User.where(email: current_user.pref[:activity_user]).first
+           else # first_name middle_name last_name any_name
+             name_query(current_user.pref[:activity_user])
+           end
+
+    user.is_a?(User) ? user.id : nil
+  end
+
+  def name_query(user)
+    if user.include?(" ")
+      user.name_permutations.map do |first, last|
+        User.where(first_name: first, last_name: last)
+      end.map(&:to_a).flatten.first
+    else
+      [User.where(first_name: user), User.where(last_name: user)].map(&:to_a).flatten.first
+    end
+  end
+
+  #----------------------------------------------------------------------------
+  def activity_duration
+    duration = current_user.pref[:activity_duration]
+    if duration
+      words = duration.split("_") # "two_weeks" => 2.weeks
+      if %w(one two).include?(words.first) && %w(hour day days week weeks month).include?(words.last)
+        %w(zero one two).index(words.first).send(words.last)
+      end
+    end
+  end
+
   def show_trails
+    @activities = get_activities
     @tasks = Task.find(params[:task_id]) 
+    @activities =  @tasks.versions
   end
 
   protected
