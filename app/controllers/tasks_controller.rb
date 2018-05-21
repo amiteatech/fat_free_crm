@@ -583,7 +583,7 @@ class TasksController < ApplicationController
   end
 
   def show_trails
-    @tasks = Task.all
+    @tasks = Task.find(params[:task_id]) 
   end
 
   protected

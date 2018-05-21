@@ -63,7 +63,7 @@
     <td>
       <div class="download_excel" style="margin-top: 0; float: none;
       ">
-        <%= link_to "Trail", show_trails_path %>
+        <%= link_to "Trail", show_trails_path(:task_id => pending.id), :target => "_blank"  %>
       </div>
     </td>
   </tr>

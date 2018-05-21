@@ -11,9 +11,8 @@
 	    <th>Transaction Id</th>
     </thead>
     <tbody>
-    <% @tasks.each do |task| %>
 		<% if current_user.is_super_admin? || current_user.is_admin? || current_user.is_manager? %>
-			<% task.versions.order(created_at: :desc).each do |version| %>
+			<% @tasks.versions.order(created_at: :desc).each do |version| %>
 		    	<tr>
 					<td><%=  version.item_id %></td>
 					<td><%=  version.item_type %></td>
@@ -27,6 +26,5 @@
 				</tr>
 			<% end %>
         <% end %>
-    <% end %>
     </tbody>
 </table>
