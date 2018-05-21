@@ -15,28 +15,28 @@
 					<td><%=  version.changeset %></td>
 				</tr>
 			<% end %>
-			<% @tasks.form_first.versions.order(created_at: :desc).each do |version| %>
+			<% @tasks.form_first.form_first_histories.order(created_at: :desc).each do |version| %>
 		    	<tr>
-		    		<td><%=  version.user.full_name %></td>
-					<td><%=  version.event %></td>
+		    		<td><%=  version.id %></td>
+					<td><%=  version.id %></td>
 					<td><%=  version.created_at.strftime("%m/%d/%y") %></td>
-					<td><%=  version.changeset %></td>
+					<td><%=  version.id %></td>
 				</tr>
 			<% end %>
-			<% @tasks.form_second.versions.order(created_at: :desc).each do |version| %>
+			<% @tasks.form_second.form_second_histories.order(created_at: :desc).each do |version| %>
 		    	<tr>
-		    		<td><%=  version.user.full_name %></td>
-					<td><%=  version.event %></td>
+		    		<td><%=  version.id %></td>
+					<td><%=  version.id %></td>
 					<td><%=  version.created_at.strftime("%m/%d/%y") %></td>
-					<td><%=  version.changeset %></td>
+					<td><%=  version.id %></td>
 				</tr>
 			<% end %>
-			<% @tasks.thrid_form.versions.order(created_at: :desc).each do |version| %>
+			<% @tasks.thrid_form.thrid_form_histories.order(created_at: :desc).each do |version| %>
 		    	<tr>
-		    		<td><%=  version.user.full_name %></td>
-					<td><%=  version.event %></td>
+		    		<td><%=  version.id %></td>
+					<td><%=  version.id %></td>
 					<td><%=  version.created_at.strftime("%m/%d/%y") %></td>
-					<td><%=  version.changeset %></td>
+					<td><%=  version.id %></td>
 				</tr>
 			<% end %>
         <% end %>

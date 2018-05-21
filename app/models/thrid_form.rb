@@ -5,10 +5,9 @@ class ThridForm < ApplicationRecord
   after_save :create_history
   
 	def create_history
-		thrid_form_history = FormSecondHistory.new
+		thrid_form_history = ThridFormHistory.new
 		thrid_form_history.thrid_form_id = self.id
 		thrid_form_history.task_id = self.task_id
-		thrid_form_history.user_id = self.user_id
 		thrid_form_history.module_title = self.module_title
 		thrid_form_history.module_syllabus_no = self.module_syllabus_no
 		thrid_form_history.course = self.course

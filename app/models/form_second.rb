@@ -47,6 +47,6 @@ class FormSecond < ApplicationRecord
       form_second_history.teaching_activity_5 = self.teaching_activity_5
       form_second_history.teacher_remark_5 = self.teacher_remark_5
       form_second_history.supervisor_remark_5 = self.supervisor_remark_5
-      form_first_history.save
+      form_second_history.save
   end
 end

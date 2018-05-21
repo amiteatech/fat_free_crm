@@ -1,7 +1,7 @@
 class CreateFormFirstHistories < ActiveRecord::Migration[5.0]
   def change
     create_table :form_first_histories do |t|
-      t.integer :first_form_id
+      t.integer :form_first_id
       t.string :name
       t.string :name_of_applicant
       t.string :position_applied_for

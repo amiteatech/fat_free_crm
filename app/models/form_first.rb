@@ -6,7 +6,7 @@ class FormFirst < ApplicationRecord
   
   def create_history
   	 form_first_history = FormFirstHistory.new
-  	 form_first_history.first_form_id = self.id
+  	 form_first_history.form_first_id = self.id
      form_first_history.name = self.name
      form_first_history.name_of_applicant = self.name_of_applicant
      form_first_history.position_applied_for =  self.position_applied_for
