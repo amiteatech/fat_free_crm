@@ -1,7 +1,9 @@
 class CreateThridFormHistories < ActiveRecord::Migration[5.0]
   def change
     create_table :thrid_form_histories do |t|
+      t.integer :thrid_form_id
       t.integer :task_id
+      t.integer :user_id
       t.string :module_title
       t.string :module_syllabus_no
       t.string :course

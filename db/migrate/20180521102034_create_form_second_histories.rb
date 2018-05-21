@@ -1,7 +1,7 @@
 class CreateFormSecondHistories < ActiveRecord::Migration[5.0]
   def change
     create_table :form_second_histories do |t|
-      t.integer :task_id
+      t.integer :form_second_id
       t.string :name
       t.string :module_title
       t.string :course
@@ -27,15 +27,11 @@ class CreateFormSecondHistories < ActiveRecord::Migration[5.0]
       t.string :textbook_3
       t.string :teaching_activity_3
       t.string :teacher_remark_3
-      t.string, :supervisor_remark_3
+      t.string :supervisor_remark_3
       t.string :week_4
-      t.string :string,
       t.string :topic_4
-      t.string :string,
       t.string :textbook_4
-      t.string :string
       t.string :teaching_activity_4
-      t.string :string
       t.string :teacher_remark_4
       t.string :supervisor_remark_4
       t.string :week_5
