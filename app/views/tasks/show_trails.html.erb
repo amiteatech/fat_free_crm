@@ -17,26 +17,182 @@
 			<% end %>
 			<% @tasks.form_first.form_first_histories.order(created_at: :desc).each do |version| %>
 		    	<tr>
-		    		<td><%=  version.id %></td>
-					<td><%=  version.id %></td>
-					<td><%=  version.created_at.strftime("%m/%d/%y") %></td>
-					<td><%=  version.id %></td>
+					<td colspan="4">
+					   <h3>Changes for form</h3>
+					    <% if version.name.present? %>
+					    	<label>Name</label>
+					        <%= version.name %> <br>
+					    <% end %>
+                        <% if version.name_of_applicant.present? %>
+						    <label>Name of applicant : </label> 
+						    <%= version.name_of_applicant %> <br> 
+                        <% end %>
+                        <% if version.position_applied_for.present? %>
+						    <label>position Applied For : </label> 
+						    <%= version.position_applied_for %> <br>
+					    <% end %>
+					    <% if version.part_a_first_interview_date.present? %>
+						    <label>first Interview Date : </label>
+						    <%= version.part_a_first_interview_date %> <br> 
+					    <% end %>
+					    <% if version.interviewer_comment_first.present? %>
+						    <label>First Interviewer Comment : </label>
+						    <%= version.interviewer_comment_first %> <br> 
+					    <% end %>
+					    <% if version.interviewer_comment_second.present? %>
+						    <label>Second Interviewer Comment : </label>
+						    <%= version.interviewer_comment_second %> <br>
+					    <% end %>
+					    <% if version.interviewer_comment_others.present? %>
+					        <label>Others Interviewer Comment : </label>
+					    	<%= version.interviewer_comment_others %> <br> 
+					    <% end %>
+					    <% if version.part_b_first_interview_date.present? %>
+					        <label>part B First Interview Date : </label>
+					    	<%= version.part_b_first_interview_date %> <br> 
+					    <% end %>
+					    <% if version.interviewer_comments.present? %>
+					        <label>Interviewer Comments :</label>
+					    	<%= version.interviewer_comments %> <br> 
+					    <% end %>
+					    <% if version.part_c_name.present? %>
+					        <label>Name :</label>
+					    	<%= version.part_c_name %> <br> 
+					    <% end %>
+					    <% if version.part_c_signature.present? %>
+					        <label>Signature :</label>
+					    	<%= version.part_c_signature %> <br> 
+					    <% end %>
+					    <% if version.part_c_date.present? %> 
+						    <label>Date :</label>
+						    <%= version.part_c_date %> <br> 
+					    <% end %>
+					    <% if version.company_id.present? %> 
+						    <label>Company Id :</label>
+						    <%= version.company_id %> <br> 
+					    <% end %>
+					    <% if version.user_id.present? %> 
+						    <label>User Id :</label>
+						    <%= version.user_id %> <br> 
+					    <% end %>
+					</td>
 				</tr>
 			<% end %>
 			<% @tasks.form_second.form_second_histories.order(created_at: :desc).each do |version| %>
 		    	<tr>
-		    		<td><%=  version.id %></td>
-					<td><%=  version.id %></td>
-					<td><%=  version.created_at.strftime("%m/%d/%y") %></td>
-					<td><%=  version.id %></td>
+		    		<td colspan="4">
+		    		    <h3>Changes for form</h3>
+					    <% if version.name.present? %>
+					    	<label>Name</label>
+					        <%= version.name %> <br>
+					    <% end %>
+                        <% if version.module_title.present? %>
+						    <label>Module Title : </label> 
+						    <%= version.module_title %> <br> 
+                        <% end %>
+                        <% if version.course.present? %>
+						    <label>Course : </label> 
+						    <%= version.course %> <br>
+					    <% end %>
+					    <% if version.course_date.present? %>
+						    <label>Course Date : </label>
+						    <%= version.course_date %> <br> 
+					    <% end %>
+					    <% if version.module_toucht_by_id.present? %>
+						    <label>module tought by: </label>
+						    <%= version.module_toucht_by_id %> <br> 
+					    <% end %>
+					    <% if version.company_id.present? %>
+						    <label>Company Id : </label>
+						    <%= version.company_id %> <br>
+					    <% end %>
+					    <% if version.user_id.present? %>
+					        <label>User Id : </label>
+					    	<%= version.user_id %> <br> 
+					    <% end %>
+					    <% if version.task_id.present? %>
+					        <label>Task Id</label>
+					    	<%= version.task_id %> <br> 
+					    <% end %>
+		    		</td>
 				</tr>
 			<% end %>
 			<% @tasks.thrid_form.thrid_form_histories.order(created_at: :desc).each do |version| %>
 		    	<tr>
-		    		<td><%=  version.id %></td>
-					<td><%=  version.id %></td>
-					<td><%=  version.created_at.strftime("%m/%d/%y") %></td>
-					<td><%=  version.id %></td>
+		    		<td colspan="4"> 
+		    		    <h3>Changes for form</h3>
+					    <% if version.module_title.present? %>
+					    	<label>Module Title</label>
+					        <%= version.module_title %> <br>
+					    <% end %>
+                        <% if version.module_syllabus_no.present? %>
+						    <label>module syllabus no : </label> 
+						    <%= version.module_syllabus_no %> <br> 
+                        <% end %>
+                        <% if version.course.present? %>
+						    <label>Course : </label> 
+						    <%= version.course %> <br>
+					    <% end %>
+					    <% if version.module_toucht_by.present? %>
+						    <label>Module toucht by</label>
+						    <%= version.module_toucht_by %> <br> 
+					    <% end %>
+
+					    <% if version.student_performance.present? %>
+						    <label>Student performance : </label>
+						    <%= version.student_performance %> <br> 
+					    <% end %>
+
+					    <% if version.evaluation.present? %>
+						    <label>Evaluation : </label>
+						    <%= version.evaluation %> <br>
+					    <% end %>
+
+					    <% if version.module_development.present? %>
+					        <label>Module development : </label>
+					    	<%= version.module_development %> <br> 
+					    <% end %>
+
+					    <% if version.module_development_submitted_by.present? %>
+					        <label>Module development submitted by</label>
+					    	<%= version.module_development_submitted_by %> <br> 
+					    <% end %>
+
+					    <% if version.module_development_submitted_date.present? %>
+					        <label>Module development submitted date : </label>
+					    	<%= version.module_development_submitted_date %> <br> 
+					    <% end %>
+
+					    <% if version.comments.present? %>
+					        <label>Comments : </label>
+					    	<%= version.comments %> <br> 
+					    <% end %>
+
+					    <% if version.comments_name.present? %>
+					        <label>Comments name : </label>
+					    	<%= version.comments_name %> <br> 
+					    <% end %>
+
+					    <% if version.comments_signature.present? %>
+					        <label>Comments signature : </label>
+					    	<%= version.comments_signature %> <br> 
+					    <% end %>
+
+					    <% if version.comments_designation.present? %>
+					        <label>Comments Designation : </label>
+					    	<%= version.comments_designation %> <br> 
+					    <% end %>
+
+					    <% if version.comments_date.present? %>
+					        <label>Comments Date : </label>
+					    	<%= version.comments_date %> <br> 
+					    <% end %>
+
+					    <% if version.task_id.present? %>
+					        <label>Task Id : </label>
+					    	<%= version.task_id %> <br> 
+					    <% end %>
+		    		</td>
 				</tr>
 			<% end %>
         <% end %>
