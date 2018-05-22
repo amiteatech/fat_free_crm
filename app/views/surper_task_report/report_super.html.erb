@@ -1,0 +1,149 @@
+
+<!-- <div class="left_part">
+  <%#= render partial: 'search_form', object: @search %>
+</div> -->
+<div class="right_part report-tab">
+	<div class="title report">
+		<h1>Reports</h1>
+	</div>
+	<div class="download_excel">
+		<%= link_to "Download to excel", report_path(format: "xls") %>
+	</div>
+	<p>
+	<table class="company_table report" border="0" cellspacing="0" cellpadding="0" width="100%">	
+		<thead>
+		  <tr>
+		    <th>Number</th>
+		    <th>Task</th>
+		    <th>Tags</th>
+		    <th>Due date</th>
+		    <th>Staff</th>
+		    <!-- <th>Tag Category</th> -->
+		    <th>Status</th>
+			</tr>
+	  </thead>		
+
+	  <% @tasks.each do |task| %>
+	  	<% if current_user.is_super_admin? || current_user.is_admin? || current_user.is_manager? %>
+		    <tr>
+			    <td><%= task.id %></td>
+			    <td>
+			    	<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+			    </td>
+			    
+			    <td>
+			    	<% indx = 0 %>
+				    <% TaskFormTag.where(:status => true).each do |tag| %>
+					    <%
+
+					     tag_values = TaskFormTagValue.all.where(:company_id => current_user.company_id).where(:task_form_tag_id => tag.id)
+					    %>
+					    <% if tag_values.size > 0 %>
+						    <div class="blockForm2">
+						      <label class="top task_name">Tag Name: <%= tag.name%>:</label>      
+						      <div class="span2">
+						        <%#= select_tag %>
+						       <% 
+						         selected_value = ""
+						         last = task.option_values.where(:task_form_tag_id => tag.id).last
+						         if last
+						            selected_value = last.task_form_tag_value_id
+						         end   
+						        
+
+						       %>
+						       <% if selected_value.present? %>
+						         Value: <%=  TaskFormTagValue.where(:id => selected_value ).first.name %>
+						       <% end %>
+						       
+						      </div>
+						    </div>  
+						    <% if indx%2 == 0 %>
+						     <div class="cl"></div>
+						    <% end %>
+						    <% indx = indx + 1 %>
+						  <% end %>
+    				<% end %>				
+			    </td>
+			    
+			    <td>
+			    	<% if task.due_at.present? %>
+			    		<%= task.due_at.strftime('%Y-%m-%d %H:%M') %>
+			    	<% end %>
+			    </td>
+			    <td>
+			    	<% task.user_tasks.where.not(id: task.task_created_id).each do |user_task| %>
+              <%  @user = User.find(user_task.user_id) %>
+              <%= @user.name %><%= (task.user_tasks.where.not(id: task.task_created_id).last == user_task) ? "" : "," %>
+            <% end %>
+			    </td>
+			    <td >
+			     <%=  task.task_status %>
+			    </td>
+		    </tr>
+		  <% elsif !((task.task_status == "cancelled" || task.task_status == "Cancelled" || task.task_status == "return" || task.task_status == "Return") && (task.task_created_id != current_user.id)) %>
+		  	<tr>
+					<td><%= task.id %></td>
+			    <td>
+			    	<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+			    </td>
+			    <td>
+			    	<%# if task.task_form_tag_id.present? %>
+			    		<%# if TaskFormTag.where(id: task.task_form_tag_id).first.present? %>
+			    			<%#= TaskFormTag.where(id: task.task_form_tag_id).first.name %>
+			    		<%# end %>
+			    	<%# end %>
+			    	<% indx = 0 %>
+				    <% TaskFormTag.where(:status => true).each do |tag| %>
+					    <%
+
+					     tag_values = TaskFormTagValue.all.where(:company_id => current_user.company_id).where(:task_form_tag_id => tag.id)
+					    %>
+					    <% if tag_values.size > 0 %>
+						    <div class="blockForm2">
+						      <label class="top task_name">Tag Name: <%= tag.name%>:</label>      
+						      <div class="span2">
+						       <% 
+						         selected_value = ""
+						         last = task.option_values.where(:task_form_tag_id => tag.id).last
+						         if last
+						            selected_value = last.task_form_tag_value_id
+						         end   
+						        
+
+						       %>
+						       <% if selected_value.present? %>
+						         Value: <%=  TaskFormTagValue.where(:id => selected_value ).first.name %>
+						       <% end %>
+						       
+						      </div>
+						    </div>  
+						    <% if indx%2 == 0 %>
+						     <div class="cl"></div>
+						    <% end %>
+						    <% indx = indx + 1 %>
+						  <% end %>
+    				<% end %>	
+			    </td>
+			    
+			    <td>
+			    	<% if task.due_at.present? %>
+			    		<%= task.due_at.strftime('%Y-%m-%d %H:%M') %>
+			    	<% end %>
+			    </td>
+			    <td>
+			    	<% task.user_tasks.where.not(id: task.task_created_id).each do |user_task| %>
+              <%  @user = User.find(user_task.user_id) %>
+              <%= @user.name %><%= (task.user_tasks.where.not(id: task.task_created_id).last == user_task) ? "" : "," %>
+            <% end %>
+			    </td>
+			    <td >
+			     <%=  task.task_status %>
+			    </td>
+		    </tr>
+		  <% end %>
+	  <% end %>
+	</table>
+
+   </p>
+</div>

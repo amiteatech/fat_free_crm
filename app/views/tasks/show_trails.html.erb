@@ -1,3 +1,7 @@
+<style type="text/css">
+.s_trails label {font-weight: bold;}
+.s_trails p {display: initial; margin: 0;}
+</style>
 <table class="company_table report" border="0" cellspacing="0" cellpadding="0" width="100%">	
 	<thead>
 		<th>User</th>
@@ -12,24 +16,54 @@
 		    		<td><%=  version.user.full_name %></td>
 					<td><%=  version.event %></td>
 					<td><%=  version.created_at.strftime("%m/%d/%y") %></td>
-					<td><%=  version.changeset %></td>
+					<!-- <td><%#=  version.changeset %></td> -->
+					<td class="s_trails">
+					    <% if version.id.present? %>
+					    	<label>ID : </label>
+					        <%= version.id %>,
+					    <% end %>
+					    <% if version.item_type.present? %>
+					    	<label>Item Type : </label>
+					        <%= version.item_type %>,
+					    <% end %>
+					    <% if version.event.present? %>
+					    	<label>Event : </label>
+					        <%= version.event %>,
+					    <% end %>
+					    <!-- <%# if version.object.present? %>
+					    	<label>Object : </label>
+					        <%#= version.object %>,
+					    <%# end %> -->
+					    <% if version.created_at.present? %>
+					    	<label>created At : </label>
+					        <%= version.created_at %>,
+					    <% end %>
+					    <!-- <%# if version.object_changes.present? %>
+					    	<label>Object changes : </label>
+					        <%#= version.object_changes %>,
+					    <%# end %> -->
+					    <% if version.transaction_id.present? %>
+					    	<label>Transaction Id : </label>
+					        <%= version.transaction_id %>,
+					    <% end %>
+					</td>
 				</tr>
 			<% end %>
 			<% @tasks.form_first.form_first_histories.order(created_at: :desc).each do |version| %>
 		    	<tr>
-					<td colspan="4">
-					   <h3>Changes for form</h3>
+					<td colspan="4" class="s_trails">
+					   <h3>1st Changes for form</h3>
 					    <% if version.name.present? %>
-					    	<label>Name</label>
-					        <%= version.name %> <br>
+					    	<label>Name : </label>
+					        <%= version.name.html_safe %> <br>
 					    <% end %>
                         <% if version.name_of_applicant.present? %>
 						    <label>Name of applicant : </label> 
-						    <%= version.name_of_applicant %> <br> 
+						    <%= version.name_of_applicant.html_safe %> <br> 
                         <% end %>
                         <% if version.position_applied_for.present? %>
 						    <label>position Applied For : </label> 
-						    <%= version.position_applied_for %> <br>
+						    <%= version.position_applied_for.html_safe %> <br>
 					    <% end %>
 					    <% if version.part_a_first_interview_date.present? %>
 						    <label>first Interview Date : </label>
@@ -37,15 +71,15 @@
 					    <% end %>
 					    <% if version.interviewer_comment_first.present? %>
 						    <label>First Interviewer Comment : </label>
-						    <%= version.interviewer_comment_first %> <br> 
+						    <%= version.interviewer_comment_first.html_safe %> <br> 
 					    <% end %>
 					    <% if version.interviewer_comment_second.present? %>
 						    <label>Second Interviewer Comment : </label>
-						    <%= version.interviewer_comment_second %> <br>
+						    <%= version.interviewer_comment_second.html_safe %> <br>
 					    <% end %>
 					    <% if version.interviewer_comment_others.present? %>
 					        <label>Others Interviewer Comment : </label>
-					    	<%= version.interviewer_comment_others %> <br> 
+					    	<%= version.interviewer_comment_others.html_safe %> <br> 
 					    <% end %>
 					    <% if version.part_b_first_interview_date.present? %>
 					        <label>part B First Interview Date : </label>
@@ -53,11 +87,11 @@
 					    <% end %>
 					    <% if version.interviewer_comments.present? %>
 					        <label>Interviewer Comments :</label>
-					    	<%= version.interviewer_comments %> <br> 
+					    	<%= version.interviewer_comments.html_safe %> <br> 
 					    <% end %>
 					    <% if version.part_c_name.present? %>
 					        <label>Name :</label>
-					    	<%= version.part_c_name %> <br> 
+					    	<%= version.part_c_name.html_safe %> <br> 
 					    <% end %>
 					    <% if version.part_c_signature.present? %>
 					        <label>Signature :</label>
@@ -81,7 +115,7 @@
 			<% @tasks.form_second.form_second_histories.order(created_at: :desc).each do |version| %>
 		    	<tr>
 		    		<td colspan="4">
-		    		    <h3>Changes for form</h3>
+		    		    <h3> 2nd Changes for form</h3>
 					    <% if version.name.present? %>
 					    	<label>Name</label>
 					        <%= version.name %> <br>
@@ -120,42 +154,42 @@
 			<% @tasks.thrid_form.thrid_form_histories.order(created_at: :desc).each do |version| %>
 		    	<tr>
 		    		<td colspan="4"> 
-		    		    <h3>Changes for form</h3>
+		    		    <h3> 3rd Changes for form</h3>
 					    <% if version.module_title.present? %>
 					    	<label>Module Title</label>
-					        <%= version.module_title %> <br>
+					        <%= version.module_title.html_safe %> <br>
 					    <% end %>
                         <% if version.module_syllabus_no.present? %>
 						    <label>module syllabus no : </label> 
-						    <%= version.module_syllabus_no %> <br> 
+						    <%= version.module_syllabus_no.html_safe %> <br> 
                         <% end %>
                         <% if version.course.present? %>
 						    <label>Course : </label> 
-						    <%= version.course %> <br>
+						    <%= version.course.html_safe %> <br>
 					    <% end %>
 					    <% if version.module_toucht_by.present? %>
 						    <label>Module toucht by</label>
-						    <%= version.module_toucht_by %> <br> 
+						    <%= version.module_toucht_by.html_safe %> <br> 
 					    <% end %>
 
 					    <% if version.student_performance.present? %>
 						    <label>Student performance : </label>
-						    <%= version.student_performance %> <br> 
+						    <%= version.student_performance.html_safe %> <br> 
 					    <% end %>
 
 					    <% if version.evaluation.present? %>
 						    <label>Evaluation : </label>
-						    <%= version.evaluation %> <br>
+						    <%= version.evaluation.html_safe %> <br>
 					    <% end %>
 
 					    <% if version.module_development.present? %>
 					        <label>Module development : </label>
-					    	<%= version.module_development %> <br> 
+					    	<%= version.module_development.html_safe %> <br> 
 					    <% end %>
 
 					    <% if version.module_development_submitted_by.present? %>
 					        <label>Module development submitted by</label>
-					    	<%= version.module_development_submitted_by %> <br> 
+					    	<%= version.module_development_submitted_by.html_safe %> <br> 
 					    <% end %>
 
 					    <% if version.module_development_submitted_date.present? %>
@@ -165,22 +199,22 @@
 
 					    <% if version.comments.present? %>
 					        <label>Comments : </label>
-					    	<%= version.comments %> <br> 
+					    	<%= version.comments.html_safe %> <br> 
 					    <% end %>
 
 					    <% if version.comments_name.present? %>
 					        <label>Comments name : </label>
-					    	<%= version.comments_name %> <br> 
+					    	<%= version.comments_name.html_safe %> <br> 
 					    <% end %>
 
 					    <% if version.comments_signature.present? %>
 					        <label>Comments signature : </label>
-					    	<%= version.comments_signature %> <br> 
+					    	<%= version.comments_signature.html_safe %> <br> 
 					    <% end %>
 
 					    <% if version.comments_designation.present? %>
 					        <label>Comments Designation : </label>
-					    	<%= version.comments_designation %> <br> 
+					    	<%= version.comments_designation.html_safe %> <br> 
 					    <% end %>
 
 					    <% if version.comments_date.present? %>

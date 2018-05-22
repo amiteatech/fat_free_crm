@@ -5,6 +5,10 @@
 #------------------------------------------------------------------------------
 Rails.application.routes.draw do
 
+  get 'surper_task_report/task_super'
+
+  get 'surper_task_report/report_super'
+
   post '/documents/:id/documents/update_files' => 'documents#update_files'
   resources :documents
   resources :access_on_forms
