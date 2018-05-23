@@ -10,7 +10,7 @@
     </thead>
     <tbody>
 		<% if current_user.is_super_admin? || current_user.is_admin? || current_user.is_manager? %>
-			<% @tasks.order(created_at: :desc).each do |task| %>
+			<% @tasks.each do |task| %>
 		    	<tr>
 		    		<td><%=  task.id %></td>
 		    		<td>
