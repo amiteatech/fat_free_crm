@@ -695,8 +695,8 @@ en-US:
 
   # Views -> Admin
   #----------------------------------------------------------------------------
-  back_to_crm: Back to Eatech CRM
-  crm_admin_page: Eatech CRM Administration
+  back_to_crm: Back to CRM
+  crm_admin_page: CRM Administration
 
   # Views -> Admin -> Groups
   #----------------------------------------------------------------------------
