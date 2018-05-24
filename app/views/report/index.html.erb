@@ -28,7 +28,11 @@
 			    <tr>
 				    <td><%= task.id %></td>
 				    <td>
-				    	<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+				        <% if task.form_number  == 0  || task.form_number  == 4  %>
+				    		<%= link_to task.name, edit_task_path(task.id) %>
+                        <% else %>
+                            <%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+				    	<% end %>
 				    </td>
 				    
 				    <td>
