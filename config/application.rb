@@ -71,7 +71,7 @@ module FatFreeCRM
 
     config.action_mailer.default_url_options = { :host => 'www.educertpro.com' }
     config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.delivery_method = :smtp
+    # config.action_mailer.delivery_method = :smtp
 
     # config.action_mailer.smtp_settings = {
     #   :address => "smtp.zoho.com",
@@ -82,13 +82,13 @@ module FatFreeCRM
     #   :authentication => :plain,
     #   :enable_starttls_auto => true
     # }
-     
+     config.action_mailer.delivery_method = :smtp
      config.action_mailer.smtp_settings = {
        :address => "smtp.gmail.com",
        :port => 587,
        :user_name => "autosmartzicreon@gmail.com",
        :password => "vinay123#123",
-       :domain => "westent.com",
+       :domain => "gmail.com",
        :authentication => :plain,
        :enable_starttls_auto => true
      }
