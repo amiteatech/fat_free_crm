@@ -62,9 +62,17 @@ class SchoolMailer < ApplicationMailer
          from: from_address
   end
 
+  # def task_password_reset(user, )
+  #   @user = user.name
+  #   @task_title = task_name
+  #   mail subject: "Educert Process Control System: Password reset for task '#{@task_title}'",
+  #        to: user.email,
+  #        from: from_address
+  # end
+
   private
 
   def from_address
-    from = "crm1@kinnetik.co"
+    from = "autosmartzicreon@gmail.com"
   end
 end

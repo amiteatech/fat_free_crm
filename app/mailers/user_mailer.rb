@@ -28,6 +28,6 @@ class UserMailer < ActionMailer::Base
   def from_address
     # from = (Setting.smtp || {})[:from]
     # !from.blank? ? from : "Eatech CRM <noreply@fatfreecrm.com>"
-    from = "crm1@kinnetik.co"
+    from = "autosmartzicreon@gmail.com"
   end
 end
