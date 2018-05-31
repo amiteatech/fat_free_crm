@@ -73,15 +73,26 @@ module FatFreeCRM
     config.action_mailer.raise_delivery_errors = false
     config.action_mailer.delivery_method = :smtp
 
-    config.action_mailer.smtp_settings = {
-      :address => "smtp.zoho.com",
-      :port => 587,
-      :user_name => "crm1@kinnetik.co",
-      :password => "abcd1234",
-      :domain => "zoho.com",
-      :authentication => :plain,
-      :enable_starttls_auto => true
-    }
+    # config.action_mailer.smtp_settings = {
+    #   :address => "smtp.zoho.com",
+    #   :port => 587,
+    #   :user_name => "crm1@kinnetik.co",
+    #   :password => "abcd1234",
+    #   :domain => "zoho.com",
+    #   :authentication => :plain,
+    #   :enable_starttls_auto => true
+    # }
+     
+     config.action_mailer.smtp_settings = {
+       :address => "smtp.gmail.com",
+       :port => 587,
+       :user_name => "autosmartzicreon@gmail.com",
+       :password => "vinay123#123",
+       :domain => "westent.com",
+       :authentication => :plain,
+       :enable_starttls_auto => true
+     }
+
   end
 end
 
