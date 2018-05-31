@@ -31,300 +31,304 @@
 					<td><%= version.item_type %></td>
 				</tr>
 			<% end %>
-			<% if @tasks.form_number  == 1  || @tasks.form_number  == 2 || @tasks.form_number  == 3 %>
-			<% if @tasks.form_first.present? %>
-				<% @tasks.form_first.form_first_histories.order(created_at: :desc).each_with_index do |version, index| %>
-			    	<tr>
-						<td colspan="5" class="s_trails">
-						   <div class="trail_head">
-							   <h3>Changes for form</h3>
-							   <span>
-							        <% if index == 0 %>
-								        <label class="last_update">Last updated at : </label>
-								   		<%= version.updated_at.strftime("%m/%d/%y") %>
-							   		<% else %>
-								   		<label>Updated at :</label>
-								   		<%= version.updated_at.strftime("%m/%d/%y") %>
-							   		<% end %>
-							   </span>
-						   </div>
-						    <% if version.name.present? %>
-						        <div class="fl_wide">
-							    	<label>Name : </label>
-							        <p> <%= version.name.html_safe %> </p>
-						        </div>
-						    <% end %>
-	                        <% if version.name_of_applicant.present? %>
-	                        	<div class="fl_wide">
-								    <label>Name of applicant : </label> 
-								    <p><%= version.name_of_applicant.html_safe %></p> 
-							    </div> 
-	                        <% end %>
-	                        <% if version.position_applied_for.present? %>
-	                            <div class="fl_wide">
-								    <label>position Applied For : </label> 
-								    <p><%= version.position_applied_for.html_safe %></p>
-								</div>
-						    <% end %>
-						    <% if version.part_a_first_interview_date.present? %>
-						    	<div class="fl_wide">
-								    <label>first Interview Date : </label>
-								    <p><%= version.part_a_first_interview_date %> </p>
-							    </div>
-						    <% end %>
-						    <% if version.interviewer_comment_first.present? %>
-						    	<div class="fl_wide">
-								    <label>First Interviewer Comment : </label>
-								    <p><%= version.interviewer_comment_first.html_safe %></p>
-								</div>
-						    <% end %>
-						    <% if version.interviewer_comment_second.present? %>
-						    	<div class="fl_wide">
-								    <label>Second Interviewer Comment : </label>
-								    <p><%= version.interviewer_comment_second.html_safe %> </p>
-							    </div>
-						    <% end %>
-						    <% if version.interviewer_comment_others.present? %>
-						    	<div class="fl_wide">
-							        <label>Others Interviewer Comment : </label>
-							    	<p><%= version.interviewer_comment_others.html_safe %> </p> 
-						    	</div>
-						    <% end %>
-						    <% if version.part_b_first_interview_date.present? %>
-						    	<div class="fl_wide">
-							        <label>part B First Interview Date : </label>
-							    	<p><%= version.part_b_first_interview_date %> </p>
-						    	</div>
-						    <% end %>
-						    <% if version.interviewer_comments.present? %>
-						    	<div class="fl_wide">
-							        <label>Interviewer Comments :</label>
-							    	<p><%= version.interviewer_comments.html_safe %>  </p> 
-						    	</div>
-						    <% end %>
-						    <% if version.part_c_name.present? %>
-						    	<div class="fl_wide">
-							        <label>Name :</label>
-							    	<p><%= version.part_c_name.html_safe %> </p>
-						    	</div> 
-						    <% end %>
-						    <% if version.part_c_signature.present? %>
-						    	<div class="fl_wide">
-							        <label>Signature :</label>
-							    	<p><%= version.part_c_signature %> </p>
-							    </div> 
-						    <% end %>
-						    <% if version.part_c_date.present? %> 
-						    	<div class="fl_wide">
-								    <label>Date :</label>
-								    <p> <%= version.part_c_date %> </p>
-								</div> 
-						    <% end %>
-						    <% if version.company_id.present? %>
-						    	<div class="fl_wide"> 
-								    <label>Company Id :</label>
-								    <p><%= version.company_id %> </p>
-								</div> 
-						    <% end %>
-						    <% if version.user_id.present? %>
-						    	<div class="fl_wide">
-								    <label>User Id :</label>
-								    <p> <%= version.user_id %> </p>
-							    </div> 
-						    <% end %>
-						</td>
-					</tr>
+			<% if @tasks.form_number  == 1 %>
+				<% if @tasks.form_first.present? %>
+					<% @tasks.form_first.form_first_histories.order(created_at: :desc).each_with_index do |version, index| %>
+				    	<tr>
+							<td colspan="5" class="s_trails">
+							   <div class="trail_head">
+								   <h3>Changes for form</h3>
+								   <span>
+								        <% if index == 0 %>
+									        <label class="last_update">Last updated at : </label>
+									   		<%= version.updated_at.strftime("%m/%d/%y") %>
+								   		<% else %>
+									   		<label>Updated at :</label>
+									   		<%= version.updated_at.strftime("%m/%d/%y") %>
+								   		<% end %>
+								   </span>
+							   </div>
+							    <% if version.name.present? %>
+							        <div class="fl_wide">
+								    	<label>Name : </label>
+								        <p> <%= version.name.html_safe %> </p>
+							        </div>
+							    <% end %>
+		                        <% if version.name_of_applicant.present? %>
+		                        	<div class="fl_wide">
+									    <label>Name of applicant : </label> 
+									    <p><%= version.name_of_applicant.html_safe %></p> 
+								    </div> 
+		                        <% end %>
+		                        <% if version.position_applied_for.present? %>
+		                            <div class="fl_wide">
+									    <label>position Applied For : </label> 
+									    <p><%= version.position_applied_for.html_safe %></p>
+									</div>
+							    <% end %>
+							    <% if version.part_a_first_interview_date.present? %>
+							    	<div class="fl_wide">
+									    <label>first Interview Date : </label>
+									    <p><%= version.part_a_first_interview_date %> </p>
+								    </div>
+							    <% end %>
+							    <% if version.interviewer_comment_first.present? %>
+							    	<div class="fl_wide">
+									    <label>First Interviewer Comment : </label>
+									    <p><%= version.interviewer_comment_first.html_safe %></p>
+									</div>
+							    <% end %>
+							    <% if version.interviewer_comment_second.present? %>
+							    	<div class="fl_wide">
+									    <label>Second Interviewer Comment : </label>
+									    <p><%= version.interviewer_comment_second.html_safe %> </p>
+								    </div>
+							    <% end %>
+							    <% if version.interviewer_comment_others.present? %>
+							    	<div class="fl_wide">
+								        <label>Others Interviewer Comment : </label>
+								    	<p><%= version.interviewer_comment_others.html_safe %> </p> 
+							    	</div>
+							    <% end %>
+							    <% if version.part_b_first_interview_date.present? %>
+							    	<div class="fl_wide">
+								        <label>part B First Interview Date : </label>
+								    	<p><%= version.part_b_first_interview_date %> </p>
+							    	</div>
+							    <% end %>
+							    <% if version.interviewer_comments.present? %>
+							    	<div class="fl_wide">
+								        <label>Interviewer Comments :</label>
+								    	<p><%= version.interviewer_comments.html_safe %>  </p> 
+							    	</div>
+							    <% end %>
+							    <% if version.part_c_name.present? %>
+							    	<div class="fl_wide">
+								        <label>Name :</label>
+								    	<p><%= version.part_c_name.html_safe %> </p>
+							    	</div> 
+							    <% end %>
+							    <% if version.part_c_signature.present? %>
+							    	<div class="fl_wide">
+								        <label>Signature :</label>
+								    	<p><%= version.part_c_signature %> </p>
+								    </div> 
+							    <% end %>
+							    <% if version.part_c_date.present? %> 
+							    	<div class="fl_wide">
+									    <label>Date :</label>
+									    <p> <%= version.part_c_date %> </p>
+									</div> 
+							    <% end %>
+							    <% if version.company_id.present? %>
+							    	<div class="fl_wide"> 
+									    <label>Company Id :</label>
+									    <p><%= version.company_id %> </p>
+									</div> 
+							    <% end %>
+							    <% if version.user_id.present? %>
+							    	<div class="fl_wide">
+									    <label>User Id :</label>
+									    <p> <%= version.user_id %> </p>
+								    </div> 
+							    <% end %>
+							</td>
+						</tr>
+					<% end %>
 				<% end %>
 			<% end %>
-			<% if @tasks.form_second.present? %>
-				<% @tasks.form_second.form_second_histories.order(created_at: :desc).each_with_index do |version, index| %>
-			    	<tr>
-			    		<td colspan="5" class="s_trails">
-						   <div class="trail_head">
-							   <h3>Changes for form</h3>
-							   <span>
-							        <% if index == 0 %>
-								        <label class="last_update">Last updated at : </label>
-								   		<%= version.updated_at.strftime("%m/%d/%y") %>
-							   		<% else %>
-								   		<label>Updated at :</label>
-								   		<%= version.updated_at.strftime("%m/%d/%y") %>
-							   		<% end %>
-							   </span>
-						   </div>
-						    <% if version.name.present? %>
-						    	<div class="fl_wide">
-							    	<label>Name</label>
-							        <p> <%= version.name %> </p>
-							    </div>
-						    <% end %>
-	                        <% if version.module_title.present? %>
-	                        	<div class="fl_wide">
-								    <label>Module Title : </label> 
-								    <p><%= version.module_title %> </p> 
-								</div>
-	                        <% end %>
-	                        <% if version.course.present? %>
-	                        	<div class="fl_wide">
-								    <label>Course : </label> 
-								    <p><%= version.course %> </p>
-								</div>
-						    <% end %>
-						    <% if version.course_date.present? %>
-						    	<div class="fl_wide">
-								    <label>Course Date : </label>
-								    <p><%= version.course_date %> </p> 
-								</div>
-						    <% end %>
-						    <% if version.module_toucht_by_id.present? %>
-						    	<div class="fl_wide">
-								    <label>module tought by: </label>
-								    <p> <%= version.module_toucht_by_id %> </p>
-								</div> 
-						    <% end %>
-						    <% if version.company_id.present? %>
-						    	<div class="fl_wide">
-								    <label>Company Id : </label>
-								    <p> <%= version.company_id %> </p>
-							    </div>
-						    <% end %>
-						    <% if version.user_id.present? %>
-						    	<div class="fl_wide">
-							        <label>User Id : </label>
-							    	<p> <%= version.user_id %> </p>
-							    </div> 
-						    <% end %>
-						    <% if version.task_id.present? %>
-						    	<div class="fl_wide">
-							        <label>Task Id</label>
-							    	<p><%= version.task_id %> </p>
-						    	</div> 
-						    <% end %>
-			    		</td>
-					</tr>
+			<% if @tasks.form_number  == 2 %>
+				<% if @tasks.form_second.present? %>
+					<% @tasks.form_second.form_second_histories.order(created_at: :desc).each_with_index do |version, index| %>
+				    	<tr>
+				    		<td colspan="5" class="s_trails">
+							   <div class="trail_head">
+								   <h3>Changes for form</h3>
+								   <span>
+								        <% if index == 0 %>
+									        <label class="last_update">Last updated at : </label>
+									   		<%= version.updated_at.strftime("%m/%d/%y") %>
+								   		<% else %>
+									   		<label>Updated at :</label>
+									   		<%= version.updated_at.strftime("%m/%d/%y") %>
+								   		<% end %>
+								   </span>
+							   </div>
+							    <% if version.name.present? %>
+							    	<div class="fl_wide">
+								    	<label>Name</label>
+								        <p> <%= version.name %> </p>
+								    </div>
+							    <% end %>
+		                        <% if version.module_title.present? %>
+		                        	<div class="fl_wide">
+									    <label>Module Title : </label> 
+									    <p><%= version.module_title %> </p> 
+									</div>
+		                        <% end %>
+		                        <% if version.course.present? %>
+		                        	<div class="fl_wide">
+									    <label>Course : </label> 
+									    <p><%= version.course %> </p>
+									</div>
+							    <% end %>
+							    <% if version.course_date.present? %>
+							    	<div class="fl_wide">
+									    <label>Course Date : </label>
+									    <p><%= version.course_date %> </p> 
+									</div>
+							    <% end %>
+							    <% if version.module_toucht_by_id.present? %>
+							    	<div class="fl_wide">
+									    <label>module tought by: </label>
+									    <p> <%= version.module_toucht_by_id %> </p>
+									</div> 
+							    <% end %>
+							    <% if version.company_id.present? %>
+							    	<div class="fl_wide">
+									    <label>Company Id : </label>
+									    <p> <%= version.company_id %> </p>
+								    </div>
+							    <% end %>
+							    <% if version.user_id.present? %>
+							    	<div class="fl_wide">
+								        <label>User Id : </label>
+								    	<p> <%= version.user_id %> </p>
+								    </div> 
+							    <% end %>
+							    <% if version.task_id.present? %>
+							    	<div class="fl_wide">
+								        <label>Task Id</label>
+								    	<p><%= version.task_id %> </p>
+							    	</div> 
+							    <% end %>
+				    		</td>
+						</tr>
+					<% end %>
 				<% end %>
-			<% end %>
-			<% if @tasks.thrid_form.present? %>
-				<% @tasks.thrid_form.thrid_form_histories.order(created_at: :desc).each_with_index do |version, index| %>
-			    	<tr>
-			    		<td colspan="5" class="s_trails">
-						   <div class="trail_head">
-							   <h3>Changes for form</h3>
-							   <span >
-							        <% if index == 0 %>
-								        <label >Last updated at : </label>
-								   		<%= version.updated_at.strftime("%m/%d/%y") %>
-							   		<% else %>
-								   		<label>Updated at :</label>
-								   		<%= version.updated_at.strftime("%m/%d/%y") %>
-							   		<% end %>
-							   </span>
-						   </div>
-						    <% if version.module_title.present? %>
-						    	<div class="fl_wide">
-							    	<label>Module Title</label>
-							        <p><%= version.module_title.html_safe %> </p>
-						        </div>
-						    <% end %>
-	                        <% if version.module_syllabus_no.present? %>
-	                        	<div class="fl_wide">
-								    <label>module syllabus no : </label> 
-								    <p><%= version.module_syllabus_no.html_safe %> </p>
-							    </div> 
-	                        <% end %>
-	                        <% if version.course.present? %>
-	                        	<div class="fl_wide">
-								    <label>Course : </label> 
-								    <p><%= version.course.html_safe %> </p>
-							    </div>
-						    <% end %>
-						    <% if version.module_toucht_by.present? %>
-						    	<div class="fl_wide">
-								    <label>Module toucht by</label>
-								    <p><%= version.module_toucht_by.html_safe %> </p>
-							    </div> 
-						    <% end %>
+            <% end %>
+			<% if @tasks.form_number  == 3 %>
+				<% if @tasks.thrid_form.present? %>
+					<% @tasks.thrid_form.thrid_form_histories.order(created_at: :desc).each_with_index do |version, index| %>
+				    	<tr>
+				    		<td colspan="5" class="s_trails">
+							   <div class="trail_head">
+								   <h3>Changes for form</h3>
+								   <span >
+								        <% if index == 0 %>
+									        <label >Last updated at : </label>
+									   		<%= version.updated_at.strftime("%m/%d/%y") %>
+								   		<% else %>
+									   		<label>Updated at :</label>
+									   		<%= version.updated_at.strftime("%m/%d/%y") %>
+								   		<% end %>
+								   </span>
+							   </div>
+							    <% if version.module_title.present? %>
+							    	<div class="fl_wide">
+								    	<label>Module Title</label>
+								        <p><%= version.module_title.html_safe %> </p>
+							        </div>
+							    <% end %>
+		                        <% if version.module_syllabus_no.present? %>
+		                        	<div class="fl_wide">
+									    <label>module syllabus no : </label> 
+									    <p><%= version.module_syllabus_no.html_safe %> </p>
+								    </div> 
+		                        <% end %>
+		                        <% if version.course.present? %>
+		                        	<div class="fl_wide">
+									    <label>Course : </label> 
+									    <p><%= version.course.html_safe %> </p>
+								    </div>
+							    <% end %>
+							    <% if version.module_toucht_by.present? %>
+							    	<div class="fl_wide">
+									    <label>Module toucht by</label>
+									    <p><%= version.module_toucht_by.html_safe %> </p>
+								    </div> 
+							    <% end %>
 
-						    <% if version.student_performance.present? %>
-						    	<div class="fl_wide">
-								    <label>Student performance : </label>
-								    <p><%= version.student_performance.html_safe %> </p>
-							    </div> 
-						    <% end %>
+							    <% if version.student_performance.present? %>
+							    	<div class="fl_wide">
+									    <label>Student performance : </label>
+									    <p><%= version.student_performance.html_safe %> </p>
+								    </div> 
+							    <% end %>
 
-						    <% if version.evaluation.present? %>
-						    	<div class="fl_wide">
-								    <label>Evaluation : </label>
-								    <p> <%= version.evaluation.html_safe %> </p>
-								</div>
-						    <% end %>
+							    <% if version.evaluation.present? %>
+							    	<div class="fl_wide">
+									    <label>Evaluation : </label>
+									    <p> <%= version.evaluation.html_safe %> </p>
+									</div>
+							    <% end %>
 
-						    <% if version.module_development.present? %>
-						    	<div class="fl_wide">
-							        <label>Module development : </label>
-							    	<p><%= version.module_development.html_safe %> </p>
-							    </div> 
-						    <% end %>
+							    <% if version.module_development.present? %>
+							    	<div class="fl_wide">
+								        <label>Module development : </label>
+								    	<p><%= version.module_development.html_safe %> </p>
+								    </div> 
+							    <% end %>
 
-						    <% if version.module_development_submitted_by.present? %>
-						    	<div class="fl_wide">
-							        <label>Module development submitted by</label>
-							    	<p><%= version.module_development_submitted_by.html_safe %> </p>
-							    </div> 
-						    <% end %>
+							    <% if version.module_development_submitted_by.present? %>
+							    	<div class="fl_wide">
+								        <label>Module development submitted by</label>
+								    	<p><%= version.module_development_submitted_by.html_safe %> </p>
+								    </div> 
+							    <% end %>
 
-						    <% if version.module_development_submitted_date.present? %>
-						    	<div class="fl_wide">
-							        <label>Module development submitted date : </label>
-							    	<p><%= version.module_development_submitted_date %> </p>
-							    </div> 
-						    <% end %>
+							    <% if version.module_development_submitted_date.present? %>
+							    	<div class="fl_wide">
+								        <label>Module development submitted date : </label>
+								    	<p><%= version.module_development_submitted_date %> </p>
+								    </div> 
+							    <% end %>
 
-						    <% if version.comments.present? %>
-						    	<div class="fl_wide">
-							        <label>Comments : </label>
-							    	<p><%= version.comments.html_safe %> </p>
-						    	</div> 
-						    <% end %>
+							    <% if version.comments.present? %>
+							    	<div class="fl_wide">
+								        <label>Comments : </label>
+								    	<p><%= version.comments.html_safe %> </p>
+							    	</div> 
+							    <% end %>
 
-						    <% if version.comments_name.present? %>
-						    	<div class="fl_wide">
-							        <label>Comments name : </label>
-							    	<p> <%= version.comments_name.html_safe %> </p>
-						    	</div> 
-						    <% end %>
+							    <% if version.comments_name.present? %>
+							    	<div class="fl_wide">
+								        <label>Comments name : </label>
+								    	<p> <%= version.comments_name.html_safe %> </p>
+							    	</div> 
+							    <% end %>
 
-						    <% if version.comments_signature.present? %>
-						    	<div class="fl_wide">
-							        <label>Comments signature : </label>
-							    	<p><%= version.comments_signature.html_safe %> </p>
-							    </div> 
-						    <% end %>
+							    <% if version.comments_signature.present? %>
+							    	<div class="fl_wide">
+								        <label>Comments signature : </label>
+								    	<p><%= version.comments_signature.html_safe %> </p>
+								    </div> 
+							    <% end %>
 
-						    <% if version.comments_designation.present? %>
-						    	<div class="fl_wide">
-							        <label>Comments Designation : </label>
-							    	<p> <%= version.comments_designation.html_safe %> </p>
-						    	</div> 
-						    <% end %>
+							    <% if version.comments_designation.present? %>
+							    	<div class="fl_wide">
+								        <label>Comments Designation : </label>
+								    	<p> <%= version.comments_designation.html_safe %> </p>
+							    	</div> 
+							    <% end %>
 
-						    <% if version.comments_date.present? %>
-						    	<div class="fl_wide">
-							        <label>Comments Date : </label>
-							    	<p><%= version.comments_date %> </p>
-							    </div> 
-						    <% end %>
+							    <% if version.comments_date.present? %>
+							    	<div class="fl_wide">
+								        <label>Comments Date : </label>
+								    	<p><%= version.comments_date %> </p>
+								    </div> 
+							    <% end %>
 
-						    <% if version.task_id.present? %>
-						    	<div class="fl_wide">
-							        <label>Task Id : </label>
-							    	<p> <%= version.task_id %> </p>
-							    </div> 
-						    <% end %>
-			    		</td>
-					</tr>
+							    <% if version.task_id.present? %>
+							    	<div class="fl_wide">
+								        <label>Task Id : </label>
+								    	<p> <%= version.task_id %> </p>
+								    </div> 
+							    <% end %>
+				    		</td>
+						</tr>
+					<% end %>
 				<% end %>
-			<% end %>
 			<% end %>
         <% end %>
     </tbody>

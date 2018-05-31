@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'crm1@kinnetik.co'
+  default from: 'autosmartzicreon@gmail.com'
   layout 'mailer'
 end
 
