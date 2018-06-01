@@ -24,7 +24,7 @@
 		    		<td>
 		    			<% if task.task_form_tag_id.present? %>
 					        <% if TaskFormTag.where(id: task.task_form_tag_id).first.present? %>
-					          <%= TaskFormTag.where(id: tasks.task_form_tag_id).first.name %>
+					          <%= TaskFormTag.where(id: task.task_form_tag_id).first.name %>
 					        <% end %>
 					    <% end %>
 		    		</td>
