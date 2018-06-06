@@ -12,6 +12,7 @@
 
   <% if action_name == "new" %>
     <div class="createPage ">
+      <strong>Form:</strong> <br />
       <% @school_forms.each do |school_form| %>
         <% if school_form.id == 1 %>
           <div class="second">
@@ -41,10 +42,12 @@
         </div>  
       </div>  
       <div class="parent_files1">
+
         <div class="filesbox for_new blockForm2">
+          <strong>Supplementary Files:</strong> <br />
             <input type="file" name="supplementary_files[0]">  <br />
 
-            <a href="#" id="add_more_supplementary" onclick="add_more_supplementary_files()" data-count="1">Add More Supplementary Files</a>
+            <a href="#" id="add_more_supplementary" onclick="add_more_supplementary_files()" data-count="1">Add More Files</a>
         </div> 
       </div>
     </div>
