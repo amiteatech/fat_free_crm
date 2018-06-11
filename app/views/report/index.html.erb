@@ -27,12 +27,12 @@
 		  	<% if current_user.is_super_admin? || current_user.is_admin? || current_user.is_manager? %>
 			    <tr>
 				    <td><%= task.id %></td>
-				    <td>
-				        <% if task.form_number  == 0  || task.form_number  == 4  %>
-				    		<%= link_to task.name, edit_task_path(task.id) %>
-                        <% else %>
-                            <%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
-				    	<% end %>
+				    <td>	
+			        <% if task.form_number  == 0  || task.form_number  == 4  %>
+			    			<%= link_to task.name, edit_task_path(task.id) %>
+              <% else %>
+                <%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+			    		<% end %>
 				    </td>
 				    
 				    <td>
@@ -89,7 +89,11 @@
 			  	<tr>
 						<td><%= task.id %></td>
 				    <td>
-				    	<%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+				    	<% if task.form_number  == 0  || task.form_number  == 4  %>
+			    			<%= link_to task.name, edit_task_path(task.id) %>
+              <% else %>
+                <%= link_to form_name(task.name, task.form_number), edit_task_path(task.id) %>
+			    		<% end %>
 				    </td>
 				    <td>
 				    	<%# if task.task_form_tag_id.present? %>

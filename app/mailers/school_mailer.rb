@@ -70,6 +70,16 @@ class SchoolMailer < ApplicationMailer
   #        from: from_address
   # end
 
+  def forgot_task_password(task_id)
+    @task = Task.find(task_id)
+    @task_password_url = edit_task_password_task_url(task_id)
+
+    mail subject: "Educert Process Control System: " + I18n.t(:password_reset_instruction),
+         to: User.find(@task.task_created_id).email,
+         from: from_address,
+         date: Time.now
+  end
+
   private
 
   def from_address

@@ -171,6 +171,9 @@ Rails.application.routes.draw do
       put :task_comment
       put :task_reject
       get :download_docx, format: 'docx'
+      get :forgot_password
+      get :edit_task_password
+      post :change_task_password
     end
   end
 

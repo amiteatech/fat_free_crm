@@ -20,15 +20,36 @@ class TasksController < ApplicationController
   #----------------------------------------------------------------------------
   def index
     @view = view
-    data = UserTask.where(:user_id => current_user.id)
+    # data = UserTask.where(:user_id => current_user.id)
     # google_session = GoogleDrive.login_with_oauth(session[:google_token])
     # if current_user.is_super_admin?
-    if data.present?
-      #@tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
-      @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
-    else  
-      @tasks = Task.where(company_id: current_user.company_id)
-    end 
+    # if data.present?
+    #   @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
+    # else  
+    #   @tasks = Task.where(company_id: current_user.company_id)
+    # end 
+
+    if current_user.is_super_admin?
+      @tasks = Task.all
+    elsif current_user.is_admin?
+      @tasks = Task.where(:company_id => current_user.company_id)
+    elsif current_user.is_manager? 
+      arr = []
+      current_user.groups.each do |group|
+        group.users.each do |user|
+          arr << user.id
+        end
+      end
+      @tasks = Task.where(task_created_id: arr)
+    else
+      data = UserTask.where(:user_id => current_user.id)
+      # @tasks = Task.where(:company_id => current_user.company_id).where(task_created_id: current_user.id)
+      if data.present?
+        @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
+      else 
+        @tasks = []
+      end
+    end
 
     #raise   @tasks.inspect
 
@@ -60,7 +81,7 @@ class TasksController < ApplicationController
 
     school_form_ids = []
     AccessOnForm.where(company_id: current_user.company_id).each do |access_on_form|
-      if access_on_form.users_id.include?(current_user.id)
+      if access_on_form.users_id.present? && access_on_form.users_id.include?(current_user.id)
         school_form_ids << access_on_form.school_form_id
       end
     end
@@ -256,19 +277,26 @@ class TasksController < ApplicationController
     end
    
     if @users_selected.present?
-        @pos = @task.user_tasks.count
-        @users_selected.each do |user_id|
-            unless UserTask.where(task_id: @task.id).exists?(user_id: user_id)
-              @pos = @pos+1
-              @user_task = UserTask.new
-              @user_task.user_id = user_id
-              @user_task.task_id = @task.id
-              @user_task.position = @pos
-              @user_task.save
-              SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
-            end
+      @pos = @task.user_tasks.count
+      @users_selected.each do |user_id|
+        unless UserTask.where(task_id: @task.id).exists?(user_id: user_id)
+          @pos = @pos+1
+          @user_task = UserTask.new
+          @user_task.user_id = user_id
+          @user_task.task_id = @task.id
+          @user_task.position = @pos
+          @user_task.save
+          SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
+        end
+      end
+      unless UserTask.where(task_id: @task.id).count == @users_selected.count
+        UserTask.where(task_id: @task.id).each do |user_task|
+
+          unless params[:users].include?(user_task.user_id.to_s) && @task.task_created_id == user_task.id
+            user_task.destroy
           end
-    else
+        end
+      end
     end 
     if params[:task] && params[:task][:completed]
 
@@ -534,6 +562,40 @@ class TasksController < ApplicationController
         end
         format.html 
         format.js { }
+      end
+    end
+  end
+
+  def forgot_password 
+    if (params[:id])
+      SchoolMailer.forgot_task_password(params[:id]).deliver_now
+    end
+  end
+
+  def edit_task_password
+    if (params[:id])
+      @task = Task.find(params[:id])
+    end
+  end
+
+  def change_task_password
+    if params[:task][:password].blank?
+      flash[:notice] = t(:msg_password_not_changed)
+    else
+      if params[:task][:password] == params[:task][:password_confirmation]
+        @task = Task.find(params[:id])
+        @task.password = params[:task][:password]
+        @task.save
+
+        UserTask.where(task_id: @task.id).each do |user_task|
+          if User.where(id: user_task.user_id).present?
+            SchoolMailer.task_password_changed(User.find(user_task.user_id), current_user, @task.name, @task.password).deliver_now
+          end
+        end
+        flash[:notice] = "Your task password has been changed."
+        redirect_to :tasks
+      else
+        flash[:notice] = "Password did not match."
       end
     end
   end

@@ -3,7 +3,7 @@
     <div class="blockForm2">
       <label class="top req task_name">Task Title:</label>      
       <div class="span2">
-       <%= f.text_field :name, :autofocus => true %>
+       <%= f.text_field :name, :autofocus => true, required: true %>
       </div>
     </div>
     <% indx = 0 %>
@@ -49,11 +49,11 @@
         <% bucket = (params[:bucket].blank? ? @task.bucket : params[:bucket]) || "due_asap" %>
 
           <%#= f.select :bucket, @bucket, { :selected => bucket.to_sym }, { :style => "", :onload => "crm.flip_calendar(this.value)" } %>
-        <%= f.text_field :calendar, :autocomplete => :off, :class => 'datetime_due dueAT' %>
+        <%= f.text_field :calendar, :autocomplete => :off, :class => 'datetime_due dueAT', required: true %>
         <% else %>
           <%#= f.select :bucket, @bucket, { :selected => :specific_time }, { :style => "", :onchange => "crm.flip_calendar(this.value)" } %>
           <% fmt = with_time ? '%Y-%m-%d %H:%M' : '%Y-%m-%d' %>
-          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :autocomplete => :off, :class => 'datetime_due dueAT' %>
+          <%= f.text_field :calendar, :value => f.object.due_at.strftime(fmt), :autocomplete => :off, :class => 'datetime_due dueAT', required: true %>
         <% end %>
       </div>
     </div>

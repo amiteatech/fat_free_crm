@@ -197,7 +197,7 @@ et:
   msg_cant_do: Toiming %{action} ebaõnnestus, kuna %{asset} ei ole enam kättesaadav.
   msg_email_not_found: Antud elektronpostiga kasutajat ei leitud.
   msg_enter_new_password: Palun sisesta uus salasõna.
-  msg_goodbye: Oled süsteemist väljunud. Aitäh, et kasutasid Eatech CRM'i!
+  msg_goodbye: Oled süsteemist väljunud. Aitäh, et kasutasid Process Control Software'i!
   msg_invalid_password: ^Palun sisesta korrektne salasõna.
   msg_invalig_login: Kehtetu kasutajanimi või salasõna.
   msg_last_login: Sinu viimane sisselogimine oli %{value}.
@@ -209,8 +209,8 @@ et:
   msg_pwd_instructions_sent: Salasõna muutmise juhis on saadetud Sinu elektronposti aadressile.
     Palun vaata saabunud kirju.
   msg_require_admin: Juurdepääs sellele leheküljele on võimalik vaid administraatoritel.
-  msg_successful_signup: Registreerimine oli edukas, tere tulemast Eatech CRM'i!
-  msg_welcome: Tere tulemast Eatech CRM'i!
+  msg_successful_signup: Registreerimine oli edukas, tere tulemast Process Control Software'i!
+  msg_welcome: Tere tulemast Process Control Software'i!
 
   # Options.
   #----------------------------------------------------------------------------
@@ -640,12 +640,12 @@ et:
   about: Projektist
   about_dev_group: Arutelugrupp arendajatele
   about_features: Funktsioonid ja vead
-  about_ffc: Eatech CRM'ist
-  about_ffc_resources: Eatech CRM'i ressursid (lingid avavad uue akna)
-  about_ffc_version: Eatech CRM versioon
+  about_ffc: Process Control Software'ist
+  about_ffc_resources: Process Control Software'i ressursid (lingid avavad uue akna)
+  about_ffc_version: Process Control Software versioon
   about_home_page: Koduleht
   about_project_page: Projekti lehekülg
-  about_thank_you: Aitäh, et kasutasid Eatech CRM'i! Me hindame Sinu äri ja
+  about_thank_you: Aitäh, et kasutasid Process Control Software'i! Me hindame Sinu äri ja
     loodame, et Sulle meeldib seda tarkvara kasutada.
   about_twitter: Twitter'i uuedistevoog
   about_user_group: Arutlusgrupp kasutajatele
@@ -687,8 +687,8 @@ et:
 
   # Views -> Admin
   #----------------------------------------------------------------------------
-  back_to_crm: Tagasi Eatech CRM'i
-  crm_admin_page: Eatech CRM'i administreerimine
+  back_to_crm: Tagasi Process Control Software'i
+  crm_admin_page: Process Control Software'i administreerimine
 
   # Views -> Admin -> Groups
   #----------------------------------------------------------------------------

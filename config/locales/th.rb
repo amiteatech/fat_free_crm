@@ -1,6 +1,6 @@
 # Copyright (c) 2008-2013 Michael Dvorkin and contributors.
 #
-# Eatech CRM is freely distributable under the terms of MIT license.
+# Process Control Software is freely distributable under the terms of MIT license.
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 # Thai translation for Ruby on Rails

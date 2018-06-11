@@ -7,8 +7,16 @@
 
     =# link_to(t(:quick_find), "#", :id => "jumper") << " |"
     = link_to(t(:profile), profile_path) << " |"
+    = link_to(t(:admin), admin_path) << " |"
+    = link_to("Option", task_form_tag_values_path) << " |"
+    = link_to("Html Form", access_on_forms_path) << " |"
     = link_to(t(:groups), admin_groups_path) << " |"
-    = link_to(t(:back_to_crm), root_path) << " |"
+    = link_to(t(:Documents), documents_path) << " |"
+    = link_to(t(:Report), report_path) << " |"
+    = link_to("Tasks", tasks_path) << " |"  
+    = link_to("<i class='fa fa-print'></i>".html_safe, "javascript:window.print();") << " |"
+
+    / = link_to(t(:back_to_crm), root_path) << " |"
     = link_to(t(:logout), logout_path, :method => :delete)
     = render "/layouts/jumpbox"
   %h3

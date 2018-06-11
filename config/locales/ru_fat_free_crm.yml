@@ -207,7 +207,7 @@ ru:
   msg_cant_do: Нельзя %{action} %{asset}, его больше не существует.
   msg_email_not_found: Пользователя с таким адресом не найдено.
   msg_enter_new_password: Пожалуйста введите новый пароль.
-  msg_goodbye: Вы вышли. Спасибо за использование Eatech CRM!
+  msg_goodbye: Вы вышли. Спасибо за использование Process Control Software!
   msg_invalid_password: ^Введите правильный пароль.
   msg_invalig_login: Неправильный логин или пароль.
   msg_last_login: Последний раз Вы заходили %{value}.
@@ -219,8 +219,8 @@ ru:
   msg_pwd_instructions_sent: Инструкции по перемене пароля Вам высланы. Пожалуйста
     проверьте свою электронную почту.
   msg_require_admin: Для доступа к этой странице нужны права Администратора
-  msg_successful_signup: Регистрация прошла успешно, добро пожаловать в Eatech CRM!
-  msg_welcome: Добро пожаловать в Eatech CRM!
+  msg_successful_signup: Регистрация прошла успешно, добро пожаловать в Process Control Software!
+  msg_welcome: Добро пожаловать в Process Control Software!
 
 
   # Options.
@@ -656,13 +656,13 @@ ru:
   about: О программе
   about_dev_group: Форум для разработчиков
   about_features: Багтрекер
-  about_ffc: О программе Eatech CRM
-  about_ffc_resources: Полезные ресурсы по Eatech CRM (ссылки открываются в новом
+  about_ffc: О программе Process Control Software
+  about_ffc_resources: Полезные ресурсы по Process Control Software (ссылки открываются в новом
     окне)
-  about_ffc_version: Eatech CRM версия
+  about_ffc_version: Process Control Software версия
   about_home_page: Домашняя страница
   about_project_page: Страница проекта
-  about_thank_you: Спасибо что Вы пользуетесь Eatech CRM! Мы ценим ваш бизнес и
+  about_thank_you: Спасибо что Вы пользуетесь Process Control Software! Мы ценим ваш бизнес и
     надеемся что Вам нравится наше приложение.
   about_twitter: Следите за информацией в Twitter
   about_user_group: Форум для пользователей
@@ -724,8 +724,8 @@ ru:
 
   # Views -> Admin
   #----------------------------------------------------------------------------
-  back_to_crm: Назад к Eatech CRM
-  crm_admin_page: Администрирование Eatech CRM
+  back_to_crm: Назад к Process Control Software
+  crm_admin_page: Администрирование Process Control Software
 
   # Views -> Admin -> Groups
   #----------------------------------------------------------------------------

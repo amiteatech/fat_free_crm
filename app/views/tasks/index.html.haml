@@ -57,6 +57,8 @@
           %input{:type => "hidden", :name => "task_id", :id => "task_id" }  
           %input{:type => "password", :name => "task_password" }  
           = f.submit "Submit"
+          %a{:name => "forgot_password", :id => "forgot_password", data: {remote: true} } 
+            Forgot Password?
 
   / The Modal
 / #myModal.modal
@@ -84,7 +86,13 @@
       //$("iframe").attr("src", $(this).data('url')).attr("width", "100%").attr("height", "500px").addClass("show");
       if ($(this).data("taskProtected") == true) {
         e.preventDefault();
+        var user_id = "#{current_user.id}";
         $("#task_id").val($(this).data("id"));
+        $("#forgot_password").attr("href", "/tasks/"+$(this).data("id")+"/forgot_password");
+        if (user_id !== $(this).data("taskCreatedId").toString()) {
+          $("#forgot_password").remove(); 
+        }
+
         modal.style.display = "block";
       }
     });
@@ -92,6 +100,12 @@
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    document.getElementById("forgot_password").onclick = function() {
+        modal.style.display = "none";
+        alert("Password reset instruction has been sent to your email.");
     }
 
     // When the user clicks anywhere outside of the modal, close it

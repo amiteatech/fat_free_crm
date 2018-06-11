@@ -12,26 +12,32 @@
 
   <% if action_name == "new" %>
     <div class="createPage ">
-      <strong>Form:</strong> <br />
-      <% @school_forms.each do |school_form| %>
-        <% if school_form.id == 1 %>
-          <div class="second">
-          <%= radio_button("task", "form_number", "1") %> <label for="task_form_number_1"> <%= link_to 'Workflow', ''  %>  </label>
-          </div>
-        <% elsif school_form.id == 2 %>
-          <div class="second">
-           <%= radio_button("task", "form_number", "2") %> <label for="task_form_number_2"> <%= link_to 'Monitoring', '' %> </label>
-          </div>
-        <% elsif school_form.id == 3 %>
-          <div class="second">
-           <%= radio_button("task", "form_number", "3") %>  <label for="task_form_number_3"><%= link_to 'Approval',  '' %> </label>
-          </div>
+      <strong>Form*:</strong> <br /><br />
+      <select class="select2" name="task[form_number]" id="task_form_number" style="width: 487px;">
+        <option value="" selected="true">Please select an option</option>
+        <% @school_forms.each do |school_form| %>
+          <% if school_form.id == 1 %>
+            <!-- <div class="second">
+            <%#= radio_button("task", "form_number", "1") %> <label for="task_form_number_1"> Workflow  </label>
+            </div> -->
+            <option value="1">Workflow</option>
+          <% elsif school_form.id == 2 %>
+           <!--  <div class="second">
+             <%#= radio_button("task", "form_number", "2") %> <label for="task_form_number_2"> Monitoring</label>
+            </div> -->
+            <option value="2">Monitoring</option>
+          <% elsif school_form.id == 3 %>
+            <!-- <div class="second">
+             <%#= radio_button("task", "form_number", "3") %>  <label for="task_form_number_3"> Approval</label>
+            </div> -->
+            <option value="3">Approval</option>
+          <% end %>
         <% end %>
-      <% end %>
-      <div class="second">
-       <%= radio_button("task", "form_number", "4") %>  <label for="task_form_number_3" ><%= link_to 'Files',  '' %> </label>
-      </div>
-    
+        <!-- <div class="second">
+         <%#= radio_button("task", "form_number", "4") %>  <label for="task_form_number_3" > Files </label>
+        </div> -->
+        <option value="4">Files</option>
+      </select>
       <div class="cl"></div>
 
       <div class="parent_files">
@@ -62,42 +68,81 @@
 <% end %>
 
 <script type="text/javascript">
-  $(document).ready( function() {
+$(document).ready( function() {
  
-$("#users_").on("select2:select", function (evt) {
-  var element = evt.params.data.element;
-  var $element = $(element);
-  
-  window.setTimeout(function () {  
-  if ($("#users_").find(":selected").length > 1) {
-    var $second = $("#users_").find(":selected").eq(-2);
-    
-    $element.detach();
-    $second.after($element);
-  } else {
-    $element.detach();
-    $("#users_").prepend($element);
-  }
-  
-  $("#users_").trigger("change");
-  }, 1);
-});
-
-$("#users_").on("select2:unselect", function (evt) {
-  if ($("#users_").find(":selected").length) {
+  $("#users_").on("select2:select", function (evt) {
     var element = evt.params.data.element;
     var $element = $(element);
-   $
-   ("#users_").find(":selected").after($element); 
-  }
-});
+    
+    window.setTimeout(function () {  
+    if ($("#users_").find(":selected").length > 1) {
+      var $second = $("#users_").find(":selected").eq(-2);
+      
+      $element.detach();
+      $second.after($element);
+    } else {
+      $element.detach();
+      $("#users_").prepend($element);
+    }
+    
+    $("#users_").trigger("change");
+    }, 1);
+  });
 
-  $(".createPage .second input").on("click", function() {
+  $("#users_").on("select2:unselect", function (evt) {
+    if ($("#users_").find(":selected").length) {
+      var element = evt.params.data.element;
+      var $element = $(element);
+     $
+     ("#users_").find(":selected").after($element); 
+    }
+  });
+
+  $("select#task_form_number").on("change", function() {
     var val = $(this).val();
     if (val == "4") {
       $(".parent_files").show();
     } else {
       $(".parent_files").hide();
+    }
+  });
+
+  $("form#new_task").submit(function(e) {
+
+    if ($("#task_name").val() == "") {
+      alert("Please input task name");
+      $("#task_name").css("border", "1px solid red");
+      e.preventDefault();
+      return false;
+    } else {
+      $("#task_name").css("border", "")
+    }
+
+    if ($("#task_calendar").val() == "") {
+      alert("Please select due date");
+      $("#task_calendar").css("border", "1px solid red");
+      e.preventDefault();
+      return false;
+    } else {
+      $("#task_calendar").css("border", "")
+    }
+
+    if ($("#users_").val() == null) {
+      alert("Please select an user to assign task");
+      $("#users_").parent().parent().find(".select2-selection").css("border", "1px solid red");
+      e.preventDefault();
+      return false;
+    } else {
+      $("#users_").parent().parent().find(".select2-selection").css("border", "")
+    }
+
+    if ($("select#task_form_number").val() == "") {
+      alert("Please select a form option");
+      $(".createPage .select2-selection").css("border", "1px solid red");
+      e.preventDefault();
+      return false;
+    } else {
+      $(".createPage .select2-selection").css("border", "");
     }
   });
 
