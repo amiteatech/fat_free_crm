@@ -281,6 +281,14 @@ class TasksController < ApplicationController
     end
    
     if @users_selected.present?
+      unless UserTask.where(task_id: @task.id).count == @users_selected.count
+        UserTask.where(task_id: @task.id).each do |user_task|
+          unless params[:users].include?(user_task.user_id.to_s) && @task.task_created_id == user_task.user_id
+            user_task.destroy
+          end
+        end
+      end
+
       @pos = @task.user_tasks.count
       @users_selected.each do |user_id|
         unless UserTask.where(task_id: @task.id).exists?(user_id: user_id)
@@ -293,14 +301,6 @@ class TasksController < ApplicationController
           # Mail functionality disabled
 
           # SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
-        end
-      end
-      unless UserTask.where(task_id: @task.id).count == @users_selected.count
-        UserTask.where(task_id: @task.id).each do |user_task|
-
-          unless params[:users].include?(user_task.user_id.to_s) && @task.task_created_id == user_task.id
-            user_task.destroy
-          end
         end
       end
     end 
