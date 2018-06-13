@@ -53,7 +53,9 @@ class CompaniesController < ApplicationController
 
       if @company.save && @user.save(:validate => false)
         @user.update_attributes({:company_id =>  @company.id, :admin => true, :school_admin => true, :school_user => true})
-        SchoolMailer.school_created_notification(@user, current_user, user_params[:password], @company).deliver_now
+
+        # Mail functionality disabled
+        # SchoolMailer.school_created_notification(@user, current_user, user_params[:password], @company).deliver_now
         redirect_to companies_url, notice: 'Company was successfully created.'
       else
         render :new
