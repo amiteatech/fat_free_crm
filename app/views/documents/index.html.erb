@@ -13,18 +13,20 @@
 		<div class="cl"></div>
 		<% count = 0 %>
 			<ul>
-				<% @folders.each do |folder| %>
-					<% if folder.school_files.present? %>
-					<% count += 1 %>
-						<li class="doc_details">
-							<div class="folder_icon">
-								<%= link_to("<i class='fa fa-folder'></i>".html_safe,   document_path(folder) , :class => 'folderIcon') %>
-							</div>
-							<div class="about_folder">
-		            <%= link_to folder.name, document_path(folder), class: "folder_name" %>
-								<%= link_to("<i class='fa fa-trash'></i>".html_safe, document_path(folder), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
-							</div>
-						</li>
+				<% if @folders.present? %>
+					<% @folders.each do |folder| %>
+						<% if folder.school_files.present? %>
+						<% count += 1 %>
+							<li class="doc_details">
+								<div class="folder_icon">
+									<%= link_to("<i class='fa fa-folder'></i>".html_safe,   document_path(folder) , :class => 'folderIcon') %>
+								</div>
+								<div class="about_folder">
+			            <%= link_to folder.name, document_path(folder), class: "folder_name" %>
+									<%= link_to("<i class='fa fa-trash'></i>".html_safe, document_path(folder), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
+								</div>
+							</li>
+						<% end %>
 					<% end %>
 				<% end %>
 				<% if count < 1%>

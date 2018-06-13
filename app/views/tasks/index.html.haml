@@ -34,7 +34,7 @@
           
     %tbody
       = render :partial => 'pending', :collection => @tasks || [], :locals => { :bucket => 'pending' }
-  - if @tasks.values.flatten.blank?
+  - if @tasks.present? && @tasks.values.present? && @tasks.values.flatten.blank?
     = render "empty"
   .cl
 / #export= render "shared/export"
