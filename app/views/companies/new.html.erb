@@ -1,4 +1,7 @@
 <div class="create_company">
+	<% flash.each do |key, value| %>
+	    <p class="alert alert-<%= key %>"><%= value %></p>
+	<% end %>
   <div class="title">
 	<h1>New School</h1>
   </div>

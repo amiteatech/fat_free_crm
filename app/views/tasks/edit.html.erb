@@ -29,6 +29,9 @@
 <% if action_name != "new" %>
     <div class="buttonbar first">
       <div class="second">
+       <%= radio_button("task", "completed", "0", {:checked => true}) %> <span class="text"> Save Draft </span>
+      </div>
+      <div class="second">
        <%= radio_button("task", "completed", "1", {:checked => ((@task.task_status && @task.task_status.downcase == "completed") ? "checked" : "")}) %> <span class="text"> Completed </span>
       </div>
       <% if @task.task_created_id == current_user.id %>
@@ -57,7 +60,7 @@
 
     <div class="buttonbar">
       <%= link_to "Download to docx", download_docx_task_path(@task), :target => "_blank", :class => "download_docx" %>
-      <%= f.submit t :save_task %> or 
+      <%= f.submit t :Submit %> or 
       <%= link_to "Cancel", tasks_path, class: "button" %>
       <div class="cl"></div>
     </div>

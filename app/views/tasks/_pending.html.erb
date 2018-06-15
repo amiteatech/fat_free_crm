@@ -1,4 +1,4 @@
-<% task_valid = (pending.task_status && (pending.task_status.downcase == "return" || pending.task_status.downcase == "cancelled") && (!current_user.is_super_admin?) && (!current_user.is_admin?) && (!current_user.is_manager?) && pending.task_created_id != current_user.id) ? false : true %>
+<% task_valid = (pending.task_status && (pending.task_status.downcase == "return" || pending.task_status.downcase == "cancelled" || pending.task_status.downcase == "completed" || ((pending.task_status.downcase == "pending") && (pending.assigned_to != current_user.id))) && (!current_user.is_super_admin?) && (!current_user.is_admin?) && (!current_user.is_manager?) && pending.task_created_id != current_user.id ) ? false : true %>
  <% if (task_valid) %>
   <tr id="task_<%=pending.id%>">
     <!-- unless pending.category.blank?

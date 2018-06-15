@@ -61,7 +61,7 @@ class CompaniesController < ApplicationController
         render :new
       end
     else
-      flash[:notice] = 'User account already exist!'
+      flash[:alert] = 'User account already exist!'
       render :new
     end
   end
