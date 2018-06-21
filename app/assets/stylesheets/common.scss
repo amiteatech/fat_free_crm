@@ -1399,5 +1399,7 @@ a.folderIcon i {
 #new_access_on_form .select2-container--default .select2-selection--multiple {margin-top: 0;}
 
 #header h3 {min-height: 13px;}
-.edit_task .edit_task_file .filesbox.for_new.blockForm2 { width: 98%; position: relative;}
+.edit_task .edit_task_file .filesbox.for_new.blockForm2 { width: 98%;}
 .edit_task .edit_task_file .filesbox.for_new.blockForm2 input {min-width: 88%;}
+.edit_task .edit_task_file .filesbox.fr_edt.blockForm2 .sup_task_link { display: block; float: left; width: 80%;}
+.edit_task .edit_task_file .filesbox.fr_edt.blockForm2 .sup_task_rmv { display: block; float: left; width: 20%;}
