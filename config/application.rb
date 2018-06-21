@@ -89,7 +89,7 @@ module FatFreeCRM
        :port => 587,
        :user_name => "autosmartzicreon@gmail.com",
        :password => "vinay123#123",
-       :domain => "gmail.com",
+       :domain => "educertpro.com",
        :authentication => :plain,
        :enable_starttls_auto => true
      }
