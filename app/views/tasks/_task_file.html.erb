@@ -1,4 +1,5 @@
 <div class="edit_task_file">
+	<% if @task.form_number == 4 %>
   	<div class="l_side">
 	    <div class="title">
 	      <h1>Task File</h1>
@@ -14,6 +15,7 @@
 	        <a href="#" id="add_more_files" onclick="add_more_files()" data-count="1">Add More Files</a>
 	    </div>  
   	</div>
+  	<% end %>
   	<div class="r_side">
 	    <div class="title">
 	      <h1>Supplementary Task File</h1>
