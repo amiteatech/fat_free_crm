@@ -191,7 +191,6 @@ class TasksController < ApplicationController
           end  
         end
 
-        if params["task"]["form_number"] == "4"
           
           if params["files"].present?
             params["files"].each do |key, value|
@@ -211,7 +210,6 @@ class TasksController < ApplicationController
             end  
           end
 
-        end 
 
         
 
@@ -368,29 +366,25 @@ class TasksController < ApplicationController
             end  
         end
 
-        if @task.form_number == 4
-          if params["files"].present?
+     end
+
+     if params["files"].present?
             params["files"].each do |key, value|
-              task_file = TaskFile.find(key)
+              task_file = TaskFile.new
               task_file.file = value
+              task_file.task_id = @task.id
+              task_file.save
+            end 
+          end 
+
+          if params["supplementary_files"].present?
+            params["supplementary_files"].each do |key, value|
+              task_file = SupplementaryTaskFile.new
+              task_file.file = value
+              task_file.task_id = @task.id
               task_file.save
             end  
           end
-
-        end 
-
-        if params["supplementary_files"].present?
-
-          params["supplementary_files"].each do |key, value|
-            supplementary_task_file = SupplementaryTaskFile.find(key)
-            supplementary_task_file.file = value
-            supplementary_task_file.save
-          end  
-
-        end
-
-
-      end
 
        redirect_to :tasks
 

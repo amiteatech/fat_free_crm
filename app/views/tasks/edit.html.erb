@@ -15,8 +15,10 @@
 <% elsif @task.form_number == 3 %>
    <%= render "third_form", :f => f %>
 <% elsif @task.form_number == 4 %>
-   <%= render "task_file" %>
+   <%#= render "task_file" %>
 <% end %>
+
+ <%= render "task_file" %>
 
   <%= render "tasks/new_top_section",    :f => f, :edit => true %>
 <%# if current_user.admin == true || @task.task_created_id == current_user.id %>

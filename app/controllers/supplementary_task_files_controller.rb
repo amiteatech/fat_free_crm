@@ -42,7 +42,7 @@ class SupplementaryTaskFilesController < ApplicationController
   # DELETE /supplementary_task_files/1
   def destroy
     @supplementary_task_file.destroy
-    redirect_to supplementary_task_files_url, notice: 'Supplementary task file was successfully destroyed.'
+    redirect_to :back, notice: 'Supplementary task file was successfully destroyed.'
   end
 
   private

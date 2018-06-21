@@ -6,7 +6,7 @@
 		<% @task.task_files.each do |task_file| %>
 		  <div class="filesbox fr_edt blockForm2">
 			<%= link_to task_file.file_file_name, task_file.file.url(:original, false) %>
-			<%#= button_to "delete",  :method => :delete %>
+			<%= link_to("<i class='fa fa-trash'></i>".html_safe, task_file_path(task_file.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
 		  </div>
 		<% end %>	
 	    <div class="filesbox for_new blockForm2">
@@ -22,7 +22,7 @@
 			<% @task.supplementary_task_files.each do |supplementary_task_file| %>
 			  <div class="filesbox fr_edt blockForm2">
 				<%= link_to supplementary_task_file.file_file_name, supplementary_task_file.file.url(:original, false) %>
-			    <%= link_to("<i class='fa fa-trash'></i>".html_safe, "", method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
+			    <%= link_to("<i class='fa fa-trash'></i>".html_safe, supplementary_task_file_path(supplementary_task_file.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
 			  </div>
 			<% end %>
 		<% end %>

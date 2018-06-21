@@ -42,7 +42,7 @@ class TaskFilesController < ApplicationController
   # DELETE /task_files/1
   def destroy
     @task_file.destroy
-    redirect_to task_files_url, notice: 'Task file was successfully destroyed.'
+    redirect_to :back, notice: 'Task file was successfully destroyed.'
   end
 
   private
