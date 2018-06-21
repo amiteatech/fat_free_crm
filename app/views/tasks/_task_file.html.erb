@@ -1,35 +1,41 @@
 <div class="edit_task_file">
-  <div class="l_side">
-    <div class="title">
-      <h1>Task File</h1>
-    </div>
-	<% @task.task_files.each do |task_file| %>
-	  <div class="filesbox fr_edt blockForm2">
-		<%= link_to task_file.file_file_name, task_file.file.url(:original, false) %>
-		<input type="file" name="files[<%=task_file.id%>]"> 
-	  </div>
-	<% end %>
-  </div>
-  <div class="r_side">
-    <div class="title">
-      <h1>Supplementary Task File</h1>
-    </div>
-	<% if @task.supplementary_task_files.present? %>
-		<% @task.supplementary_task_files.each do |supplementary_task_file| %>
+  	<div class="l_side">
+	    <div class="title">
+	      <h1>Task File</h1>
+	    </div>
+		<% @task.task_files.each do |task_file| %>
 		  <div class="filesbox fr_edt blockForm2">
-			<%= link_to supplementary_task_file.file_file_name, supplementary_task_file.file.url(:original, false) %>
+			<%= link_to task_file.file_file_name, task_file.file.url(:original, false) %>
+			<%#= button_to "delete",  :method => :delete %>
 		  </div>
+		<% end %>	
+	    <div class="filesbox for_new blockForm2">
+	        <input type="file" name="files[0]">  <br />
+	        <a href="#" id="add_more_files" onclick="add_more_files()" data-count="1">Add More Files</a>
+	    </div>  
+  	</div>
+  	<div class="r_side">
+	    <div class="title">
+	      <h1>Supplementary Task File</h1>
+	    </div>
+		<% if @task.supplementary_task_files.present? %>
+			<% @task.supplementary_task_files.each do |supplementary_task_file| %>
+			  <div class="filesbox fr_edt blockForm2">
+				<%= link_to supplementary_task_file.file_file_name, supplementary_task_file.file.url(:original, false) %>
+			    <%= link_to("<i class='fa fa-trash'></i>".html_safe, "", method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
+			  </div>
+			<% end %>
 		<% end %>
-	<% end %>
-	<div class="filesbox for_new blockForm2">
-	    <input type="file" name="supplementary_files[0]">  <br />
+		<div class="filesbox for_new blockForm2">
+		    <input type="file" name="supplementary_files[0]">  <br />
 
-	    <a href="#" id="add_more_supplementary" onclick="add_more_supplementary_files()" data-count="1">Add More Files</a>
-	</div>
+		    <a href="#" id="add_more_supplementary" onclick="add_more_supplementary_files()" data-count="1">Add More Files</a>
+		</div>
    </div>
 </div>
 
 <script type="text/javascript">
+
 function add_more_supplementary_files()
 {
 
@@ -44,6 +50,23 @@ function add_more_supplementary_files()
     
   if (val == "10") {
     $("#add_more_supplementary").hide();
+  }
+}
+
+function add_more_files()
+{
+
+   val = $("#add_more_files").data('count');
+  
+  
+   randam = Math.floor((Math.random() * 100) + 1);
+   str1 = "<input type='file' name=files["+randam+"]> <br />" 
+   $("#add_more_files").before(str1)
+   val = val + 1
+   $("#add_more_files").data('count', val);
+  
+  if (val == "10") {
+    $("#add_more_files").hide();
   }
 }
 
