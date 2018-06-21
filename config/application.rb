@@ -83,19 +83,29 @@ module FatFreeCRM
     #   :authentication => :plain,
     #   :enable_starttls_auto => true
     # }
-     config.action_mailer.delivery_method = :smtp
-     config.action_mailer.smtp_settings = {
-       :address => "smtp.gmail.com",
-       :port => 587,
-       :user_name => "autosmartzicreon@gmail.com",
-       :password => "vinay123#123",
-       :domain => "educertpro.com",
-       :authentication => :plain,
-       :enable_starttls_auto => true
-     }
+   #  config.action_mailer.delivery_method = :smtp
+   #  config.action_mailer.smtp_settings = {
+   #    :address => "smtp.gmail.com",
+   #    :port => 587,
+   #    :user_name => "autosmartzicreon@gmail.com",
+    #   :password => "vinay123#123",
+   #    :domain => "gmail.com",
+   #    :authentication => :plain,
+   #    :enable_starttls_auto => true
+   #  }
+
+   config.action_mailer.delivery_method = :smtp
+   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
   end
 end
+
+#class OverrideMailRecipient
+#      def self.delivering_email(mail)
+#        mail.to = 'vinaytech09@gmail.com'
+#      end
+#end
+#ActionMailer::Base.register_interceptor(OverrideMailRecipient)
 
 # Require fat_free_crm after FatFreeCRM::Application class is defined,
 # so that FatFreeCRM::Engine is skipped.
