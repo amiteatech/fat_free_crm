@@ -183,10 +183,10 @@ class TasksController < ApplicationController
           @user_task.save
           # Mail functionality disabled
 
-          # SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
+          SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
         end
         if params['option_value'].present?
-          params['option_value'].each do |key,value|
+          params['option_value'].each do |key, value|
             OptionValue.create(:task_form_tag_id => key, :task_form_tag_value_id => value, :task_id => @task.id)
           end  
         end
@@ -270,7 +270,7 @@ class TasksController < ApplicationController
             if UserTask.where(task_id: @task.id).exists?(user_id: user_id)
               # Mail functionality disabled
 
-              # SchoolMailer.task_password_changed(User.find(user_id), current_user, @task.name, @task.password).deliver_now
+              SchoolMailer.task_password_changed(User.find(user_id), current_user, @task.name, @task.password).deliver_now
             end
           end
         else
@@ -300,7 +300,7 @@ class TasksController < ApplicationController
           @user_task.save
           # Mail functionality disabled
 
-          # SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
+          SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
         end
       end
     end 
@@ -320,7 +320,7 @@ class TasksController < ApplicationController
           @task.update_attribute("task_status", "Pending" )
           # Mail functionality disabled
 
-          # SchoolMailer.task_available(User.find(@new_user_task.user_id), current_user, @task.name).deliver_now
+          SchoolMailer.task_available(User.find(@new_user_task.user_id), current_user, @task.name).deliver_now
         else  
           @task.update_attribute("completed_at", Time.now)
           @task.update_attribute("completed_by", current_user.id )
@@ -328,7 +328,7 @@ class TasksController < ApplicationController
           @task.update_attribute("assigned_to",  @task.task_created_id)
           # Mail functionality disabled
 
-          # SchoolMailer.task_completed(User.find(@task.task_created_id), current_user, @task.name).deliver_now
+          SchoolMailer.task_completed(User.find(@task.task_created_id), current_user, @task.name).deliver_now
        end
 
         @user_task.update_attributes(approved: true, approved_time: Time.now)
@@ -340,7 +340,7 @@ class TasksController < ApplicationController
         @task.update_attribute("assigned_to", @task.task_created_id)
         @task.update_attribute("task_status", "Return")
         # Mail functionality disabled
-        # SchoolMailer.task_rejected(User.find(@task.task_created_id), current_user, @task.name).deliver_now
+        SchoolMailer.task_rejected(User.find(@task.task_created_id), current_user, @task.name).deliver_now
       elsif params[:task][:completed] == "3"
         @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).last
         @first_user_in_order = @task.task_created_id
@@ -602,7 +602,7 @@ class TasksController < ApplicationController
           if User.where(id: user_task.user_id).present?
             # Mail functionality disabled
 
-            # SchoolMailer.task_password_changed(User.find(user_task.user_id), current_user, @task.name, @task.password).deliver_now
+            SchoolMailer.task_password_changed(User.find(user_task.user_id), current_user, @task.name, @task.password).deliver_now
           end
         end
         flash[:notice] = "Your task password has been changed."
