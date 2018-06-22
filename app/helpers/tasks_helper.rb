@@ -9,7 +9,7 @@ module TasksHelper
   #----------------------------------------------------------------------------
   def task_filter_checkbox(view, filter, count)
     name = "filter_by_task_#{view}"
-    checked = (session[name] ? session[name].split(",").include?(filter.to_s) : count > 0)
+    checked =   count > 0 ? true : false
     url = url_for(action: :filter, view: view)
     onclick = %{
       $('#loading').show();

@@ -755,7 +755,31 @@ class TasksController < ApplicationController
   #----------------------------------------------------------------------------
   def update_sidebar
     @view = view
+    task = nil
+    if current_user.is_super_admin?
+      tasks = Task.all
+    elsif current_user.is_admin?
+      tasks = Task.where(:company_id => current_user.company_id)
+    elsif current_user.is_manager? 
+      arr = []
+      current_user.groups.each do |group|
+        group.users.each do |user|
+          arr << user.id
+        end
+      end
+      tasks = Task.where(task_created_id: arr)
+    else
+      data = UserTask.where(:user_id => current_user.id)
+      if data.present?
+        tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
+      else 
+        tasks = []
+      end
+    end
+
     @task_total = Task.totals(current_user, @view)
+
+    
 
     # Update filters session if we added, deleted, or completed a task.
     if @task
