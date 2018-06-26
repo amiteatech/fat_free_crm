@@ -72,17 +72,17 @@ module FatFreeCRM
     config.action_mailer.default_url_options = { :host => 'www.educertpro.com' }
     # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
     config.action_mailer.raise_delivery_errors = true
-    # config.action_mailer.delivery_method = :smtp
+    config.action_mailer.delivery_method = :smtp
 
-    # config.action_mailer.smtp_settings = {
-    #   :address => "smtp.zoho.com",
-    #   :port => 587,
-    #   :user_name => "crm1@kinnetik.co",
-    #   :password => "abcd1234",
-    #   :domain => "zoho.com",
-    #   :authentication => :plain,
-    #   :enable_starttls_auto => true
-    # }
+     config.action_mailer.smtp_settings = {
+       :address => "smtp.zoho.com",
+       :port => 587,
+       :user_name => "admin@educertpro.com",
+       :password => "nZmVQnl!%YTj",
+       :domain => "educertpro.com",
+       :authentication => :plain,
+       :enable_starttls_auto => true
+     }
    #  config.action_mailer.delivery_method = :smtp
    #  config.action_mailer.smtp_settings = {
    #    :address => "smtp.gmail.com",
@@ -94,18 +94,18 @@ module FatFreeCRM
    #    :enable_starttls_auto => true
    #  }
 
-   config.action_mailer.delivery_method = :smtp
-   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
   end
 end
 
-#class OverrideMailRecipient
-#      def self.delivering_email(mail)
-#        mail.to = 'vinaytech09@gmail.com'
-#      end
-#end
-#ActionMailer::Base.register_interceptor(OverrideMailRecipient)
+class OverrideMailRecipient
+      def self.delivering_email(mail)
+        mail.to = 'vinaytech09@gmail.com'
+      end
+end
+ActionMailer::Base.register_interceptor(OverrideMailRecipient)
 
 # Require fat_free_crm after FatFreeCRM::Application class is defined,
 # so that FatFreeCRM::Engine is skipped.
