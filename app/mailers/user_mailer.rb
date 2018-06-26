@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
 
     mail subject: "Educert Process Control System: " + I18n.t(:password_reset_instruction),
          to: user.email,
-         from: from_address,
+         from: 'admin@educertpro.com',
          date: Time.now
   end
 
@@ -20,7 +20,7 @@ class UserMailer < ActionMailer::Base
     @assigner_name = assigner.name
     mail subject: "Educert Process Control System: You have been assigned #{@entity_name} #{@entity_type}",
          to: entity.assignee.email,
-         from: from_address
+         from: 'admin@educertpro.com'
   end
 
   private
@@ -28,6 +28,6 @@ class UserMailer < ActionMailer::Base
   def from_address
     # from = (Setting.smtp || {})[:from]
     # !from.blank? ? from : "Eatech CRM <noreply@fatfreecrm.com>"
-    from = "autosmartzicreon@gmail.com"
+    from = "admin@educertpro.com"
   end
 end

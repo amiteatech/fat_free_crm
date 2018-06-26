@@ -7,7 +7,7 @@ class SchoolMailer < ApplicationMailer
 
     mail subject: "Educert Process Control System: School '#{@company_name}' has been created.",
          to: entity.email,
-         from: from_address
+         from: 'admin@educertpro.com'
   end
 
   def task_assigned(entity, assigner, task_name, pwd)
@@ -18,7 +18,7 @@ class SchoolMailer < ApplicationMailer
 
     mail subject: "Educert Process Control System: Task '#{@task_title}' has been assigned to you.",
          to: entity.email,
-         from: from_address
+         from: 'admin@educertpro.com'
   end
 
   def task_available(entity, assigner, task_name)
@@ -28,7 +28,7 @@ class SchoolMailer < ApplicationMailer
 
     mail subject: "Educert Process Control System: Task '#{@task_title}' is available now.",
          to: entity.email,
-         from: from_address
+         from: 'admin@educertpro.com'
   end
 
   def task_completed(entity, completed_by_user, task_name)
@@ -38,7 +38,7 @@ class SchoolMailer < ApplicationMailer
 
     mail subject: "Educert Process Control System: Task '#{@task_title}' is completed.",
          to: entity.email,
-         from: from_address
+         from: 'admin@educertpro.com'
   end
 
   def task_rejected(entity, rejected_by, task_name)
@@ -48,7 +48,7 @@ class SchoolMailer < ApplicationMailer
 
     mail subject: "Educert Process Control System: Task '#{@task_title}' is rejected.",
          to: entity.email,
-         from: from_address
+         from: 'admin@educertpro.com'
   end
 
   def task_password_changed(entity, rejected_by, task_name, password)
@@ -59,7 +59,7 @@ class SchoolMailer < ApplicationMailer
 
     mail subject: "Educert Process Control System: Password changed for task '#{@task_title}'",
          to: entity.email,
-         from: from_address
+         from: 'admin@educertpro.com'
   end
 
   # def task_password_reset(user, )
@@ -76,13 +76,13 @@ class SchoolMailer < ApplicationMailer
 
     mail subject: "Educert Process Control System: " + I18n.t(:password_reset_instruction),
          to: User.find(@task.task_created_id).email,
-         from: from_address,
+         from: 'admin@educertpro.com',
          date: Time.now
   end
 
   private
 
   def from_address
-    from = "autosmartzicreon@gmail.com"
+    from = "admin@educertpro.com"
   end
 end

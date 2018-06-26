@@ -12,7 +12,7 @@ class DropboxMailer < ActionMailer::Base
 
     mail subject: I18n.t(:dropbox_notification_subject, subject: email.subject),
          to: user.email,
-         from: from,
+         from: 'admin@educertpro.com',
          date: Time.now
   end
 end

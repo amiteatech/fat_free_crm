@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'autosmartzicreon@gmail.com'
+  default from: 'admin@educertpro.com'
   layout 'mailer'
 end
 
