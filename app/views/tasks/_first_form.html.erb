@@ -1,5 +1,5 @@
  <%= f.simple_fields_for :form_first do |p| %>
-  <div class="first_form_task">
+  <div class="first_form_task" hidefocus="1" tabindex="1">
   <div class="title">
      <h1>Staff Interview and Recruitment</h1>
   </div>
@@ -7,7 +7,7 @@
     <div class="name">
       <div class="f_name">
         <%= f.label :name, 'Name of applicant :' %>
-        <%= p.input :name_of_applicant, label: false , input_html: { minlength: 1 }%>
+        <%= p.input :name_of_applicant, label: false , input_html: { minlength: 1, tabindex: -1 }%>
       </div>
       <div class="f_position">
         <%= f.label :name, 'Position applied for :' %>
@@ -29,7 +29,7 @@
     </div>
     <div class="part_a">
       <%= p.input :part_b_first_interview_date %>
-      <%= p.input :name, input_html: { minlength: 1 } %>
+      <%= p.input :part_b_name, input_html: { minlength: 1 } %>
     </div>
     <div class="interview">
       <label>Interviewer’s comments </label>

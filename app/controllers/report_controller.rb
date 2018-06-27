@@ -4,14 +4,17 @@ class ReportController < ApplicationController
       @search = Task.all.ransack(view_context.empty_blank_params params[:q])
     elsif current_user.is_admin?
   	  @search = Task.where(:company_id => current_user.company_id).ransack(view_context.empty_blank_params params[:q])
-    elsif current_user.is_manager? 
+    elsif current_user
       arr = []
-      current_user.groups.each do |group|
-        group.users.each do |user|
-          arr << user.id
-        end
-      end
-      @tasks = Task.where(task_created_id: arr)
+      arr = UserTask.where(:user_id => current_user.id).map{|s|s.task_id}
+     # raise arr.inspect
+     # current_user.groups.each do |group|
+     #   group.users.each do |user|
+     #     arr << user.id
+     #   end
+     # end
+      
+      @tasks = Task.where(id: arr)
       @search = @tasks.ransack(view_context.empty_blank_params params[:q])
     else
       @search = Task.where(:company_id => current_user.company_id).where(task_created_id: current_user.id).ransack(view_context.empty_blank_params params[:q])

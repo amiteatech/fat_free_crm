@@ -8,6 +8,7 @@ class FormFirst < ApplicationRecord
   	 form_first_history = FormFirstHistory.new
   	 form_first_history.form_first_id = self.id
      form_first_history.name = self.name
+     form_first_history.part_b_name = self.part_b_name
      form_first_history.name_of_applicant = self.name_of_applicant
      form_first_history.position_applied_for =  self.position_applied_for
      form_first_history.part_a_first_interview_date = self.part_a_first_interview_date
