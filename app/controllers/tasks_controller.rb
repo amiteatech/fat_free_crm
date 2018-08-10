@@ -102,13 +102,15 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit                                                      AJAX
   #----------------------------------------------------------------------------
   def edit
+
     @view = view
-    @task = Task.tracked_by(current_user).find(params[:id])
+    @task = Task.find(params[:id])
+    #@task = Task.tracked_by(current_user).find(params[:id])
     @bucket = Setting.unroll(:task_bucket)[1..-1] << [t(:due_specific_date, default: 'On Specific Date...'), :specific_time]
     @category = Setting.unroll(:task_category)
     @asset = @task.asset if @task.asset_id?
     @user_tasks = UserTask.where(task_id: @task.id).order('position asc')
-
+    
     if params[:previous].to_s =~ /(\d+)\z/
       @previous = Task.tracked_by(current_user).find_by_id(Regexp.last_match[1]) || Regexp.last_match[1].to_i
     end
@@ -306,7 +308,10 @@ class TasksController < ApplicationController
 
 
         @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).first
-        pos = @user_task.position + 1
+        pos = 1
+        if @user_task.present?
+           pos = @user_task.position + 1
+        end   
      
         if @task.user_tasks.exists?(position: pos)
           @new_user_task = @task.user_tasks.where(position: pos).last
@@ -323,8 +328,9 @@ class TasksController < ApplicationController
           # Mail functionality disabled
           SchoolMailer.task_completed(User.find(@task.task_created_id), current_user, @task.name).deliver_now
        end
-
-        @user_task.update_attributes(approved: true, approved_time: Time.now)
+        if @user_task
+          @user_task.update_attributes(approved: true, approved_time: Time.now)
+        end
 
       elsif params[:task][:completed] == "2"
         @user_task = UserTask.where(task_id: @task.id).where(user_id: current_user.id).last

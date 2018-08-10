@@ -38,8 +38,13 @@
     </td>
     <td>
       <% pending.user_tasks.where.not(id: pending.task_created_id).each do |user_task| %>
-        <%  @user = User.find(user_task.user_id) %>
-        <%= @user.name %><%= (pending.user_tasks.where.not(id: pending.task_created_id).last == user_task) ? "" : "," %>
+        <%  user = User.find(user_task.user_id) %>
+        <% if pending.assigned_to == user_task.user_id && pending.task_status != "Completed" %>
+           <strong><%= user.name %>(Pending)</strong>
+        <% else %>
+           <%= user.name %> 
+        <% end %>  
+        <%= (pending.user_tasks.where.not(id: pending.task_created_id).last == user_task) ? "" : "," %>
       <% end %>
     </td>
     <td>
