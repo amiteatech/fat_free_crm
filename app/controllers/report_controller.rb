@@ -20,10 +20,10 @@ class ReportController < ApplicationController
    
       
       
-      @tasks = Task.where(id: arr)
+      @tasks = Task.where(id: arr).order("id DESC")
       @search = @tasks.ransack(view_context.empty_blank_params params[:q])
     else
-      @search = Task.where(:company_id => current_user.company_id).where(task_created_id: current_user.id).ransack(view_context.empty_blank_params params[:q])
+      @search = Task.where(:company_id => current_user.company_id).where(task_created_id: current_user.id).order("id DESC").ransack(view_context.empty_blank_params params[:q])
     end
 
     @tasks = @search.result(distinct: true).includes(:user_tasks).includes(:option_values).order("id DESC")
