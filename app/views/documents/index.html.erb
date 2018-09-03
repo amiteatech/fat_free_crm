@@ -23,7 +23,9 @@
 								</div>
 								<div class="about_folder">
 			            <%= link_to folder.name, document_path(folder), class: "folder_name" %>
+			            <% if current_user.is_admin? %>
 									<%= link_to("<i class='fa fa-trash'></i>".html_safe, document_path(folder), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
+						<% end %>			
 								</div>
 							</li>
 						<% end %>

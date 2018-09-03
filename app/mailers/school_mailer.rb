@@ -15,8 +15,8 @@ class SchoolMailer < ApplicationMailer
     @assigner_name = assigner.name
     @task_title = task_name
     @password = pwd
-
-    mail subject: "Educert Process Control System: Task '#{@task_title}' has been assigned to you.",
+    @company_name = company.name
+    mail subject: "Educert Process Control System: School '#{@company_name}' Task '#{@task_title}' has been assigned to you.",
          to: entity.email,
          from: 'admin@educertpro.com'
   end
@@ -25,8 +25,8 @@ class SchoolMailer < ApplicationMailer
     @entity_name = entity.name
     @assigner_name = assigner.name
     @task_title = task_name
-
-    mail subject: "Educert Process Control System: Task '#{@task_title}' is available now.",
+    @company_name = company.name
+    mail subject: "Educert Process Control System: School '#{@company_name}' Task '#{@task_title}' is available now.",
          to: entity.email,
          from: 'admin@educertpro.com'
   end
@@ -35,8 +35,8 @@ class SchoolMailer < ApplicationMailer
     @entity_name = entity.name
     @user_name = completed_by_user.name
     @task_title = task_name
-
-    mail subject: "Educert Process Control System: Task '#{@task_title}' is completed.",
+    @company_name = company.name
+    mail subject: "Educert Process Control System: School '#{@company_name}' Task '#{@task_title}' is completed.",
          to: entity.email,
          from: 'admin@educertpro.com'
   end
@@ -45,8 +45,8 @@ class SchoolMailer < ApplicationMailer
     @entity_name = entity.name
     @rejected_by = rejected_by.name
     @task_title = task_name
-
-    mail subject: "Educert Process Control System: Task '#{@task_title}' is rejected.",
+    @company_name = company.name
+    mail subject: "Educert Process Control System: School '#{@company_name}' Task '#{@task_title}' is rejected.",
          to: entity.email,
          from: 'admin@educertpro.com'
   end
@@ -56,8 +56,8 @@ class SchoolMailer < ApplicationMailer
     @rejected_by = rejected_by.name
     @task_title = task_name
     @password = password
-
-    mail subject: "Educert Process Control System: Password changed for task '#{@task_title}'",
+    @company_name = company.name
+    mail subject: "Educert Process Control System: School '#{@company_name}' Password changed for task '#{@task_title}'",
          to: entity.email,
          from: 'admin@educertpro.com'
   end
@@ -73,8 +73,8 @@ class SchoolMailer < ApplicationMailer
   def forgot_task_password(task_id)
     @task = Task.find(task_id)
     @task_password_url = edit_task_password_task_url(task_id)
-
-    mail subject: "Educert Process Control System: " + I18n.t(:password_reset_instruction),
+     @company_name = company.name
+    mail subject: "Educert Process Control System: School '#{@company_name}' " + I18n.t(:password_reset_instruction),
          to: User.find(@task.task_created_id).email,
          from: 'admin@educertpro.com',
          date: Time.now

@@ -42,6 +42,7 @@ class TasksController < ApplicationController
       end
       @tasks = Task.where(task_created_id: arr)
     else
+      
       data = UserTask.where(:user_id => current_user.id)
       # @tasks = Task.where(:company_id => current_user.company_id).where(task_created_id: current_user.id)
       if data.present?
