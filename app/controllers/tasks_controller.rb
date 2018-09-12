@@ -640,6 +640,33 @@ class TasksController < ApplicationController
 
   # Ajax request to filter out a list of tasks.                            AJAX
   #----------------------------------------------------------------------------
+  def find_user_task
+    @task = Task.find(params[:task_id])
+    @user_id = params[:user_id]
+    if params[:type] === "select"
+      if @task.user_tasks.where(user_id: @user_id).present?
+        @user_task = @task.user_tasks.where(user_id: @user_id).first
+      else
+        @user_task = UserTask.new
+        @user_task.user_id = @user_id
+        @user_task.task_id = @task.id
+        @user_task.position = @task.user_tasks.last.position+1
+        @user_task.save
+      end
+      respond_to do |format|
+        format.json { render json: @user_task.id }
+      end
+    else 
+      if @task.user_tasks.where(user_id: @user_id).present?
+        @user_task = @task.user_tasks.where(user_id: @user_id)
+        UserTask.destroy(@user_task.first.id)
+        respond_to do |format|
+          format.json { render json: false }
+        end
+      end
+    end
+  end
+
   def filter
     @view = view
 
