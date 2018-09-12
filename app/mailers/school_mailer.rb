@@ -32,7 +32,7 @@ class SchoolMailer < ApplicationMailer
     if entity.company.present?
       @company_name = entity.company.name
     end
-    @company_name = company.name
+    # @company_name = company.name
     mail subject: "Educert Process Control System: School '#{@company_name}' Task '#{@task_title}' is available now.",
          to: entity.email,
          from: 'admin@educertpro.com'

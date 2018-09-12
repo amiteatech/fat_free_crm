@@ -30,9 +30,9 @@ class TasksController < ApplicationController
     # end 
 
     if current_user.is_super_admin?
-      @tasks = Task.all
+      @tasks = Task.all.order("id DESC")
     elsif current_user.is_admin?
-      @tasks = Task.where(:company_id => current_user.company_id)
+      @tasks = Task.where(:company_id => current_user.company_id).order("id DESC")
     elsif current_user.is_manager? 
       arr = []
       current_user.groups.each do |group|
@@ -40,13 +40,13 @@ class TasksController < ApplicationController
           arr << user.id
         end
       end
-      @tasks = Task.where(task_created_id: arr)
+      @tasks = Task.where(task_created_id: arr).order("id DESC")
     else
       
       data = UserTask.where(:user_id => current_user.id)
       # @tasks = Task.where(:company_id => current_user.company_id).where(task_created_id: current_user.id)
       if data.present?
-        @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id})
+        @tasks = Task.where(company_id: current_user.company_id).where(:id => data.map{|s|s.task_id}).order("id DESC")
       else 
         @tasks = []
       end
