@@ -696,8 +696,8 @@ en-US:
   # Views -> Admin
   #----------------------------------------------------------------------------
   back_to_crm: Back to CRM
-  crm_admin_page: Process Control Software
-  # crm_admin_page: Educert Process Control System
+  # crm_admin_page: Process Control Software
+  crm_admin_page: Educert Process Control System
 
   # Views -> Admin -> Groups
   #----------------------------------------------------------------------------
