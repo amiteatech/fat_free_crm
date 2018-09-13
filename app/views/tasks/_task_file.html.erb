@@ -7,11 +7,11 @@
 		<% @task.task_files.each do |task_file| %>
 		  <div class="filesbox fr_edt blockForm2">
 				<%= link_to task_file.file_file_name, task_file.file.url(:original, false) %>
-				<%# if (@task.task_created_id === current_user.id) || current_user.is_admin? || current_user.is_super_admin? %>
-				<%= link_to("<i class='fa fa-trash'></i>".html_safe, task_file_path(task_file.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
-				<%# else %>
-					<%#= link_to("<i class='fa fa-download'></i>".html_safe, tasks_download_task_file_path(id: task_file.id), :class => 'deletIcon') %>
-				<%# end %>
+				<% if (@task.task_created_id === current_user.id) || current_user.is_admin? || current_user.is_super_admin? %>
+					<%= link_to("<i class='fa fa-trash'></i>".html_safe, task_file_path(task_file.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'deletIcon') %>
+				<% else %>
+					<%= link_to("<i class='fa fa-download'></i>".html_safe, task_file.file.url(:original, false), :class => 'deletIcon') %>
+				<% end %>
 		  </div>
 		<% end %>	
 	    <div class="filesbox for_new blockForm2">

@@ -372,16 +372,14 @@ class TasksController < ApplicationController
 
      if params["files"].present?
             params["files"].each do |key, value|
-              # @file_name = TaskFile.where(task_id: params[:id]).where( :file_file_name => value.original_filename)
-              # if @file_name.count > 0
-              #   @file_name.first.file = value
-              #   @file_name.first.save
-              # else
-                task_file = TaskFile.new
-                task_file.file = value
-                task_file.task_id = @task.id
-                task_file.save
-              # end
+              @file_name = TaskFile.where(task_id: params[:id]).where( :file_file_name => value.original_filename)
+              if @file_name.count > 0
+                @file_name.first.destroy
+              end
+              task_file = TaskFile.new
+              task_file.file = value
+              task_file.task_id = @task.id
+              task_file.save
             end 
           end 
 
@@ -671,20 +669,6 @@ class TasksController < ApplicationController
         end
       end
     end
-  end
-
-  def download_task_file
-    if params[:id].present?
-      @task_file = TaskFile.find(params[:id])
-      if @task_file
-        send_file(
-            "#{Rails.root}/public"+ @task_file.file.url(:original, false),
-            # filename: "a.xltx",
-            type: @task_file.file_content_type #"application/excel",
-            # disposition: 'inline'
-           ) 
-      end
-    end 
   end
 
   def filter
