@@ -151,41 +151,41 @@
         dateFormat: 'yy-mm-dd'})
     });
 
-    $('#users_').on('select2:select select2:unselecting', function (e) {
-      var task_id = this.closest("form").id.split("_")[2];
-      if (e.params.name === "unselect") { 
-        var event_name = "unselect";
-        var user_name = e.params.args.data.text;
-        var arr = { "task_id": task_id, "user_id": e.params.args.data.id, "type": event_name };
-      } else {
-        var user_name = e.params.data.text;
-        var event_name = "select";
-        var arr = { "task_id": task_id, "user_id": e.params.data.id, "type": event_name };
-      }
-      $.ajax({
-        url: "/tasks/find_user_task",
-        data: arr,
-        type: 'GET',
-        dataType: 'script',
-        success: function (resp) {
-          if (resp && event_name === "select") {
-            var lastElem = document.getElementById("sortable").lastElementChild;
-            var cloneElem = lastElem.cloneNode();
-            cloneElem.setAttribute("data-utid", "UserTask-"+resp);
-            var spanElem = lastElem.firstElementChild;
-            cloneElem.appendChild(spanElem.cloneNode());
-            cloneElem.append(user_name);
-            document.getElementById("sortable").appendChild(cloneElem);
-          } else if(event_name === "unselect") {
-            $("#sortable li").each(function() {
-              if (this.innerText.includes(user_name)) {
-                this.remove();
-              }
-            });
-          }
-        }  
-      });
-    });
+    // $('#users_').on('select2:select select2:unselecting', function (e) {
+    //   var task_id = this.closest("form").id.split("_")[2];
+    //   if (e.params.name === "unselect") { 
+    //     var event_name = "unselect";
+    //     var user_name = e.params.args.data.text;
+    //     var arr = { "task_id": task_id, "user_id": e.params.args.data.id, "type": event_name };
+    //   } else {
+    //     var user_name = e.params.data.text;
+    //     var event_name = "select";
+    //     var arr = { "task_id": task_id, "user_id": e.params.data.id, "type": event_name };
+    //   }
+    //   $.ajax({
+    //     url: "/tasks/find_user_task",
+    //     data: arr,
+    //     type: 'GET',
+    //     dataType: 'script',
+    //     success: function (resp) {
+    //       if (resp && event_name === "select") {
+    //         var lastElem = document.getElementById("sortable").lastElementChild;
+    //         var cloneElem = lastElem.cloneNode();
+    //         cloneElem.setAttribute("data-utid", "UserTask-"+resp);
+    //         var spanElem = lastElem.firstElementChild;
+    //         cloneElem.appendChild(spanElem.cloneNode());
+    //         cloneElem.append(user_name);
+    //         document.getElementById("sortable").appendChild(cloneElem);
+    //       } else if(event_name === "unselect") {
+    //         $("#sortable li").each(function() {
+    //           if (this.innerText.includes(user_name)) {
+    //             this.remove();
+    //           }
+    //         });
+    //       }
+    //     }  
+    //   });
+    // });
     
     $(".task_password_protected input").on("click", function() {
       if ($(this).is(":checked")) {        

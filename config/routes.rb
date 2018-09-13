@@ -6,6 +6,7 @@
 Rails.application.routes.draw do
 
   get 'tasks/find_user_task' => 'tasks#find_user_task'
+  get 'tasks/download_task_file' => "tasks#download_task_file"
   get 'surper_task_report/task_super'
 
   get 'surper_task_report/report_super'
