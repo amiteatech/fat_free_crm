@@ -35,6 +35,12 @@ module UsersHelper
     select_tag 'users[]', options_for_select( users.map {|s| [s.name, s.id]}, assignedUsers), class: 'select2_tag assignedUserSelect', :multiple => true, :size => 10
   end
 
+  def restricted_group_select(restricted_gr)
+   # # raise users.inspect
+   restrictedGroups = Group.where(company_id: current_user.company_id)
+   select_tag "restricted_groups[]", options_for_select( restrictedGroups.map {|s| [s.name, s.id]}, restricted_gr ), class: 'select2_tag', :multiple => true, :size => 10
+  end
+
   def user_options_for_select(users, myself)
     (users - [myself]).map { |u| [u.full_name, u.id] }.prepend([t(:myself), myself.id])
   end

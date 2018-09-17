@@ -1,0 +1,2 @@
+class RestrictedGroup < ApplicationRecord
+end

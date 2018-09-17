@@ -122,7 +122,7 @@ class TasksController < ApplicationController
   # POST /tasks
   #----------------------------------------------------------------------------
   def create
-   # raise params.inspect
+    
     @view = view
     only_current_user = false
     @users_selected = params[:users].reject { |c| c.empty? } if params[:users].present?
@@ -184,9 +184,24 @@ class TasksController < ApplicationController
           @user_task.task_id = @task.id
           @user_task.position = pos
           @user_task.save
+
+
           # Mail functionality disabled
           SchoolMailer.task_assigned(User.find(user_id), current_user, @task.name, @task.password_protected ? @task.password : '').deliver_now
         end
+        
+        if params[:restricted_groups].present?
+
+           params[:restricted_groups].each do |s|
+
+             @restricted_group = RestrictedGroup.new
+             @restricted_group.group_id = s
+             @restricted_group.task_id = @task.id
+             @restricted_group.save
+
+           end 
+        end
+
         if params['option_value'].present?
           params['option_value'].each do |key, value|
             OptionValue.create(:task_form_tag_id => key, :task_form_tag_value_id => value, :task_id => @task.id)
@@ -302,6 +317,18 @@ class TasksController < ApplicationController
         end
       end
     end 
+
+    if params[:restricted_groups].present?
+         rs_group = RestrictedGroup.where(:task_id => @task.id)
+         rs_group.delete_all
+           params[:restricted_groups].each do |s|
+             @restricted_group = RestrictedGroup.new
+             @restricted_group.group_id = s
+             @restricted_group.task_id = @task.id
+             @restricted_group.save
+           end     
+    end
+
     if params[:task] && params[:task][:completed]
 
       if params[:task][:completed] == "1"

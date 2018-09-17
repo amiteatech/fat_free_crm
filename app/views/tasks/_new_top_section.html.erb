@@ -64,6 +64,18 @@
         <%= multi_user_select(:task, all_users, @task.id) %>
       </div>
     </div>
+
+    <div class="blockForm2">
+      <label class="req">Restricted Group:</label>
+      <div class="span2">
+      <%
+  restricted_gr = RestrictedGroup.where(:task_id => @task.id).map{|s|s.group_id}
+  
+      %>
+      <%= restricted_group_select(restricted_gr) %>  
+      </div>
+    </div>
+
     <% if Setting.background_info && Setting.background_info.include?(:task) %>
 
     <div class="blockForm2">
